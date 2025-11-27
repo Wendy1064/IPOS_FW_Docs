@@ -1,0 +1,134 @@
+\doxysection{IPOS\+\_\+071125/\+Core/\+Src/main.c File Reference}
+\hypertarget{_i_p_o_s__071125_2_core_2_src_2main_8c}{}\label{_i_p_o_s__071125_2_core_2_src_2main_8c}\index{main.c@{main.c}}
+
+
+\+: Main program body  
+
+
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os.\+h"{}}\newline
+{\ttfamily \#include "{}dma.\+h"{}}\newline
+{\ttfamily \#include "{}spi.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+{\ttfamily \#include "{}usb\+\_\+device.\+h"{}}\newline
+{\ttfamily \#include "{}gpio.\+h"{}}\newline
+{\ttfamily \#include "{}protocol.\+h"{}}\newline
+{\ttfamily \#include "{}inputs.\+h"{}}\newline
+Include dependency graph for IPOS\+\_\+071125/\+Core/\+Src/main.c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_i_p_o_s__071125_2_core_2_src_2main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2main_8c_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2main_8c_abade755e13d07c10889ae83143656158}{MX\+\_\+\+FREERTOS\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2main_8c_a54b14b665d04a631991869b21065bf90}{v\+Application\+Stack\+Overflow\+Hook}} (Task\+Handle\+\_\+t x\+Task, char \texorpdfstring{$\ast$}{*}pc\+Task\+Name)
+\item 
+void \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2main_8c_ab7e5c95cf72a3f819bc4462a7fb62ca3}{v\+Application\+Malloc\+Failed\+Hook}} (void)
+\item 
+int \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___t_i_m___exported___functions___group9_ga8a3b0ad512a6e6c6157440b68d395eac}{HAL\+\_\+\+TIM\+\_\+\+Period\+Elapsed\+Callback}} (\mbox{\hyperlink{struct_t_i_m___handle_type_def}{TIM\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}htim)
+\begin{DoxyCompactList}\small\item\em Period elapsed callback in non blocking mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Main program body 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2025 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_i_p_o_s__071125_2_core_2_src_2main_8c_a1730ffe1e560465665eb47d9264826f9}\label{_i_p_o_s__071125_2_core_2_src_2main_8c_a1730ffe1e560465665eb47d9264826f9} 
+\index{main.c@{main.c}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{_i_p_o_s__071125_2_core_2_src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{_i_p_o_s__071125_2_core_2_src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{_i_p_o_s__071125_2_core_2_src_2main_8c_abade755e13d07c10889ae83143656158}\label{_i_p_o_s__071125_2_core_2_src_2main_8c_abade755e13d07c10889ae83143656158} 
+\index{main.c@{main.c}!MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}}
+\index{MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{MX\_FREERTOS\_Init()}{MX\_FREERTOS\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+FREERTOS\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{_i_p_o_s__071125_2_core_2_src_2main_8c_a70af21c671abfcc773614a9a4f63d920}\label{_i_p_o_s__071125_2_core_2_src_2main_8c_a70af21c671abfcc773614a9a4f63d920} 
+\index{main.c@{main.c}!SystemClock\_Config@{SystemClock\_Config}}
+\index{SystemClock\_Config@{SystemClock\_Config}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SystemClock\_Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Configure the main internal regulator output voltage
+
+Initializes the RCC Oscillators according to the specified parameters in the \doxylink{struct_r_c_c___osc_init_type_def}{RCC\+\_\+\+Osc\+Init\+Type\+Def} structure.
+
+Initializes the CPU, AHB and APB buses clocks\Hypertarget{_i_p_o_s__071125_2_core_2_src_2main_8c_ab7e5c95cf72a3f819bc4462a7fb62ca3}\label{_i_p_o_s__071125_2_core_2_src_2main_8c_ab7e5c95cf72a3f819bc4462a7fb62ca3} 
+\index{main.c@{main.c}!vApplicationMallocFailedHook@{vApplicationMallocFailedHook}}
+\index{vApplicationMallocFailedHook@{vApplicationMallocFailedHook}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{vApplicationMallocFailedHook()}{vApplicationMallocFailedHook()}}
+{\footnotesize\ttfamily void v\+Application\+Malloc\+Failed\+Hook (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{_i_p_o_s__071125_2_core_2_src_2main_8c_a54b14b665d04a631991869b21065bf90}\label{_i_p_o_s__071125_2_core_2_src_2main_8c_a54b14b665d04a631991869b21065bf90} 
+\index{main.c@{main.c}!vApplicationStackOverflowHook@{vApplicationStackOverflowHook}}
+\index{vApplicationStackOverflowHook@{vApplicationStackOverflowHook}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{vApplicationStackOverflowHook()}{vApplicationStackOverflowHook()}}
+{\footnotesize\ttfamily void v\+Application\+Stack\+Overflow\+Hook (\begin{DoxyParamCaption}\item[{Task\+Handle\+\_\+t}]{x\+Task,  }\item[{char \texorpdfstring{$\ast$}{*}}]{pc\+Task\+Name }\end{DoxyParamCaption})}
+

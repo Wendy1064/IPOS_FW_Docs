@@ -1,0 +1,100 @@
+\doxysection{slave\+\_\+link.\+c File Reference}
+\hypertarget{slave__link_8c}{}\label{slave__link_8c}\index{slave\_link.c@{slave\_link.c}}
+{\ttfamily \#include "{}slave\+\_\+link.\+h"{}}\newline
+{\ttfamily \#include "{}ringbuffer.\+h"{}}\newline
+{\ttfamily \#include "{}protocol.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+Include dependency graph for slave\+\_\+link.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{slave__link_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{slave__link_8c_ac7b5ea119b0669eaed97efae6ebd4c2f}{UART\+\_\+\+RX\+\_\+\+DMA\+\_\+\+CHUNK}}~128
+\item 
+\#define \mbox{\hyperlink{slave__link_8c_a4ab5f7800f96dec4076a4a0c8aa634b7}{RB\+\_\+\+SIZE}}~256
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{slave__link_8c_ac90702344605248dcf5e72b78141b2c1}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((aligned(32)))
+\item 
+void \mbox{\hyperlink{slave__link_8c_a58ba81efee4570ef875945bb78f7391e}{slave\+\_\+link\+\_\+poll}} (void)
+\item 
+void \mbox{\hyperlink{slave__link_8c_adebdc3501c69902cbee16fc4424619b5}{slave\+\_\+link\+\_\+start}} (void)
+\item 
+void \mbox{\hyperlink{group___u_a_r_t___exported___functions___group2_ga925534fb8bf7ca464fd05c982fe4bfa0}{HAL\+\_\+\+UARTEx\+\_\+\+Rx\+Event\+Callback}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}huart, uint16\+\_\+t Size)
+\begin{DoxyCompactList}\small\item\em HAL callback on UART RX idle event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___u_a_r_t___exported___functions___group2_ga0e0456ea96d55db31de947fb3e954f18}{HAL\+\_\+\+UART\+\_\+\+Error\+Callback}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}huart)
+\begin{DoxyCompactList}\small\item\em HAL callback for UART error recovery. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{slave__link_8c_a8c8839cf5d8cb692c3b99b83af51556a}{slave\+\_\+set\+\_\+reg}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{slave__link_8c_a8bdf6f063c53b3e45d36a8cd9db43608}{slave\+\_\+get\+\_\+reg}} (uint8\+\_\+t var\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{slave__link_8c_aa9479c261d65eecedd3d9582f7f0f89c}{huart2}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{slave__link_8c_a4ab5f7800f96dec4076a4a0c8aa634b7}\label{slave__link_8c_a4ab5f7800f96dec4076a4a0c8aa634b7} 
+\index{slave\_link.c@{slave\_link.c}!RB\_SIZE@{RB\_SIZE}}
+\index{RB\_SIZE@{RB\_SIZE}!slave\_link.c@{slave\_link.c}}
+\doxysubsubsection{\texorpdfstring{RB\_SIZE}{RB\_SIZE}}
+{\footnotesize\ttfamily \#define RB\+\_\+\+SIZE~256}
+
+\Hypertarget{slave__link_8c_ac7b5ea119b0669eaed97efae6ebd4c2f}\label{slave__link_8c_ac7b5ea119b0669eaed97efae6ebd4c2f} 
+\index{slave\_link.c@{slave\_link.c}!UART\_RX\_DMA\_CHUNK@{UART\_RX\_DMA\_CHUNK}}
+\index{UART\_RX\_DMA\_CHUNK@{UART\_RX\_DMA\_CHUNK}!slave\_link.c@{slave\_link.c}}
+\doxysubsubsection{\texorpdfstring{UART\_RX\_DMA\_CHUNK}{UART\_RX\_DMA\_CHUNK}}
+{\footnotesize\ttfamily \#define UART\+\_\+\+RX\+\_\+\+DMA\+\_\+\+CHUNK~128}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{slave__link_8c_ac90702344605248dcf5e72b78141b2c1}\label{slave__link_8c_ac90702344605248dcf5e72b78141b2c1} 
+\index{slave\_link.c@{slave\_link.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!slave\_link.c@{slave\_link.c}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(aligned(32))}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8c_a8bdf6f063c53b3e45d36a8cd9db43608}\label{slave__link_8c_a8bdf6f063c53b3e45d36a8cd9db43608} 
+\index{slave\_link.c@{slave\_link.c}!slave\_get\_reg@{slave\_get\_reg}}
+\index{slave\_get\_reg@{slave\_get\_reg}!slave\_link.c@{slave\_link.c}}
+\doxysubsubsection{\texorpdfstring{slave\_get\_reg()}{slave\_get\_reg()}}
+{\footnotesize\ttfamily uint16\+\_\+t slave\+\_\+get\+\_\+reg (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8c_a58ba81efee4570ef875945bb78f7391e}\label{slave__link_8c_a58ba81efee4570ef875945bb78f7391e} 
+\index{slave\_link.c@{slave\_link.c}!slave\_link\_poll@{slave\_link\_poll}}
+\index{slave\_link\_poll@{slave\_link\_poll}!slave\_link.c@{slave\_link.c}}
+\doxysubsubsection{\texorpdfstring{slave\_link\_poll()}{slave\_link\_poll()}}
+{\footnotesize\ttfamily void slave\+\_\+link\+\_\+poll (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8c_adebdc3501c69902cbee16fc4424619b5}\label{slave__link_8c_adebdc3501c69902cbee16fc4424619b5} 
+\index{slave\_link.c@{slave\_link.c}!slave\_link\_start@{slave\_link\_start}}
+\index{slave\_link\_start@{slave\_link\_start}!slave\_link.c@{slave\_link.c}}
+\doxysubsubsection{\texorpdfstring{slave\_link\_start()}{slave\_link\_start()}}
+{\footnotesize\ttfamily void slave\+\_\+link\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8c_a8c8839cf5d8cb692c3b99b83af51556a}\label{slave__link_8c_a8c8839cf5d8cb692c3b99b83af51556a} 
+\index{slave\_link.c@{slave\_link.c}!slave\_set\_reg@{slave\_set\_reg}}
+\index{slave\_set\_reg@{slave\_set\_reg}!slave\_link.c@{slave\_link.c}}
+\doxysubsubsection{\texorpdfstring{slave\_set\_reg()}{slave\_set\_reg()}}
+{\footnotesize\ttfamily void slave\+\_\+set\+\_\+reg (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{slave__link_8c_aa9479c261d65eecedd3d9582f7f0f89c}\label{slave__link_8c_aa9479c261d65eecedd3d9582f7f0f89c} 
+\index{slave\_link.c@{slave\_link.c}!huart2@{huart2}}
+\index{huart2@{huart2}!slave\_link.c@{slave\_link.c}}
+\doxysubsubsection{\texorpdfstring{huart2}{huart2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} huart2\hspace{0.3cm}{\ttfamily [extern]}}
+

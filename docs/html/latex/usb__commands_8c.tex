@@ -1,0 +1,58 @@
+\doxysection{usb\+\_\+commands.\+c File Reference}
+\hypertarget{usb__commands_8c}{}\label{usb__commands_8c}\index{usb\_commands.c@{usb\_commands.c}}
+
+
+USB command interface for IPOS firmware.  
+
+
+{\ttfamily \#include "{}debug\+\_\+flags.\+h"{}}\newline
+{\ttfamily \#include "{}protocol.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os2.\+h"{}}\newline
+{\ttfamily \#include "{}inputs.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}usbd\+\_\+cdc\+\_\+if.\+h"{}}\newline
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}task.\+h"{}}\newline
+{\ttfamily \#include "{}max31855.\+h"{}}\newline
+{\ttfamily \#include "{}log\+\_\+flash.\+h"{}}\newline
+Include dependency graph for usb\+\_\+commands.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{usb__commands_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__usb__commands_ga94d773ffaf8f23627d2520170ee6a8b7}{App\+\_\+\+Build\+Debug2\+Status\+Word}} (void)
+\begin{DoxyCompactList}\small\item\em Helper function from Application module to assemble Debug2 status word. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__usb__commands_ga132ae4cb7de0936784e2fb4ed9ea0f17}{Usb\+Command\+\_\+\+Process}} (const char \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Processes incoming USB commands from the CDC interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__usb__commands_ga336794b53dc28ddf68e6b5e440c5ad89}{debug\+Bypass\+Thermo\+Check}}
+\begin{DoxyCompactList}\small\item\em Enables or disables temperature checks. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__usb__commands_ga13513b52ba27e18fced406e65011d1b9}{verbose\+Logging}}
+\begin{DoxyCompactList}\small\item\em Enables or disables detailed input and temperature debug logs. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__usb__commands_ga6332c0412eb3dd6ac3758a9b356ae013}{laser\+Latched\+Off}}
+\begin{DoxyCompactList}\small\item\em Software latch flag for laser disable. \end{DoxyCompactList}\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__usb__commands_ga62b5ee21fd989192e48209d86efb4289}{Reset\+Latch\+Event}}
+\begin{DoxyCompactList}\small\item\em Event flag triggered for latch reset and trigger via command or button. \end{DoxyCompactList}\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__usb__commands_gac09e3335f4f6421a2c786a45f998c2a7}{Force\+Latch\+Event}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+USB command interface for IPOS firmware. 
+
+Handles user commands received via the USB CDC virtual COM port. Commands trigger debug actions, log operations, latch resets, and system tests.
+
+This module parses ASCII text commands (e.\+g., "{}\+HELP"{}, "{}\+RESET"{}, "{}\+FLASH TEST"{}) and translates them into system events or control actions. Commands are posted as messages to the RTOS queue for asynchronous processing by the input/event system.
+
+\begin{DoxyNote}{Note}
+The module interacts primarily with the Input Handling and Flash Log subsystems. 
+\end{DoxyNote}

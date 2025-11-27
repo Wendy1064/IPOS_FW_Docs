@@ -1,0 +1,79 @@
+\doxysection{slave\+\_\+link.\+h File Reference}
+\hypertarget{slave__link_8h}{}\label{slave__link_8h}\index{slave\_link.h@{slave\_link.h}}
+{\ttfamily \#include "{}stm32h7xx\+\_\+hal.\+h"{}}\newline
+Include dependency graph for slave\+\_\+link.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{slave__link_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{slave__link_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{slave__link_8h_adebdc3501c69902cbee16fc4424619b5}{slave\+\_\+link\+\_\+start}} (void)
+\item 
+void \mbox{\hyperlink{slave__link_8h_a58ba81efee4570ef875945bb78f7391e}{slave\+\_\+link\+\_\+poll}} (void)
+\item 
+void \mbox{\hyperlink{slave__link_8h_a57a20e42f562544326ab746ea2c4e44b}{slave\+\_\+on\+\_\+write}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{slave__link_8h_a1ef253795104f060c22e1433c137b379}{slave\+\_\+on\+\_\+read}} (uint8\+\_\+t var\+\_\+id)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{slave__link_8h_a8bdf6f063c53b3e45d36a8cd9db43608}{slave\+\_\+get\+\_\+reg}} (uint8\+\_\+t var\+\_\+id)
+\item 
+void \mbox{\hyperlink{slave__link_8h_a8c8839cf5d8cb692c3b99b83af51556a}{slave\+\_\+set\+\_\+reg}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{slave__link_8h_afbc0eb853c0ef11b27f22a5f53c6c76c}{to\+\_\+binary\+\_\+str}} (uint16\+\_\+t value, int bits, char \texorpdfstring{$\ast$}{*}buf, size\+\_\+t buf\+\_\+size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{slave__link_8h_a8bdf6f063c53b3e45d36a8cd9db43608}\label{slave__link_8h_a8bdf6f063c53b3e45d36a8cd9db43608} 
+\index{slave\_link.h@{slave\_link.h}!slave\_get\_reg@{slave\_get\_reg}}
+\index{slave\_get\_reg@{slave\_get\_reg}!slave\_link.h@{slave\_link.h}}
+\doxysubsubsection{\texorpdfstring{slave\_get\_reg()}{slave\_get\_reg()}}
+{\footnotesize\ttfamily uint16\+\_\+t slave\+\_\+get\+\_\+reg (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8h_a58ba81efee4570ef875945bb78f7391e}\label{slave__link_8h_a58ba81efee4570ef875945bb78f7391e} 
+\index{slave\_link.h@{slave\_link.h}!slave\_link\_poll@{slave\_link\_poll}}
+\index{slave\_link\_poll@{slave\_link\_poll}!slave\_link.h@{slave\_link.h}}
+\doxysubsubsection{\texorpdfstring{slave\_link\_poll()}{slave\_link\_poll()}}
+{\footnotesize\ttfamily void slave\+\_\+link\+\_\+poll (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8h_adebdc3501c69902cbee16fc4424619b5}\label{slave__link_8h_adebdc3501c69902cbee16fc4424619b5} 
+\index{slave\_link.h@{slave\_link.h}!slave\_link\_start@{slave\_link\_start}}
+\index{slave\_link\_start@{slave\_link\_start}!slave\_link.h@{slave\_link.h}}
+\doxysubsubsection{\texorpdfstring{slave\_link\_start()}{slave\_link\_start()}}
+{\footnotesize\ttfamily void slave\+\_\+link\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8h_a1ef253795104f060c22e1433c137b379}\label{slave__link_8h_a1ef253795104f060c22e1433c137b379} 
+\index{slave\_link.h@{slave\_link.h}!slave\_on\_read@{slave\_on\_read}}
+\index{slave\_on\_read@{slave\_on\_read}!slave\_link.h@{slave\_link.h}}
+\doxysubsubsection{\texorpdfstring{slave\_on\_read()}{slave\_on\_read()}}
+{\footnotesize\ttfamily void slave\+\_\+on\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8h_a57a20e42f562544326ab746ea2c4e44b}\label{slave__link_8h_a57a20e42f562544326ab746ea2c4e44b} 
+\index{slave\_link.h@{slave\_link.h}!slave\_on\_write@{slave\_on\_write}}
+\index{slave\_on\_write@{slave\_on\_write}!slave\_link.h@{slave\_link.h}}
+\doxysubsubsection{\texorpdfstring{slave\_on\_write()}{slave\_on\_write()}}
+{\footnotesize\ttfamily void slave\+\_\+on\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8h_a8c8839cf5d8cb692c3b99b83af51556a}\label{slave__link_8h_a8c8839cf5d8cb692c3b99b83af51556a} 
+\index{slave\_link.h@{slave\_link.h}!slave\_set\_reg@{slave\_set\_reg}}
+\index{slave\_set\_reg@{slave\_set\_reg}!slave\_link.h@{slave\_link.h}}
+\doxysubsubsection{\texorpdfstring{slave\_set\_reg()}{slave\_set\_reg()}}
+{\footnotesize\ttfamily void slave\+\_\+set\+\_\+reg (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+\Hypertarget{slave__link_8h_afbc0eb853c0ef11b27f22a5f53c6c76c}\label{slave__link_8h_afbc0eb853c0ef11b27f22a5f53c6c76c} 
+\index{slave\_link.h@{slave\_link.h}!to\_binary\_str@{to\_binary\_str}}
+\index{to\_binary\_str@{to\_binary\_str}!slave\_link.h@{slave\_link.h}}
+\doxysubsubsection{\texorpdfstring{to\_binary\_str()}{to\_binary\_str()}}
+{\footnotesize\ttfamily void to\+\_\+binary\+\_\+str (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{value,  }\item[{int}]{bits,  }\item[{char \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{buf\+\_\+size }\end{DoxyParamCaption})}
+

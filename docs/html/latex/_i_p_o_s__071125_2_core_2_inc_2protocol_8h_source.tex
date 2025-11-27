@@ -1,0 +1,72 @@
+\doxysection{IPOS\+\_\+071125/\+Core/\+Inc/protocol.h}
+\hypertarget{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_source}{}\label{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_source}\index{protocol.h@{protocol.h}}
+\mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}cmsis\_os2.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ STX\ 0x02u}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ ETX\ 0x03u}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ VAR\_PORTA\ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ VAR\_PORTB\ \ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ VAR\_PORTC\ \ \ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ VAR\_STATUS\_DEBUG\ \ \ \ 4\ \ \ }\textcolor{comment}{//\ Master\ writes\ (to\ PLC\ all\ debug\ status)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ VAR\_STATUS\_PLC\ \ \ \ \ \ 5\ \ \ }\textcolor{comment}{//\ Master\ reads\ (from\ PLC\ output)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ VAR\_STATUS\_ACTIVE\ \ \ 6\ \ \ }\textcolor{comment}{//\ Master\ writes\ (to\ PLC\ all\ active\ messages)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ VAR\_STATUS\_DEBUG2\ \ \ 7\ \ \ }\textcolor{comment}{//\ Master\ writes\ (to\ PLC\ all\ debug\ status)}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a43d7f3a35093d4198124c87b43afdefb}{CMD\_READ}}\ \ =\ 0x01u,}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a612986a7ae236cab656844222f00ba82}{CMD\_WRITE}}\ =\ 0x02u,}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a43add34e0ccdb1ce00a21c0a0a28bf86}{CMD\_ACK}}\ \ \ =\ 0x06u,}
+\DoxyCodeLine{00025\ \}\ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6}{ProtoCmd}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00028\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_proto_frame_ae1f39018032edf224f1267fd067b99b7}{cmd}};}
+\DoxyCodeLine{00029\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_proto_frame_a653fb48b3f23d5a7c7350998af2bf20f}{var\_id}};}
+\DoxyCodeLine{00030\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{struct_proto_frame_a6e3775f6efa90ef06f8902bff3aad080}{value}};\ \ \ \ \ \textcolor{comment}{//\ valid\ only\ if\ has\_value==true}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{struct_proto_frame_ac6f54683d49c7c38592f438bb0d26942}{has\_value}};\ \textcolor{comment}{//\ true\ for\ WRITE/ACK\ and\ for\ READ\ reply\ on\ master}}
+\DoxyCodeLine{00032\ \}\ \mbox{\hyperlink{struct_proto_frame}{ProtoFrame}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{/*\ Role\ selects\ the\ expected\ length\ for\ frames\ */}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7a47f287004d68c97c3589027d98225676}{ROLE\_MASTER}},\ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7a6cff0abbfa0fc9286a1d13b0ffd76cba}{ROLE\_SLAVE}}\ \}\ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}{ProtoRole}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ uint8\_t\ \ buf[8];}
+\DoxyCodeLine{00039\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_proto_parser_a37ec8ad3da4b016fb4b9bf04d6231734}{idx}};}
+\DoxyCodeLine{00040\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_proto_parser_a29e2324e446bb445f20a92d77c55a576}{expected}};}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}{ProtoRole}}\ \mbox{\hyperlink{struct_proto_parser_af6b269d2101ce28da53a1b95b58b8727}{role}};}
+\DoxyCodeLine{00042\ \}\ \mbox{\hyperlink{struct_proto_parser}{ProtoParser}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_a9ff0771c408ff05151526e5fc82eb860}{usbReadyFlag}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{UsbPrintf}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ ...);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_a8105ce7b7d699e0a7a78de8c5111f323}{UsbLog}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ ...);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__protocol_ga8970bcd0e0af17f42b3b3a6d83f3d195}{proto\_init}}(\mbox{\hyperlink{struct_proto_parser}{ProtoParser}}\ *p,\ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}{ProtoRole}}\ role);}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__protocol_gacad3e241e27ce9c8dc1ca4535f41f9a5}{proto\_reset}}(\mbox{\hyperlink{struct_proto_parser}{ProtoParser}}\ *p);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*\ Feed\ bytes\ one\ by\ one;\ returns\ true\ when\ a\ full,\ valid\ frame\ is\ ready\ in\ *out\ */}}
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__protocol_gadbb6342eec2b0de6e1c7ab042f1448e1}{proto\_push}}(\mbox{\hyperlink{struct_proto_parser}{ProtoParser}}\ *p,\ uint8\_t\ \textcolor{keywordtype}{byte},\ \mbox{\hyperlink{struct_proto_frame}{ProtoFrame}}\ *out);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{/*\ Builders\ (return\ number\ of\ bytes\ written\ to\ out[8])\ */}}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{group__protocol_ga95064f228b494d27449fa09019d639c8}{proto\_build\_write}}\ (uint8\_t\ var\_id,\ uint16\_t\ value,\ uint8\_t\ out[8]);}
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{group__protocol_ga4cc33e9868129062ecf64b316b43dcf6}{proto\_build\_read}}\ \ (uint8\_t\ var\_id,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ out[8]);}
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{group__protocol_ga05e2d2d6edbf121ecf479ddbaf47e03d}{proto\_build\_ack}}\ \ \ (uint8\_t\ var\_id,\ uint16\_t\ value,\ \ uint8\_t\ out[8]);}
+\DoxyCodeLine{00060\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{group__protocol_ga02c6e9492c7b3578ce7b3e9212cea6f7}{proto\_build\_readr}}\ (uint8\_t\ var\_id,\ uint16\_t\ value,\ \ uint8\_t\ out[8]);\ \textcolor{comment}{//\ read\ reply}}
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_ad9fb31485fa4e69b5364e3e54d81312c}{UsbSendRaw}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *data,\ \textcolor{keywordtype}{int}\ len);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ }
+
+\end{DoxyCode}

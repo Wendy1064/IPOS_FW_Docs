@@ -1,0 +1,71 @@
+\doxysection{safety\+\_\+utils.\+c File Reference}
+\hypertarget{safety__utils_8c}{}\label{safety__utils_8c}\index{safety\_utils.c@{safety\_utils.c}}
+{\ttfamily \#include "{}safety\+\_\+utils.\+h"{}}\newline
+Include dependency graph for safety\+\_\+utils.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{safety__utils_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{safety__utils_8c_a2717bd204c433b741cf4b8db6e935623}{All\+Safeties\+Active}} (void)
+\item 
+bool \mbox{\hyperlink{safety__utils_8c_a92412cbb5adc7eb94136843b1d36c1bb}{Any\+Safety\+Open}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__input__handling_ga3711f9988d0458491f58a119653255f7}{stable\+State}} \mbox{[}\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\+\_\+\+INPUTS}}\mbox{]}
+\item 
+volatile bool \mbox{\hyperlink{safety__utils_8c_adec52268ec2084a993c7a0dcf1024d90}{system\+Ready}}
+\begin{DoxyCompactList}\small\item\em Delay @ startup to prevent false triggers to allow relays etc to settle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{safety__utils_8c_a2717bd204c433b741cf4b8db6e935623}\label{safety__utils_8c_a2717bd204c433b741cf4b8db6e935623} 
+\index{safety\_utils.c@{safety\_utils.c}!AllSafetiesActive@{AllSafetiesActive}}
+\index{AllSafetiesActive@{AllSafetiesActive}!safety\_utils.c@{safety\_utils.c}}
+\doxysubsubsection{\texorpdfstring{AllSafetiesActive()}{AllSafetiesActive()}}
+{\footnotesize\ttfamily bool All\+Safeties\+Active (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{safety__utils_8c_a92412cbb5adc7eb94136843b1d36c1bb}\label{safety__utils_8c_a92412cbb5adc7eb94136843b1d36c1bb} 
+\index{safety\_utils.c@{safety\_utils.c}!AnySafetyOpen@{AnySafetyOpen}}
+\index{AnySafetyOpen@{AnySafetyOpen}!safety\_utils.c@{safety\_utils.c}}
+\doxysubsubsection{\texorpdfstring{AnySafetyOpen()}{AnySafetyOpen()}}
+{\footnotesize\ttfamily bool Any\+Safety\+Open (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{safety__utils_8c_adec52268ec2084a993c7a0dcf1024d90}\label{safety__utils_8c_adec52268ec2084a993c7a0dcf1024d90} 
+\index{safety\_utils.c@{safety\_utils.c}!systemReady@{systemReady}}
+\index{systemReady@{systemReady}!safety\_utils.c@{safety\_utils.c}}
+\doxysubsubsection{\texorpdfstring{systemReady}{systemReady}}
+{\footnotesize\ttfamily volatile bool system\+Ready\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Delay @ startup to prevent false triggers to allow relays etc to settle. 
+
+This module scans all digital inputs, applies safety rules, and coordinates laser enable/disable control based on system state.\hypertarget{safety__utils_8c_autotoc_md45}{}\doxysubsubsubsection{\texorpdfstring{Features}{Features}}\label{safety__utils_8c_autotoc_md45}
+
+\begin{DoxyItemize}
+\item Debounce filtering and event queuing for \texorpdfstring{$>$}{>}20 inputs
+\item Real-\/time fault detection for door, relay, and latch errors
+\item Power-\/good and overtemperature enforcement
+\item Integration with Flash Log and USB logger subsystems
+\end{DoxyItemize}\hypertarget{safety__utils_8c_autotoc_md46}{}\doxysubsubsubsection{\texorpdfstring{Tasks Implemented}{Tasks Implemented}}\label{safety__utils_8c_autotoc_md46}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{group__input__handling_ga805adbfc7497d40e012d66b373772958}{v\+Task\+Inputs()}} — periodically scans and processes inputs
+\item {\ttfamily \doxylink{group__input__handling_ga392a7bd95b0d7cb59cd9d781b91b428f}{v\+Task\+Usb\+Logger()}} — prints fault and status messages via USB
+\end{DoxyItemize}\hypertarget{safety__utils_8c_autotoc_md47}{}\doxysubsubsubsection{\texorpdfstring{Typical Workflow}{Typical Workflow}}\label{safety__utils_8c_autotoc_md47}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[GPIO\ Inputs]\ →\ [vTaskInputs]\ →\ [Event\ Queue]\ →\ [vTaskUsbLogger]}
+
+\end{DoxyCode}
+ 

@@ -1,0 +1,47 @@
+\doxysection{max31855.\+h}
+\hypertarget{max31855_8h_source}{}\label{max31855_8h_source}\index{max31855.h@{max31855.h}}
+\mbox{\hyperlink{max31855_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ \_\_MAX31855\_H\_\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ \_\_MAX31855\_H\_\_}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2main_8h}{main.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}cmsis\_os.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Pin\ mapping\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MAX31855\_SCK\_GPIO\_Port\ \ \ GPIOB}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ MAX31855\_SCK\_Pin\ \ \ \ \ \ \ \ \ GPIO\_PIN\_6\ \ \ }\textcolor{comment}{//\ PB6}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ MAX31855\_MISO\_GPIO\_Port\ \ GPIOB}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ MAX31855\_MISO\_Pin\ \ \ \ \ \ \ \ GPIO\_PIN\_9\ \ \ }\textcolor{comment}{//\ PB9}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MAX31855\_CS\_GPIO\_Port\ \ \ \ GPIOB}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ MAX31855\_CS\_Pin\ \ \ \ \ \ \ \ \ \ GPIO\_PIN\_1\ \ \ }\textcolor{comment}{//\ PB1}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Sampling\ and\ limits\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ MAX31855\_SAMPLE\_PERIOD\_MS\ \ \ 5000\ \ \ \ \ \ }\textcolor{comment}{//\ 5\ seconds}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ MAX31855\_TEMP\_MIN\_C\ \ \ \ \ \ \ \ \ 0.0f\ \ \ \ \ }\textcolor{comment}{//\ °C\ lower\ limit}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ MAX31855\_TEMP\_MAX\_C\ \ \ \ \ \ \ \ \ 60.0f\ \ \ \ \ }\textcolor{comment}{//\ °C\ upper\ limit}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Data\ structure\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_m_a_x31855___data_ada9890bb7faf30dfa02069d109c5c182}{tc\_c}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thermocouple\ temperature\ (°C)}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_m_a_x31855___data_a2674f2d6def3ce4220455e98dcec5134}{cj\_c}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cold-\/junction\ temperature\ (°C)}}
+\DoxyCodeLine{00026\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_m_a_x31855___data_a6a8251f4410c4619df58357e6dcf19bd}{fault}};\ \ \ \ \ \ \textcolor{comment}{//\ Fault\ bits\ [0=OC,1=SCG,2=SCV]}}
+\DoxyCodeLine{00027\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_m_a_x31855___data_aed4826cfab9116a5afda48070753fa90}{flag}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Fault\ flag\ (1\ =\ MAX31855\ internal\ fault)}}
+\DoxyCodeLine{00028\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_m_a_x31855___data_a9ad6e5bb1cd8ecc18e6ac97d7519a7bc}{rangeFault}};\ \textcolor{comment}{//\ 1\ =\ Out-\/of-\/range\ temperature}}
+\DoxyCodeLine{00029\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_m_a_x31855___data_a57c8c3ae38c1a9b96124632257bb0798}{raw}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Raw\ 32-\/bit\ data}}
+\DoxyCodeLine{00030\ \}\ \mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\_Data}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Globals\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\_Data}}\ \mbox{\hyperlink{max31855_8h_a336ed8079cec975211d2ca7b0b892297}{g\_ThermoData}};}
+\DoxyCodeLine{00034\ \textcolor{keyword}{extern}\ osMutexId\_t\ \mbox{\hyperlink{max31855_8h_a31af3eca36f369fb3233495998793e75}{g\_ThermoMutex}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ API\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{max31855_8h_a871b334e75921c050bad079ba2589f39}{MAX31855\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00038\ \mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\_Data}}\ \mbox{\hyperlink{max31855_8h_a30479412736dfb509d5dce8dff1aa3fa}{MAX31855\_Read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{max31855_8h_a54987d83e00a39041fb32fa1d2aad560}{MAX31855\_UpdateTask}}(\textcolor{keywordtype}{void}\ *argument);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_MAX31855\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

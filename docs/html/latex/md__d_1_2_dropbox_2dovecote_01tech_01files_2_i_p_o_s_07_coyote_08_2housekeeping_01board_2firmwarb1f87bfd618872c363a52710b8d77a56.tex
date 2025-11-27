@@ -1,0 +1,249 @@
+\chapter{Application Startup and Task Manager — app\+\_\+main.\+c}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56}\index{Application Startup and Task Manager — app\_main.c@{Application Startup and Task Manager — app\_main.c}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md51}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md51}%
+ \DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md53}{}\doxysection{\texorpdfstring{1. Overview}{1. Overview}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md53}
+The {\bfseries{Application Startup and Task Manager}} ({\ttfamily \doxylink{app__main_8c}{app\+\_\+main.\+c}}) is the central control module responsible for initializing all core firmware components and launching RTOS tasks. It ensures deterministic startup sequencing and safe coordination between the USB interface, input handler, flash logger, and communication tasks.
+
+After Free\+RTOS initializes, {\ttfamily \doxylink{group__app__main_ga783607bdd6febf2b64a3f7871e1e9e4c}{App\+\_\+\+Start()}} creates all queues, event flags, and threads required for system operation.
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md55}{}\doxysection{\texorpdfstring{2. Responsibilities}{2. Responsibilities}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md55}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function / Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function / Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\ttfamily \doxylink{group__app__main_ga783607bdd6febf2b64a3f7871e1e9e4c}{App\+\_\+\+Start()}}   &Main initialization routine for IPOS firmware.    \\\cline{1-2}
+{\ttfamily v\+Task\+App\+Uart\+Logic()}   &Periodic PLC synchronization and status word handling.    \\\cline{1-2}
+{\ttfamily v\+Task\+Blink()}   &Heartbeat LED and fault blink pattern generator.    \\\cline{1-2}
+{\ttfamily \doxylink{group__app__main_ga2e3052c8b693b6705ede47fdfbf6b8fb}{v\+Task\+Monitor()}}   &Reads temperature sensor and reports via USB if verbose logging is active.    \\\cline{1-2}
+{\ttfamily v\+Task\+Reset\+Latches()}   &Handles software/hardware latch reset events.    \\\cline{1-2}
+{\ttfamily v\+Task\+Force\+Latches()}   &Forces latch fault and disables laser for testing.    \\\cline{1-2}
+{\ttfamily v\+Task\+Startup()}   &Prints firmware version and ensures USB readiness before other tasks start.   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md57}{}\doxysection{\texorpdfstring{3. Task Creation Summary}{3. Task Creation Summary}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md57}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ RTOS Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Priority   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Stack Size   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ RTOS Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Priority   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Stack Size   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-4}
+\endhead
+{\ttfamily startup\+\_\+task}   &Normal   &2048   &Print version info and exit.    \\\cline{1-4}
+{\ttfamily app\+\_\+\+Uart\+\_\+logic}   &Normal   &1024   &PLC communication, Port\+A/\+B/C, and status management.    \\\cline{1-4}
+{\ttfamily blink\+\_\+task}   &Low   &768   &LED heartbeat + fault blink pattern.    \\\cline{1-4}
+{\ttfamily inputs\+\_\+task}   &Normal   &2048   &Digital input scanning and safety logic.    \\\cline{1-4}
+{\ttfamily usb\+\_\+logger\+\_\+task}   &Low   &2048   &USB print queue and event logging.    \\\cline{1-4}
+{\ttfamily Reset\+\_\+latches\+\_\+task}   &Low   &2048   &Latch reset handling.    \\\cline{1-4}
+{\ttfamily Force\+\_\+latch\+Error\+\_\+task}   &Low   &1024   &Forces error state for debugging.    \\\cline{1-4}
+{\ttfamily thermo\+\_\+task}   &Below\+Normal   &2048   &MAX31855 temperature reading.    \\\cline{1-4}
+{\ttfamily monitor\+\_\+temp}   &Below\+Normal   &2048   &Periodic temperature reporting.    \\\cline{1-4}
+{\ttfamily log\+\_\+task}   &Low   &2048   &Flash log writer.   \\\cline{1-4}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md59}{}\doxysection{\texorpdfstring{4. Dependencies}{4. Dependencies}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md59}
+
+\begin{DoxyItemize}
+\item \doxylink{group__protocol}{Communication Protocol Layer} — Communication frame encoding and parsing ~\newline
+
+\item \doxylink{group__master__link}{Master Communication Link} — UART link and queue handling ~\newline
+
+\item \doxylink{group__uart__master__task}{UART Master Task} — UART TX/\+RX background processing ~\newline
+
+\item inputs — Digital input event system ~\newline
+
+\item \doxylink{group__log__flash}{Log\+\_\+flash} — Nonvolatile event and fault logging ~\newline
+
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md61}{}\doxysection{\texorpdfstring{5. Initialization Sequence}{5. Initialization Sequence}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md61}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[System\ Reset]}
+\DoxyCodeLine{\ \ \ \ \ \ ↓}
+\DoxyCodeLine{[HAL\_Init()\ /\ FreeRTOS\ Start]}
+\DoxyCodeLine{\ \ \ \ \ \ ↓}
+\DoxyCodeLine{App\_Start()}
+\DoxyCodeLine{\ \ ├──\ Create\ queues\ and\ event\ flags}
+\DoxyCodeLine{\ \ ├──\ Start\ UART\ and\ log\ tasks}
+\DoxyCodeLine{\ \ ├──\ Launch\ monitoring\ threads}
+\DoxyCodeLine{\ \ └──\ Enable\ USB\ communications}
+
+\end{DoxyCode}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md62}{}\doxysection{\texorpdfstring{5. Example Output}{5. Example Output}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md62}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{FW\ build:\ Oct\ 22\ 2025\ 14:03:12}
+\DoxyCodeLine{[Master]\ Link\ re-\/established}
+\DoxyCodeLine{Verbose\ logging\ ENABLED}
+\DoxyCodeLine{Temperature\ normal:\ 27.40\ °C}
+\DoxyCodeLine{Peripheral\ and\ Interface\ Tasks}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md63}{}\doxysection{\texorpdfstring{5.\+1 Heartbeat LED}{5.\+1 Heartbeat LED}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md63}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ vTaskBlink(\textcolor{keywordtype}{void}\ *argument)}
+
+\end{DoxyCode}
+ Toggles the HEARTBEAT LED every 1 second.
+
+Also flashes the emission fault LED when a software latch is active.\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md64}{}\doxysection{\texorpdfstring{5.\+2 Latch Control Tasks}{5.\+2 Latch Control Tasks}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md64}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ vTaskResetLatches(\textcolor{keywordtype}{void}\ *argument)}
+
+\end{DoxyCode}
+ Clears software and hardware latch faults\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{swLatchFaultActive\ =\ 0;}
+\DoxyCodeLine{swLatchForceError\ \ =\ 0;}
+\DoxyCodeLine{laserLatchedOff\ \ \ \ =\ 0;}
+\DoxyCodeLine{\#\#\#reset\_latches();}
+
+\end{DoxyCode}
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ vTaskForceLatches(\textcolor{keywordtype}{void}\ *argument)}
+
+\end{DoxyCode}
+ Simulates an error state for test purposes\+:
+
+Sets latch fault flags.
+
+Pulses latch clock lines.
+
+Disables the laser output.
+
+Prints diagnostic confirmation to USB.\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md65}{}\doxysection{\texorpdfstring{5.\+3 Input Interrupts}{5.\+3 Input Interrupts}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md65}
+The reset pushbutton on PA15 triggers an interrupt(also an input from PLC STATUS\+\_\+\+PLC bit0)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__app__main_ga0cd91fd3a9608559c2a87a8ba6cba55f}{HAL\_GPIO\_EXTI\_Callback}}(uint16\_t\ GPIO\_Pin)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (GPIO\_Pin\ ==\ \mbox{\hyperlink{group___g_p_i_o__pins__define_ga77be5756e80bcdf18e1aa39b35d1d640}{GPIO\_PIN\_15}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ osEventFlagsSet(\mbox{\hyperlink{group__app__main_ga62b5ee21fd989192e48209d86efb4289}{ResetLatchEvent}},\ 0x01);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ Debounced using a 50 ms window and event flag signaling.\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md66}{}\doxysection{\texorpdfstring{6. PLC Communication Logic}{6. PLC Communication Logic}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md66}
+Task\+: v\+Task\+App\+Uart\+Logic
+
+This task manages bi-\/directional communication between the STM32 and PLC. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Operation\ \ \ Variable\ \ \ \ Description}
+\DoxyCodeLine{Write\ \ \ VAR\_PORTA\ \ \ Sends\ PortA\ data\ to\ PLC.}
+\DoxyCodeLine{Read\ \ \ \ VAR\_PORTB,\ VAR\_PORTC\ \ \ \ Reads\ feedback\ and\ job\ selection\ lines.}
+\DoxyCodeLine{Write\ \ \ VAR\_STATUS\_DEBUG,\ VAR\_STATUS\_ACTIVE,\ VAR\_STATUS\_DEBUG2\ \ Sends\ internal\ status\ words.}
+\DoxyCodeLine{Read\ \ \ \ VAR\_STATUS\_PLC\ \ Reads\ PLC\ status\ bits\ (reset\ and\ latch\ control).}
+
+\end{DoxyCode}
+ Key behavior\+:
+
+Tracks link activity and timeout.
+
+Uses binary string formatting (to\+\_\+binary\+\_\+str) for USB diagnostics.
+
+Detects PLC reset bits and sets event flags accordingly.\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md67}{}\doxysection{\texorpdfstring{7. Temperature Monitoring}{7. Temperature Monitoring}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md67}
+Task\+: v\+Task\+Monitor
+
+Periodically reads data from the MAX31855 thermocouple\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (d.flag)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{UsbPrintf}}(\textcolor{stringliteral}{"{}Sensor\ fault\ \%.2f\ °C\(\backslash\)r\(\backslash\)n"{}},\ d.fault);}
+\DoxyCodeLine{\textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (d.rangeFault)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{UsbPrintf}}(\textcolor{stringliteral}{"{}Temperature\ out\ of\ range:\ \%.2f\ °C\(\backslash\)r\(\backslash\)n"{}},\ d.tc\_c);}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{UsbPrintf}}(\textcolor{stringliteral}{"{}Temperature\ normal:\ \%.2f\ °C\(\backslash\)r\(\backslash\)n"{}},\ d.tc\_c);}
+
+\end{DoxyCode}
+
+
+Runs every 5 s and only outputs when verbose\+Logging = 1.\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md68}{}\doxysection{\texorpdfstring{8. Flash Self-\/\+Test}{8. Flash Self-\/\+Test}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md68}
+Function\+: \doxylink{group__app__main_ga067e341abc6c6153474df6a42d5919ed}{Flash\+\_\+\+Self\+Test()}
+
+Verifies operation of the W25\+Q16 SPI flash memory.
+
+Steps\+:
+
+Read JEDEC ID.
+
+Erase sector.
+
+Program test data.
+
+Read back and compare.
+
+Print verification results.
+
+Example output\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{===\ W25Q16\ FLASH\ SELF\ TEST\ ===}
+\DoxyCodeLine{JEDEC\ ID\ =\ 0xEF4015}
+\DoxyCodeLine{Erasing\ sector\ at\ 0x000000...}
+\DoxyCodeLine{Programming\ 16\ bytes...}
+\DoxyCodeLine{Verification:\ OK}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md69}{}\doxysection{\texorpdfstring{9. Utility Functions}{9. Utility Functions}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md69}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endhead
+{\ttfamily \doxylink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2main_8h_afbc0eb853c0ef11b27f22a5f53c6c76c}{to\+\_\+binary\+\_\+str(uint16\+\_\+t value, int bits, char \texorpdfstring{$\ast$}{*}buf, size\+\_\+t buf\+\_\+size)}}   &{\ttfamily Converts integers to fixed-\/width binary strings.}    \\\cline{1-2}
+{\ttfamily \doxylink{group__app__main_ga0cd91fd3a9608559c2a87a8ba6cba55f}{HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback(uint16\+\_\+t pin)}}   &{\ttfamily Handles reset button events.}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md70}{}\doxysection{\texorpdfstring{10. Task Scheduling Summary}{10. Task Scheduling Summary}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md70}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Priority   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Stack   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Priority   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Stack   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-4}
+\endhead
+startup\+\_\+task   &Normal   &2048   &Print build info and initialize system.    \\\cline{1-4}
+app\+\_\+\+Uart\+\_\+logic   &Normal   &1024   &PLC master logic and I/O handling.    \\\cline{1-4}
+blink\+\_\+task   &Low   &768   &Heartbeat indicator.    \\\cline{1-4}
+inputs\+\_\+task   &Normal   &2048   &Input scanning and event queueing.    \\\cline{1-4}
+usb\+\_\+logger\+\_\+task   &Low   &2048   &USB status/event reporting.    \\\cline{1-4}
+Reset\+\_\+latches\+\_\+task   &Low   &2048   &Latch reset service.    \\\cline{1-4}
+Force\+\_\+latch\+Error\+\_\+task   &Low   &1024   &Force fault latch condition.    \\\cline{1-4}
+thermo\+\_\+task   &Below Normal   &2048   &Thermocouple updates.    \\\cline{1-4}
+monitor\+\_\+temp   &Below Normal   &2048   &Print temperature periodically.    \\\cline{1-4}
+log\+\_\+task   &Low   &2048   &Flash event logging.   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md71}{}\doxysection{\texorpdfstring{11. Related Modules}{11. Related Modules}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md71}
+\doxylink{group__usb__commands}{USB Command Interface} — USB CDC command interpreter
+
+\doxylink{group__log__flash}{Log\+\_\+flash} — Flash event storage
+
+inputs — Safety input and fault logic
+
+\doxylink{group__protocol}{Communication Protocol Layer} — Serial frame structure and parsing
+
+MAX31855 Temperature Driver\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md72}{}\doxysubsection{\texorpdfstring{File\+: app\+\_\+main.\+c}{File\+: app\+\_\+main.\+c}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarb1f87bfd618872c363a52710b8d77a56_autotoc_md72}
+Author\+: Dovecote Engineering Target\+: STM32\+F4 Free\+RTOS Application Layer Last updated\+: October 2025 

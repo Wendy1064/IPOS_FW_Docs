@@ -1,0 +1,87 @@
+# ============================================================================
+# Project
+# ============================================================================
+PROJECT_NAME           = "IPOS Combined Firmware Documentation"
+PROJECT_BRIEF          = "Unified documentation for STM32 Housekeeping and Anybus M40 Profinet firmware"
+OUTPUT_DIRECTORY       = ./html
+
+# ============================================================================
+# Build
+# ============================================================================
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+FULL_PATH_NAMES        = NO
+CREATE_SUBDIRS         = NO
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+
+# Disable noisy auto-generated tags
+SHOW_INCLUDE_FILES     = NO
+SHOW_USED_FILES        = NO
+INLINE_SIMPLE_STRUCTS  = YES
+
+# ============================================================================
+# HTML Settings
+# ============================================================================
+HTML_OUTPUT            = .
+HTML_TIMESTAMP         = NO
+HTML_COLORSTYLE        = LIGHT
+GENERATE_TREEVIEW      = YES
+
+# ============================================================================
+# Markdown / Mermaid Support
+# ============================================================================
+MARKDOWN_SUPPORT       = YES
+MERMAID_MARKDOWN       = YES
+EXTENSION_MAPPING      = md=markdown
+USE_MDFILE_AS_MAINPAGE = mainpage.md
+ENABLE_PREPROCESSING   = YES
+FILTER_PATTERNS        =
+INPUT_FILTER           =
+
+# ============================================================================
+# Input Paths (adjust as needed)
+# ============================================================================
+INPUT = \
+  . \
+  ../IPOS_071125/Core \
+  ../IPOS_071125/Drivers \
+  ../IPOS_071125/Docs \
+  ../IPOS_M40_V1_00_101125/Core \
+  ../IPOS_M40_V1_00_101125/src \
+  ../IPOS_M40_V1_00_101125/Docs
+
+FILE_PATTERNS = *.c *.h *.md
+
+# ============================================================================
+# Diagrams and Graphs
+# ============================================================================
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+DOT_TRANSPARENT        = YES
+DOT_MULTI_TARGETS      = YES
+DOT_CLEANUP            = YES
+
+# Optional: limit size of call graphs for readability
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+CLASS_DIAGRAMS         = NO
+
+# ============================================================================
+# Exclusions — prevent clutter from HAL/CMSIS auto-docs
+# ============================================================================
+EXCLUDE_PATTERNS = \
+  */Drivers/CMSIS/* \
+  */Drivers/STM32*HAL*/* \
+  */Middlewares/* \
+  */BSP/* \
+  */Core/Startup/* \
+  */Debug/* \
+  */Release/*
+
+# ============================================================================
+# Misc
+# ============================================================================
+WARN_IF_UNDOCUMENTED   = NO
+QUIET                  = NO
+WARNINGS               = YES

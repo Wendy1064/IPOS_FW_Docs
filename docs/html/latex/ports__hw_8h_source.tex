@@ -1,0 +1,24 @@
+\doxysection{ports\+\_\+hw.\+h}
+\hypertarget{ports__hw_8h_source}{}\label{ports__hw_8h_source}\index{ports\_hw.h@{ports\_hw.h}}
+\mbox{\hyperlink{ports__hw_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{stm32f4xx__hal_8h}{stm32f4xx\_hal.h}}"{}}\ \ \ \textcolor{comment}{//\ or\ your\ HAL\ header}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Structure\ to\ describe\ one\ GPIO\ pin}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00006\ \ \ \ \ \mbox{\hyperlink{struct_g_p_i_o___type_def}{GPIO\_TypeDef}}\ *\mbox{\hyperlink{struct_gpio_map__t_a5bf1902cd991dc69e8d15536697d4710}{port}};}
+\DoxyCodeLine{00007\ \ \ \ \ uint16\_t\ \ \ \ \ \ \mbox{\hyperlink{struct_gpio_map__t_a498e98bea6399b3840b5f267b7e987c1}{pin}};}
+\DoxyCodeLine{00008\ \}\ \mbox{\hyperlink{struct_gpio_map__t}{GpioMap\_t}};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{ports__hw_8h_a11e157ef9a3c2f2854ed16b082712421}{jobSelShadow}}[8];\ \ \textcolor{comment}{//\ debug\ shadow\ state}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{ports__hw_8h_a6dc92a35a836ceef8917b46ffba62367}{PortBShadow}}[10];\ \ \textcolor{comment}{//\ debug\ shadow\ state}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Function\ prototypes}}
+\DoxyCodeLine{00015\ uint16\_t\ \mbox{\hyperlink{ports__hw_8h_a4c9ee32e5c488c4c3cb7e4ef8051b266}{PortA\_Read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ \ \ \ \ \mbox{\hyperlink{ports__hw_8h_aa00a65226ccf665bd514b15cb085cff4}{PortB\_Write}}(uint16\_t\ value);}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \ \ \ \ \mbox{\hyperlink{ports__hw_8h_a26b7eae3aff2afa4fbebf4e0fb1d746e}{Job\_Sel\_Out\_Write}}(uint8\_t\ value);}
+\DoxyCodeLine{00018\ uint8\_t\ \ \mbox{\hyperlink{ports__hw_8h_ac88893c1d3af07ee3d7a475d2e897900}{Job\_Sel\_In\_Read}}(\textcolor{keywordtype}{void});}
+
+\end{DoxyCode}

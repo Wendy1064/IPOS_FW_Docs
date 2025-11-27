@@ -1,0 +1,141 @@
+\doxysection{USB Command Interface}
+\hypertarget{group__usb__commands}{}\label{group__usb__commands}\index{USB Command Interface@{USB Command Interface}}
+
+
+Command parser and USB console handler.  
+
+
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{usb__commands_8c}{usb\+\_\+commands.\+c}}
+\begin{DoxyCompactList}\small\item\em USB command interface for IPOS firmware. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__usb__commands_ga94d773ffaf8f23627d2520170ee6a8b7}{App\+\_\+\+Build\+Debug2\+Status\+Word}} (void)
+\begin{DoxyCompactList}\small\item\em Helper function from Application module to assemble Debug2 status word. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__usb__commands_ga132ae4cb7de0936784e2fb4ed9ea0f17}{Usb\+Command\+\_\+\+Process}} (const char \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Processes incoming USB commands from the CDC interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__usb__commands_ga336794b53dc28ddf68e6b5e440c5ad89}{debug\+Bypass\+Thermo\+Check}}
+\begin{DoxyCompactList}\small\item\em Enables or disables temperature checks. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__usb__commands_ga13513b52ba27e18fced406e65011d1b9}{verbose\+Logging}}
+\begin{DoxyCompactList}\small\item\em Enables or disables detailed input and temperature debug logs. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__usb__commands_ga6332c0412eb3dd6ac3758a9b356ae013}{laser\+Latched\+Off}}
+\begin{DoxyCompactList}\small\item\em Software latch flag for laser disable. \end{DoxyCompactList}\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__usb__commands_ga62b5ee21fd989192e48209d86efb4289}{Reset\+Latch\+Event}}
+\begin{DoxyCompactList}\small\item\em Event flag triggered for latch reset and trigger via command or button. \end{DoxyCompactList}\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__usb__commands_gac09e3335f4f6421a2c786a45f998c2a7}{Force\+Latch\+Event}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Command parser and USB console handler. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__usb__commands_ga94d773ffaf8f23627d2520170ee6a8b7}\label{group__usb__commands_ga94d773ffaf8f23627d2520170ee6a8b7} 
+\index{USB Command Interface@{USB Command Interface}!App\_BuildDebug2StatusWord@{App\_BuildDebug2StatusWord}}
+\index{App\_BuildDebug2StatusWord@{App\_BuildDebug2StatusWord}!USB Command Interface@{USB Command Interface}}
+\doxysubsubsection{\texorpdfstring{App\_BuildDebug2StatusWord()}{App\_BuildDebug2StatusWord()}}
+{\footnotesize\ttfamily uint16\+\_\+t App\+\_\+\+Build\+Debug2\+Status\+Word (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Helper function from Application module to assemble Debug2 status word. 
+
+Helper function from Application module to assemble Debug2 status word.
+
+Includes laser deactivation, beam delivery, and alarm statuses.
+
+\begin{DoxyReturn}{Returns}
+16-\/bit bitfield representing Tru\+Pulse subsystem status. 
+\end{DoxyReturn}
+\Hypertarget{group__usb__commands_ga132ae4cb7de0936784e2fb4ed9ea0f17}\label{group__usb__commands_ga132ae4cb7de0936784e2fb4ed9ea0f17} 
+\index{USB Command Interface@{USB Command Interface}!UsbCommand\_Process@{UsbCommand\_Process}}
+\index{UsbCommand\_Process@{UsbCommand\_Process}!USB Command Interface@{USB Command Interface}}
+\doxysubsubsection{\texorpdfstring{UsbCommand\_Process()}{UsbCommand\_Process()}}
+{\footnotesize\ttfamily void Usb\+Command\+\_\+\+Process (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{cmd }\end{DoxyParamCaption})}
+
+
+
+Processes incoming USB commands from the CDC interface. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cmd} & Null-\/terminated ASCII command string.\\
+\hline
+\end{DoxyParams}
+Recognized commands trigger specific actions such as\+:
+\begin{DoxyItemize}
+\item {\bfseries{HELP}} — Lists all available commands.
+\item {\bfseries{VERBOSE ON/\+OFF}} — Enables or disables detailed debug output.
+\item {\bfseries{STATUS DEBUG}} — Requests current input status report.
+\item {\bfseries{TRUPULSE}} — Displays Trupulse monitor pin states.
+\item {\bfseries{BDO TEMP}} — Displays current thermocouple reading.
+\item {\bfseries{LOG DUMP / LOG ERASE}} — Manages non-\/volatile event logs.
+\item {\bfseries{FLASH TEST / FLASH ID / FLASH STATUS}} — Tests or queries SPI flash.
+\item {\bfseries{RESET}} — Issues a software latch reset event.
+\end{DoxyItemize}
+
+Unrecognized commands print an error message and a hint to use {\ttfamily HELP}.
+
+\begin{DoxyNote}{Note}
+Commands are parsed case-\/insensitively. 
+\end{DoxyNote}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{group__usb__commands_ga336794b53dc28ddf68e6b5e440c5ad89}\label{group__usb__commands_ga336794b53dc28ddf68e6b5e440c5ad89} 
+\index{USB Command Interface@{USB Command Interface}!debugBypassThermoCheck@{debugBypassThermoCheck}}
+\index{debugBypassThermoCheck@{debugBypassThermoCheck}!USB Command Interface@{USB Command Interface}}
+\doxysubsubsection{\texorpdfstring{debugBypassThermoCheck}{debugBypassThermoCheck}}
+{\footnotesize\ttfamily bool debug\+Bypass\+Thermo\+Check\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Enables or disables temperature checks. 
+
+\texorpdfstring{$<$}{<} Provides \doxylink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{Usb\+Printf()} for command feedback. \Hypertarget{group__usb__commands_gac09e3335f4f6421a2c786a45f998c2a7}\label{group__usb__commands_gac09e3335f4f6421a2c786a45f998c2a7} 
+\index{USB Command Interface@{USB Command Interface}!ForceLatchEvent@{ForceLatchEvent}}
+\index{ForceLatchEvent@{ForceLatchEvent}!USB Command Interface@{USB Command Interface}}
+\doxysubsubsection{\texorpdfstring{ForceLatchEvent}{ForceLatchEvent}}
+{\footnotesize\ttfamily os\+Event\+Flags\+Id\+\_\+t Force\+Latch\+Event\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{group__usb__commands_ga6332c0412eb3dd6ac3758a9b356ae013}\label{group__usb__commands_ga6332c0412eb3dd6ac3758a9b356ae013} 
+\index{USB Command Interface@{USB Command Interface}!laserLatchedOff@{laserLatchedOff}}
+\index{laserLatchedOff@{laserLatchedOff}!USB Command Interface@{USB Command Interface}}
+\doxysubsubsection{\texorpdfstring{laserLatchedOff}{laserLatchedOff}}
+{\footnotesize\ttfamily uint8\+\_\+t laser\+Latched\+Off\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Software latch flag for laser disable. 
+
+Software latch flag for laser disable. \Hypertarget{group__usb__commands_ga62b5ee21fd989192e48209d86efb4289}\label{group__usb__commands_ga62b5ee21fd989192e48209d86efb4289} 
+\index{USB Command Interface@{USB Command Interface}!ResetLatchEvent@{ResetLatchEvent}}
+\index{ResetLatchEvent@{ResetLatchEvent}!USB Command Interface@{USB Command Interface}}
+\doxysubsubsection{\texorpdfstring{ResetLatchEvent}{ResetLatchEvent}}
+{\footnotesize\ttfamily os\+Event\+Flags\+Id\+\_\+t Reset\+Latch\+Event\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Event flag triggered for latch reset and trigger via command or button. 
+
+Event flag triggered for latch reset and trigger via command or button. \Hypertarget{group__usb__commands_ga13513b52ba27e18fced406e65011d1b9}\label{group__usb__commands_ga13513b52ba27e18fced406e65011d1b9} 
+\index{USB Command Interface@{USB Command Interface}!verboseLogging@{verboseLogging}}
+\index{verboseLogging@{verboseLogging}!USB Command Interface@{USB Command Interface}}
+\doxysubsubsection{\texorpdfstring{verboseLogging}{verboseLogging}}
+{\footnotesize\ttfamily uint8\+\_\+t verbose\+Logging\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Enables or disables detailed input and temperature debug logs. 
+
+Enables or disables detailed input and temperature debug logs.
+
+Verbose logging flag controlled by USB commands 

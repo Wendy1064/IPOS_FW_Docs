@@ -1,0 +1,261 @@
+\doxysection{inputs.\+c File Reference}
+\hypertarget{inputs_8c}{}\label{inputs_8c}\index{inputs.c@{inputs.c}}
+{\ttfamily \#include "{}inputs.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os2.\+h"{}}\newline
+{\ttfamily \#include "{}protocol.\+h"{}}\newline
+{\ttfamily \#include "{}stdio.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+{\ttfamily \#include "{}max31855.\+h"{}}\newline
+{\ttfamily \#include "{}log\+\_\+flash.\+h"{}}\newline
+{\ttfamily \#include "{}error\+\_\+codes.\+h"{}}\newline
+{\ttfamily \#include "{}safety\+\_\+utils.\+h"{}}\newline
+Include dependency graph for inputs.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inputs_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{inputs_8c_a0ae63e87fb90cc60f0097ac7c7ed0c2a}{TEMP\+\_\+\+TRIP\+\_\+\+HIGH\+\_\+C}}~60.\+0f
+\item 
+\#define \mbox{\hyperlink{inputs_8c_ab0c23c0e26536810c140899105f13953}{TEMP\+\_\+\+TRIP\+\_\+\+CLEAR\+\_\+C}}~58.\+0f
+\item 
+\#define \mbox{\hyperlink{inputs_8c_adfba9fa3cd98a27cd43f2d8e249494f2}{TEMP\+\_\+\+TRIP\+\_\+\+LOW\+\_\+C}}~10.\+0f
+\item 
+\#define \mbox{\hyperlink{inputs_8c_a5073c68435f6499de99b5423ca26e4ff}{TEMP\+\_\+\+TRIP\+\_\+\+LOW\+\_\+\+CLR}}~12.\+0f
+\item 
+\#define \mbox{\hyperlink{inputs_8c_a73adf9c10352865ff95b5f46e642c560}{MS\+\_\+\+TO\+\_\+\+TICKS}}(ms)~((ms) \texorpdfstring{$\ast$}{*} os\+Kernel\+Get\+Tick\+Freq() / 1000U)
+\item 
+\#define \mbox{\hyperlink{inputs_8c_a886f5338e6f90c2974728d9e654359b0}{CONTACTOR\+\_\+\+RELAY\+\_\+\+GRACE\+\_\+\+MS}}~50
+\item 
+\#define \mbox{\hyperlink{inputs_8c_a6f504bab2a4e76379d65d113e21c5133}{DOOR\+\_\+\+RELAY\+\_\+\+GRACE\+\_\+\+MS}}~50
+\begin{DoxyCompactList}\small\item\em Verify that door interlock requires both relays ON. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{inputs_8c_ab840ebf6ee16945e6e4995e3cbdf5a02}{NUM\+\_\+\+ERROR\+\_\+\+RULES}}~(sizeof(error\+Rules) / sizeof(error\+Rules\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{inputs_8c_a6242a25f9d996f0cc4f4cdb911218b75}{ARRAY\+\_\+\+SIZE}}(x)~(sizeof(x) / sizeof((x)\mbox{[}0\mbox{]}))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__input__handling_ga894be054cbefd6f4fd84007f4835b7ba}{ms\+\_\+now}} (void)
+\begin{DoxyCompactList}\small\item\em Get current system time in milliseconds. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__input__handling_ga5317c72db950025ad0e43a0a90d8512d}{Cond\+\_\+\+Relay\+Contacts\+Match}} (void)
+\begin{DoxyCompactList}\small\item\em Verify relay contact feedback consistency. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{inputs_8c_abfb49e7db1342f7034ad509832591651}{Cond\+\_\+\+Door\+Requires\+Relays}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__input__handling_ga826edb47818552911e13aee8a5b3ac26}{Cond\+\_\+\+Latch\+Error}} (void)
+\begin{DoxyCompactList}\small\item\em Evaluate latch fault inputs and software flags. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{inputs_8c_a877941cab468c82d012527c7be5a82af}{Cond\+\_\+\+Temperature\+Safe}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{group__input__handling_ga8c71dcf026047812e5cdcc66fb60e15e}{App\+\_\+\+Build\+Debug\+Status\+Word}} (void)
+\begin{DoxyCompactList}\small\item\em Build primary 16-\/bit debug status word. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__input__handling_ga94d773ffaf8f23627d2520170ee6a8b7}{App\+\_\+\+Build\+Debug2\+Status\+Word}} (void)
+\begin{DoxyCompactList}\small\item\em Build secondary debug word for Tru\+Pulse inputs. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__input__handling_ga7515aa626fd5290af6b68fdbf765d661}{App\+\_\+\+Build\+Active\+Status\+Word}} (void)
+\begin{DoxyCompactList}\small\item\em Build composite active status word including current temperature. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga805adbfc7497d40e012d66b373772958}{v\+Task\+Inputs}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS task\+: scans all input lines and applies safety logic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga392a7bd95b0d7cb59cd9d781b91b428f}{v\+Task\+Usb\+Logger}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS task\+: handles event logging and USB debug output. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__input__handling_ga821c60e4615c59b5cb7d3eb7f040a6c6}{Input\+\_\+\+Get\+State}} (\mbox{\hyperlink{group__input__handling_ga17ed9738c4fcd08b8a24a1d405fac706}{Input\+Name}} input)
+\item 
+void \mbox{\hyperlink{group__input__handling_ga754cd0dadfe415a6cfa635f1f2a3ce63}{Status\+\_\+\+Enable}} (uint8\+\_\+t enable)
+\item 
+void \mbox{\hyperlink{group__input__handling_ga9f1deadab2e99f006102e21940f831f0}{Status\+\_\+\+Set\+Interval}} (uint32\+\_\+t ms)
+\item 
+void \mbox{\hyperlink{group__input__handling_ga86941485553f3961314a69aa37ea8408}{reset\+\_\+latches}} (void)
+\begin{DoxyCompactList}\small\item\em Reset all safety latch circuits and re-\/enable laser output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_gaffe4cde7ad5ab8edbfe83781dbc7767b}{laser\+\_\+enable}} (void)
+\begin{DoxyCompactList}\small\item\em Enable laser output (active-\/low control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga6986056511b92d173350a0e3b7513c30}{laser\+\_\+disable}} (void)
+\begin{DoxyCompactList}\small\item\em Disable laser output (safety-\/off condition). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga1c837cfffb15c501275d689b7fcd51bd}{Set\+Outputs\+To\+Known\+State}} (void)
+\begin{DoxyCompactList}\small\item\em Drive all latch output lines to known startup state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inputs_8c_a9a938af6fa2ca1b1ec7feb92e51ab2b4}{Set\+All\+Latches\+To\+Fault\+State}} (void)
+\begin{DoxyCompactList}\small\item\em Force all latch outputs into a fault condition. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__input__handling_ga2eb52e5e7cb7d0503368203e55a47b8d}{Input\+State\+To\+String}} (\mbox{\hyperlink{group__input__handling_ga17ed9738c4fcd08b8a24a1d405fac706}{Input\+Name}} input, uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Generate a timed pulse on a GPIO output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga400940b334b781671f6daf5b5e3f5c98}{Print\+\_\+\+All\+Inputs}} (void)
+\begin{DoxyCompactList}\small\item\em Print a formatted list of all input states via USB. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga456e1383233490b69e46c8dc0e4e4193}{Print\+Tru\+Pulse\+Status}} (void)
+\begin{DoxyCompactList}\small\item\em Print detailed Tru\+Pulse subsystem status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile bool \mbox{\hyperlink{inputs_8c_adec52268ec2084a993c7a0dcf1024d90}{system\+Ready}} = false
+\begin{DoxyCompactList}\small\item\em Delay @ startup to prevent false triggers to allow relays etc to settle. \end{DoxyCompactList}\item 
+volatile bool \mbox{\hyperlink{group__app__main_ga5d74e16bd7fa55cbd077526304114799}{debug\+Bypass\+Thermo\+Check}} = true
+\begin{DoxyCompactList}\small\item\em Enables or disables temperature checks. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga13513b52ba27e18fced406e65011d1b9}{verbose\+Logging}}
+\begin{DoxyCompactList}\small\item\em Verbose logging enable flag (set via USB command). \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga6332c0412eb3dd6ac3758a9b356ae013}{laser\+Latched\+Off}}
+\begin{DoxyCompactList}\small\item\em Software-\/controlled latch disable indicator. \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga8b113a17282bd33cf6e1ab2d885c5da6}{sw\+Latch\+Fault\+Active}} = 0
+\begin{DoxyCompactList}\small\item\em Software fault latches (external linkage from input module). \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga99ad38e5fdbdf57fbaea98f73361969f}{sw\+Latch\+Force\+Error}} = 0
+\item 
+os\+Message\+Queue\+Id\+\_\+t \mbox{\hyperlink{group__input__handling_ga18b12a1b645e0014948c0750c65b0578}{input\+Event\+Queue}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__input__handling_ga8ce1acccd5014e235b53bad8043d0796}{input\+Names}} \mbox{[}\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\+\_\+\+INPUTS}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__input__handling_ga3711f9988d0458491f58a119653255f7}{stable\+State}} \mbox{[}\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\+\_\+\+INPUTS}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{inputs_8c_a78300b386f525be8b2d909f6b631ab9f}{change\+Count}} \mbox{[}\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\+\_\+\+INPUTS}}\mbox{]}
+\item 
+float \mbox{\hyperlink{inputs_8c_a8d87ca2de25da3973de223b458346d71}{last\+Trip\+Temp}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Check laser thermocouple temperature for safety. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{inputs_8c_ae678ff343b57c6cdfa924bb69a079925}{temp\+Fault\+Active}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{inputs_8c_a6242a25f9d996f0cc4f4cdb911218b75}\label{inputs_8c_a6242a25f9d996f0cc4f4cdb911218b75} 
+\index{inputs.c@{inputs.c}!ARRAY\_SIZE@{ARRAY\_SIZE}}
+\index{ARRAY\_SIZE@{ARRAY\_SIZE}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{ARRAY\_SIZE}{ARRAY\_SIZE}}
+{\footnotesize\ttfamily \#define ARRAY\+\_\+\+SIZE(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(sizeof(x) / sizeof((x)\mbox{[}0\mbox{]}))}
+
+\Hypertarget{inputs_8c_a886f5338e6f90c2974728d9e654359b0}\label{inputs_8c_a886f5338e6f90c2974728d9e654359b0} 
+\index{inputs.c@{inputs.c}!CONTACTOR\_RELAY\_GRACE\_MS@{CONTACTOR\_RELAY\_GRACE\_MS}}
+\index{CONTACTOR\_RELAY\_GRACE\_MS@{CONTACTOR\_RELAY\_GRACE\_MS}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{CONTACTOR\_RELAY\_GRACE\_MS}{CONTACTOR\_RELAY\_GRACE\_MS}}
+{\footnotesize\ttfamily \#define CONTACTOR\+\_\+\+RELAY\+\_\+\+GRACE\+\_\+\+MS~50}
+
+\Hypertarget{inputs_8c_a6f504bab2a4e76379d65d113e21c5133}\label{inputs_8c_a6f504bab2a4e76379d65d113e21c5133} 
+\index{inputs.c@{inputs.c}!DOOR\_RELAY\_GRACE\_MS@{DOOR\_RELAY\_GRACE\_MS}}
+\index{DOOR\_RELAY\_GRACE\_MS@{DOOR\_RELAY\_GRACE\_MS}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{DOOR\_RELAY\_GRACE\_MS}{DOOR\_RELAY\_GRACE\_MS}}
+{\footnotesize\ttfamily \#define DOOR\+\_\+\+RELAY\+\_\+\+GRACE\+\_\+\+MS~50}
+
+
+
+Verify that door interlock requires both relays ON. 
+
+When the door switch is active, both relay feedbacks must be ON. A short delay is allowed for relays to settle before faulting.
+
+\begin{DoxyReturn}{Returns}
+0 if condition OK, 1 if relays not active while door is open. 
+\end{DoxyReturn}
+\Hypertarget{inputs_8c_a73adf9c10352865ff95b5f46e642c560}\label{inputs_8c_a73adf9c10352865ff95b5f46e642c560} 
+\index{inputs.c@{inputs.c}!MS\_TO\_TICKS@{MS\_TO\_TICKS}}
+\index{MS\_TO\_TICKS@{MS\_TO\_TICKS}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{MS\_TO\_TICKS}{MS\_TO\_TICKS}}
+{\footnotesize\ttfamily \#define MS\+\_\+\+TO\+\_\+\+TICKS(\begin{DoxyParamCaption}\item[{}]{ms }\end{DoxyParamCaption})~((ms) \texorpdfstring{$\ast$}{*} os\+Kernel\+Get\+Tick\+Freq() / 1000U)}
+
+\Hypertarget{inputs_8c_ab840ebf6ee16945e6e4995e3cbdf5a02}\label{inputs_8c_ab840ebf6ee16945e6e4995e3cbdf5a02} 
+\index{inputs.c@{inputs.c}!NUM\_ERROR\_RULES@{NUM\_ERROR\_RULES}}
+\index{NUM\_ERROR\_RULES@{NUM\_ERROR\_RULES}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{NUM\_ERROR\_RULES}{NUM\_ERROR\_RULES}}
+{\footnotesize\ttfamily \#define NUM\+\_\+\+ERROR\+\_\+\+RULES~(sizeof(error\+Rules) / sizeof(error\+Rules\mbox{[}0\mbox{]}))}
+
+\Hypertarget{inputs_8c_ab0c23c0e26536810c140899105f13953}\label{inputs_8c_ab0c23c0e26536810c140899105f13953} 
+\index{inputs.c@{inputs.c}!TEMP\_TRIP\_CLEAR\_C@{TEMP\_TRIP\_CLEAR\_C}}
+\index{TEMP\_TRIP\_CLEAR\_C@{TEMP\_TRIP\_CLEAR\_C}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{TEMP\_TRIP\_CLEAR\_C}{TEMP\_TRIP\_CLEAR\_C}}
+{\footnotesize\ttfamily \#define TEMP\+\_\+\+TRIP\+\_\+\+CLEAR\+\_\+C~58.\+0f}
+
+\Hypertarget{inputs_8c_a0ae63e87fb90cc60f0097ac7c7ed0c2a}\label{inputs_8c_a0ae63e87fb90cc60f0097ac7c7ed0c2a} 
+\index{inputs.c@{inputs.c}!TEMP\_TRIP\_HIGH\_C@{TEMP\_TRIP\_HIGH\_C}}
+\index{TEMP\_TRIP\_HIGH\_C@{TEMP\_TRIP\_HIGH\_C}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{TEMP\_TRIP\_HIGH\_C}{TEMP\_TRIP\_HIGH\_C}}
+{\footnotesize\ttfamily \#define TEMP\+\_\+\+TRIP\+\_\+\+HIGH\+\_\+C~60.\+0f}
+
+\Hypertarget{inputs_8c_adfba9fa3cd98a27cd43f2d8e249494f2}\label{inputs_8c_adfba9fa3cd98a27cd43f2d8e249494f2} 
+\index{inputs.c@{inputs.c}!TEMP\_TRIP\_LOW\_C@{TEMP\_TRIP\_LOW\_C}}
+\index{TEMP\_TRIP\_LOW\_C@{TEMP\_TRIP\_LOW\_C}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{TEMP\_TRIP\_LOW\_C}{TEMP\_TRIP\_LOW\_C}}
+{\footnotesize\ttfamily \#define TEMP\+\_\+\+TRIP\+\_\+\+LOW\+\_\+C~10.\+0f}
+
+\Hypertarget{inputs_8c_a5073c68435f6499de99b5423ca26e4ff}\label{inputs_8c_a5073c68435f6499de99b5423ca26e4ff} 
+\index{inputs.c@{inputs.c}!TEMP\_TRIP\_LOW\_CLR@{TEMP\_TRIP\_LOW\_CLR}}
+\index{TEMP\_TRIP\_LOW\_CLR@{TEMP\_TRIP\_LOW\_CLR}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{TEMP\_TRIP\_LOW\_CLR}{TEMP\_TRIP\_LOW\_CLR}}
+{\footnotesize\ttfamily \#define TEMP\+\_\+\+TRIP\+\_\+\+LOW\+\_\+\+CLR~12.\+0f}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{inputs_8c_abfb49e7db1342f7034ad509832591651}\label{inputs_8c_abfb49e7db1342f7034ad509832591651} 
+\index{inputs.c@{inputs.c}!Cond\_DoorRequiresRelays@{Cond\_DoorRequiresRelays}}
+\index{Cond\_DoorRequiresRelays@{Cond\_DoorRequiresRelays}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{Cond\_DoorRequiresRelays()}{Cond\_DoorRequiresRelays()}}
+{\footnotesize\ttfamily uint8\+\_\+t Cond\+\_\+\+Door\+Requires\+Relays (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{inputs_8c_a877941cab468c82d012527c7be5a82af}\label{inputs_8c_a877941cab468c82d012527c7be5a82af} 
+\index{inputs.c@{inputs.c}!Cond\_TemperatureSafe@{Cond\_TemperatureSafe}}
+\index{Cond\_TemperatureSafe@{Cond\_TemperatureSafe}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{Cond\_TemperatureSafe()}{Cond\_TemperatureSafe()}}
+{\footnotesize\ttfamily uint8\+\_\+t Cond\+\_\+\+Temperature\+Safe (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{inputs_8c_a9a938af6fa2ca1b1ec7feb92e51ab2b4}\label{inputs_8c_a9a938af6fa2ca1b1ec7feb92e51ab2b4} 
+\index{inputs.c@{inputs.c}!SetAllLatchesToFaultState@{SetAllLatchesToFaultState}}
+\index{SetAllLatchesToFaultState@{SetAllLatchesToFaultState}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{SetAllLatchesToFaultState()}{SetAllLatchesToFaultState()}}
+{\footnotesize\ttfamily void Set\+All\+Latches\+To\+Fault\+State (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Force all latch outputs into a fault condition. 
+
+Drives latch data pins LOW and clocks them in to create a hardware latch fault. Laser is also disabled. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{inputs_8c_a78300b386f525be8b2d909f6b631ab9f}\label{inputs_8c_a78300b386f525be8b2d909f6b631ab9f} 
+\index{inputs.c@{inputs.c}!changeCount@{changeCount}}
+\index{changeCount@{changeCount}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{changeCount}{changeCount}}
+{\footnotesize\ttfamily uint8\+\_\+t change\+Count\mbox{[}\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\+\_\+\+INPUTS}}\mbox{]}}
+
+\Hypertarget{inputs_8c_a8d87ca2de25da3973de223b458346d71}\label{inputs_8c_a8d87ca2de25da3973de223b458346d71} 
+\index{inputs.c@{inputs.c}!lastTripTemp@{lastTripTemp}}
+\index{lastTripTemp@{lastTripTemp}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{lastTripTemp}{lastTripTemp}}
+{\footnotesize\ttfamily float last\+Trip\+Temp = 0.\+0f}
+
+
+
+Check laser thermocouple temperature for safety. 
+
+Reads MAX31855 sensor via global mutex. If temperature exceeds defined limits, disables laser and logs event. Clears automatically when temperature returns to normal. ignored if debug\+Bypass\+Thermo\+Check set
+
+\begin{DoxyReturn}{Returns}
+1 if temperature safe, 0 if fault active. 
+\end{DoxyReturn}
+\Hypertarget{inputs_8c_adec52268ec2084a993c7a0dcf1024d90}\label{inputs_8c_adec52268ec2084a993c7a0dcf1024d90} 
+\index{inputs.c@{inputs.c}!systemReady@{systemReady}}
+\index{systemReady@{systemReady}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{systemReady}{systemReady}}
+{\footnotesize\ttfamily volatile bool system\+Ready = false}
+
+
+
+Delay @ startup to prevent false triggers to allow relays etc to settle. 
+
+This module scans all digital inputs, applies safety rules, and coordinates laser enable/disable control based on system state.\hypertarget{safety__utils_8c_autotoc_md45}{}\doxysubsubsubsection{\texorpdfstring{Features}{Features}}\label{safety__utils_8c_autotoc_md45}
+
+\begin{DoxyItemize}
+\item Debounce filtering and event queuing for \texorpdfstring{$>$}{>}20 inputs
+\item Real-\/time fault detection for door, relay, and latch errors
+\item Power-\/good and overtemperature enforcement
+\item Integration with Flash Log and USB logger subsystems
+\end{DoxyItemize}\hypertarget{safety__utils_8c_autotoc_md46}{}\doxysubsubsubsection{\texorpdfstring{Tasks Implemented}{Tasks Implemented}}\label{safety__utils_8c_autotoc_md46}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{group__input__handling_ga805adbfc7497d40e012d66b373772958}{v\+Task\+Inputs()}} — periodically scans and processes inputs
+\item {\ttfamily \doxylink{group__input__handling_ga392a7bd95b0d7cb59cd9d781b91b428f}{v\+Task\+Usb\+Logger()}} — prints fault and status messages via USB
+\end{DoxyItemize}\hypertarget{safety__utils_8c_autotoc_md47}{}\doxysubsubsubsection{\texorpdfstring{Typical Workflow}{Typical Workflow}}\label{safety__utils_8c_autotoc_md47}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[GPIO\ Inputs]\ →\ [vTaskInputs]\ →\ [Event\ Queue]\ →\ [vTaskUsbLogger]}
+
+\end{DoxyCode}
+ \Hypertarget{inputs_8c_ae678ff343b57c6cdfa924bb69a079925}\label{inputs_8c_ae678ff343b57c6cdfa924bb69a079925} 
+\index{inputs.c@{inputs.c}!tempFaultActive@{tempFaultActive}}
+\index{tempFaultActive@{tempFaultActive}!inputs.c@{inputs.c}}
+\doxysubsubsection{\texorpdfstring{tempFaultActive}{tempFaultActive}}
+{\footnotesize\ttfamily uint8\+\_\+t temp\+Fault\+Active = 0}
+

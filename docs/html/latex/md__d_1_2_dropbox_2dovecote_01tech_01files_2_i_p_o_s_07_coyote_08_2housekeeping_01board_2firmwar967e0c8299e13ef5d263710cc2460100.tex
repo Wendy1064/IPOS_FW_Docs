@@ -1,0 +1,114 @@
+\chapter{Master Communication Link — master\+\_\+link.\+c}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100}\index{Master Communication Link — master\_link.c@{Master Communication Link — master\_link.c}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md109}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md109}%
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md110}{}\doxysection{\texorpdfstring{1. Overview}{1. Overview}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md110}
+The {\bfseries{Master Communication Link}} ({\ttfamily \doxylink{master__link_8c}{master\+\_\+link.\+c}}) module implements the low-\/level UART transport layer for communication between the IPOS STM32 master board and an external PLC or slave microcontroller.
+
+It uses DMA reception with idle-\/line detection and a circular {\bfseries{ring buffer}} to manage continuous serial data flow, parsing frames using the \doxylink{group__protocol}{Communication Protocol Layer} module.
+
+This module is responsible for\+:
+\begin{DoxyItemize}
+\item Initializing the UART and DMA reception system
+\item Parsing command frames into structured packets ({\ttfamily \doxylink{struct_proto_frame}{Proto\+Frame}})
+\item Notifying higher-\/level tasks via Free\+RTOS event flags
+\item Managing ACK and READ response callbacks
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md112}{}\doxysection{\texorpdfstring{2. Responsibilities}{2. Responsibilities}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md112}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Feature   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Feature   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+UART Initialization   &Configures UART handle and DMA reception buffer.    \\\cline{1-2}
+Frame Decoding   &Feeds data bytes to the \doxylink{group__protocol}{Communication Protocol Layer} parser.    \\\cline{1-2}
+Event Notification   &Signals the attached RTOS task when new data arrives.    \\\cline{1-2}
+Write/\+Read Handling   &Provides blocking functions to send protocol frames.    \\\cline{1-2}
+Error Recovery   &Automatically restarts DMA on UART error.   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md114}{}\doxysection{\texorpdfstring{3. Key Functions}{3. Key Functions}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md114}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endhead
+{\ttfamily \doxylink{group__master__link_ga67e95828277c0771ad0a573322a5191d}{master\+\_\+link\+\_\+init()}}   &Initializes the link and protocol parser.    \\\cline{1-2}
+{\ttfamily \doxylink{group__master__link_ga136d58a2733b7acdf639c5bf42685536}{master\+\_\+link\+\_\+start()}}   &Starts UART DMA with idle-\/line detection.    \\\cline{1-2}
+{\ttfamily \doxylink{group__master__link_gaa0c4ce7bf2ecce9ca76ebf74d34a9812}{master\+\_\+link\+\_\+poll()}}   &Parses received data from the ring buffer.    \\\cline{1-2}
+{\ttfamily \doxylink{group__master__link_gaf426d71cc3d545680207a5c14fc915e0}{master\+\_\+link\+\_\+attach\+\_\+task\+\_\+handle()}}   &Registers a task for data arrival notifications.    \\\cline{1-2}
+{\ttfamily \doxylink{group__master__link_gaac6847f1075654acb90ca1225ef9d132}{master\+\_\+write\+\_\+u16()}}   &Sends a 16-\/bit write command to the slave.    \\\cline{1-2}
+{\ttfamily \doxylink{group__master__link_gab4078648ce04415c64875e869c39d12c}{master\+\_\+read\+\_\+u16()}}   &Sends a 16-\/bit read request to the slave.    \\\cline{1-2}
+{\ttfamily \doxylink{group__master__link_ga925534fb8bf7ca464fd05c982fe4bfa0}{HAL\+\_\+\+UARTEx\+\_\+\+Rx\+Event\+Callback()}}   &Handles DMA data transfer completion.    \\\cline{1-2}
+{\ttfamily \doxylink{group__master__link_ga0e0456ea96d55db31de947fb3e954f18}{HAL\+\_\+\+UART\+\_\+\+Error\+Callback()}}   &Restarts UART DMA after errors.   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md116}{}\doxysection{\texorpdfstring{4. Data Flow Diagram}{4. Data Flow Diagram}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md116}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[UART\ RX\ DMA]}
+\DoxyCodeLine{\ \ \ \ \ \ ↓}
+\DoxyCodeLine{[DMA\ Buffer]}
+\DoxyCodeLine{\ \ \ \ \ \ ↓}
+\DoxyCodeLine{[Ring\ Buffer]\ →\ parser\_drain()\ →\ ProtoParser\ →\ master\_on\_ack()\ /\ master\_on\_data()}
+\DoxyCodeLine{\ \ \ \ \ \ ↓}
+\DoxyCodeLine{(osThreadFlagsSet)\ →\ RTOS\ task\ notified}
+\DoxyCodeLine{}
+\DoxyCodeLine{Callbacks}
+\DoxyCodeLine{Callback\ \ \ \ Trigger\ Description}
+\DoxyCodeLine{master\_on\_ack(var\_id,\ value)\ \ \ \ On\ ACK\ frame\ received\ \ \ Invoked\ when\ slave\ acknowledges\ a\ write\ operation.}
+\DoxyCodeLine{master\_on\_data(var\_id,\ value)\ \ \ On\ READ\ response\ received\ \ \ Called\ when\ slave\ returns\ a\ variable\ value.}
+
+\end{DoxyCode}
+ These functions are declared {\bfseries{attribute}}((weak)) so they can be overridden by user code.\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md117}{}\doxysection{\texorpdfstring{6. Dependencies}{6. Dependencies}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md117}
+\doxylink{group__protocol}{Communication Protocol Layer} — Frame encoding and parsing logic
+
+ring\+\_\+buffer — Circular buffer used for UART data storage
+
+\doxylink{group__uart__master__task}{UART Master Task} — RTOS task managing transmit queues
+
+\doxylink{group__app__main}{Application Startup and Task Manager} — Application startup and task management
+
+
+\begin{DoxyEnumerate}
+\item Example Usage // Initialize UART communication master\+\_\+link\+\_\+init(\&huart2); \doxylink{group__master__link_ga136d58a2733b7acdf639c5bf42685536}{master\+\_\+link\+\_\+start()};
+\end{DoxyEnumerate}
+
+// Attach current task for event notification master\+\_\+link\+\_\+attach\+\_\+task\+\_\+handle(os\+Thread\+Get\+Id());
+
+// Periodically poll for new frames 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (;;)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__master__link_gaa0c4ce7bf2ecce9ca76ebf74d34a9812}{master\_link\_poll}}();}
+\DoxyCodeLine{\ \ \ \ osDelay(10);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md118}{}\doxysection{\texorpdfstring{8. Error Handling}{8. Error Handling}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md118}
+Condition Recovery Action UART overflow Clears ORE flag and restarts DMA reception. Idle line interrupt Flushes DMA buffer into ring buffer. Parser desync Automatically resyncs via protocol preamble.\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md119}{}\doxysection{\texorpdfstring{9. Related Modules}{9. Related Modules}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar967e0c8299e13ef5d263710cc2460100_autotoc_md119}
+\doxylink{group__app__main}{Application Startup and Task Manager} — RTOS task creation and scheduling
+
+\doxylink{group__protocol}{Communication Protocol Layer} — Frame structure and encoding/decoding logic
+
+\doxylink{group__uart__master__task}{UART Master Task} — UART handling and data queues
+
+\doxylink{group__log__flash}{Log\+\_\+flash} — Optional event logging
+
+\DoxyHorRuler{0}
+ 

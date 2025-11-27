@@ -1,0 +1,63 @@
+\doxysection{abcc\+\_\+hardware\+\_\+abstraction\+\_\+aux.\+h}
+\hypertarget{abcc__hardware__abstraction__aux_8h_source}{}\label{abcc__hardware__abstraction__aux_8h_source}\index{abcc\_hardware\_abstraction\_aux.h@{abcc\_hardware\_abstraction\_aux.h}}
+\mbox{\hyperlink{abcc__hardware__abstraction__aux_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ Copyright\ 2025-\/present\ HMS\ Industrial\ Networks\ AB.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ Licensed\ under\ the\ MIT\ License.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{********************************************************************************}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ File\ Description:}}
+\DoxyCodeLine{00006\ \textcolor{comment}{**\ Defines\ data\ structures\ and\ service\ functions\ for\ the\ M00765\ adapter\ board.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{********************************************************************************}}
+\DoxyCodeLine{00008\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ ABCC\_HAL\_AUX}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ ABCC\_HAL\_AUX}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00013\ \textcolor{comment}{**\ Register\ the\ CubeMX\ HAL\ handle\ to\ use\ for\ each\ communication\ interface\ to}}
+\DoxyCodeLine{00014\ \textcolor{comment}{**\ use\ with\ the\ M00765\ board.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00016\ \textcolor{comment}{**\ Arguments:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{**\ \ \ \ pxNewHandle\ -\/\ Pointer\ to\ the\ struct/handle\ that\ represents\ the\ selected}}
+\DoxyCodeLine{00018\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ interface\ hardware.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{**}}
+\DoxyCodeLine{00020\ \textcolor{comment}{**\ Returns:}}
+\DoxyCodeLine{00021\ \textcolor{comment}{**\ \ \ \ TRUE\ if\ the\ handle\ could\ be\ changed,\ FALSE\ otherwise.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00023\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00024\ \mbox{\hyperlink{abcc__types_8h_a1413ed558664b66e592826b2895fe94d}{EXTFUNC}}\ \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}}\ \mbox{\hyperlink{abcc__hardware__abstraction__aux_8h_a0422eb6f43f1f1ab95504f3eabc547db}{ABCC\_HAL\_Set\_I2C\_Handle}}(\ I2C\_HandleTypeDef*\ pxNewHandle\ );}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#if(\ ABCC\_CFG\_DRV\_SPI\_ENABLED\ )}}
+\DoxyCodeLine{00026\ \mbox{\hyperlink{abcc__types_8h_a1413ed558664b66e592826b2895fe94d}{EXTFUNC}}\ \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}}\ ABCC\_HAL\_Set\_SPI\_Handle(\ \mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}*\ pxNewHandle\ );}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#if(\ ABCC\_CFG\_DRV\_SERIAL\_ENABLED\ )}}
+\DoxyCodeLine{00029\ \mbox{\hyperlink{abcc__types_8h_a1413ed558664b66e592826b2895fe94d}{EXTFUNC}}\ \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}}\ ABCC\_HAL\_Set\_UART\_Handle(\ \mbox{\hyperlink{struct_____u_a_r_t___handle_type_def}{UART\_HandleTypeDef}}*\ pxNewHandle\ );}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00033\ \textcolor{comment}{**\ Synchronise\ in/out\ data\ with\ the\ I2C\ I/O\ expanders\ on\ the\ M00765\ board.}}
+\DoxyCodeLine{00034\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00035\ \textcolor{comment}{**\ Arguments:}}
+\DoxyCodeLine{00036\ \textcolor{comment}{**\ \ \ \ None}}
+\DoxyCodeLine{00037\ \textcolor{comment}{**}}
+\DoxyCodeLine{00038\ \textcolor{comment}{**\ Returns:}}
+\DoxyCodeLine{00039\ \textcolor{comment}{**\ \ \ \ TRUE\ if\ the\ data\ could\ be\ read/written,\ FALSE\ otherwise.}}
+\DoxyCodeLine{00040\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00041\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00042\ \mbox{\hyperlink{abcc__types_8h_a1413ed558664b66e592826b2895fe94d}{EXTFUNC}}\ \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}}\ \mbox{\hyperlink{abcc__hardware__abstraction__aux_8h_a49345e0241d592b66179a17accca1f3d}{ABCC\_HAL\_Refresh\_I2C\_In}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00043\ \mbox{\hyperlink{abcc__types_8h_a1413ed558664b66e592826b2895fe94d}{EXTFUNC}}\ \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}}\ \mbox{\hyperlink{abcc__hardware__abstraction__aux_8h_a89883afc59c6eca5a1d3c7a97ddaca2d}{ABCC\_HAL\_Refresh\_I2C\_Out}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00046\ \textcolor{comment}{**\ Returns\ the\ state\ of\ the\ S1\ /\ RESTART\ button\ on\ the\ M00765\ board.}}
+\DoxyCodeLine{00047\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00048\ \textcolor{comment}{**\ Arguments:}}
+\DoxyCodeLine{00049\ \textcolor{comment}{**\ \ \ \ None}}
+\DoxyCodeLine{00050\ \textcolor{comment}{**}}
+\DoxyCodeLine{00051\ \textcolor{comment}{**\ Returns:}}
+\DoxyCodeLine{00052\ \textcolor{comment}{**\ \ \ \ TRUE\ when\ the\ button\ is\ down,\ FALSE\ when\ it\ is\ up.}}
+\DoxyCodeLine{00053\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00054\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00055\ \mbox{\hyperlink{abcc__types_8h_a1413ed558664b66e592826b2895fe94d}{EXTFUNC}}\ \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}}\ \mbox{\hyperlink{abcc__hardware__abstraction__aux_8h_a1c62e928109ac6c2de9ee7bb434b3eee}{ABCC\_HAL\_GetRestartButton}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ inclusion\ lock\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

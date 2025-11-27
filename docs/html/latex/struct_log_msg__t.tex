@@ -1,0 +1,65 @@
+\doxysection{Log\+Msg\+\_\+t Struct Reference}
+\hypertarget{struct_log_msg__t}{}\label{struct_log_msg__t}\index{LogMsg\_t@{LogMsg\_t}}
+
+
+Log message structure for queued events.  
+
+
+
+
+{\ttfamily \#include $<$log\+\_\+flash.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_log_msg__t_a87117ebd77c8c63c16e9a25de7180e52}{seq}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_log_msg__t_aac4d7026d10f335a7d29596699b16352}{ms}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{struct_log_msg__t_a4179f2d03ffd9ba1251cc59264445024}{code}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_log_msg__t_a6d61b9113b3afce68a79f39064b728a3}{flags}}
+\item 
+char \mbox{\hyperlink{struct_log_msg__t_a7c8640c42e67e8ffc55776fd1847fba3}{msg}} \mbox{[}64\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Log message structure for queued events. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_log_msg__t_a4179f2d03ffd9ba1251cc59264445024}\label{struct_log_msg__t_a4179f2d03ffd9ba1251cc59264445024} 
+\index{LogMsg\_t@{LogMsg\_t}!code@{code}}
+\index{code@{code}!LogMsg\_t@{LogMsg\_t}}
+\doxysubsubsection{\texorpdfstring{code}{code}}
+{\footnotesize\ttfamily uint16\+\_\+t Log\+Msg\+\_\+t\+::code}
+
+Event code identifier \Hypertarget{struct_log_msg__t_a6d61b9113b3afce68a79f39064b728a3}\label{struct_log_msg__t_a6d61b9113b3afce68a79f39064b728a3} 
+\index{LogMsg\_t@{LogMsg\_t}!flags@{flags}}
+\index{flags@{flags}!LogMsg\_t@{LogMsg\_t}}
+\doxysubsubsection{\texorpdfstring{flags}{flags}}
+{\footnotesize\ttfamily uint8\+\_\+t Log\+Msg\+\_\+t\+::flags}
+
+Log flags (e.\+g. fault/clear) \Hypertarget{struct_log_msg__t_aac4d7026d10f335a7d29596699b16352}\label{struct_log_msg__t_aac4d7026d10f335a7d29596699b16352} 
+\index{LogMsg\_t@{LogMsg\_t}!ms@{ms}}
+\index{ms@{ms}!LogMsg\_t@{LogMsg\_t}}
+\doxysubsubsection{\texorpdfstring{ms}{ms}}
+{\footnotesize\ttfamily uint32\+\_\+t Log\+Msg\+\_\+t\+::ms}
+
+Timestamp in milliseconds \Hypertarget{struct_log_msg__t_a7c8640c42e67e8ffc55776fd1847fba3}\label{struct_log_msg__t_a7c8640c42e67e8ffc55776fd1847fba3} 
+\index{LogMsg\_t@{LogMsg\_t}!msg@{msg}}
+\index{msg@{msg}!LogMsg\_t@{LogMsg\_t}}
+\doxysubsubsection{\texorpdfstring{msg}{msg}}
+{\footnotesize\ttfamily char Log\+Msg\+\_\+t\+::msg\mbox{[}64\mbox{]}}
+
+Message text \Hypertarget{struct_log_msg__t_a87117ebd77c8c63c16e9a25de7180e52}\label{struct_log_msg__t_a87117ebd77c8c63c16e9a25de7180e52} 
+\index{LogMsg\_t@{LogMsg\_t}!seq@{seq}}
+\index{seq@{seq}!LogMsg\_t@{LogMsg\_t}}
+\doxysubsubsection{\texorpdfstring{seq}{seq}}
+{\footnotesize\ttfamily uint32\+\_\+t Log\+Msg\+\_\+t\+::seq}
+
+Sequential record number 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{log__flash_8h}{log\+\_\+flash.\+h}}\end{DoxyCompactItemize}

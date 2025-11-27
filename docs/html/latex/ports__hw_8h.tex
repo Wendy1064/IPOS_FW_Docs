@@ -1,0 +1,82 @@
+\doxysection{ports\+\_\+hw.\+h File Reference}
+\hypertarget{ports__hw_8h}{}\label{ports__hw_8h}\index{ports\_hw.h@{ports\_hw.h}}
+{\ttfamily \#include "{}stm32f4xx\+\_\+hal.\+h"{}}\newline
+Include dependency graph for ports\+\_\+hw.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ports__hw_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{ports__hw_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_gpio_map__t}{Gpio\+Map\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{ports__hw_8h_a4c9ee32e5c488c4c3cb7e4ef8051b266}{Port\+A\+\_\+\+Read}} (void)
+\item 
+void \mbox{\hyperlink{ports__hw_8h_aa00a65226ccf665bd514b15cb085cff4}{Port\+B\+\_\+\+Write}} (uint16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{ports__hw_8h_a26b7eae3aff2afa4fbebf4e0fb1d746e}{Job\+\_\+\+Sel\+\_\+\+Out\+\_\+\+Write}} (uint8\+\_\+t value)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{ports__hw_8h_ac88893c1d3af07ee3d7a475d2e897900}{Job\+\_\+\+Sel\+\_\+\+In\+\_\+\+Read}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{ports__hw_8h_a11e157ef9a3c2f2854ed16b082712421}{job\+Sel\+Shadow}} \mbox{[}8\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{ports__hw_8h_a6dc92a35a836ceef8917b46ffba62367}{Port\+BShadow}} \mbox{[}10\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ports__hw_8h_ac88893c1d3af07ee3d7a475d2e897900}\label{ports__hw_8h_ac88893c1d3af07ee3d7a475d2e897900} 
+\index{ports\_hw.h@{ports\_hw.h}!Job\_Sel\_In\_Read@{Job\_Sel\_In\_Read}}
+\index{Job\_Sel\_In\_Read@{Job\_Sel\_In\_Read}!ports\_hw.h@{ports\_hw.h}}
+\doxysubsubsection{\texorpdfstring{Job\_Sel\_In\_Read()}{Job\_Sel\_In\_Read()}}
+{\footnotesize\ttfamily uint8\+\_\+t Job\+\_\+\+Sel\+\_\+\+In\+\_\+\+Read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{ports__hw_8h_a26b7eae3aff2afa4fbebf4e0fb1d746e}\label{ports__hw_8h_a26b7eae3aff2afa4fbebf4e0fb1d746e} 
+\index{ports\_hw.h@{ports\_hw.h}!Job\_Sel\_Out\_Write@{Job\_Sel\_Out\_Write}}
+\index{Job\_Sel\_Out\_Write@{Job\_Sel\_Out\_Write}!ports\_hw.h@{ports\_hw.h}}
+\doxysubsubsection{\texorpdfstring{Job\_Sel\_Out\_Write()}{Job\_Sel\_Out\_Write()}}
+{\footnotesize\ttfamily void Job\+\_\+\+Sel\+\_\+\+Out\+\_\+\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+\Hypertarget{ports__hw_8h_a4c9ee32e5c488c4c3cb7e4ef8051b266}\label{ports__hw_8h_a4c9ee32e5c488c4c3cb7e4ef8051b266} 
+\index{ports\_hw.h@{ports\_hw.h}!PortA\_Read@{PortA\_Read}}
+\index{PortA\_Read@{PortA\_Read}!ports\_hw.h@{ports\_hw.h}}
+\doxysubsubsection{\texorpdfstring{PortA\_Read()}{PortA\_Read()}}
+{\footnotesize\ttfamily uint16\+\_\+t Port\+A\+\_\+\+Read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{ports__hw_8h_aa00a65226ccf665bd514b15cb085cff4}\label{ports__hw_8h_aa00a65226ccf665bd514b15cb085cff4} 
+\index{ports\_hw.h@{ports\_hw.h}!PortB\_Write@{PortB\_Write}}
+\index{PortB\_Write@{PortB\_Write}!ports\_hw.h@{ports\_hw.h}}
+\doxysubsubsection{\texorpdfstring{PortB\_Write()}{PortB\_Write()}}
+{\footnotesize\ttfamily void Port\+B\+\_\+\+Write (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{ports__hw_8h_a11e157ef9a3c2f2854ed16b082712421}\label{ports__hw_8h_a11e157ef9a3c2f2854ed16b082712421} 
+\index{ports\_hw.h@{ports\_hw.h}!jobSelShadow@{jobSelShadow}}
+\index{jobSelShadow@{jobSelShadow}!ports\_hw.h@{ports\_hw.h}}
+\doxysubsubsection{\texorpdfstring{jobSelShadow}{jobSelShadow}}
+{\footnotesize\ttfamily uint8\+\_\+t job\+Sel\+Shadow\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{ports__hw_8h_a6dc92a35a836ceef8917b46ffba62367}\label{ports__hw_8h_a6dc92a35a836ceef8917b46ffba62367} 
+\index{ports\_hw.h@{ports\_hw.h}!PortBShadow@{PortBShadow}}
+\index{PortBShadow@{PortBShadow}!ports\_hw.h@{ports\_hw.h}}
+\doxysubsubsection{\texorpdfstring{PortBShadow}{PortBShadow}}
+{\footnotesize\ttfamily uint8\+\_\+t Port\+BShadow\mbox{[}10\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+

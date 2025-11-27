@@ -1,0 +1,65 @@
+\doxysection{IPOS\+\_\+071125/\+Core/\+Src/usart.c File Reference}
+\hypertarget{_i_p_o_s__071125_2_core_2_src_2usart_8c}{}\label{_i_p_o_s__071125_2_core_2_src_2usart_8c}\index{usart.c@{usart.c}}
+
+
+This file provides code for the configuration of the USART instances.  
+
+
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+Include dependency graph for IPOS\+\_\+071125/\+Core/\+Src/usart.c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=126pt]{_i_p_o_s__071125_2_core_2_src_2usart_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2usart_8c_a052088fe5bb3f807a4b2502e664fd4fd}{MX\+\_\+\+USART2\+\_\+\+UART\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{group___u_a_r_t___exported___functions___group1_ga0e553b32211877322f949b14801bbfa7}{HAL\+\_\+\+UART\+\_\+\+Msp\+Init}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}uart\+Handle)
+\item 
+void \mbox{\hyperlink{group___u_a_r_t___exported___functions___group1_ga718f39804e3b910d738a0e1e46151188}{HAL\+\_\+\+UART\+\_\+\+Msp\+De\+Init}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}uart\+Handle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2usart_8c_aa9479c261d65eecedd3d9582f7f0f89c}{huart2}}
+\item 
+\mbox{\hyperlink{group___d_m_a___exported___types_ga41b754a906b86bce54dc79938970138b}{DMA\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2usart_8c_a784aa25dc7e4580cfbf80658340f482c}{hdma\+\_\+usart2\+\_\+rx}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of the USART instances. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2025 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_i_p_o_s__071125_2_core_2_src_2usart_8c_a052088fe5bb3f807a4b2502e664fd4fd}\label{_i_p_o_s__071125_2_core_2_src_2usart_8c_a052088fe5bb3f807a4b2502e664fd4fd} 
+\index{usart.c@{usart.c}!MX\_USART2\_UART\_Init@{MX\_USART2\_UART\_Init}}
+\index{MX\_USART2\_UART\_Init@{MX\_USART2\_UART\_Init}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{MX\_USART2\_UART\_Init()}{MX\_USART2\_UART\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+USART2\+\_\+\+UART\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_i_p_o_s__071125_2_core_2_src_2usart_8c_a784aa25dc7e4580cfbf80658340f482c}\label{_i_p_o_s__071125_2_core_2_src_2usart_8c_a784aa25dc7e4580cfbf80658340f482c} 
+\index{usart.c@{usart.c}!hdma\_usart2\_rx@{hdma\_usart2\_rx}}
+\index{hdma\_usart2\_rx@{hdma\_usart2\_rx}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_usart2\_rx}{hdma\_usart2\_rx}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group___d_m_a___exported___types_ga41b754a906b86bce54dc79938970138b}{DMA\+\_\+\+Handle\+Type\+Def}} hdma\+\_\+usart2\+\_\+rx}
+
+\Hypertarget{_i_p_o_s__071125_2_core_2_src_2usart_8c_aa9479c261d65eecedd3d9582f7f0f89c}\label{_i_p_o_s__071125_2_core_2_src_2usart_8c_aa9479c261d65eecedd3d9582f7f0f89c} 
+\index{usart.c@{usart.c}!huart2@{huart2}}
+\index{huart2@{huart2}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{huart2}{huart2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} huart2}
+

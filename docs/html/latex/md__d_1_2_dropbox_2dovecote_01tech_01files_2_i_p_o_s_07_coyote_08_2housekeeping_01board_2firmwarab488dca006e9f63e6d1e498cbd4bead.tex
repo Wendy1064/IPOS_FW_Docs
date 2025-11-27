@@ -1,0 +1,207 @@
+\chapter{Anybus M40 I/O Mapping}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead}\index{Anybus M40 I/O Mapping@{Anybus M40 I/O Mapping}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md193}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md193}%
+{\bfseries{File\+:}} {\ttfamily abcc\+\_\+app\+\_\+ipos.\+c} ~\newline
+ {\bfseries{Project\+:}} IPOS → Anybus M40 Integration Firmware ~\newline
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md195}{}\doxysection{\texorpdfstring{1. Overview}{1. Overview}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md195}
+This page documents the {\bfseries{Application Data Instances (ADIs)}} and {\bfseries{Process Data Mapping}} used by the IPOS Anybus M40 firmware. ~\newline
+ Each ADI defines a logical variable visible to the {\bfseries{Profinet PLC}} and synchronised with the {\bfseries{STM32 master controller}} over UART3.
+
+The firmware implements direct mirroring of PORTA/\+B/C digital I/O and several custom status words.
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md197}{}\doxysection{\texorpdfstring{2. Process Flow}{2. Process Flow}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md197}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{PLC\ ⇄\ Profinet\ ⇄\ Anybus\ M40\ ⇄\ UART3\ ⇄\ STM32\ Master}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ Controls\ outputs\ (PORTA)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ Reads\ inputs\ (PORTB\ /\ PORTC)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ └──\ Sends/receives\ STATUS\ words}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md198}{}\doxysubsection{\texorpdfstring{ADI Table Summary}{ADI Table Summary}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md198}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Instance   }&\cellcolor{\tableheadbgcolor}\textbf{ Name   }&\cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Access   }&\cellcolor{\tableheadbgcolor}\textbf{ Direction   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Instance   }&\cellcolor{\tableheadbgcolor}\textbf{ Name   }&\cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Access   }&\cellcolor{\tableheadbgcolor}\textbf{ Direction   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-6}
+\endhead
+0x1   &PORTA   &UINT16   &W\+\_\+G   &STM32 → PLC   &Digital output word controlling Port A on SP-\/\+ICE-\/3 card    \\\cline{1-6}
+0x2   &PORTB   &UINT16   &R\+\_\+\+S\+\_\+   &PLC → STM32   &Digital input word read from Port B on SP-\/\+ICE-\/3 card    \\\cline{1-6}
+0x3   &PORTC   &UINT8   &R\+\_\+\+S\+\_\+   &PLC → STM32   &Compact 8-\/bit input set PORTC job select port on SP-\/\+ICE-\/3 card    \\\cline{1-6}
+0x4   &STATUS\+\_\+\+DEBUG   &UINT16   &W\+\_\+G   &STM32 → PLC   &Debug/diagnostic state bits from STM32 master    \\\cline{1-6}
+0x5   &STATUS\+\_\+\+PLC   &UINT16   &R\+\_\+\+S\+\_\+   &PLC → STM32   &Command/status word written by PLC (reset, mode)    \\\cline{1-6}
+0x6   &STATUS\+\_\+\+ACTIVE   &UINT16   &W\+\_\+G   &STM32 → PLC   &Indicates active operational state of system, Door, Estop, Key, Errors    \\\cline{1-6}
+0x7   &STATUS\+\_\+\+DEBUG\+\_\+\+TRU   &UINT16   &W\+\_\+G   &STM32 → PLC   &Tru\+Pulse diagnostic   \\\cline{1-6}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md199}{}\doxysubsection{\texorpdfstring{Access Legend}{Access Legend}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md199}
+W\+\_\+G = Writeable, Global scope (STM32 output → PLC input) ~\newline
+
+
+R\+\_\+\+S\+\_\+ = Readable, Static scope (PLC output → STM32 input) ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md200}{}\doxysection{\texorpdfstring{4. Process Data Mapping}{4. Process Data Mapping}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md200}
+Default PD-\/\+Write (STM32 → PLC) ~\newline
+
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Order   }&\cellcolor{\tableheadbgcolor}\textbf{ ADI   }&\cellcolor{\tableheadbgcolor}\textbf{ Name   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Order   }&\cellcolor{\tableheadbgcolor}\textbf{ ADI   }&\cellcolor{\tableheadbgcolor}\textbf{ Name   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endhead
+1   &0x1   &PORTA   &Digital outputs from SP-\/\+ICE-\/3 card written to PLC    \\\cline{1-4}
+2   &0x4   &STATUS\+\_\+\+DEBUG   &Optional writeback/debug use    \\\cline{1-4}
+3   &0x7   &STATUS\+\_\+\+DEBUG\+\_\+\+TRU   &Tru\+Pulse diagnostics    \\\cline{1-4}
+4   &0x6   &STATUS\+\_\+\+ACTIVE   &Active mode flags   \\\cline{1-4}
+\end{longtabu}
+
+
+Default PD-\/\+Read (STM32 → PLC) ~\newline
+
+
+\texorpdfstring{$\vert$}{|}\+Order \texorpdfstring{$\vert$}{|}\+ADI Name \texorpdfstring{$\vert$}{|}\+Description\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}\+:-\/-\/-\/---\texorpdfstring{$\vert$}{|}\+:-\/-\/---\texorpdfstring{$\vert$}{|}\+:-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---\texorpdfstring{$\vert$}{|}\+:-\/-\/-\/-\/-\/---\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}1\texorpdfstring{$\vert$}{|} 0x2\texorpdfstring{$\vert$}{|} PORTB\texorpdfstring{$\vert$}{|} Input word (readback)\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}2\texorpdfstring{$\vert$}{|} 0x3\texorpdfstring{$\vert$}{|} PORTC\texorpdfstring{$\vert$}{|} Input byte (switches, sensors)\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}3\texorpdfstring{$\vert$}{|} 0x5\texorpdfstring{$\vert$}{|} STATUS\+\_\+\+PLC\texorpdfstring{$\vert$}{|} Control/status from PLC\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}5\texorpdfstring{$\vert$}{|} Variable Descriptions\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md201}{}\doxysubsection{\texorpdfstring{PORTA (0x1)}{PORTA (0x1)}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md201}
+16-\/bit output value from PLC to STM32 ~\newline
+
+
+Mirrors PORTA state of the SPI-\/\+ICE-\/3 Card Port A
+
+Updated each Profinet cycle ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md202}{}\doxysubsection{\texorpdfstring{PORTB (0x2)}{PORTB (0x2)}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md202}
+16-\/bit input from PLC to STM32 ~\newline
+
+
+Sets value of PORTB on the SPI-\/\+ICE-\/3 ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md203}{}\doxysubsection{\texorpdfstring{PORTC (0x3)}{PORTC (0x3)}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md203}
+8-\/bit compact input value ~\newline
+
+
+Used for setting the user port C on the SP-\/\+ICE-\/3 card job select bits\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md204}{}\doxysubsection{\texorpdfstring{STATUS\+\_\+\+DEBUG (0x4)}{STATUS\+\_\+\+DEBUG (0x4)}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md204}
+Diagnostic word containing bit-\/level system flags ~\newline
+
+
+See STM32 variable VAR\+\_\+\+STATUS\+\_\+\+DEBUG for bit mapping ~\newline
+
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Bit   }&\cellcolor{\tableheadbgcolor}\textbf{ Function   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Bit   }&\cellcolor{\tableheadbgcolor}\textbf{ Function   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+0   &not defined   &\\\cline{1-3}
+1   &not defined   &\\\cline{1-3}
+2   &not defined   &\\\cline{1-3}
+3   &not defined   &\\\cline{1-3}
+4   &INPUT\+\_\+\+RELAY1\+\_\+\+ON   &relay contact 1 open/closed (debug)    \\\cline{1-3}
+5   &INPUT\+\_\+\+RELAY2\+\_\+\+ON   &relay contact 2 open/closed (debug)    \\\cline{1-3}
+6   &error\mbox{[}0\mbox{]}active   &Door/relay fault (debug)    \\\cline{1-3}
+7   &error\mbox{[}1\mbox{]}active   &Contact mismatch fault (debug)    \\\cline{1-3}
+8   &error\mbox{[}2\mbox{]}active   &Latch error (debug)    \\\cline{1-3}
+9   &INPUT\+\_\+12\+V\+\_\+\+PWR\+\_\+\+GOOD   &12V power ok (debug)    \\\cline{1-3}
+10   &INPUT\+\_\+24\+V\+\_\+\+PWR\+\_\+\+GOOD   &24V power ok (debug)    \\\cline{1-3}
+11   &INPUT\+\_\+12\+V\+\_\+\+FUSE\+\_\+\+GOOD   &12V fuse ok (debug)   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md205}{}\doxysubsection{\texorpdfstring{STATUS\+\_\+\+PLC (0x5)}{STATUS\+\_\+\+PLC (0x5)}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md205}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md206}{}\doxysubsection{\texorpdfstring{PLC command register controlling reset and test features}{PLC command register controlling reset and test features}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md206}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Bit   }&\cellcolor{\tableheadbgcolor}\textbf{ Function   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Bit   }&\cellcolor{\tableheadbgcolor}\textbf{ Function   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+0   &Reset Latches   &will reset all latches unless there is a hardware fault will not reset    \\\cline{1-3}
+1   &Force latch error   &will froce a latch error for test and debug   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md207}{}\doxysubsection{\texorpdfstring{STATUS\+\_\+\+ACTIVE (0x6)}{STATUS\+\_\+\+ACTIVE (0x6)}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md207}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Bit   }&\cellcolor{\tableheadbgcolor}\textbf{ Function   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Bit   }&\cellcolor{\tableheadbgcolor}\textbf{ Function   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+0   &INPUT\+\_\+\+DOOR   &door open/closed    \\\cline{1-3}
+1   &INPUT\+\_\+\+ESTOP   &estop pressed/released    \\\cline{1-3}
+2   &INPUT\+\_\+\+KEY   &key on/off    \\\cline{1-3}
+3   &INPUT\+\_\+\+BDO   &BDO interlock on/off    \\\cline{1-3}
+4   &temperature\+\_\+fault   &active if there is a BDO temperature error    \\\cline{1-3}
+5   &INPUT\+\_\+\+ESTOP   &Add rounded temperature (°C) into upper byte (bits 15..8)    \\\cline{1-3}
+6   &INPUT\+\_\+\+KEY   &key on/off    \\\cline{1-3}
+7   &INPUT\+\_\+\+BDO   &BDO interlock on/off    \\\cline{1-3}
+8   &temperature   &rounded temperature (°C) into upper byte (bits 15..8)    \\\cline{1-3}
+9   &temperature   &\\\cline{1-3}
+10   &temperature   &\\\cline{1-3}
+11   &temperature   &\\\cline{1-3}
+12   &temperature   &\\\cline{1-3}
+13   &temperature   &\\\cline{1-3}
+14   &temperature   &\\\cline{1-3}
+15   &temperature   &\\\cline{1-3}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md208}{}\doxysubsection{\texorpdfstring{STATUS\+\_\+\+DEBUG\+\_\+\+TRU (0x7)}{STATUS\+\_\+\+DEBUG\+\_\+\+TRU (0x7)}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md208}
+Mirror of Tru\+Pulse laser system status bits ~\newline
+
+
+Used for testing beam-\/delivery and alarm states ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md209}{}\doxysection{\texorpdfstring{6. Timing and Synchronization}{6. Timing and Synchronization}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md209}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Parameter   }&\cellcolor{\tableheadbgcolor}\textbf{ Value   }&\cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Parameter   }&\cellcolor{\tableheadbgcolor}\textbf{ Value   }&\cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endhead
+UART Link   &Update \texorpdfstring{$\sim$}{\string~}50 ms   &STM32 ↔ M40 refresh period    \\\cline{1-3}
+Profinet   &I/O Cycle 1 – 4 ms   &Configurable via PLC hardware config    \\\cline{1-3}
+PD Mapping   &Update Every cycle Anybus firmware   &synchronises ADI values   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md210}{}\doxysection{\texorpdfstring{7. Revision History}{7. Revision History}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarab488dca006e9f63e6d1e498cbd4bead_autotoc_md210}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Version   }&\cellcolor{\tableheadbgcolor}\textbf{ Date   }&\cellcolor{\tableheadbgcolor}\textbf{ Author   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Version   }&\cellcolor{\tableheadbgcolor}\textbf{ Date   }&\cellcolor{\tableheadbgcolor}\textbf{ Author   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endhead
+1.\+0   &Nov 2025   &Dovecote Tech   &Initial documentation for IPOS integration layer   \\\cline{1-4}
+\end{longtabu}
+
+
+📘 For implementation details, refer to\+:
+
+abcc\+\_\+app\+\_\+ipos.\+c
+
+protocol.\+h
+
+\doxylink{slave__link_8h}{slave\+\_\+link.\+h}
+
+\DoxyHorRuler{0}
+ 

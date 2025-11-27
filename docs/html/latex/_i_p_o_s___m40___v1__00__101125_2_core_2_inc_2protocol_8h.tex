@@ -1,0 +1,165 @@
+\doxysection{IPOS\+\_\+\+M40\+\_\+\+V1\+\_\+00\+\_\+101125/\+Core/\+Inc/protocol.h File Reference}
+\hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h}{}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h}\index{protocol.h@{protocol.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+Include dependency graph for IPOS\+\_\+\+M40\+\_\+\+V1\+\_\+00\+\_\+101125/\+Core/\+Inc/protocol.h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_proto_frame}{Proto\+Frame}}
+\item 
+struct \mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_aacd744a917e61146ec8b7175b4761683}{STX}}~0x02u
+\item 
+\#define \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_af02558e983dd26832a852bf186ed6726}{ETX}}~0x03u
+\item 
+\#define \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a6103e4a953037640e7a1827788d638b2}{VAR\+\_\+\+PORTA}}~1
+\item 
+\#define \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a278178c1887689ffd92e6620c5ca7c29}{VAR\+\_\+\+PORTB}}~2
+\item 
+\#define \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a67d1ba916d8df2e47ed6f37967d2d4ff}{VAR\+\_\+\+PORTC}}~3
+\item 
+\#define \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a805e4f6e2b596b10f0a9428b1eb2c490}{VAR\+\_\+\+STATUS\+\_\+\+DEBUG}}~4
+\item 
+\#define \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_aea33f78444a082f28126c0103fd7c057}{VAR\+\_\+\+STATUS\+\_\+\+PLC}}~5
+\item 
+\#define \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_af42c2ef6d8ea1526e4128ab656e4312d}{VAR\+\_\+\+STATUS\+\_\+\+ACTIVE}}~6
+\item 
+\#define \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab5ddf20d29bff3e38c8d78adb4d970ad}{VAR\+\_\+\+STATUS\+\_\+\+DEBUG\+\_\+\+TRU}}~7
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6}{Proto\+Cmd}} \{ \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a43d7f3a35093d4198124c87b43afdefb}{CMD\+\_\+\+READ}} = 0x01u
+, \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a612986a7ae236cab656844222f00ba82}{CMD\+\_\+\+WRITE}} = 0x02u
+, \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a43add34e0ccdb1ce00a21c0a0a28bf86}{CMD\+\_\+\+ACK}} = 0x06u
+ \}
+\item 
+enum \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}{Proto\+Role}} \{ \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7a47f287004d68c97c3589027d98225676}{ROLE\+\_\+\+MASTER}}
+, \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7a6cff0abbfa0fc9286a1d13b0ffd76cba}{ROLE\+\_\+\+SLAVE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__protocol_ga8970bcd0e0af17f42b3b3a6d83f3d195}{proto\+\_\+init}} (\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}p, \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}{Proto\+Role}} role)
+\begin{DoxyCompactList}\small\item\em Initialize a protocol parser instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__protocol_gacad3e241e27ce9c8dc1ca4535f41f9a5}{proto\+\_\+reset}} (\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}p)
+\begin{DoxyCompactList}\small\item\em Reset the parser state. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__protocol_gadbb6342eec2b0de6e1c7ab042f1448e1}{proto\+\_\+push}} (\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}p, uint8\+\_\+t byte, \mbox{\hyperlink{struct_proto_frame}{Proto\+Frame}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Feed one byte into the protocol parser. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga95064f228b494d27449fa09019d639c8}{proto\+\_\+build\+\_\+write}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build a WRITE frame. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga4cc33e9868129062ecf64b316b43dcf6}{proto\+\_\+build\+\_\+read}} (uint8\+\_\+t var\+\_\+id, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build a READ request frame. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga05e2d2d6edbf121ecf479ddbaf47e03d}{proto\+\_\+build\+\_\+ack}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build an ACK frame. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga02c6e9492c7b3578ce7b3e9212cea6f7}{proto\+\_\+build\+\_\+readr}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build a READ-\/response frame with data value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_af02558e983dd26832a852bf186ed6726}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_af02558e983dd26832a852bf186ed6726} 
+\index{protocol.h@{protocol.h}!ETX@{ETX}}
+\index{ETX@{ETX}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{ETX}{ETX}}
+{\footnotesize\ttfamily \#define ETX~0x03u}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_aacd744a917e61146ec8b7175b4761683}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_aacd744a917e61146ec8b7175b4761683} 
+\index{protocol.h@{protocol.h}!STX@{STX}}
+\index{STX@{STX}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{STX}{STX}}
+{\footnotesize\ttfamily \#define STX~0x02u}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a6103e4a953037640e7a1827788d638b2}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a6103e4a953037640e7a1827788d638b2} 
+\index{protocol.h@{protocol.h}!VAR\_PORTA@{VAR\_PORTA}}
+\index{VAR\_PORTA@{VAR\_PORTA}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{VAR\_PORTA}{VAR\_PORTA}}
+{\footnotesize\ttfamily \#define VAR\+\_\+\+PORTA~1}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a278178c1887689ffd92e6620c5ca7c29}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a278178c1887689ffd92e6620c5ca7c29} 
+\index{protocol.h@{protocol.h}!VAR\_PORTB@{VAR\_PORTB}}
+\index{VAR\_PORTB@{VAR\_PORTB}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{VAR\_PORTB}{VAR\_PORTB}}
+{\footnotesize\ttfamily \#define VAR\+\_\+\+PORTB~2}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a67d1ba916d8df2e47ed6f37967d2d4ff}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a67d1ba916d8df2e47ed6f37967d2d4ff} 
+\index{protocol.h@{protocol.h}!VAR\_PORTC@{VAR\_PORTC}}
+\index{VAR\_PORTC@{VAR\_PORTC}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{VAR\_PORTC}{VAR\_PORTC}}
+{\footnotesize\ttfamily \#define VAR\+\_\+\+PORTC~3}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_af42c2ef6d8ea1526e4128ab656e4312d}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_af42c2ef6d8ea1526e4128ab656e4312d} 
+\index{protocol.h@{protocol.h}!VAR\_STATUS\_ACTIVE@{VAR\_STATUS\_ACTIVE}}
+\index{VAR\_STATUS\_ACTIVE@{VAR\_STATUS\_ACTIVE}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{VAR\_STATUS\_ACTIVE}{VAR\_STATUS\_ACTIVE}}
+{\footnotesize\ttfamily \#define VAR\+\_\+\+STATUS\+\_\+\+ACTIVE~6}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a805e4f6e2b596b10f0a9428b1eb2c490}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_a805e4f6e2b596b10f0a9428b1eb2c490} 
+\index{protocol.h@{protocol.h}!VAR\_STATUS\_DEBUG@{VAR\_STATUS\_DEBUG}}
+\index{VAR\_STATUS\_DEBUG@{VAR\_STATUS\_DEBUG}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{VAR\_STATUS\_DEBUG}{VAR\_STATUS\_DEBUG}}
+{\footnotesize\ttfamily \#define VAR\+\_\+\+STATUS\+\_\+\+DEBUG~4}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab5ddf20d29bff3e38c8d78adb4d970ad}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab5ddf20d29bff3e38c8d78adb4d970ad} 
+\index{protocol.h@{protocol.h}!VAR\_STATUS\_DEBUG\_TRU@{VAR\_STATUS\_DEBUG\_TRU}}
+\index{VAR\_STATUS\_DEBUG\_TRU@{VAR\_STATUS\_DEBUG\_TRU}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{VAR\_STATUS\_DEBUG\_TRU}{VAR\_STATUS\_DEBUG\_TRU}}
+{\footnotesize\ttfamily \#define VAR\+\_\+\+STATUS\+\_\+\+DEBUG\+\_\+\+TRU~7}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_aea33f78444a082f28126c0103fd7c057}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_aea33f78444a082f28126c0103fd7c057} 
+\index{protocol.h@{protocol.h}!VAR\_STATUS\_PLC@{VAR\_STATUS\_PLC}}
+\index{VAR\_STATUS\_PLC@{VAR\_STATUS\_PLC}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{VAR\_STATUS\_PLC}{VAR\_STATUS\_PLC}}
+{\footnotesize\ttfamily \#define VAR\+\_\+\+STATUS\+\_\+\+PLC~5}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6} 
+\index{protocol.h@{protocol.h}!ProtoCmd@{ProtoCmd}}
+\index{ProtoCmd@{ProtoCmd}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{ProtoCmd}{ProtoCmd}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6}{Proto\+Cmd}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMD\_READ@{CMD\_READ}!protocol.h@{protocol.h}}\index{protocol.h@{protocol.h}!CMD\_READ@{CMD\_READ}}}\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a43d7f3a35093d4198124c87b43afdefb}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a43d7f3a35093d4198124c87b43afdefb} 
+CMD\+\_\+\+READ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMD\_WRITE@{CMD\_WRITE}!protocol.h@{protocol.h}}\index{protocol.h@{protocol.h}!CMD\_WRITE@{CMD\_WRITE}}}\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a612986a7ae236cab656844222f00ba82}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a612986a7ae236cab656844222f00ba82} 
+CMD\+\_\+\+WRITE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMD\_ACK@{CMD\_ACK}!protocol.h@{protocol.h}}\index{protocol.h@{protocol.h}!CMD\_ACK@{CMD\_ACK}}}\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a43add34e0ccdb1ce00a21c0a0a28bf86}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_ab913231010f74bb92fe8153deb654fd6a43add34e0ccdb1ce00a21c0a0a28bf86} 
+CMD\+\_\+\+ACK&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7} 
+\index{protocol.h@{protocol.h}!ProtoRole@{ProtoRole}}
+\index{ProtoRole@{ProtoRole}!protocol.h@{protocol.h}}
+\doxysubsubsection{\texorpdfstring{ProtoRole}{ProtoRole}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}{Proto\+Role}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ROLE\_MASTER@{ROLE\_MASTER}!protocol.h@{protocol.h}}\index{protocol.h@{protocol.h}!ROLE\_MASTER@{ROLE\_MASTER}}}\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7a47f287004d68c97c3589027d98225676}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7a47f287004d68c97c3589027d98225676} 
+ROLE\+\_\+\+MASTER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ROLE\_SLAVE@{ROLE\_SLAVE}!protocol.h@{protocol.h}}\index{protocol.h@{protocol.h}!ROLE\_SLAVE@{ROLE\_SLAVE}}}\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7a6cff0abbfa0fc9286a1d13b0ffd76cba}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7a6cff0abbfa0fc9286a1d13b0ffd76cba} 
+ROLE\+\_\+\+SLAVE&\\
+\hline
+
+\end{DoxyEnumFields}

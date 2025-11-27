@@ -1,0 +1,26 @@
+\chapter{Profinet Data Cycle and Synchronization}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwaracc1a49a6155afd516e767bab64cb315}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwaracc1a49a6155afd516e767bab64cb315}\index{Profinet Data Cycle and Synchronization@{Profinet Data Cycle and Synchronization}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwaracc1a49a6155afd516e767bab64cb315_autotoc_md240}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwaracc1a49a6155afd516e767bab64cb315_autotoc_md240}%
+ The Anybus M40 performs cyclic Profinet I/O updates at a fixed {\bfseries{PD cycle time}} configured by the PLC.
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwaracc1a49a6155afd516e767bab64cb315_autotoc_md242}{}\doxysection{\texorpdfstring{Timing Diagram}{Timing Diagram}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwaracc1a49a6155afd516e767bab64cb315_autotoc_md242}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_7}}
+\end{DoxyImageNoCaption}
+
+
+\DoxyHorRuler{0}
+
+
+{\bfseries{Typical PD cycle\+:}} ~\newline
+
+\begin{DoxyItemize}
+\item 1 ms or 2 ms Profinet I/O update ~\newline
+
+\item \texorpdfstring{$<$}{<}100 µs UART turnaround latency ~\newline
+
+\item \texorpdfstring{$<$}{<}5 µs GPIO update delay at SP-\/\+ICE-\/3 interface 
+\end{DoxyItemize}

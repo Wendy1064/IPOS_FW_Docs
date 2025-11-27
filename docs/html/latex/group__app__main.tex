@@ -1,0 +1,287 @@
+\doxysection{Application Startup and Task Manager}
+\hypertarget{group__app__main}{}\label{group__app__main}\index{Application Startup and Task Manager@{Application Startup and Task Manager}}
+
+
+Initializes and starts all IPOS RTOS tasks, event flags, and system modules.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__app__main_gafb61de40a620d1b98523ac1673907935}{Start\+Ethernet\+Task}} (void)
+\item 
+void \mbox{\hyperlink{group__app__main_ga71115d79568ca6bf736cfde16bf90e50}{to\+\_\+binary\+\_\+str\+\_\+grouped}} (uint16\+\_\+t value, int bits, char \texorpdfstring{$\ast$}{*}buf, size\+\_\+t buf\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Convert an integer value to a binary string representation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__app__main_ga0cd91fd3a9608559c2a87a8ba6cba55f}{HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback}} (uint16\+\_\+t GPIO\+\_\+\+Pin)
+\begin{DoxyCompactList}\small\item\em External interrupt callback for reset button. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__app__main_ga2e3052c8b693b6705ede47fdfbf6b8fb}{v\+Task\+Monitor}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Monitors the BDO temperature sensor via MAX31855. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__app__main_ga067e341abc6c6153474df6a42d5919ed}{Flash\+\_\+\+Self\+Test}} (void)
+\begin{DoxyCompactList}\small\item\em Perform a basic read/write/verify self-\/test on the W25\+Q16 flash. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__app__main_ga783607bdd6febf2b64a3f7871e1e9e4c}{App\+\_\+\+Start}} (void)
+\begin{DoxyCompactList}\small\item\em Main application entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile bool \mbox{\hyperlink{group__app__main_ga5d74e16bd7fa55cbd077526304114799}{debug\+Bypass\+Thermo\+Check}}
+\begin{DoxyCompactList}\small\item\em Enables or disables temperature checks. \end{DoxyCompactList}\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__app__main_gad161edf016c8165e59d5fa88aeb008aa}{Boot\+Event}}
+\begin{DoxyCompactList}\small\item\em Event flag for boot-\/time synchronization. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga13513b52ba27e18fced406e65011d1b9}{verbose\+Logging}} = 0
+\begin{DoxyCompactList}\small\item\em Verbose logging enable flag (set via USB command). \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga8b113a17282bd33cf6e1ab2d885c5da6}{sw\+Latch\+Fault\+Active}}
+\begin{DoxyCompactList}\small\item\em Software fault latches (external linkage from input module). \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga99ad38e5fdbdf57fbaea98f73361969f}{sw\+Latch\+Force\+Error}}
+\item 
+const char \mbox{\hyperlink{group__app__main_gaa34fa035dd3b887a67e9b0e34852f0eb}{build\+\_\+date}} \mbox{[}$\,$\mbox{]} = \+\_\+\+\_\+\+DATE\+\_\+\+\_\+
+\begin{DoxyCompactList}\small\item\em Compile-\/time build metadata. \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{group__app__main_ga766eb4a0acd5a2b6c58dac458bd7da9b}{build\+\_\+time}} \mbox{[}$\,$\mbox{]} = \+\_\+\+\_\+\+TIME\+\_\+\+\_\+
+\item 
+os\+Timer\+Id\+\_\+t \mbox{\hyperlink{group__app__main_gac897f859d8c267e7f99bdddf7777d1c6}{debounce\+Timer}}
+\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__app__main_ga62b5ee21fd989192e48209d86efb4289}{Reset\+Latch\+Event}}
+\begin{DoxyCompactList}\small\item\em RTOS handles for latch reset and error forcing. \end{DoxyCompactList}\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__app__main_gac09e3335f4f6421a2c786a45f998c2a7}{Force\+Latch\+Event}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga6332c0412eb3dd6ac3758a9b356ae013}{laser\+Latched\+Off}} = 0
+\begin{DoxyCompactList}\small\item\em Software-\/controlled latch disable indicator. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__app__main_gaa709301a600e146c64d1704742ef6941}{last\+Press\+Tick}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Initializes and starts all IPOS RTOS tasks, event flags, and system modules. 
+
+This module is the main firmware entry point after Free\+RTOS startup. It handles\+:
+\begin{DoxyItemize}
+\item Creation of all core RTOS tasks (USB, Input Scan, Flash Log, etc.)
+\item Initialization of mutexes, queues, and event flags
+\item Launch of periodic monitoring and communication tasks
+\item System heartbeat and safety latch management
+\end{DoxyItemize}
+
+The {\bfseries{Application Startup and Task Manager}} ensures deterministic initialization of all firmware subsystems. Once the USB CDC interface is ready, it prints firmware build information and activates the runtime scheduler.\hypertarget{group__app__main_autotoc_md42}{}\doxysubsubsubsection{\texorpdfstring{Dependencies}{Dependencies}}\label{group__app__main_autotoc_md42}
+
+\begin{DoxyItemize}
+\item \doxylink{group__protocol}{Communication Protocol Layer} — Communication frame encoding and parsing
+\item \doxylink{group__master__link}{Master Communication Link} — Link layer and queue management
+\item \doxylink{group__uart__master__task}{UART Master Task} — UART driver and background tasking
+\item inputs — Input scan and event system
+\item \doxylink{group__log__flash}{Log\+\_\+flash} — Nonvolatile flash log handler
+\end{DoxyItemize}\hypertarget{group__app__main_autotoc_md43}{}\doxysubsubsubsection{\texorpdfstring{Related Files}{Related Files}}\label{group__app__main_autotoc_md43}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{usb__commands_8c}{usb\+\_\+commands.\+c}} — Console command interface
+\item {\ttfamily \doxylink{inputs_8c}{inputs.\+c}} — Digital input scanning
+\item {\ttfamily \doxylink{log__flash_8c}{log\+\_\+flash.\+c}} — Flash-\/based event recorder
+\end{DoxyItemize}\hypertarget{group__app__main_autotoc_md44}{}\doxysubsubsubsection{\texorpdfstring{Example}{Example}}\label{group__app__main_autotoc_md44}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group___h_a_l___exported___functions___group1_gaecac54d350c3730e6831eb404e557dc4}{HAL\_Init}}();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_src_2main_8c_a70af21c671abfcc773614a9a4f63d920}{SystemClock\_Config}}();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{freertos_8c_abade755e13d07c10889ae83143656158}{MX\_FREERTOS\_Init}}();}
+\DoxyCodeLine{\ \ \ \ osKernelStart();\ \ \ \textcolor{comment}{//\ Scheduler\ starts\ -\/>\ App\_Start()\ executes}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+This file pairs with the documentation page {\ttfamily \doxylink{app__main_8md}{app\+\_\+main.\+md}}.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Dovecote 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/10-\/22 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__app__main_ga783607bdd6febf2b64a3f7871e1e9e4c}\label{group__app__main_ga783607bdd6febf2b64a3f7871e1e9e4c} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!App\_Start@{App\_Start}}
+\index{App\_Start@{App\_Start}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{App\_Start()}{App\_Start()}}
+{\footnotesize\ttfamily void App\+\_\+\+Start (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Main application entry point. 
+
+Initializes peripherals, creates RTOS synchronization objects, and starts all application tasks.
+
+\begin{DoxyNote}{Note}
+This is called from {\ttfamily \doxylink{group__app__main_ga783607bdd6febf2b64a3f7871e1e9e4c}{App\+\_\+\+Start()}} during system startup. 
+\end{DoxyNote}
+\Hypertarget{group__app__main_ga067e341abc6c6153474df6a42d5919ed}\label{group__app__main_ga067e341abc6c6153474df6a42d5919ed} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!Flash\_SelfTest@{Flash\_SelfTest}}
+\index{Flash\_SelfTest@{Flash\_SelfTest}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{Flash\_SelfTest()}{Flash\_SelfTest()}}
+{\footnotesize\ttfamily void Flash\+\_\+\+Self\+Test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Perform a basic read/write/verify self-\/test on the W25\+Q16 flash. 
+
+Erases one sector, writes test data, reads it back, and compares. \Hypertarget{group__app__main_ga0cd91fd3a9608559c2a87a8ba6cba55f}\label{group__app__main_ga0cd91fd3a9608559c2a87a8ba6cba55f} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}}
+\index{HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{HAL\_GPIO\_EXTI\_Callback()}{HAL\_GPIO\_EXTI\_Callback()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{GPIO\+\_\+\+Pin }\end{DoxyParamCaption})}
+
+
+
+External interrupt callback for reset button. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em GPIO\+\_\+\+Pin} & GPIO pin number triggering the interrupt. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__app__main_gafb61de40a620d1b98523ac1673907935}\label{group__app__main_gafb61de40a620d1b98523ac1673907935} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!StartEthernetTask@{StartEthernetTask}}
+\index{StartEthernetTask@{StartEthernetTask}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{StartEthernetTask()}{StartEthernetTask()}}
+{\footnotesize\ttfamily void Start\+Ethernet\+Task (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{group__app__main_ga71115d79568ca6bf736cfde16bf90e50}\label{group__app__main_ga71115d79568ca6bf736cfde16bf90e50} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!to\_binary\_str\_grouped@{to\_binary\_str\_grouped}}
+\index{to\_binary\_str\_grouped@{to\_binary\_str\_grouped}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{to\_binary\_str\_grouped()}{to\_binary\_str\_grouped()}}
+{\footnotesize\ttfamily void to\+\_\+binary\+\_\+str\+\_\+grouped (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{value,  }\item[{int}]{bits,  }\item[{char \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{buf\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Convert an integer value to a binary string representation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value} & Input integer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bits} & Number of bits to print. \\
+\hline
+\mbox{\texttt{ out}}  & {\em buf} & Output buffer for resulting string. \\
+\hline
+\mbox{\texttt{ in}}  & {\em buf\+\_\+size} & Size of buffer in bytes. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__app__main_ga2e3052c8b693b6705ede47fdfbf6b8fb}\label{group__app__main_ga2e3052c8b693b6705ede47fdfbf6b8fb} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!vTaskMonitor@{vTaskMonitor}}
+\index{vTaskMonitor@{vTaskMonitor}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{vTaskMonitor()}{vTaskMonitor()}}
+{\footnotesize\ttfamily void v\+Task\+Monitor (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{argument }\end{DoxyParamCaption})}
+
+
+
+Monitors the BDO temperature sensor via MAX31855. 
+
+Periodically checks the thermocouple temperature and reports via USB if verbose logging is enabled. if bypass active does not report the temperature 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{group__app__main_gad161edf016c8165e59d5fa88aeb008aa}\label{group__app__main_gad161edf016c8165e59d5fa88aeb008aa} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!BootEvent@{BootEvent}}
+\index{BootEvent@{BootEvent}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{BootEvent}{BootEvent}}
+{\footnotesize\ttfamily os\+Event\+Flags\+Id\+\_\+t Boot\+Event}
+
+
+
+Event flag for boot-\/time synchronization. 
+
+\Hypertarget{group__app__main_gaa34fa035dd3b887a67e9b0e34852f0eb}\label{group__app__main_gaa34fa035dd3b887a67e9b0e34852f0eb} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!build\_date@{build\_date}}
+\index{build\_date@{build\_date}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{build\_date}{build\_date}}
+{\footnotesize\ttfamily const char build\+\_\+date\mbox{[}$\,$\mbox{]} = \+\_\+\+\_\+\+DATE\+\_\+\+\_\+}
+
+
+
+Compile-\/time build metadata. 
+
+\Hypertarget{group__app__main_ga766eb4a0acd5a2b6c58dac458bd7da9b}\label{group__app__main_ga766eb4a0acd5a2b6c58dac458bd7da9b} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!build\_time@{build\_time}}
+\index{build\_time@{build\_time}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{build\_time}{build\_time}}
+{\footnotesize\ttfamily const char build\+\_\+time\mbox{[}$\,$\mbox{]} = \+\_\+\+\_\+\+TIME\+\_\+\+\_\+}
+
+\Hypertarget{group__app__main_gac897f859d8c267e7f99bdddf7777d1c6}\label{group__app__main_gac897f859d8c267e7f99bdddf7777d1c6} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!debounceTimer@{debounceTimer}}
+\index{debounceTimer@{debounceTimer}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{debounceTimer}{debounceTimer}}
+{\footnotesize\ttfamily os\+Timer\+Id\+\_\+t debounce\+Timer}
+
+\Hypertarget{group__app__main_ga5d74e16bd7fa55cbd077526304114799}\label{group__app__main_ga5d74e16bd7fa55cbd077526304114799} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!debugBypassThermoCheck@{debugBypassThermoCheck}}
+\index{debugBypassThermoCheck@{debugBypassThermoCheck}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{debugBypassThermoCheck}{debugBypassThermoCheck}}
+{\footnotesize\ttfamily volatile bool debug\+Bypass\+Thermo\+Check\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Enables or disables temperature checks. 
+
+\Hypertarget{group__app__main_gac09e3335f4f6421a2c786a45f998c2a7}\label{group__app__main_gac09e3335f4f6421a2c786a45f998c2a7} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!ForceLatchEvent@{ForceLatchEvent}}
+\index{ForceLatchEvent@{ForceLatchEvent}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{ForceLatchEvent}{ForceLatchEvent}}
+{\footnotesize\ttfamily os\+Event\+Flags\+Id\+\_\+t Force\+Latch\+Event}
+
+\Hypertarget{group__app__main_ga6332c0412eb3dd6ac3758a9b356ae013}\label{group__app__main_ga6332c0412eb3dd6ac3758a9b356ae013} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!laserLatchedOff@{laserLatchedOff}}
+\index{laserLatchedOff@{laserLatchedOff}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{laserLatchedOff}{laserLatchedOff}}
+{\footnotesize\ttfamily uint8\+\_\+t laser\+Latched\+Off = 0}
+
+
+
+Software-\/controlled latch disable indicator. 
+
+Software latch flag for laser disable. \Hypertarget{group__app__main_gaa709301a600e146c64d1704742ef6941}\label{group__app__main_gaa709301a600e146c64d1704742ef6941} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!lastPressTick@{lastPressTick}}
+\index{lastPressTick@{lastPressTick}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{lastPressTick}{lastPressTick}}
+{\footnotesize\ttfamily uint32\+\_\+t last\+Press\+Tick = 0}
+
+\Hypertarget{group__app__main_ga62b5ee21fd989192e48209d86efb4289}\label{group__app__main_ga62b5ee21fd989192e48209d86efb4289} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!ResetLatchEvent@{ResetLatchEvent}}
+\index{ResetLatchEvent@{ResetLatchEvent}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{ResetLatchEvent}{ResetLatchEvent}}
+{\footnotesize\ttfamily os\+Event\+Flags\+Id\+\_\+t Reset\+Latch\+Event}
+
+
+
+RTOS handles for latch reset and error forcing. 
+
+Event flag triggered for latch reset and trigger via command or button. \Hypertarget{group__app__main_ga8b113a17282bd33cf6e1ab2d885c5da6}\label{group__app__main_ga8b113a17282bd33cf6e1ab2d885c5da6} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!swLatchFaultActive@{swLatchFaultActive}}
+\index{swLatchFaultActive@{swLatchFaultActive}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{swLatchFaultActive}{swLatchFaultActive}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t sw\+Latch\+Fault\+Active\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Software fault latches (external linkage from input module). 
+
+\Hypertarget{group__app__main_ga99ad38e5fdbdf57fbaea98f73361969f}\label{group__app__main_ga99ad38e5fdbdf57fbaea98f73361969f} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!swLatchForceError@{swLatchForceError}}
+\index{swLatchForceError@{swLatchForceError}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{swLatchForceError}{swLatchForceError}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t sw\+Latch\+Force\+Error\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{group__app__main_ga13513b52ba27e18fced406e65011d1b9}\label{group__app__main_ga13513b52ba27e18fced406e65011d1b9} 
+\index{Application Startup and Task Manager@{Application Startup and Task Manager}!verboseLogging@{verboseLogging}}
+\index{verboseLogging@{verboseLogging}!Application Startup and Task Manager@{Application Startup and Task Manager}}
+\doxysubsubsection{\texorpdfstring{verboseLogging}{verboseLogging}}
+{\footnotesize\ttfamily uint8\+\_\+t verbose\+Logging = 0}
+
+
+
+Verbose logging enable flag (set via USB command). 
+
+Enables or disables detailed input and temperature debug logs.
+
+Verbose logging flag controlled by USB commands 

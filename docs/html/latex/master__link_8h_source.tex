@@ -1,0 +1,24 @@
+\doxysection{master\+\_\+link.\+h}
+\hypertarget{master__link_8h_source}{}\label{master__link_8h_source}\index{master\_link.h@{master\_link.h}}
+\mbox{\hyperlink{master__link_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{stm32f4xx__hal_8h}{stm32f4xx\_hal.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__master__link_ga67e95828277c0771ad0a573322a5191d}{master\_link\_init}}(\mbox{\hyperlink{struct_____u_a_r_t___handle_type_def}{UART\_HandleTypeDef}}\ *huart);}
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__master__link_ga136d58a2733b7acdf639c5bf42685536}{master\_link\_start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__master__link_gaa0c4ce7bf2ecce9ca76ebf74d34a9812}{master\_link\_poll}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__master__link_gaf426d71cc3d545680207a5c14fc915e0}{master\_link\_attach\_task\_handle}}(\textcolor{keywordtype}{void}\ *task\_handle);}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group__master__link_gaac6847f1075654acb90ca1225ef9d132}{master\_write\_u16}}(uint8\_t\ var\_id,\ uint16\_t\ value);}
+\DoxyCodeLine{00014\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group__master__link_gab4078648ce04415c64875e869c39d12c}{master\_read\_u16}}\ (uint8\_t\ var\_id);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{/*\ App\ callbacks\ (weak)\ —\ called\ in\ TASK\ context\ */}}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__uart__master__task_ga0236376a4609184fd28365f6e13bc82d}{master\_on\_ack}}\ (uint8\_t\ var\_id,\ uint16\_t\ value);}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__uart__master__task_gaef56f01e664304dc94f34e8b06ce012a}{master\_on\_data}}(uint8\_t\ var\_id,\ uint16\_t\ value);}
+
+\end{DoxyCode}

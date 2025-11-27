@@ -1,0 +1,203 @@
+\chapter{Related Firmware Components}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f}\index{Related Firmware Components@{Related Firmware Components}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md218}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md218}%
+
+
+This system comprises two firmware layers that work together to provide full communication between the {\bfseries{Profinet PLC}}, the {\bfseries{STM32\+F4 control board}}, and the {\bfseries{Raylase SP-\/\+ICE-\/3 laser controller}}.
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md220}{}\doxysubsection{\texorpdfstring{1. IPOS STM32 Firmware}{1. IPOS STM32 Firmware}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md220}
+Responsible for\+:
+\begin{DoxyItemize}
+\item Safety interlocks and relay control ~\newline
+
+\item Thermocouple and system monitoring ~\newline
+
+\item UART communication with M40 ~\newline
+
+\item Logging and USB diagnostics ~\newline
+
+\end{DoxyItemize}
+
+📁 \href{../IPOS_071125/Docs/html/index.html}{\texttt{ Open STM32 Documentation}}
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md222}{}\doxysubsection{\texorpdfstring{2. Anybus M40 Firmware}{2. Anybus M40 Firmware}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md222}
+Implements\+:
+\begin{DoxyItemize}
+\item Profinet process data handling (PD-\/read / PD-\/write)
+\item ADI mapping between PLC and STM32
+\item UART bridge and cyclic synchronization ~\newline
+
+\item Integration with HMS Compact\+Com M40 stack ~\newline
+
+\end{DoxyItemize}
+
+📁 \href{./index.html}{\texttt{ Open M40 Documentation}}
+
+\DoxyHorRuler{0}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md225}{}\doxysection{\texorpdfstring{Diagram Legend}{Diagram Legend}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md225}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Color   }&\cellcolor{\tableheadbgcolor}\textbf{ Interface   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Color   }&\cellcolor{\tableheadbgcolor}\textbf{ Interface   }&\cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+🔵 Blue   &{\bfseries{Profinet PD-\/\+Write}}   &PLC → M40 process output data    \\\cline{1-3}
+🟢 Green   &{\bfseries{Profinet PD-\/\+Read}}   &M40 → PLC feedback/status data    \\\cline{1-3}
+🟠 Orange   &{\bfseries{UART3 (Tx/\+Rx)}}   &Serial bridge between M40 and STM32    \\\cline{1-3}
+⚫ Gray   &{\bfseries{Parallel I/O Bus}}   &Physical I/O connection to SP-\/\+ICE-\/3 hardware   \\\cline{1-3}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md227}{}\doxysection{\texorpdfstring{Data Timing Summary}{Data Timing Summary}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md227}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Layer   }&\cellcolor{\tableheadbgcolor}\textbf{ Function   }&\cellcolor{\tableheadbgcolor}\textbf{ Typical Cycle   }&\cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Layer   }&\cellcolor{\tableheadbgcolor}\textbf{ Function   }&\cellcolor{\tableheadbgcolor}\textbf{ Typical Cycle   }&\cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-4}
+\endhead
+{\bfseries{Profinet PD Exchange}}   &PLC ↔ Anybus M40   &1 – 2 ms   &Configured in TIA Portal (I/O cycle)    \\\cline{1-4}
+{\bfseries{UART3 Interface}}   &M40 ↔ STM32   &\texorpdfstring{$<$}{<} 100 µs   &\doxylink{slave__link_8h_a8c8839cf5d8cb692c3b99b83af51556a}{slave\+\_\+set\+\_\+reg()} and variable sync    \\\cline{1-4}
+{\bfseries{Task Update (Free\+RTOS)}}   &STM32 tasks   &1 ms (tick)   &I/O, safety, and comms update    \\\cline{1-4}
+{\bfseries{SP-\/\+ICE-\/3 I/O Timing}}   &Physical outputs   &\texorpdfstring{$<$}{<} 5 µs   &GPIO toggle to laser enable lines   \\\cline{1-4}
+\end{longtabu}
+
+
+This ensures deterministic response from PLC to hardware-\/level control signals within \texorpdfstring{$<$}{<} 3 ms end-\/to-\/end.
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md229}{}\doxysection{\texorpdfstring{Profinet Integration and GSD Generation}{Profinet Integration and GSD Generation}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md229}
+To make the {\bfseries{M40 firmware visible to Siemens TIA Portal}}, a {\bfseries{GSDML}} (General Station Description) file must be created that matches the ADI and PD mapping defined in {\ttfamily abcc\+\_\+app\+\_\+ipos.\+c}.
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md231}{}\doxysubsection{\texorpdfstring{3. Generating the GSDML File}{3. Generating the GSDML File}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md231}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md232}{}\doxysection{\texorpdfstring{GSD File Generation and Configuration}{GSD File Generation and Configuration}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md232}
+The {\bfseries{HMS PROFINET GSD Generator Tool}} is used to create a {\ttfamily .GSDML} file that defines ~\newline
+ the Profinet module interface for integration with {\bfseries{Siemens TIA Portal}} or other Profinet controllers.
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md234}{}\doxysubsection{\texorpdfstring{HMS PROFINET GSD Generator Tool}{HMS PROFINET GSD Generator Tool}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md234}
+ ~\newline
+{\itshape Figure 1 – HMS PROFINET GSD Generator Tool interface used to define device and module parameters.} 
+
+The fields in this tool must {\bfseries{exactly match}} the constants defined in the M40 firmware source code ~\newline
+ to ensure the PLC recognizes and accepts the device during GSD import.
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md236}{}\doxysubsection{\texorpdfstring{Matching Firmware Constants}{Matching Firmware Constants}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar2fe059a13120654a624637f7c9f2dd0f_autotoc_md236}
+The following constants define the key identification values embedded in the firmware. ~\newline
+ They are located in\+:
+
+📁 {\ttfamily implementation\+\_\+callback\+\_\+functions.\+c} ~\newline
+ 📁 {\ttfamily \doxylink{abcc__driver__config_8h}{abcc\+\_\+driver\+\_\+config.\+h}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\textcolor{comment}{//\ implementation\_callback\_functions.c}}
+\DoxyCodeLine{\textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}}\ lDeviceID\_PROFINET\ =\ 0x1234;}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ pacProductName\ =\ \textcolor{stringliteral}{"{}m40"{}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}}\ \mbox{\hyperlink{implemented__callback__functions_8c_ad22b32e6304c875d01e7baf61c6a4e1a}{ABCC\_CbfProfinetIoObjOrderId\_Get}}(\textcolor{keywordtype}{char}*\ pPackedStrDest,\ \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}}\ iBuffSize)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ my\_product\_name\ =\ \textcolor{stringliteral}{"{}m40"{}};}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}}\ iStrLength\ =\ (\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}})strlen(my\_product\_name);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ iStrLength\ =\ iStrLength\ >\ iBuffSize\ ?\ iBuffSize\ :\ iStrLength;}
+\DoxyCodeLine{\ \ \ memcpy(pPackedStrDest,\ my\_product\_name,\ iStrLength);}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{return}\ iStrLength;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\textcolor{comment}{//\ abcc\_driver\_config.h\ (excerpt)}}
+\DoxyCodeLine{\textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ ABCC\_CFG\_DRV\_SER\_CHANNELS\ \ \ \ \ 1}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ ABCC\_CFG\_PROT\_TYPE\ \ \ \ \ \ \ \ \ \ \ \ PROFINET\_IO}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ ABCC\_CFG\_MODULE\_ID\ \ \ \ \ \ \ \ \ \ \ \ 0x1234}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ ABCC\_CFG\_PRODUCT\_NAME\ \ \ \ \ \ \ \ \ "{}m40"{}}}
+
+\end{DoxyCode}
+ ⚠️ Important\+: The values 0x1234 and "{}m40"{} must match in both the firmware and the GSD Generator Tool for TIA Portal to correctly identify the module during import and network configuration.
+
+Generating and Importing the GSD File ~\newline
+ Connect to the Anybus M40 via your network interface. ~\newline
+
+
+Select the detected module and verify Vendor/\+Device IDs. ~\newline
+
+
+Enter matching product parameters (see table above). ~\newline
+
+
+Click “\+Generate GSD” to export a .GSDML file. ~\newline
+
+
+Import the generated file into TIA Portal using\+: ~\newline
+
+
+Options → Manage General Station Description Files (GSD) ~\newline
+
+
+The device will appear under the correct Vendor Name and Product Name ~\newline
+ once imported successfully. ~\newline
+
+
+Troubleshooting Tips ~\newline
+ Issue Possible Cause Fix ~\newline
+ Device rejected in TIA Portal Mismatched Device ID or Product Name Check both firmware and GSD settings ~\newline
+ I/O data not updating ADI or PD mapping mismatch Verify ABCC\+\_\+\+API\+\_\+as\+Adi\+Entry\+List\mbox{[}\mbox{]} and ABCC\+\_\+\+API\+\_\+as\+Ad\+Obj\+Default\+Map\mbox{[}\mbox{]} ~\newline
+ “\+Module not found” during scan Wrong Vendor ID Confirm l\+Device\+ID\+\_\+\+PROFINET and GSD settings match ~\newline
+ GSD tool fails to connect No network adapter or DHCP issue Select correct adapter or assign static IP ~\newline
+
+
+References ~\newline
+ HMS Anybus Compact\+Com M40 User Guide ~\newline
+
+
+IPOS Integration Notes – Profinet Configuration for STM32 ~\newline
+
+
+www.\+anybus.\+com/support ~\newline
+
+
+Cross-\/\+References
+
+System Communication Overview
+
+Details the Profinet data flow and UART bridge timing.
+
+ADI and Process Data Mapping
+
+Explains how PD-\/\+Read and PD-\/\+Write signals are structured.
+
+Cycle Timing and Synchronization
+
+Defines how UART and Profinet cycles align.
+
+Main Overview Page
+
+Returns to top-\/level documentation.
+
+Revision 1.\+0 — November 2025 ~\newline
+ Author\+: Dovecote Tech / IPOS Integration Team ~\newline
+ 

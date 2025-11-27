@@ -1,0 +1,107 @@
+\doxysection{implemented\+\_\+callback\+\_\+functions.\+c File Reference}
+\hypertarget{implemented__callback__functions_8c}{}\label{implemented__callback__functions_8c}\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+{\ttfamily \#include "{}abcc\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}abcc\+\_\+api\+\_\+command\+\_\+handler\+\_\+lookup.\+h"{}}\newline
+{\ttfamily \#include "{}abcc\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}abcc\+\_\+api.\+h"{}}\newline
+Include dependency graph for implemented\+\_\+callback\+\_\+functions.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{implemented__callback__functions_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{abcc__types_8h_adfe04a44baaebba6143c3a23507ff85b}{UINT32}} \mbox{\hyperlink{implemented__callback__functions_8c_ad060fc3778e3052497de66fde91ff855}{ABCC\+\_\+\+Cbf\+Application\+Obj\+Serial\+Num\+\_\+\+Get}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} \mbox{\hyperlink{implemented__callback__functions_8c_acfffbd4b04d515f86ca31d2003e30544}{ABCC\+\_\+\+Cbf\+Application\+Obj\+Product\+Name\+\_\+\+Get}} (char \texorpdfstring{$\ast$}{*}p\+Packed\+Str\+Dest, \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} i\+Buff\+Size)
+\item 
+void \mbox{\hyperlink{implemented__callback__functions_8c_ac260a2ef6803c879d15856bac9b84c22}{ABCC\+\_\+\+Cbf\+Application\+Obj\+Firmware\+Available\+\_\+\+Set}} (\mbox{\hyperlink{abcc__types_8h_adf0e42342819b462ab3bf3ace8b1465f}{BOOL8}} f\+Value)
+\item 
+\mbox{\hyperlink{abcc__types_8h_adf0e42342819b462ab3bf3ace8b1465f}{BOOL8}} \mbox{\hyperlink{implemented__callback__functions_8c_a2337fbcfb16774a85fd8ce98f56ff5e1}{ABCC\+\_\+\+Cbf\+Application\+Obj\+Firmware\+Available\+\_\+\+Get}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_adf0e42342819b462ab3bf3ace8b1465f}{BOOL8}} \mbox{\hyperlink{implemented__callback__functions_8c_a7f4b685cb4964668f8a2892d479534cb}{ABCC\+\_\+\+Cbf\+Application\+Obj\+HWConf\+Address\+\_\+\+Get}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} \mbox{\hyperlink{implemented__callback__functions_8c_a66384557fd4181ea14c5ca03ead1f347}{ABCC\+\_\+\+Cbf\+Ethernet\+Ip\+Obj\+Device\+Type\+\_\+\+Get}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} \mbox{\hyperlink{implemented__callback__functions_8c_a58932751dd5aacfb1451aa6c7a37d15e}{ABCC\+\_\+\+Cbf\+Ethernet\+Ip\+Obj\+Product\+Code\+\_\+\+Get}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} \mbox{\hyperlink{implemented__callback__functions_8c_a71d35ca8203fde5d7cc737796ced24e6}{ABCC\+\_\+\+Cbf\+Profinet\+Io\+Obj\+Device\+Id\+\_\+\+Get}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} \mbox{\hyperlink{implemented__callback__functions_8c_ad22b32e6304c875d01e7baf61c6a4e1a}{ABCC\+\_\+\+Cbf\+Profinet\+Io\+Obj\+Order\+Id\+\_\+\+Get}} (char \texorpdfstring{$\ast$}{*}p\+Packed\+Str\+Dest, \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} i\+Buff\+Size)
+\item 
+void \mbox{\hyperlink{implemented__callback__functions_8c_ae32d71aefa3b8edfa7ff9861dfff44ef}{ABCC\+\_\+\+Cbf\+Application\+Obj\+\_\+\+Reset}} (ABP\+\_\+\+Reset\+Type e\+Reset\+Type)
+\item 
+\mbox{\hyperlink{abcc__types_8h_adf0e42342819b462ab3bf3ace8b1465f}{BOOL8}} \mbox{\hyperlink{implemented__callback__functions_8c_a6700c180a7b0a1bf42d2be5d555e3f4e}{ABCC\+\_\+\+Cbf\+Application\+Obj\+\_\+\+Reset\+Request}} (ABP\+\_\+\+Reset\+Type e\+Reset\+Type)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{implemented__callback__functions_8c_ae32d71aefa3b8edfa7ff9861dfff44ef}\label{implemented__callback__functions_8c_ae32d71aefa3b8edfa7ff9861dfff44ef} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfApplicationObj\_Reset@{ABCC\_CbfApplicationObj\_Reset}}
+\index{ABCC\_CbfApplicationObj\_Reset@{ABCC\_CbfApplicationObj\_Reset}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfApplicationObj\_Reset()}{ABCC\_CbfApplicationObj\_Reset()}}
+{\footnotesize\ttfamily void ABCC\+\_\+\+Cbf\+Application\+Obj\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{ABP\+\_\+\+Reset\+Type}]{e\+Reset\+Type }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_a6700c180a7b0a1bf42d2be5d555e3f4e}\label{implemented__callback__functions_8c_a6700c180a7b0a1bf42d2be5d555e3f4e} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfApplicationObj\_ResetRequest@{ABCC\_CbfApplicationObj\_ResetRequest}}
+\index{ABCC\_CbfApplicationObj\_ResetRequest@{ABCC\_CbfApplicationObj\_ResetRequest}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfApplicationObj\_ResetRequest()}{ABCC\_CbfApplicationObj\_ResetRequest()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_adf0e42342819b462ab3bf3ace8b1465f}{BOOL8}} ABCC\+\_\+\+Cbf\+Application\+Obj\+\_\+\+Reset\+Request (\begin{DoxyParamCaption}\item[{ABP\+\_\+\+Reset\+Type}]{e\+Reset\+Type }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_a2337fbcfb16774a85fd8ce98f56ff5e1}\label{implemented__callback__functions_8c_a2337fbcfb16774a85fd8ce98f56ff5e1} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfApplicationObjFirmwareAvailable\_Get@{ABCC\_CbfApplicationObjFirmwareAvailable\_Get}}
+\index{ABCC\_CbfApplicationObjFirmwareAvailable\_Get@{ABCC\_CbfApplicationObjFirmwareAvailable\_Get}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfApplicationObjFirmwareAvailable\_Get()}{ABCC\_CbfApplicationObjFirmwareAvailable\_Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_adf0e42342819b462ab3bf3ace8b1465f}{BOOL8}} ABCC\+\_\+\+Cbf\+Application\+Obj\+Firmware\+Available\+\_\+\+Get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_ac260a2ef6803c879d15856bac9b84c22}\label{implemented__callback__functions_8c_ac260a2ef6803c879d15856bac9b84c22} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfApplicationObjFirmwareAvailable\_Set@{ABCC\_CbfApplicationObjFirmwareAvailable\_Set}}
+\index{ABCC\_CbfApplicationObjFirmwareAvailable\_Set@{ABCC\_CbfApplicationObjFirmwareAvailable\_Set}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfApplicationObjFirmwareAvailable\_Set()}{ABCC\_CbfApplicationObjFirmwareAvailable\_Set()}}
+{\footnotesize\ttfamily void ABCC\+\_\+\+Cbf\+Application\+Obj\+Firmware\+Available\+\_\+\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{abcc__types_8h_adf0e42342819b462ab3bf3ace8b1465f}{BOOL8}}}]{f\+Value }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_a7f4b685cb4964668f8a2892d479534cb}\label{implemented__callback__functions_8c_a7f4b685cb4964668f8a2892d479534cb} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfApplicationObjHWConfAddress\_Get@{ABCC\_CbfApplicationObjHWConfAddress\_Get}}
+\index{ABCC\_CbfApplicationObjHWConfAddress\_Get@{ABCC\_CbfApplicationObjHWConfAddress\_Get}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfApplicationObjHWConfAddress\_Get()}{ABCC\_CbfApplicationObjHWConfAddress\_Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_adf0e42342819b462ab3bf3ace8b1465f}{BOOL8}} ABCC\+\_\+\+Cbf\+Application\+Obj\+HWConf\+Address\+\_\+\+Get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_acfffbd4b04d515f86ca31d2003e30544}\label{implemented__callback__functions_8c_acfffbd4b04d515f86ca31d2003e30544} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfApplicationObjProductName\_Get@{ABCC\_CbfApplicationObjProductName\_Get}}
+\index{ABCC\_CbfApplicationObjProductName\_Get@{ABCC\_CbfApplicationObjProductName\_Get}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfApplicationObjProductName\_Get()}{ABCC\_CbfApplicationObjProductName\_Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} ABCC\+\_\+\+Cbf\+Application\+Obj\+Product\+Name\+\_\+\+Get (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{p\+Packed\+Str\+Dest,  }\item[{\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}}}]{i\+Buff\+Size }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_ad060fc3778e3052497de66fde91ff855}\label{implemented__callback__functions_8c_ad060fc3778e3052497de66fde91ff855} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfApplicationObjSerialNum\_Get@{ABCC\_CbfApplicationObjSerialNum\_Get}}
+\index{ABCC\_CbfApplicationObjSerialNum\_Get@{ABCC\_CbfApplicationObjSerialNum\_Get}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfApplicationObjSerialNum\_Get()}{ABCC\_CbfApplicationObjSerialNum\_Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_adfe04a44baaebba6143c3a23507ff85b}{UINT32}} ABCC\+\_\+\+Cbf\+Application\+Obj\+Serial\+Num\+\_\+\+Get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_a66384557fd4181ea14c5ca03ead1f347}\label{implemented__callback__functions_8c_a66384557fd4181ea14c5ca03ead1f347} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfEthernetIpObjDeviceType\_Get@{ABCC\_CbfEthernetIpObjDeviceType\_Get}}
+\index{ABCC\_CbfEthernetIpObjDeviceType\_Get@{ABCC\_CbfEthernetIpObjDeviceType\_Get}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfEthernetIpObjDeviceType\_Get()}{ABCC\_CbfEthernetIpObjDeviceType\_Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} ABCC\+\_\+\+Cbf\+Ethernet\+Ip\+Obj\+Device\+Type\+\_\+\+Get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_a58932751dd5aacfb1451aa6c7a37d15e}\label{implemented__callback__functions_8c_a58932751dd5aacfb1451aa6c7a37d15e} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfEthernetIpObjProductCode\_Get@{ABCC\_CbfEthernetIpObjProductCode\_Get}}
+\index{ABCC\_CbfEthernetIpObjProductCode\_Get@{ABCC\_CbfEthernetIpObjProductCode\_Get}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfEthernetIpObjProductCode\_Get()}{ABCC\_CbfEthernetIpObjProductCode\_Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} ABCC\+\_\+\+Cbf\+Ethernet\+Ip\+Obj\+Product\+Code\+\_\+\+Get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_a71d35ca8203fde5d7cc737796ced24e6}\label{implemented__callback__functions_8c_a71d35ca8203fde5d7cc737796ced24e6} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfProfinetIoObjDeviceId\_Get@{ABCC\_CbfProfinetIoObjDeviceId\_Get}}
+\index{ABCC\_CbfProfinetIoObjDeviceId\_Get@{ABCC\_CbfProfinetIoObjDeviceId\_Get}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfProfinetIoObjDeviceId\_Get()}{ABCC\_CbfProfinetIoObjDeviceId\_Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} ABCC\+\_\+\+Cbf\+Profinet\+Io\+Obj\+Device\+Id\+\_\+\+Get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{implemented__callback__functions_8c_ad22b32e6304c875d01e7baf61c6a4e1a}\label{implemented__callback__functions_8c_ad22b32e6304c875d01e7baf61c6a4e1a} 
+\index{implemented\_callback\_functions.c@{implemented\_callback\_functions.c}!ABCC\_CbfProfinetIoObjOrderId\_Get@{ABCC\_CbfProfinetIoObjOrderId\_Get}}
+\index{ABCC\_CbfProfinetIoObjOrderId\_Get@{ABCC\_CbfProfinetIoObjOrderId\_Get}!implemented\_callback\_functions.c@{implemented\_callback\_functions.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_CbfProfinetIoObjOrderId\_Get()}{ABCC\_CbfProfinetIoObjOrderId\_Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} ABCC\+\_\+\+Cbf\+Profinet\+Io\+Obj\+Order\+Id\+\_\+\+Get (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{p\+Packed\+Str\+Dest,  }\item[{\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}}}]{i\+Buff\+Size }\end{DoxyParamCaption})}
+

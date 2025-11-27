@@ -1,0 +1,33 @@
+\doxysection{uart\+\_\+master\+\_\+task.\+c File Reference}
+\hypertarget{uart__master__task_8c}{}\label{uart__master__task_8c}\index{uart\_master\_task.c@{uart\_master\_task.c}}
+{\ttfamily \#include "{}cmsis\+\_\+os2.\+h"{}}\newline
+{\ttfamily \#include "{}uart\+\_\+master\+\_\+task.\+h"{}}\newline
+{\ttfamily \#include "{}master\+\_\+link.\+h"{}}\newline
+{\ttfamily \#include "{}stm32f4xx\+\_\+hal.\+h"{}}\newline
+{\ttfamily \#include "{}stdio.\+h"{}}\newline
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+Include dependency graph for uart\+\_\+master\+\_\+task.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart__master__task_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__uart__master__task_ga0236376a4609184fd28365f6e13bc82d}{master\+\_\+on\+\_\+ack}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{group__master__link}{Master Communication Link} when an ACK frame is received. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__uart__master__task_gaef56f01e664304dc94f34e8b06ce012a}{master\+\_\+on\+\_\+data}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{group__master__link}{Master Communication Link} when a READ response is received. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__uart__master__task_gae0c58a28693c31347c2942dc51f60aee}{Uart\+Master\+\_\+\+Start\+Tasks}} (void \texorpdfstring{$\ast$}{*}uart\+\_\+handle)
+\begin{DoxyCompactList}\small\item\em Creates message queues and starts the UART Master task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+os\+Message\+Queue\+Id\+\_\+t \mbox{\hyperlink{group__uart__master__task_gab434b0238221e0189e48d13665cfc621}{g\+Ack\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue for acknowledgment frames from slave (CMD\+\_\+\+ACK). \end{DoxyCompactList}\item 
+os\+Message\+Queue\+Id\+\_\+t \mbox{\hyperlink{group__uart__master__task_ga0bdb2bd938c5bcddab9b37256a1da565}{g\+Data\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue for incoming data frames (CMD\+\_\+\+READ). \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__uart__master__task_gabac60e518d31943e808211083e11f886}{usb\+Tx\+Buf}} \mbox{[}128\mbox{]}
+\end{DoxyCompactItemize}

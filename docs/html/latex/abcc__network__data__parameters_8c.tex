@@ -1,0 +1,278 @@
+\doxysection{abcc\+\_\+network\+\_\+data\+\_\+parameters.\+c File Reference}
+\hypertarget{abcc__network__data__parameters_8c}{}\label{abcc__network__data__parameters_8c}\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+{\ttfamily \#include "{}abcc\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}slave\+\_\+link.\+h"{}}\newline
+{\ttfamily \#include "{}protocol.\+h"{}}\newline
+Include dependency graph for abcc\+\_\+network\+\_\+data\+\_\+parameters.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{abcc__network__data__parameters_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} \mbox{\hyperlink{abcc__network__data__parameters_8c_a247246037dc1f2bd15f2e471f37fdd87}{ABCC\+\_\+\+API\+\_\+\+Cbf\+Get\+Num\+Adi}} (void)
+\begin{DoxyCompactList}\small\item\em Return number of ADIs defined in this application. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{abcc__network__data__parameters_8c_a760fef398da0f6a0f30dde40216d7045}{ABCC\+\_\+\+API\+\_\+\+Cbf\+Cyclical\+Processing}} (void)
+\begin{DoxyCompactList}\small\item\em Application cyclic callback executed each process data cycle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_ac4dcd8ce6bc7775cd1e8e380e044193c}{appl\+\_\+i\+PortA}}
+\begin{DoxyCompactList}\small\item\em Application variables visible on the Anybus network. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a91c7fbfdfa53b717491c1136a0826397}{appl\+\_\+i\+PortB}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a198510bead909eb05cb90eef960d433f}{appl\+\_\+i\+PortC}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a8f048df8801716ee7d55455e5e43f625}{appl\+\_\+i\+Status\+Debug}} = 0
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a7ac4640ff340fb490ba79029ce9f88b4}{appl\+\_\+i\+Status\+PLC}} = 0
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_ae6c91dfc98877d0ef7eac0c1104b56ab}{appl\+\_\+i\+Status\+Active}} = 0
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_ac72a664dc1998c35d04d8815e5b38d1f}{appl\+\_\+i\+Status\+Debug\+Tru}} = 0
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a6c72761cd9b1fca76b98d04a85dec2ec}{pd\+\_\+\+Status\+PLC}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_ab371682a07f576ec4e8a0d8378ea4949}{pd\+\_\+\+Status\+Debug}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a03a516afe7848a993910f2410808194e}{pd\+\_\+\+Status\+Active}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_ae12bde2d42d3c538422750ddd61e925a}{Port\+A\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_aad6f6e948bb37d430c5d8c32fd26efe0}{Port\+B\+\_\+val}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a604457104f2e200ac939b40348412f0b}{Port\+C\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a661bd3a51f758a2c12f6c4c1fa4d9232}{Status\+PLC\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_ad10f9af84e35553eeb832027c6f84daa}{Status\+Debug\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a44b2f81c884ac2512c9729097d6013b2}{Status\+Debug\+Tru\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{abcc__network__data__parameters_8c_a7efd8189f7a3fa73faaa42229a0ae873}{Status\+Active\+\_\+val}}
+\item 
+const AD\+\_\+\+Adi\+Entry\+Type \mbox{\hyperlink{abcc__network__data__parameters_8c_a04adc38175d9e971bba2a48d0703bac8}{ABCC\+\_\+\+API\+\_\+as\+Adi\+Entry\+List}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Application Data Instances (ADIs) visible to Profinet. \end{DoxyCompactList}\item 
+const AD\+\_\+\+Map\+Type \mbox{\hyperlink{abcc__network__data__parameters_8c_a660ebb72c1d03625e6eeed2d3907a860}{ABCC\+\_\+\+API\+\_\+as\+Ad\+Obj\+Default\+Map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Defines how ADIs are mapped into cyclic process data (PD). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{abcc__network__data__parameters_8c_a760fef398da0f6a0f30dde40216d7045}\label{abcc__network__data__parameters_8c_a760fef398da0f6a0f30dde40216d7045} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!ABCC\_API\_CbfCyclicalProcessing@{ABCC\_API\_CbfCyclicalProcessing}}
+\index{ABCC\_API\_CbfCyclicalProcessing@{ABCC\_API\_CbfCyclicalProcessing}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_API\_CbfCyclicalProcessing()}{ABCC\_API\_CbfCyclicalProcessing()}}
+{\footnotesize\ttfamily void ABCC\+\_\+\+API\+\_\+\+Cbf\+Cyclical\+Processing (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Application cyclic callback executed each process data cycle. 
+
+Synchronises mapped ADIs with the STM32 master board and the Anybus process data buffers.
+
+
+\begin{DoxyItemize}
+\item Detects variable changes (PORTA/\+B/C, STATUS\+\_\+xx)
+\item Calls {\ttfamily \doxylink{slave__link_8h_a8c8839cf5d8cb692c3b99b83af51556a}{slave\+\_\+set\+\_\+reg()}} for each updated value, which pushes data to the STM32 via UART3.
+\end{DoxyItemize}
+
+Called automatically by the Anybus stack when the network state is {\ttfamily ABP\+\_\+\+ANB\+\_\+\+STATE\+\_\+\+PROCESS\+\_\+\+ACTIVE}. \Hypertarget{abcc__network__data__parameters_8c_a247246037dc1f2bd15f2e471f37fdd87}\label{abcc__network__data__parameters_8c_a247246037dc1f2bd15f2e471f37fdd87} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!ABCC\_API\_CbfGetNumAdi@{ABCC\_API\_CbfGetNumAdi}}
+\index{ABCC\_API\_CbfGetNumAdi@{ABCC\_API\_CbfGetNumAdi}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_API\_CbfGetNumAdi()}{ABCC\_API\_CbfGetNumAdi()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}} ABCC\+\_\+\+API\+\_\+\+Cbf\+Get\+Num\+Adi (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Return number of ADIs defined in this application. 
+
+\begin{DoxyReturn}{Returns}
+Number of entries in \doxylink{abcc__network__data__parameters_8c_a04adc38175d9e971bba2a48d0703bac8}{ABCC\+\_\+\+API\+\_\+as\+Adi\+Entry\+List} 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{abcc__network__data__parameters_8c_a04adc38175d9e971bba2a48d0703bac8}\label{abcc__network__data__parameters_8c_a04adc38175d9e971bba2a48d0703bac8} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!ABCC\_API\_asAdiEntryList@{ABCC\_API\_asAdiEntryList}}
+\index{ABCC\_API\_asAdiEntryList@{ABCC\_API\_asAdiEntryList}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_API\_asAdiEntryList}{ABCC\_API\_asAdiEntryList}}
+{\footnotesize\ttfamily const AD\+\_\+\+Adi\+Entry\+Type ABCC\+\_\+\+API\+\_\+as\+Adi\+Entry\+List\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 0x1,\ \textcolor{stringliteral}{"{}PORTA"{}},\ \ \ \ \ \ ABP\_UINT16,\ \ 1,\ AD\_ADI\_DESC\_\_\_W\_G,\ \{\ \{\ \&\mbox{\hyperlink{abcc__network__data__parameters_8c_ac4dcd8ce6bc7775cd1e8e380e044193c}{appl\_iPortA}},\ \ \ \ \ \&appl\_sUint16Prop\ \}\ \}\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 0x2,\ \textcolor{stringliteral}{"{}PORTB"{}},\ \ \ \ \ \ ABP\_UINT16,\ \ 1,\ AD\_ADI\_DESC\_\_R\_S\_,\ \{\ \{\ \&\mbox{\hyperlink{abcc__network__data__parameters_8c_a91c7fbfdfa53b717491c1136a0826397}{appl\_iPortB}},\ \ \ \ \ \&appl\_sUint16Prop\ \}\ \}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ 0x3,\ \textcolor{stringliteral}{"{}PORTC"{}},\ \ \ \ \ \ ABP\_UINT8,\ \ \ 1,\ AD\_ADI\_DESC\_\_R\_S\_,\ \{\ \{\ \&\mbox{\hyperlink{abcc__network__data__parameters_8c_a198510bead909eb05cb90eef960d433f}{appl\_iPortC}},\ \ \ \ \ \&appl\_sUint16Prop\ \}\ \}\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 0x4,\ \textcolor{stringliteral}{"{}STATUS\_DEBUG"{}},\ \ ABP\_UINT16,\ \ 1,\ AD\_ADI\_DESC\_\_\_W\_G,\ \ \{\ \{\ \&\mbox{\hyperlink{abcc__network__data__parameters_8c_a8f048df8801716ee7d55455e5e43f625}{appl\_iStatusDebug}},\ \ \&appl\_sUint16Prop\ \}\ \}\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 0x5,\ \textcolor{stringliteral}{"{}STATUS\_PLC"{}},\ ABP\_UINT16,\ \ 1,\ AD\_ADI\_DESC\_\_R\_S\_,\ \{\ \{\ \&\mbox{\hyperlink{abcc__network__data__parameters_8c_a7ac4640ff340fb490ba79029ce9f88b4}{appl\_iStatusPLC}},\ \&appl\_sUint16Prop\ \}\ \}\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 0x6,\ \textcolor{stringliteral}{"{}STATUS\_Active"{}},\ \ ABP\_UINT16,\ \ 1,\ AD\_ADI\_DESC\_\_\_W\_G,\ \ \{\ \{\ \&\mbox{\hyperlink{abcc__network__data__parameters_8c_ae6c91dfc98877d0ef7eac0c1104b56ab}{appl\_iStatusActive}},\ \ \&appl\_sUint16Prop\ \}\ \}\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 0x7,\ \textcolor{stringliteral}{"{}STATUS\_DEBUG\_TRU"{}},\ \ ABP\_UINT16,\ \ 1,\ AD\_ADI\_DESC\_\_\_W\_G,\ \ \{\ \{\ \&\mbox{\hyperlink{abcc__network__data__parameters_8c_ac72a664dc1998c35d04d8815e5b38d1f}{appl\_iStatusDebugTru}},\ \ \&appl\_sUint16Prop\ \}\ \}\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Application Data Instances (ADIs) visible to Profinet. 
+
+Each entry defines one logical variable exposed on the network. The structure of each entry is\+:
+\begin{DoxyEnumerate}
+\item Instance number (unique ID)
+\item Name (used in GSDML)
+\item Data type (ABP\+\_\+xxx)
+\item Number of elements
+\item Access descriptor flags
+\item Pointer to variable
+\item Pointer to data type properties 
+\end{DoxyEnumerate}\Hypertarget{abcc__network__data__parameters_8c_a660ebb72c1d03625e6eeed2d3907a860}\label{abcc__network__data__parameters_8c_a660ebb72c1d03625e6eeed2d3907a860} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!ABCC\_API\_asAdObjDefaultMap@{ABCC\_API\_asAdObjDefaultMap}}
+\index{ABCC\_API\_asAdObjDefaultMap@{ABCC\_API\_asAdObjDefaultMap}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_API\_asAdObjDefaultMap}{ABCC\_API\_asAdObjDefaultMap}}
+{\footnotesize\ttfamily const AD\+\_\+\+Map\+Type ABCC\+\_\+\+API\+\_\+as\+Ad\+Obj\+Default\+Map\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 1,\ PD\_WRITE,\ AD\_MAP\_ALL\_ELEM,\ 0\ \},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 4,\ PD\_WRITE,\ AD\_MAP\_ALL\_ELEM,\ 0\ \},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 7,\ PD\_WRITE,\ AD\_MAP\_ALL\_ELEM,\ 0\ \},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 6,\ PD\_WRITE,\ AD\_MAP\_ALL\_ELEM,\ 0\ \},\ \ \ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 2,\ PD\_READ,\ \ AD\_MAP\_ALL\_ELEM,\ 0\ \},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 3,\ PD\_READ,\ \ AD\_MAP\_ALL\_ELEM,\ 0\ \},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \{\ 5,\ PD\_READ,\ \ AD\_MAP\_ALL\_ELEM,\ 0\ \},\ \ \ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \{\ AD\_MAP\_END\_ENTRY\ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Defines how ADIs are mapped into cyclic process data (PD). 
+
+PLC “write” objects correspond to outputs (PLC → STM32). PLC “read” objects correspond to inputs (STM32 → PLC). \Hypertarget{abcc__network__data__parameters_8c_ac4dcd8ce6bc7775cd1e8e380e044193c}\label{abcc__network__data__parameters_8c_ac4dcd8ce6bc7775cd1e8e380e044193c} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!appl\_iPortA@{appl\_iPortA}}
+\index{appl\_iPortA@{appl\_iPortA}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iPortA}{appl\_iPortA}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+PortA}
+
+
+
+Application variables visible on the Anybus network. 
+
+These correspond to custom ADIs (Application Data Instances) that represent I/O and status data exchanged with the STM32 master. \Hypertarget{abcc__network__data__parameters_8c_a91c7fbfdfa53b717491c1136a0826397}\label{abcc__network__data__parameters_8c_a91c7fbfdfa53b717491c1136a0826397} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!appl\_iPortB@{appl\_iPortB}}
+\index{appl\_iPortB@{appl\_iPortB}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iPortB}{appl\_iPortB}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+PortB}
+
+\Hypertarget{abcc__network__data__parameters_8c_a198510bead909eb05cb90eef960d433f}\label{abcc__network__data__parameters_8c_a198510bead909eb05cb90eef960d433f} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!appl\_iPortC@{appl\_iPortC}}
+\index{appl\_iPortC@{appl\_iPortC}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iPortC}{appl\_iPortC}}
+{\footnotesize\ttfamily uint8\+\_\+t appl\+\_\+i\+PortC}
+
+\Hypertarget{abcc__network__data__parameters_8c_ae6c91dfc98877d0ef7eac0c1104b56ab}\label{abcc__network__data__parameters_8c_ae6c91dfc98877d0ef7eac0c1104b56ab} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!appl\_iStatusActive@{appl\_iStatusActive}}
+\index{appl\_iStatusActive@{appl\_iStatusActive}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iStatusActive}{appl\_iStatusActive}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+Status\+Active = 0}
+
+\Hypertarget{abcc__network__data__parameters_8c_a8f048df8801716ee7d55455e5e43f625}\label{abcc__network__data__parameters_8c_a8f048df8801716ee7d55455e5e43f625} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!appl\_iStatusDebug@{appl\_iStatusDebug}}
+\index{appl\_iStatusDebug@{appl\_iStatusDebug}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iStatusDebug}{appl\_iStatusDebug}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+Status\+Debug = 0}
+
+\Hypertarget{abcc__network__data__parameters_8c_ac72a664dc1998c35d04d8815e5b38d1f}\label{abcc__network__data__parameters_8c_ac72a664dc1998c35d04d8815e5b38d1f} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!appl\_iStatusDebugTru@{appl\_iStatusDebugTru}}
+\index{appl\_iStatusDebugTru@{appl\_iStatusDebugTru}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iStatusDebugTru}{appl\_iStatusDebugTru}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+Status\+Debug\+Tru = 0}
+
+\Hypertarget{abcc__network__data__parameters_8c_a7ac4640ff340fb490ba79029ce9f88b4}\label{abcc__network__data__parameters_8c_a7ac4640ff340fb490ba79029ce9f88b4} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!appl\_iStatusPLC@{appl\_iStatusPLC}}
+\index{appl\_iStatusPLC@{appl\_iStatusPLC}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iStatusPLC}{appl\_iStatusPLC}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+Status\+PLC = 0}
+
+\Hypertarget{abcc__network__data__parameters_8c_a03a516afe7848a993910f2410808194e}\label{abcc__network__data__parameters_8c_a03a516afe7848a993910f2410808194e} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!pd\_StatusActive@{pd\_StatusActive}}
+\index{pd\_StatusActive@{pd\_StatusActive}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{pd\_StatusActive}{pd\_StatusActive}}
+{\footnotesize\ttfamily uint16\+\_\+t pd\+\_\+\+Status\+Active}
+
+\Hypertarget{abcc__network__data__parameters_8c_ab371682a07f576ec4e8a0d8378ea4949}\label{abcc__network__data__parameters_8c_ab371682a07f576ec4e8a0d8378ea4949} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!pd\_StatusDebug@{pd\_StatusDebug}}
+\index{pd\_StatusDebug@{pd\_StatusDebug}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{pd\_StatusDebug}{pd\_StatusDebug}}
+{\footnotesize\ttfamily uint16\+\_\+t pd\+\_\+\+Status\+Debug}
+
+\Hypertarget{abcc__network__data__parameters_8c_a6c72761cd9b1fca76b98d04a85dec2ec}\label{abcc__network__data__parameters_8c_a6c72761cd9b1fca76b98d04a85dec2ec} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!pd\_StatusPLC@{pd\_StatusPLC}}
+\index{pd\_StatusPLC@{pd\_StatusPLC}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{pd\_StatusPLC}{pd\_StatusPLC}}
+{\footnotesize\ttfamily uint16\+\_\+t pd\+\_\+\+Status\+PLC}
+
+\Hypertarget{abcc__network__data__parameters_8c_ae12bde2d42d3c538422750ddd61e925a}\label{abcc__network__data__parameters_8c_ae12bde2d42d3c538422750ddd61e925a} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!PortA\_val@{PortA\_val}}
+\index{PortA\_val@{PortA\_val}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{PortA\_val}{PortA\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Port\+A\+\_\+val}
+
+\Hypertarget{abcc__network__data__parameters_8c_aad6f6e948bb37d430c5d8c32fd26efe0}\label{abcc__network__data__parameters_8c_aad6f6e948bb37d430c5d8c32fd26efe0} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!PortB\_val@{PortB\_val}}
+\index{PortB\_val@{PortB\_val}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{PortB\_val}{PortB\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Port\+B\+\_\+val}
+
+\Hypertarget{abcc__network__data__parameters_8c_a604457104f2e200ac939b40348412f0b}\label{abcc__network__data__parameters_8c_a604457104f2e200ac939b40348412f0b} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!PortC\_val@{PortC\_val}}
+\index{PortC\_val@{PortC\_val}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{PortC\_val}{PortC\_val}}
+{\footnotesize\ttfamily uint8\+\_\+t Port\+C\+\_\+val}
+
+\Hypertarget{abcc__network__data__parameters_8c_a7efd8189f7a3fa73faaa42229a0ae873}\label{abcc__network__data__parameters_8c_a7efd8189f7a3fa73faaa42229a0ae873} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!StatusActive\_val@{StatusActive\_val}}
+\index{StatusActive\_val@{StatusActive\_val}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{StatusActive\_val}{StatusActive\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Status\+Active\+\_\+val}
+
+\Hypertarget{abcc__network__data__parameters_8c_ad10f9af84e35553eeb832027c6f84daa}\label{abcc__network__data__parameters_8c_ad10f9af84e35553eeb832027c6f84daa} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!StatusDebug\_val@{StatusDebug\_val}}
+\index{StatusDebug\_val@{StatusDebug\_val}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{StatusDebug\_val}{StatusDebug\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Status\+Debug\+\_\+val}
+
+\Hypertarget{abcc__network__data__parameters_8c_a44b2f81c884ac2512c9729097d6013b2}\label{abcc__network__data__parameters_8c_a44b2f81c884ac2512c9729097d6013b2} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!StatusDebugTru\_val@{StatusDebugTru\_val}}
+\index{StatusDebugTru\_val@{StatusDebugTru\_val}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{StatusDebugTru\_val}{StatusDebugTru\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Status\+Debug\+Tru\+\_\+val}
+
+\Hypertarget{abcc__network__data__parameters_8c_a661bd3a51f758a2c12f6c4c1fa4d9232}\label{abcc__network__data__parameters_8c_a661bd3a51f758a2c12f6c4c1fa4d9232} 
+\index{abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}!StatusPLC\_val@{StatusPLC\_val}}
+\index{StatusPLC\_val@{StatusPLC\_val}!abcc\_network\_data\_parameters.c@{abcc\_network\_data\_parameters.c}}
+\doxysubsubsection{\texorpdfstring{StatusPLC\_val}{StatusPLC\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Status\+PLC\+\_\+val}
+

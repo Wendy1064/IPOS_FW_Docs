@@ -1,0 +1,154 @@
+\doxysection{max31855.\+h File Reference}
+\hypertarget{max31855_8h}{}\label{max31855_8h}\index{max31855.h@{max31855.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os.\+h"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for max31855.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{max31855_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{max31855_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\+\_\+\+Data}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{max31855_8h_abc4018e5b40fae15c6fd94de27e18eb9}{MAX31855\+\_\+\+SCK\+\_\+\+GPIO\+\_\+\+Port}}~\mbox{\hyperlink{group___peripheral__declaration_ga68b66ac73be4c836db878a42e1fea3cd}{GPIOB}}
+\item 
+\#define \mbox{\hyperlink{max31855_8h_a0cd979f8d4d94fbad8c8ff8e74538ba0}{MAX31855\+\_\+\+SCK\+\_\+\+Pin}}~\mbox{\hyperlink{group___g_p_i_o__pins__define_ga9089f18f20ec88ee38ce6f27389e6d7e}{GPIO\+\_\+\+PIN\+\_\+6}}
+\item 
+\#define \mbox{\hyperlink{max31855_8h_a21bc82e012b1c127dd1c49016dc71cb0}{MAX31855\+\_\+\+MISO\+\_\+\+GPIO\+\_\+\+Port}}~\mbox{\hyperlink{group___peripheral__declaration_ga68b66ac73be4c836db878a42e1fea3cd}{GPIOB}}
+\item 
+\#define \mbox{\hyperlink{max31855_8h_a81437539d1092397b916cdaeeaa725f5}{MAX31855\+\_\+\+MISO\+\_\+\+Pin}}~\mbox{\hyperlink{group___g_p_i_o__pins__define_ga4c503cb4a0dc0d18261080051d9c2daf}{GPIO\+\_\+\+PIN\+\_\+9}}
+\item 
+\#define \mbox{\hyperlink{max31855_8h_a9b5df1c02263f7a033e744d7b4e856e2}{MAX31855\+\_\+\+CS\+\_\+\+GPIO\+\_\+\+Port}}~\mbox{\hyperlink{group___peripheral__declaration_ga68b66ac73be4c836db878a42e1fea3cd}{GPIOB}}
+\item 
+\#define \mbox{\hyperlink{max31855_8h_a3e4c29bdadc8ef7e52e10f55fb928e9e}{MAX31855\+\_\+\+CS\+\_\+\+Pin}}~\mbox{\hyperlink{group___g_p_i_o__pins__define_ga6c35af4e75c3cb57bb650feaa7a136b5}{GPIO\+\_\+\+PIN\+\_\+1}}
+\item 
+\#define \mbox{\hyperlink{max31855_8h_a2103459f42cf87b5ffe27990f13ea6a1}{MAX31855\+\_\+\+SAMPLE\+\_\+\+PERIOD\+\_\+\+MS}}~5000
+\item 
+\#define \mbox{\hyperlink{max31855_8h_a324b886f4cc4c4cc1e6254a83ab8c7bf}{MAX31855\+\_\+\+TEMP\+\_\+\+MIN\+\_\+C}}~0.\+0f
+\item 
+\#define \mbox{\hyperlink{max31855_8h_ab7a117b2862e6c8cb7b954fe81a0cd88}{MAX31855\+\_\+\+TEMP\+\_\+\+MAX\+\_\+C}}~60.\+0f
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{max31855_8h_a871b334e75921c050bad079ba2589f39}{MAX31855\+\_\+\+Init}} (void)
+\item 
+\mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\+\_\+\+Data}} \mbox{\hyperlink{max31855_8h_a30479412736dfb509d5dce8dff1aa3fa}{MAX31855\+\_\+\+Read}} (void)
+\item 
+void \mbox{\hyperlink{max31855_8h_a54987d83e00a39041fb32fa1d2aad560}{MAX31855\+\_\+\+Update\+Task}} (void \texorpdfstring{$\ast$}{*}argument)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\+\_\+\+Data}} \mbox{\hyperlink{max31855_8h_a336ed8079cec975211d2ca7b0b892297}{g\+\_\+\+Thermo\+Data}}
+\item 
+os\+Mutex\+Id\+\_\+t \mbox{\hyperlink{max31855_8h_a31af3eca36f369fb3233495998793e75}{g\+\_\+\+Thermo\+Mutex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{max31855_8h_a9b5df1c02263f7a033e744d7b4e856e2}\label{max31855_8h_a9b5df1c02263f7a033e744d7b4e856e2} 
+\index{max31855.h@{max31855.h}!MAX31855\_CS\_GPIO\_Port@{MAX31855\_CS\_GPIO\_Port}}
+\index{MAX31855\_CS\_GPIO\_Port@{MAX31855\_CS\_GPIO\_Port}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_CS\_GPIO\_Port}{MAX31855\_CS\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define MAX31855\+\_\+\+CS\+\_\+\+GPIO\+\_\+\+Port~\mbox{\hyperlink{group___peripheral__declaration_ga68b66ac73be4c836db878a42e1fea3cd}{GPIOB}}}
+
+\Hypertarget{max31855_8h_a3e4c29bdadc8ef7e52e10f55fb928e9e}\label{max31855_8h_a3e4c29bdadc8ef7e52e10f55fb928e9e} 
+\index{max31855.h@{max31855.h}!MAX31855\_CS\_Pin@{MAX31855\_CS\_Pin}}
+\index{MAX31855\_CS\_Pin@{MAX31855\_CS\_Pin}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_CS\_Pin}{MAX31855\_CS\_Pin}}
+{\footnotesize\ttfamily \#define MAX31855\+\_\+\+CS\+\_\+\+Pin~\mbox{\hyperlink{group___g_p_i_o__pins__define_ga6c35af4e75c3cb57bb650feaa7a136b5}{GPIO\+\_\+\+PIN\+\_\+1}}}
+
+\Hypertarget{max31855_8h_a21bc82e012b1c127dd1c49016dc71cb0}\label{max31855_8h_a21bc82e012b1c127dd1c49016dc71cb0} 
+\index{max31855.h@{max31855.h}!MAX31855\_MISO\_GPIO\_Port@{MAX31855\_MISO\_GPIO\_Port}}
+\index{MAX31855\_MISO\_GPIO\_Port@{MAX31855\_MISO\_GPIO\_Port}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_MISO\_GPIO\_Port}{MAX31855\_MISO\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define MAX31855\+\_\+\+MISO\+\_\+\+GPIO\+\_\+\+Port~\mbox{\hyperlink{group___peripheral__declaration_ga68b66ac73be4c836db878a42e1fea3cd}{GPIOB}}}
+
+\Hypertarget{max31855_8h_a81437539d1092397b916cdaeeaa725f5}\label{max31855_8h_a81437539d1092397b916cdaeeaa725f5} 
+\index{max31855.h@{max31855.h}!MAX31855\_MISO\_Pin@{MAX31855\_MISO\_Pin}}
+\index{MAX31855\_MISO\_Pin@{MAX31855\_MISO\_Pin}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_MISO\_Pin}{MAX31855\_MISO\_Pin}}
+{\footnotesize\ttfamily \#define MAX31855\+\_\+\+MISO\+\_\+\+Pin~\mbox{\hyperlink{group___g_p_i_o__pins__define_ga4c503cb4a0dc0d18261080051d9c2daf}{GPIO\+\_\+\+PIN\+\_\+9}}}
+
+\Hypertarget{max31855_8h_a2103459f42cf87b5ffe27990f13ea6a1}\label{max31855_8h_a2103459f42cf87b5ffe27990f13ea6a1} 
+\index{max31855.h@{max31855.h}!MAX31855\_SAMPLE\_PERIOD\_MS@{MAX31855\_SAMPLE\_PERIOD\_MS}}
+\index{MAX31855\_SAMPLE\_PERIOD\_MS@{MAX31855\_SAMPLE\_PERIOD\_MS}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_SAMPLE\_PERIOD\_MS}{MAX31855\_SAMPLE\_PERIOD\_MS}}
+{\footnotesize\ttfamily \#define MAX31855\+\_\+\+SAMPLE\+\_\+\+PERIOD\+\_\+\+MS~5000}
+
+\Hypertarget{max31855_8h_abc4018e5b40fae15c6fd94de27e18eb9}\label{max31855_8h_abc4018e5b40fae15c6fd94de27e18eb9} 
+\index{max31855.h@{max31855.h}!MAX31855\_SCK\_GPIO\_Port@{MAX31855\_SCK\_GPIO\_Port}}
+\index{MAX31855\_SCK\_GPIO\_Port@{MAX31855\_SCK\_GPIO\_Port}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_SCK\_GPIO\_Port}{MAX31855\_SCK\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define MAX31855\+\_\+\+SCK\+\_\+\+GPIO\+\_\+\+Port~\mbox{\hyperlink{group___peripheral__declaration_ga68b66ac73be4c836db878a42e1fea3cd}{GPIOB}}}
+
+\Hypertarget{max31855_8h_a0cd979f8d4d94fbad8c8ff8e74538ba0}\label{max31855_8h_a0cd979f8d4d94fbad8c8ff8e74538ba0} 
+\index{max31855.h@{max31855.h}!MAX31855\_SCK\_Pin@{MAX31855\_SCK\_Pin}}
+\index{MAX31855\_SCK\_Pin@{MAX31855\_SCK\_Pin}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_SCK\_Pin}{MAX31855\_SCK\_Pin}}
+{\footnotesize\ttfamily \#define MAX31855\+\_\+\+SCK\+\_\+\+Pin~\mbox{\hyperlink{group___g_p_i_o__pins__define_ga9089f18f20ec88ee38ce6f27389e6d7e}{GPIO\+\_\+\+PIN\+\_\+6}}}
+
+\Hypertarget{max31855_8h_ab7a117b2862e6c8cb7b954fe81a0cd88}\label{max31855_8h_ab7a117b2862e6c8cb7b954fe81a0cd88} 
+\index{max31855.h@{max31855.h}!MAX31855\_TEMP\_MAX\_C@{MAX31855\_TEMP\_MAX\_C}}
+\index{MAX31855\_TEMP\_MAX\_C@{MAX31855\_TEMP\_MAX\_C}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_TEMP\_MAX\_C}{MAX31855\_TEMP\_MAX\_C}}
+{\footnotesize\ttfamily \#define MAX31855\+\_\+\+TEMP\+\_\+\+MAX\+\_\+C~60.\+0f}
+
+\Hypertarget{max31855_8h_a324b886f4cc4c4cc1e6254a83ab8c7bf}\label{max31855_8h_a324b886f4cc4c4cc1e6254a83ab8c7bf} 
+\index{max31855.h@{max31855.h}!MAX31855\_TEMP\_MIN\_C@{MAX31855\_TEMP\_MIN\_C}}
+\index{MAX31855\_TEMP\_MIN\_C@{MAX31855\_TEMP\_MIN\_C}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_TEMP\_MIN\_C}{MAX31855\_TEMP\_MIN\_C}}
+{\footnotesize\ttfamily \#define MAX31855\+\_\+\+TEMP\+\_\+\+MIN\+\_\+C~0.\+0f}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{max31855_8h_a871b334e75921c050bad079ba2589f39}\label{max31855_8h_a871b334e75921c050bad079ba2589f39} 
+\index{max31855.h@{max31855.h}!MAX31855\_Init@{MAX31855\_Init}}
+\index{MAX31855\_Init@{MAX31855\_Init}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_Init()}{MAX31855\_Init()}}
+{\footnotesize\ttfamily void MAX31855\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{max31855_8h_a30479412736dfb509d5dce8dff1aa3fa}\label{max31855_8h_a30479412736dfb509d5dce8dff1aa3fa} 
+\index{max31855.h@{max31855.h}!MAX31855\_Read@{MAX31855\_Read}}
+\index{MAX31855\_Read@{MAX31855\_Read}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_Read()}{MAX31855\_Read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\+\_\+\+Data}} MAX31855\+\_\+\+Read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{max31855_8h_a54987d83e00a39041fb32fa1d2aad560}\label{max31855_8h_a54987d83e00a39041fb32fa1d2aad560} 
+\index{max31855.h@{max31855.h}!MAX31855\_UpdateTask@{MAX31855\_UpdateTask}}
+\index{MAX31855\_UpdateTask@{MAX31855\_UpdateTask}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_UpdateTask()}{MAX31855\_UpdateTask()}}
+{\footnotesize\ttfamily void MAX31855\+\_\+\+Update\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{argument }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{max31855_8h_a336ed8079cec975211d2ca7b0b892297}\label{max31855_8h_a336ed8079cec975211d2ca7b0b892297} 
+\index{max31855.h@{max31855.h}!g\_ThermoData@{g\_ThermoData}}
+\index{g\_ThermoData@{g\_ThermoData}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{g\_ThermoData}{g\_ThermoData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\+\_\+\+Data}} g\+\_\+\+Thermo\+Data\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{max31855_8h_a31af3eca36f369fb3233495998793e75}\label{max31855_8h_a31af3eca36f369fb3233495998793e75} 
+\index{max31855.h@{max31855.h}!g\_ThermoMutex@{g\_ThermoMutex}}
+\index{g\_ThermoMutex@{g\_ThermoMutex}!max31855.h@{max31855.h}}
+\doxysubsubsection{\texorpdfstring{g\_ThermoMutex}{g\_ThermoMutex}}
+{\footnotesize\ttfamily os\+Mutex\+Id\+\_\+t g\+\_\+\+Thermo\+Mutex\hspace{0.3cm}{\ttfamily [extern]}}
+

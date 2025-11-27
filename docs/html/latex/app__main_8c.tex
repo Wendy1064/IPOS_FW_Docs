@@ -1,0 +1,67 @@
+\doxysection{app\+\_\+main.\+c File Reference}
+\hypertarget{app__main_8c}{}\label{app__main_8c}\index{app\_main.c@{app\_main.c}}
+{\ttfamily \#include $<$inputs.\+h$>$}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os2.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+{\ttfamily \#include "{}uart\+\_\+master\+\_\+task.\+h"{}}\newline
+{\ttfamily \#include "{}master\+\_\+link.\+h"{}}\newline
+{\ttfamily \#include "{}protocol.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}stdio.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+{\ttfamily \#include "{}usbd\+\_\+cdc\+\_\+if.\+h"{}}\newline
+{\ttfamily \#include "{}gpio.\+h"{}}\newline
+{\ttfamily \#include "{}ports\+\_\+hw.\+h"{}}\newline
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}task.\+h"{}}\newline
+{\ttfamily \#include "{}max31855.\+h"{}}\newline
+{\ttfamily \#include "{}log\+\_\+flash.\+h"{}}\newline
+Include dependency graph for app\+\_\+main.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{app__main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__app__main_gafb61de40a620d1b98523ac1673907935}{Start\+Ethernet\+Task}} (void)
+\item 
+void \mbox{\hyperlink{group__app__main_ga71115d79568ca6bf736cfde16bf90e50}{to\+\_\+binary\+\_\+str\+\_\+grouped}} (uint16\+\_\+t value, int bits, char \texorpdfstring{$\ast$}{*}buf, size\+\_\+t buf\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Convert an integer value to a binary string representation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__app__main_ga0cd91fd3a9608559c2a87a8ba6cba55f}{HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback}} (uint16\+\_\+t GPIO\+\_\+\+Pin)
+\begin{DoxyCompactList}\small\item\em External interrupt callback for reset button. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__app__main_ga2e3052c8b693b6705ede47fdfbf6b8fb}{v\+Task\+Monitor}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Monitors the BDO temperature sensor via MAX31855. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__app__main_ga067e341abc6c6153474df6a42d5919ed}{Flash\+\_\+\+Self\+Test}} (void)
+\begin{DoxyCompactList}\small\item\em Perform a basic read/write/verify self-\/test on the W25\+Q16 flash. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__app__main_ga783607bdd6febf2b64a3f7871e1e9e4c}{App\+\_\+\+Start}} (void)
+\begin{DoxyCompactList}\small\item\em Main application entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile bool \mbox{\hyperlink{group__app__main_ga5d74e16bd7fa55cbd077526304114799}{debug\+Bypass\+Thermo\+Check}}
+\begin{DoxyCompactList}\small\item\em Enables or disables temperature checks. \end{DoxyCompactList}\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__app__main_gad161edf016c8165e59d5fa88aeb008aa}{Boot\+Event}}
+\begin{DoxyCompactList}\small\item\em Event flag for boot-\/time synchronization. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga13513b52ba27e18fced406e65011d1b9}{verbose\+Logging}} = 0
+\begin{DoxyCompactList}\small\item\em Verbose logging enable flag (set via USB command). \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga8b113a17282bd33cf6e1ab2d885c5da6}{sw\+Latch\+Fault\+Active}}
+\begin{DoxyCompactList}\small\item\em Software fault latches (external linkage from input module). \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga99ad38e5fdbdf57fbaea98f73361969f}{sw\+Latch\+Force\+Error}}
+\item 
+const char \mbox{\hyperlink{group__app__main_gaa34fa035dd3b887a67e9b0e34852f0eb}{build\+\_\+date}} \mbox{[}$\,$\mbox{]} = \+\_\+\+\_\+\+DATE\+\_\+\+\_\+
+\begin{DoxyCompactList}\small\item\em Compile-\/time build metadata. \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{group__app__main_ga766eb4a0acd5a2b6c58dac458bd7da9b}{build\+\_\+time}} \mbox{[}$\,$\mbox{]} = \+\_\+\+\_\+\+TIME\+\_\+\+\_\+
+\item 
+os\+Timer\+Id\+\_\+t \mbox{\hyperlink{group__app__main_gac897f859d8c267e7f99bdddf7777d1c6}{debounce\+Timer}}
+\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__app__main_ga62b5ee21fd989192e48209d86efb4289}{Reset\+Latch\+Event}}
+\begin{DoxyCompactList}\small\item\em RTOS handles for latch reset and error forcing. \end{DoxyCompactList}\item 
+os\+Event\+Flags\+Id\+\_\+t \mbox{\hyperlink{group__app__main_gac09e3335f4f6421a2c786a45f998c2a7}{Force\+Latch\+Event}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga6332c0412eb3dd6ac3758a9b356ae013}{laser\+Latched\+Off}} = 0
+\begin{DoxyCompactList}\small\item\em Software-\/controlled latch disable indicator. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__app__main_gaa709301a600e146c64d1704742ef6941}{last\+Press\+Tick}} = 0
+\end{DoxyCompactItemize}

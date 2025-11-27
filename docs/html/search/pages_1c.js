@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['table_20summary_0',['ADI Table Summary',['../m40_iomap.html#autotoc_md182',1,'']]],
+  ['task_1',['Task',['../stm32_app_main.html',1,'Application Main Task'],['../stm32_flash_log.html',1,'Flash Log Task'],['../stm32_input_handler.html',1,'Input Task'],['../stm32_usart_master_task.html',1,'UART Master Task']]],
+  ['task_20creation_20summary_2',['3. Task Creation Summary',['../stm32_app_main.html#autotoc_md66',1,'']]],
+  ['task_20initialization_3',['6. Task Initialization',['../stm32_usart_master_task.html#autotoc_md157',1,'']]],
+  ['task_20scheduling_20summary_4',['10. Task Scheduling Summary',['../stm32_app_main.html#autotoc_md79',1,'']]],
+  ['tasks_5',['Tasks',['../stm32_input_handler.html#autotoc_md104',1,'2. Tasks'],['../stm32_app_main.html#autotoc_md73',1,'5.2 Latch Control Tasks']]],
+  ['tasks_20implemented_6',['Tasks Implemented',['../safety__utils_8c.html#autotoc_md56',1,'']]],
+  ['temperature_20monitoring_7',['7. Temperature Monitoring',['../stm32_app_main.html#autotoc_md76',1,'']]],
+  ['test_8',['8. Flash Self-Test',['../stm32_app_main.html#autotoc_md77',1,'']]],
+  ['test_20features_9',['PLC command register controlling reset and test features',['../m40_iomap.html#autotoc_md192',1,'']]],
+  ['the_20gsdml_20file_10',['3. Generating the GSDML File',['../m40_related.html#autotoc_md208',1,'']]],
+  ['thread_20attributes_3a_11',['Thread Attributes:',['../stm32_usart_master_task.html#autotoc_md158',1,'']]],
+  ['thread_20function_12',['4. Thread Function',['../stm32_usart_master_task.html#autotoc_md154',1,'']]],
+  ['timing_13',['Timing',['../communication_overview.html#autotoc_md13',1,'3.2 Data Exchange Timing'],['../m40_timing.html',1,'Profinet Data Timing']]],
+  ['timing_20and_20synchronization_14',['Timing and Synchronization',['../m40_iomap.html#autotoc_md195',1,'6. Timing and Synchronization'],['../stm32_usart_master_task.html#autotoc_md160',1,'8. Timing and Synchronization']]],
+  ['timing_20diagram_15',['Timing Diagram',['../m40_timing.html#autotoc_md219',1,'']]],
+  ['timing_20sequence_16',['Figure 2 — PD-Write / UART / PD-Read Timing Sequence',['../communication_overview.html#autotoc_md15',1,'']]],
+  ['timing_20summary_17',['Timing Summary',['../communication_overview.html#autotoc_md21',1,'3.4 Timing Summary'],['../m40_related.html#autotoc_md204',1,'Data Timing Summary']]],
+  ['tool_18',['HMS PROFINET GSD Generator Tool',['../m40_related.html#autotoc_md211',1,'']]],
+  ['topology_19',['Figure 1 — Communication Topology',['../communication_overview.html#autotoc_md11',1,'']]],
+  ['trupulse_20status_20printout_20',['9. TruPulse Status Printout',['../stm32_input_handler.html#autotoc_md113',1,'']]],
+  ['typical_20usage_21',['Typical Usage',['../stm32_protocol.html#autotoc_md138',1,'7. Typical Usage'],['../log__flash_8c.html#autotoc_md59',1,'Typical Usage']]],
+  ['typical_20workflow_22',['Typical Workflow',['../safety__utils_8c.html#autotoc_md57',1,'']]]
+];

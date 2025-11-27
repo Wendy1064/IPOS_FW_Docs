@@ -1,0 +1,189 @@
+\chapter{Flash Log Module — log\+\_\+flash.\+c}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551}\index{Flash Log Module — log\_flash.c@{Flash Log Module — log\_flash.c}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md73}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md73}%
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md74}{}\doxysection{\texorpdfstring{1. Purpose}{1. Purpose}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md74}
+Implements a {\bfseries{persistent circular event log}} using the {\bfseries{W25\+Q16 SPI flash}} device. ~\newline
+ This module records events (faults, warnings, and state changes) with timestamps, sequence numbers, and short messages. ~\newline
+
+
+The log is {\bfseries{retained across power cycles}}, and when full, it {\bfseries{automatically overwrites the oldest entries}}. ~\newline
+ It is designed to be {\bfseries{power-\/fail safe}} using a commit marker (0x7E).
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md76}{}\doxysection{\texorpdfstring{2. Hardware Overview}{2. Hardware Overview}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md76}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Component   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Component   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\bfseries{Flash Device}}   &Winbond W25\+Q16\+JV    \\\cline{1-2}
+{\bfseries{Capacity}}   &2 MBytes (2048 KBytes)    \\\cline{1-2}
+{\bfseries{Interface}}   &SPI1    \\\cline{1-2}
+{\bfseries{Pins (STM32\+F4)}}   &PA5 = SCK, PA6 = MISO, PB5 = MOSI    \\\cline{1-2}
+{\bfseries{Sector Size}}   &4 KB    \\\cline{1-2}
+{\bfseries{Voltage}}   &3.\+3 V   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md78}{}\doxysection{\texorpdfstring{3. Flash Layout and Configuration}{3. Flash Layout and Configuration}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md78}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Parameter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Value   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endhead
+Base Address   &{\ttfamily 0x000000}   &Start of log region    \\\cline{1-3}
+Number of Sectors   &2 × 4 KB   &Total 8 KB reserved    \\\cline{1-3}
+Record Size   &33 bytes   &Fixed ({\ttfamily sizeof(\+Log\+Rec)})    \\\cline{1-3}
+Records per Sector   &124   &{\ttfamily 4096 / 33}    \\\cline{1-3}
+Total Capacity   &248 records   &Automatically wraps    \\\cline{1-3}
+Commit Marker   &{\ttfamily 0x7E}   &Indicates valid record   \\\cline{1-3}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md80}{}\doxysection{\texorpdfstring{4. Record Format}{4. Record Format}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md80}
+Each record ({\ttfamily Log\+Rec}) is a fixed 33-\/byte structure\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Field   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bytes   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Field   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bytes   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-4}
+\endhead
+{\ttfamily seq}   &{\ttfamily uint32\+\_\+t}   &4   &Sequential record number    \\\cline{1-4}
+{\ttfamily ms}   &{\ttfamily uint32\+\_\+t}   &4   &System tick count ({\ttfamily \doxylink{group___h_a_l___exported___functions___group2_gac9b3a85a73735ac840d0dcb59bc0fdd6}{HAL\+\_\+\+Get\+Tick()}})    \\\cline{1-4}
+{\ttfamily code}   &{\ttfamily uint16\+\_\+t}   &2   &Event or fault ID    \\\cline{1-4}
+{\ttfamily flags}   &{\ttfamily uint16\+\_\+t}   &2   &Optional status flags    \\\cline{1-4}
+{\ttfamily msg}   &{\ttfamily char\mbox{[}20\mbox{]}}   &20   &Short text description    \\\cline{1-4}
+{\ttfamily commit}   &{\ttfamily uint8\+\_\+t}   &1   &0x7E = record valid   \\\cline{1-4}
+\end{longtabu}
+
+
+Total\+: {\bfseries{33 bytes per record}}
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md82}{}\doxysection{\texorpdfstring{5. Behaviour}{5. Behaviour}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md82}
+
+\begin{DoxyItemize}
+\item The log area consists of 2 flash sectors (8 KB total).
+\item When a sector is reused, it is automatically erased ({\ttfamily \doxylink{w25q_8h_ae132501e366ebfaead22af8db87efd28}{W25\+Q\+\_\+\+Sector\+Erase4\+K()}}).
+\item Each new event is appended sequentially using {\ttfamily \doxylink{group__log__flash_gaf7be7be3d5aa3ad8ce8eb8f080d34baa}{Log\+\_\+\+Append()}}.
+\item When full, the oldest data is overwritten (circular buffer).
+\item The last byte of each record ({\ttfamily commit}) is written separately at the end of the write to ensure integrity if power fails mid-\/write.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md84}{}\doxysection{\texorpdfstring{6. Free\+RTOS Integration}{6. Free\+RTOS Integration}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md84}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Component   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Component   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\bfseries{Task}}   &{\ttfamily \doxylink{group__log__flash_gae4a37f521a0098079c9f62bb1014569f}{v\+Task\+Log\+Writer()}}    \\\cline{1-2}
+{\bfseries{Queue}}   &{\ttfamily log\+Queue}    \\\cline{1-2}
+{\bfseries{Message Type}}   &{\ttfamily \doxylink{struct_log_msg__t}{Log\+Msg\+\_\+t} \{ code, flags, msg \}}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md85}{}\doxysubsection{\texorpdfstring{Posting a Log Message}{Posting a Log Message}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md85}
+Any task can queue a log event\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_log_msg__t}{LogMsg\_t}}\ m\ =\ \{}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{struct_log_msg__t_a4179f2d03ffd9ba1251cc59264445024}{code}}\ =\ 2001,}
+\DoxyCodeLine{\ \ \ \ .flags\ =\ 1,}
+\DoxyCodeLine{\ \ \ \ .msg\ =\ \textcolor{stringliteral}{"{}Overtemp:\ laser\ disabled"{}}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{osMessageQueuePut(\mbox{\hyperlink{group__log__flash_gaa42f4a4e54ef104c44df1ce00a619e7a}{logQueue}},\ \&m,\ 0,\ 0);}
+
+\end{DoxyCode}
+
+
+The v\+Task\+Log\+Writer task asynchronously writes the message to flash using \doxylink{group__log__flash_gaf7be7be3d5aa3ad8ce8eb8f080d34baa}{Log\+\_\+\+Append()}.\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md86}{}\doxysection{\texorpdfstring{7. USB Commands}{7. USB Commands}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md86}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/\ Command\ \ \ Description\ Example\ Output}
+\DoxyCodeLine{-\/\ LOG\ DUMP\ \ Print\ the\ last\ 10\ records\ \ \ \#102\ t=123456\ code=2001\ msg=Overtemp}
+\DoxyCodeLine{-\/\ LOG\ ERASE\ Erase\ all\ log\ sectors\ \ \ [LOG]\ Erase\ complete.}
+\DoxyCodeLine{-\/\ FLASH\ ID\ \ Read\ and\ display\ JEDEC\ ID\ \ \ [FLASH]\ JEDEC\ ID\ =\ 0xEF4015}
+\DoxyCodeLine{-\/\ FLASH\ STATUS\ \ Show\ flash\ info,\ usage,\ and\ record\ count\ \ \ \ See\ example\ below}
+\DoxyCodeLine{-\/\ FLASH\ TEST\ \ \ \ Perform\ write/read/verify\ test\ \ [FLASH]\ Test\ OK}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md87}{}\doxysection{\texorpdfstring{8. Example Output}{8. Example Output}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md87}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{FLASH\ STATUS}
+\DoxyCodeLine{====\ FLASH\ STATUS\ ====}
+\DoxyCodeLine{JEDEC\ ID\ \ \ \ \ \ :\ 0xEF4015}
+\DoxyCodeLine{Device\ \ \ \ \ \ \ \ :\ W25Q16JV\ (2\ MBytes)}
+\DoxyCodeLine{Sectors\ used\ \ :\ 2}
+\DoxyCodeLine{Records/sector:\ 124}
+\DoxyCodeLine{Capacity\ \ \ \ \ \ :\ 248\ records}
+\DoxyCodeLine{Write\ index\ \ \ :\ 37}
+\DoxyCodeLine{Next\ sequence\ :\ 1042}
+\DoxyCodeLine{Records\ valid\ :\ 37}
+\DoxyCodeLine{Usage\ \ \ \ \ \ \ \ \ :\ 14.9\%}
+\DoxyCodeLine{======================}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md88}{}\doxysubsection{\texorpdfstring{LOG DUMP}{LOG DUMP}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md88}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/-\/-\/-\/\ LAST\ 10\ LOG\ ENTRIES\ -\/-\/-\/-\/\ \ }
+\DoxyCodeLine{\#103\ \ t=78512\ \ code=2001\ \ flags=0x01\ \ msg=Overtemp:\ laser\ disabled\ \ }
+\DoxyCodeLine{\#104\ \ t=90218\ \ code=2002\ \ flags=0x00\ \ msg=Overtemp\ cleared\ \ }
+\DoxyCodeLine{\#105\ \ t=124512\ code=3001\ \ flags=0x00\ \ msg=Door\ opened\ \ }
+\DoxyCodeLine{\#106\ \ t=125012\ code=3002\ \ flags=0x00\ \ msg=Door\ closed\ \ }
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ }
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md89}{}\doxysection{\texorpdfstring{9. Error and Safety Handling}{9. Error and Safety Handling}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md89}
+Each record uses a commit byte (0x7E) to confirm completion. ~\newline
+ Any partially written record (commit != 0x7E) is ignored during boot. ~\newline
+
+
+Sector erases occur only when writing the first record in that sector. ~\newline
+
+
+Log overwriting is safe and continuous (no need for manual maintenance). ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md90}{}\doxysection{\texorpdfstring{10. Capacity and Performance}{10. Capacity and Performance}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md90}
+Setting Records Size Used ~\newline
+ 2 sectors \texorpdfstring{$\sim$}{\string~}248 8 KB ~\newline
+ 8 sectors \texorpdfstring{$\sim$}{\string~}992 32 KB ~\newline
+ 16 sectors \texorpdfstring{$\sim$}{\string~}1984 64 KB ~\newline
+
+
+Writes are non-\/blocking for application tasks due to the queue-\/based design. ~\newline
+ Each flash write takes \texorpdfstring{$\sim$}{\string~}1–2 ms per record. ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md91}{}\doxysection{\texorpdfstring{11. Maintenance Commands}{11. Maintenance Commands}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md91}
+Command Description ~\newline
+ LOG ERASE Clears all log sectors and resets counters ~\newline
+ FLASH STATUS Shows number of valid records and flash usage ~\newline
+ FLASH TEST Verifies SPI operation ~\newline
+
+
+These commands are accessible over the USB CDC serial console (Docklight / Tera\+Term). ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md92}{}\doxysection{\texorpdfstring{13. Revision History}{13. Revision History}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar91db77c7dae4dc199ed3adb8c4872551_autotoc_md92}
+Date Author Change ~\newline
+ 2025-\/10-\/21 Firmware Dev Initial documentation added ~\newline
+ 2025-\/10-\/22 — Added LOG ERASE and FLASH STATUS integration ~\newline
+ 

@@ -1,0 +1,51 @@
+\chapter{Overview}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarac8a8b59cab0c3a1e9e1646135ede413}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarac8a8b59cab0c3a1e9e1646135ede413}\index{Overview@{Overview}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarac8a8b59cab0c3a1e9e1646135ede413_autotoc_md212}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarac8a8b59cab0c3a1e9e1646135ede413_autotoc_md212}%
+
+
+This documentation describes the {\bfseries{IPOS Anybus M40 firmware}} — a Profinet gateway firmware that interfaces between\+:
+
+
+\begin{DoxyItemize}
+\item The {\bfseries{Profinet PLC}} (industrial controller)
+\item The {\bfseries{Anybus M40}} communication module
+\item The {\bfseries{STM32\+F4 housekeeping board}}
+\item The {\bfseries{Raylase SP-\/\+ICE-\/3 laser controller}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarac8a8b59cab0c3a1e9e1646135ede413_autotoc_md214}{}\doxysection{\texorpdfstring{Key Features}{Key Features}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarac8a8b59cab0c3a1e9e1646135ede413_autotoc_md214}
+
+\begin{DoxyItemize}
+\item Cyclic I/O data exchange between PLC and STM32 via Anybus M40 ~\newline
+
+\item UART3 interface for control and diagnostics ~\newline
+
+\item Configurable ADI (Application Data Instance) mapping ~\newline
+
+\end{DoxyItemize}
+
+This firmware extends the standard HMS Anybus application example with additional ~\newline
+
+
+Application Data Instances (ADIs) for real-\/time exchange of\+: ~\newline
+
+
+
+\begin{DoxyItemize}
+\item Digital I/O (PORTA, PORTB, PORTC)
+\item System status words (STATUS\+\_\+\+DEBUG, STATUS\+\_\+\+ACTIVE, STATUS\+\_\+\+PLC)
+\item Diagnostic channels (STATUS\+\_\+\+DEBUG\+\_\+\+TRU)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarac8a8b59cab0c3a1e9e1646135ede413_autotoc_md216}{}\doxysection{\texorpdfstring{System Architecture Overview}{System Architecture Overview}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwarac8a8b59cab0c3a1e9e1646135ede413_autotoc_md216}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_5}}
+\end{DoxyImageNoCaption}
+
+
+\DoxyHorRuler{0}
+ 

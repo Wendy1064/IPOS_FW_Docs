@@ -1,0 +1,159 @@
+\chapter{Communication Protocol Layer — protocol.\+c}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89}\index{Communication Protocol Layer — protocol.c@{Communication Protocol Layer — protocol.c}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md140}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md140}%
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md141}{}\doxysection{\texorpdfstring{1. Overview}{1. Overview}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md141}
+The {\bfseries{Communication Protocol Layer}} defines the frame structure and parsing logic used between the STM32 master controller and external PLC or slave MCU.
+
+This layer provides {\bfseries{reliable and lightweight communication}} over UART (or USB) by wrapping each message in a start ({\ttfamily STX}) and end ({\ttfamily ETX}) marker and supporting simple 16-\/bit read/write transactions.
+
+It is used by\+:
+\begin{DoxyItemize}
+\item \doxylink{group__master__link}{Master Communication Link} — the UART link and DMA transport layer ~\newline
+
+\item \doxylink{group__uart__master__task}{UART Master Task} — the Free\+RTOS UART task logic ~\newline
+
+\item \doxylink{group__app__main}{Application Startup and Task Manager} — which coordinates overall system behavior ~\newline
+
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md143}{}\doxysection{\texorpdfstring{2. Frame Structure}{2. Frame Structure}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md143}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Byte   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Field   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Byte   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Field   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+{\ttfamily 0}   &{\bfseries{STX}}   &Start marker ({\ttfamily 0x\+AA})    \\\cline{1-3}
+{\ttfamily 1}   &{\bfseries{CMD}}   &Command code ({\ttfamily WRITE}, {\ttfamily READ}, or {\ttfamily ACK})    \\\cline{1-3}
+{\ttfamily 2}   &{\bfseries{var\+\_\+id}}   &Variable identifier    \\\cline{1-3}
+{\ttfamily 3–4}   &{\bfseries{value}}   &Optional 16-\/bit payload (for write or ack frames)    \\\cline{1-3}
+{\ttfamily N}   &{\bfseries{ETX}}   &End marker ({\ttfamily 0x55})   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md144}{}\doxysubsection{\texorpdfstring{Command Summary}{Command Summary}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md144}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Command   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Direction   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Command   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Direction   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+{\ttfamily CMD\+\_\+\+WRITE}   &Master → Slave   &Write 16-\/bit variable    \\\cline{1-3}
+{\ttfamily CMD\+\_\+\+READ}   &Master → Slave   &Request variable value    \\\cline{1-3}
+{\ttfamily CMD\+\_\+\+ACK}   &Slave → Master   &Confirm successful write    \\\cline{1-3}
+{\ttfamily CMD\+\_\+\+READ}   &Slave → Master   &Return value for read request   \\\cline{1-3}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md146}{}\doxysection{\texorpdfstring{3. Parser Operation}{3. Parser Operation}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md146}
+The protocol parser accumulates bytes one at a time until a complete frame is detected. ~\newline
+
+
+\mbox{[}UART RX Stream\mbox{]} → \mbox{[}\doxylink{struct_proto_parser}{Proto\+Parser}\mbox{]} → \mbox{[}\doxylink{struct_proto_frame}{Proto\+Frame}\mbox{]} → App Callback ~\newline
+ Frames are validated by STX/\+ETX markers ~\newline
+
+
+Each parser instance knows its role\+: ROLE\+\_\+\+MASTER or ROLE\+\_\+\+SLAVE ~\newline
+
+
+Completed frames trigger callback handling in \doxylink{group__master__link}{Master Communication Link} ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md147}{}\doxysection{\texorpdfstring{4. Key Functions}{4. Key Functions}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md147}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endhead
+\doxylink{group__protocol_ga8970bcd0e0af17f42b3b3a6d83f3d195}{proto\+\_\+init()}   &Initializes parser state and role.    \\\cline{1-2}
+\doxylink{group__protocol_gacad3e241e27ce9c8dc1ca4535f41f9a5}{proto\+\_\+reset()}   &Clears current buffer and expected length.    \\\cline{1-2}
+\doxylink{group__protocol_gadbb6342eec2b0de6e1c7ab042f1448e1}{proto\+\_\+push()}   &Feeds a byte stream into the parser and returns true on valid frame.    \\\cline{1-2}
+\doxylink{group__protocol_ga95064f228b494d27449fa09019d639c8}{proto\+\_\+build\+\_\+write()}   &Builds a master WRITE frame.    \\\cline{1-2}
+\doxylink{group__protocol_ga4cc33e9868129062ecf64b316b43dcf6}{proto\+\_\+build\+\_\+read()}   &Builds a master READ request.    \\\cline{1-2}
+\doxylink{group__protocol_ga05e2d2d6edbf121ecf479ddbaf47e03d}{proto\+\_\+build\+\_\+ack()}   &Builds a slave ACK frame.    \\\cline{1-2}
+\doxylink{group__protocol_ga02c6e9492c7b3578ce7b3e9212cea6f7}{proto\+\_\+build\+\_\+readr()}   &Builds a slave READ-\/response frame.   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md148}{}\doxysection{\texorpdfstring{5. Example Frames}{5. Example Frames}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md148}
+Operation Bytes (Hex) Description Write Variable 3 = 0x1234 AA 01 03 34 12 55 Master sends write frame ~\newline
+ Read Variable 5 AA 02 05 55 Master requests variable ~\newline
+ ACK for Variable 3 AA 03 03 34 12 55 Slave acknowledges write ~\newline
+ Read Response (Var 5 = 0x5678) AA 02 05 78 56 55 Slave returns data ~\newline
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md149}{}\doxysection{\texorpdfstring{6. USB Print Helper}{6. USB Print Helper}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md149}
+The module also includes a thread-\/safe USB print function\+: ~\newline
+
+
+void \doxylink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{Usb\+Printf(const char \texorpdfstring{$\ast$}{*}fmt, ...)}; ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md150}{}\doxysubsection{\texorpdfstring{Feature Description}{Feature Description}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md150}
+Thread safety Uses an os\+Mutex to prevent mixed output ~\newline
+ Chunking Splits data into 64-\/byte USB CDC packets ~\newline
+ Blocking Waits for CDC driver readiness ~\newline
+ Integration Used by all system debug output (tasks, events, etc.) ~\newline
+
+
+Example\+:
+
+Usb\+Printf("{}\+Frame received\+: CMD=\%02\+X, Var=\%u, Value=\%04\+X\textbackslash{}r\textbackslash{}n"{}, frame.\+cmd, frame.\+var\+\_\+id, frame.\+value);\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md151}{}\doxysection{\texorpdfstring{7. Typical Usage}{7. Typical Usage}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md151}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md152}{}\doxysubsection{\texorpdfstring{On Master}{On Master}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md152}
+uint8\+\_\+t frame\mbox{[}8\mbox{]}; ~\newline
+ size\+\_\+t len = proto\+\_\+build\+\_\+write(\+VAR\+\_\+\+PORTA, 0x1234, frame); ~\newline
+ HAL\+\_\+\+UART\+\_\+\+Transmit(\&huart2, frame, len, 20); ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md153}{}\doxysubsection{\texorpdfstring{On Slave}{On Slave}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md153}
+\doxylink{struct_proto_parser}{Proto\+Parser} parser; ~\newline
+ \doxylink{struct_proto_frame}{Proto\+Frame} f; ~\newline
+ proto\+\_\+init(\&parser, ROLE\+\_\+\+SLAVE); ~\newline
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{\ \ \ \ uint8\_t\ b\ =\ uart\_rx\_byte();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__protocol_gadbb6342eec2b0de6e1c7ab042f1448e1}{proto\_push}}(\&parser,\ b,\ \&f))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ handle\_frame(\&f);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md154}{}\doxysection{\texorpdfstring{8. Dependencies}{8. Dependencies}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md154}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md155}{}\doxysubsection{\texorpdfstring{Module Purpose}{Module Purpose}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md155}
+\doxylink{group__master__link}{Master Communication Link} UART DMA and parser feed ~\newline
+ \doxylink{group__uart__master__task}{UART Master Task} Task-\/level management of communication ~\newline
+ \doxylink{group__app__main}{Application Startup and Task Manager} System startup and task orchestration ~\newline
+ \doxylink{group__log__flash}{Log\+\_\+flash} Optional logging of frame activity ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md156}{}\doxysection{\texorpdfstring{9. Error Handling}{9. Error Handling}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md156}
+Condition Parser Response ~\newline
+ Missing STX Ignored until valid start byte found ~\newline
+ Invalid command Parser reset, frame dropped ~\newline
+ Missing ETX Frame reset and discarded ~\newline
+ Overflow Buffer cleared and re-\/synchronized ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md157}{}\doxysection{\texorpdfstring{10. Notes}{10. Notes}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md157}
+Frame structure is fixed-\/length (no CRC used in this version). ~\newline
+
+
+The parser can be reused for both master and slave roles. ~\newline
+
+
+Extendable for checksum or variable-\/length payloads if needed. ~\newline
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md158}{}\doxysection{\texorpdfstring{11. Related Modules}{11. Related Modules}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar3cab511709a80d2c7c8aa00c04896a89_autotoc_md158}
+\doxylink{group__master__link}{Master Communication Link} — UART DMA link layer ~\newline
+
+
+\doxylink{group__uart__master__task}{UART Master Task} — Free\+RTOS driver task for master link ~\newline
+
+
+\doxylink{group__app__main}{Application Startup and Task Manager} — Central system startup and RTOS orchestration ~\newline
+
+
+\DoxyHorRuler{0}
+ 

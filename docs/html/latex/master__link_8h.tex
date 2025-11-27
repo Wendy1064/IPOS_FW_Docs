@@ -1,0 +1,37 @@
+\doxysection{master\+\_\+link.\+h File Reference}
+\hypertarget{master__link_8h}{}\label{master__link_8h}\index{master\_link.h@{master\_link.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}stm32f4xx\+\_\+hal.\+h"{}}\newline
+Include dependency graph for master\+\_\+link.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{master__link_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{master__link_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__master__link_ga67e95828277c0771ad0a573322a5191d}{master\+\_\+link\+\_\+init}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}huart)
+\begin{DoxyCompactList}\small\item\em Initializes the master UART link. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__master__link_ga136d58a2733b7acdf639c5bf42685536}{master\+\_\+link\+\_\+start}} (void)
+\begin{DoxyCompactList}\small\item\em Starts DMA-\/based UART reception with idle-\/line detection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__master__link_gaa0c4ce7bf2ecce9ca76ebf74d34a9812}{master\+\_\+link\+\_\+poll}} (void)
+\begin{DoxyCompactList}\small\item\em Polls and processes received bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__master__link_gaf426d71cc3d545680207a5c14fc915e0}{master\+\_\+link\+\_\+attach\+\_\+task\+\_\+handle}} (void \texorpdfstring{$\ast$}{*}task\+\_\+handle)
+\begin{DoxyCompactList}\small\item\em Registers a Free\+RTOS task to be notified on data reception. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{group__master__link_gaac6847f1075654acb90ca1225ef9d132}{master\+\_\+write\+\_\+u16}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Sends a 16-\/bit WRITE command to the slave. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{group__master__link_gab4078648ce04415c64875e869c39d12c}{master\+\_\+read\+\_\+u16}} (uint8\+\_\+t var\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Sends a READ request for a 16-\/bit variable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__uart__master__task_ga0236376a4609184fd28365f6e13bc82d}{master\+\_\+on\+\_\+ack}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{group__master__link}{Master Communication Link} when an ACK frame is received. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__uart__master__task_gaef56f01e664304dc94f34e8b06ce012a}{master\+\_\+on\+\_\+data}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{group__master__link}{Master Communication Link} when a READ response is received. \end{DoxyCompactList}\end{DoxyCompactItemize}

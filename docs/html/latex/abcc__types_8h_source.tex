@@ -1,0 +1,158 @@
+\doxysection{abcc\+\_\+types.\+h}
+\hypertarget{abcc__types_8h_source}{}\label{abcc__types_8h_source}\index{abcc\_types.h@{abcc\_types.h}}
+\mbox{\hyperlink{abcc__types_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ Copyright\ 2025-\/present\ HMS\ Industrial\ Networks\ AB.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ Licensed\ under\ the\ MIT\ License.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{********************************************************************************}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ File\ Description:}}
+\DoxyCodeLine{00006\ \textcolor{comment}{**\ Definition\ of\ ABCC\ types}}
+\DoxyCodeLine{00007\ \textcolor{comment}{********************************************************************************}}
+\DoxyCodeLine{00008\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ ABCC\_TD\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ ABCC\_TD\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{/*\ \#define\ ABCC\_SYS\_BIG\_ENDIAN\ \ */}}
+\DoxyCodeLine{00017\ \textcolor{comment}{/*\ \#define\ ABCC\_SYS\_16\_BIT\_CHAR\ */}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_PAR\_EXT\_BUS\_ENDIAN\_DIFF\ 0}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00022\ \textcolor{comment}{**}}
+\DoxyCodeLine{00023\ \textcolor{comment}{**\ BOOL8}}
+\DoxyCodeLine{00024\ \textcolor{comment}{**}}
+\DoxyCodeLine{00025\ \textcolor{comment}{**\ INT8}}
+\DoxyCodeLine{00026\ \textcolor{comment}{**\ INT16}}
+\DoxyCodeLine{00027\ \textcolor{comment}{**\ INT32}}
+\DoxyCodeLine{00028\ \textcolor{comment}{**}}
+\DoxyCodeLine{00029\ \textcolor{comment}{**\ UINT8}}
+\DoxyCodeLine{00030\ \textcolor{comment}{**\ UINT16}}
+\DoxyCodeLine{00031\ \textcolor{comment}{**\ UINT32}}
+\DoxyCodeLine{00032\ \textcolor{comment}{**}}
+\DoxyCodeLine{00033\ \textcolor{comment}{**\ FLOAT32}}
+\DoxyCodeLine{00034\ \textcolor{comment}{**}}
+\DoxyCodeLine{00035\ \textcolor{comment}{**\ The\ standard\ boolean\ data\ type,\ 8-\/bit.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{**\ The\ standard\ signed\ 8,\ 16,\ and\ 32\ bit\ data\ types\ (respectively).}}
+\DoxyCodeLine{00037\ \textcolor{comment}{**\ The\ standard\ unsigned\ 8,\ 16,\ and\ 32\ bit\ data\ types\ (respectively).}}
+\DoxyCodeLine{00038\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00039\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{typedef}\ int8\_t\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_adf0e42342819b462ab3bf3ace8b1465f}{BOOL8}};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{typedef}\ uint8\_t\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_af3037cbae2cdbc45fb75983c08b87935}{UINT8}};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{typedef}\ int8\_t\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_a0e16e07c1525c9688ca6fbd34f334ec8}{INT8}};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{typedef}\ uint16\_t\ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{typedef}\ int16\_t\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_aca6c48234f001fdbd6597515a4cc088d}{INT16}};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{typedef}\ uint32\_t\ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_adfe04a44baaebba6143c3a23507ff85b}{UINT32}};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{typedef}\ int32\_t\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_a2c951cf9402cd61f04b43789471dbe7c}{INT32}};}
+\DoxyCodeLine{00048\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_a6a3da5f1db8d485c0d2f5a7ba526c4a0}{FLOAT32}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00051\ \textcolor{comment}{**}}
+\DoxyCodeLine{00052\ \textcolor{comment}{**\ FLOAT64}}
+\DoxyCodeLine{00053\ \textcolor{comment}{**}}
+\DoxyCodeLine{00054\ \textcolor{comment}{**\ INT64}}
+\DoxyCodeLine{00055\ \textcolor{comment}{**\ UINT64}}
+\DoxyCodeLine{00056\ \textcolor{comment}{**}}
+\DoxyCodeLine{00057\ \textcolor{comment}{**\ 64-\/bit\ floating\ point\ type\ according\ to\ IEC\ 60559\ /\ IEEE\ 754.}}
+\DoxyCodeLine{00058\ \textcolor{comment}{**\ 64-\/bit\ signed\ and\ unsigned\ integer\ types.}}
+\DoxyCodeLine{00059\ \textcolor{comment}{**}}
+\DoxyCodeLine{00060\ \textcolor{comment}{**\ Those\ types\ are\ optional\ and\ support\ for\ them\ must\ also\ be\ enabled\ in}}
+\DoxyCodeLine{00061\ \textcolor{comment}{**\ "{}abcc\_driver\_config.h"{}\ if\ they\ are\ to\ be\ used.\ See\ the\ comments\ in}}
+\DoxyCodeLine{00062\ \textcolor{comment}{**\ "{}abcc\_config.h"{}\ for\ more\ information.}}
+\DoxyCodeLine{00063\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00064\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_aa8336782d864ba03efadb73a51260961}{FLOAT64}};}
+\DoxyCodeLine{00066\ \textcolor{keyword}{typedef}\ uint64\_t\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_a95df6cdb32afc350ff070f2fe8a54a67}{UINT64}};}
+\DoxyCodeLine{00067\ \textcolor{keyword}{typedef}\ int64\_t\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_a296e89aa9d3de65d9ba04e7060118260}{INT64}};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00070\ \textcolor{comment}{**\ LeINT16}}
+\DoxyCodeLine{00071\ \textcolor{comment}{**\ LeINT32}}
+\DoxyCodeLine{00072\ \textcolor{comment}{**\ LeUINT16}}
+\DoxyCodeLine{00073\ \textcolor{comment}{**\ LeUINT32}}
+\DoxyCodeLine{00074\ \textcolor{comment}{**}}
+\DoxyCodeLine{00075\ \textcolor{comment}{**\ Little\ endian\ data\ types\ for\ words\ and\ longwords.}}
+\DoxyCodeLine{00076\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00077\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00078\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{abcc__types_8h_aca6c48234f001fdbd6597515a4cc088d}{INT16}}\ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_acb57667cf0fbb0164f190c6d2f4c8a5a}{LeINT16}};}
+\DoxyCodeLine{00079\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{abcc__types_8h_a2c951cf9402cd61f04b43789471dbe7c}{INT32}}\ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_a48a61e855f35132db929725d83e66b37}{LeINT32}};}
+\DoxyCodeLine{00080\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}}\ \ \ \ \mbox{\hyperlink{abcc__types_8h_a76df17a9b1193622a58bb745e897587d}{LeUINT16}};}
+\DoxyCodeLine{00081\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{abcc__types_8h_adfe04a44baaebba6143c3a23507ff85b}{UINT32}}\ \ \ \ \mbox{\hyperlink{abcc__types_8h_a4b6870eccc95fef6d03b9345c275968c}{LeUINT32}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00084\ \textcolor{comment}{**\ BeINT16}}
+\DoxyCodeLine{00085\ \textcolor{comment}{**\ BeINT32}}
+\DoxyCodeLine{00086\ \textcolor{comment}{**\ BeUINT16}}
+\DoxyCodeLine{00087\ \textcolor{comment}{**\ BeUINT32}}
+\DoxyCodeLine{00088\ \textcolor{comment}{**}}
+\DoxyCodeLine{00089\ \textcolor{comment}{**\ Big\ endian\ data\ types\ for\ words\ and\ longwords.}}
+\DoxyCodeLine{00090\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00091\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00092\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{abcc__types_8h_aca6c48234f001fdbd6597515a4cc088d}{INT16}}\ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_a496602d9ba95ae658bc769b2ffb66bcb}{BeINT16}};}
+\DoxyCodeLine{00093\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{abcc__types_8h_a2c951cf9402cd61f04b43789471dbe7c}{INT32}}\ \ \ \ \ \mbox{\hyperlink{abcc__types_8h_a4a7152b098575ab683f8b99d20e037b5}{BeINT32}};}
+\DoxyCodeLine{00094\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{abcc__types_8h_acbc04026a2008f7c2fccf01718291c20}{UINT16}}\ \ \ \ \mbox{\hyperlink{abcc__types_8h_a26105f268001a008978f7b2cd1595b61}{BeUINT16}};}
+\DoxyCodeLine{00095\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{abcc__types_8h_adfe04a44baaebba6143c3a23507ff85b}{UINT32}}\ \ \ \ \mbox{\hyperlink{abcc__types_8h_a2b03120254e3744880e001dd236fe636}{BeUINT32}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00098\ \textcolor{comment}{**}}
+\DoxyCodeLine{00099\ \textcolor{comment}{**\ FALSE}}
+\DoxyCodeLine{00100\ \textcolor{comment}{**\ TRUE}}
+\DoxyCodeLine{00101\ \textcolor{comment}{**}}
+\DoxyCodeLine{00102\ \textcolor{comment}{**\ These\ are\ the\ symbolic\ constants\ for\ true\ and\ false\ used\ in\ boolean}}
+\DoxyCodeLine{00103\ \textcolor{comment}{**\ data\ type\ comparisons.}}
+\DoxyCodeLine{00104\ \textcolor{comment}{**}}
+\DoxyCodeLine{00105\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00106\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#ifndef\ FALSE}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\ \ \ \#define\ FALSE\ \ \ \ \ 0}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#ifndef\ TRUE}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\ \ \ \#define\ TRUE\ \ \ \ \ \ (\ !FALSE\ )}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00116\ \textcolor{comment}{**}}
+\DoxyCodeLine{00117\ \textcolor{comment}{**\ NULL}}
+\DoxyCodeLine{00118\ \textcolor{comment}{**}}
+\DoxyCodeLine{00119\ \textcolor{comment}{**\ Default\ value\ for\ invalid\ pointers.}}
+\DoxyCodeLine{00120\ \textcolor{comment}{**}}
+\DoxyCodeLine{00121\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00122\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#ifndef\ NULL}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ NULL\ 0}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ \ \#define\ CPLUSPLUS}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#ifdef\ CPLUSPLUS}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \#define\ EXTFUNC\ extern\ "{}C"{}}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \#define\ EXTVAR\ extern\ "{}C"{}}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \ \#define\ EXTFUNC\ extern}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \#define\ EXTVAR\ extern}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00140\ \textcolor{comment}{**\ Compiler/platform-\/specific\ packing\ macros.}}
+\DoxyCodeLine{00141\ \textcolor{comment}{**}}
+\DoxyCodeLine{00142\ \textcolor{comment}{**\ The\ macros\ ABCC\_SYS\_PACK\_ON,\ ABCC\_SYS\_PACK\_OFF\ and\ PACKED\_STRUCT\ must\ be}}
+\DoxyCodeLine{00143\ \textcolor{comment}{**\ defined\ if\ the\ compiler/platform\ in\ use\ does\ not\ pack\ (byte-\/align)\ data\ by}}
+\DoxyCodeLine{00144\ \textcolor{comment}{**\ default.\ This\ is\ relevant\ for\ the\ message-\/related\ typedef:s\ and\ struct:s}}
+\DoxyCodeLine{00145\ \textcolor{comment}{**\ in\ "{}abp.h"{},\ but\ may\ also\ be\ used\ elsewere\ in\ the\ driver\ and\ example\ code.}}
+\DoxyCodeLine{00146\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00147\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ ABCC\_SYS\_PACK\_ON}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ ABCC\_SYS\_PACK\_OFF}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ PACKED\_STRUCT\ \ \ \ \ \ \ \_\_attribute\_\_((packed))}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ inclusion\ lock\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

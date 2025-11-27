@@ -1,0 +1,155 @@
+\doxysection{inputs.\+h File Reference}
+\hypertarget{inputs_8h}{}\label{inputs_8h}\index{inputs.h@{inputs.h}}
+
+
+Input handling, safety interlock logic, and laser control API.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os2.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}max31855.\+h"{}}\newline
+Include dependency graph for inputs.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inputs_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inputs_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_status_config__t}{Status\+Config\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Runtime configuration for periodic status reporting. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_input_event__t}{Input\+Event\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure representing a queued event for USB or logging output. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_error_rule__t}{Error\+Rule\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__input__handling_ga84e33af0678cb88ee0d65784b8550069}{STATUS\+\_\+\+LASER\+\_\+\+DISABLE}}~(1U $<$$<$ 5)
+\begin{DoxyCompactList}\small\item\em the state of the LASER\+\_\+\+DISABLE signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint8\+\_\+t(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__input__handling_ga3d52ca9edf91edd33530d65de885a697}{Error\+Condition\+Fn}}) (void)
+\begin{DoxyCompactList}\small\item\em Function pointer type for evaluating fault conditions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__input__handling_ga17ed9738c4fcd08b8a24a1d405fac706}{Input\+Name}} \{ \newline
+\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a1acbf4e5db52a59efbc1ceebf81ae845}{INPUT\+\_\+\+DOOR}} = 0
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706ae3beee2ee57b6fb642230810be9b31d9}{INPUT\+\_\+\+DOOR\+\_\+\+LATCH\+\_\+\+ERR}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706aefc536f6fdb403776f4596ce9e0cf5a3}{INPUT\+\_\+\+ESTOP}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a736d9bf9d0e87d18572b760c582b6809}{INPUT\+\_\+\+ESTOP\+\_\+\+LATCH\+\_\+\+ERR}}
+, \newline
+\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a35c4f94a041a261f915e41f9430ae7ed}{INPUT\+\_\+\+KEY}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a2eb54874ec1f6c0319761fd9f78df425}{INPUT\+\_\+\+KEY\+\_\+\+LATCH\+\_\+\+ERR}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706adce292dfde382c8d0d2fb3eba30b7646}{INPUT\+\_\+\+BDO}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a61759b24c5d9155104a2734ac50dad79}{INPUT\+\_\+\+BDO\+\_\+\+LATCH\+\_\+\+ERR}}
+, \newline
+\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a886ad4ef02a02e83041c6640a1a1defb}{INPUT\+\_\+\+RELAY1\+\_\+\+ON}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706ab951375e18e679ba051c28e636450bfa}{INPUT\+\_\+\+RELAY2\+\_\+\+ON}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5251dbf2236075778219eebda9940135}{INPUT\+\_\+\+RELAY\+\_\+\+LATCH\+\_\+\+ERR}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a90d033a0354140757b021b0ccbde514c}{INPUT\+\_\+\+NO1}}
+, \newline
+\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a2dea000d1fed82d18085db45e3acb890}{INPUT\+\_\+\+NC1}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706af8386cac33a629d10742f65694dacad1}{INPUT\+\_\+12\+V\+\_\+\+PWR\+\_\+\+GOOD}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a6eba496249bc41f0455231fd3bc4a5aa}{INPUT\+\_\+24\+V\+\_\+\+PWR\+\_\+\+GOOD}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a0fcd4808c397de62c17517e94704eca0}{INPUT\+\_\+12\+V\+\_\+\+FUSE\+\_\+\+GOOD}}
+, \newline
+\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706ad2cf4062e79383bf905265293ae887a9}{INPUT\+\_\+\+TRU\+\_\+\+LAS\+\_\+\+DEACTIVATED}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a4795ae052123ab6746c18c788c1d7895}{INPUT\+\_\+\+TRU\+\_\+\+SYS\+\_\+\+FAULT}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a79b29c0e7a4b1f6450d2a84bb97e7c2c}{INPUT\+\_\+\+TRU\+\_\+\+BEAM\+\_\+\+DELIVERY}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a8012b67026b55536b005089bf0157f23}{INPUT\+\_\+\+TRU\+\_\+\+EMISS\+\_\+\+WARN}}
+, \newline
+\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a1946ee83aeb0f1c03de170a4143af8ef}{INPUT\+\_\+\+TRU\+\_\+\+ALARM}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706ab5471b842423f91df6cf7e7f0bb1ce35}{INPUT\+\_\+\+TRU\+\_\+\+MONITOR}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a84cc7c8b4bdf4acb79cf877742ca5db2}{INPUT\+\_\+\+TRU\+\_\+\+TEMPERATURE}}
+, \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\+\_\+\+INPUTS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates all monitored digital input channels. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__input__handling_ga29c32e7b69344b51f6e2f31ae178dd4e}{Input\+Event\+Type\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea6723eace89eaee00791d9767fa066486}{EVT\+\_\+\+INPUT\+\_\+\+CHANGE}}
+, \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4eadc5362c31c43fe328546b5a9ed3e93ae}{EVT\+\_\+\+ERROR}}
+, \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea75fecab2eb4c29536a1c12e67e9b7649}{EVT\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea614192474c69a61a1ccbdd0019e02b18}{EVT\+\_\+\+TRUPULSE}}
+, \newline
+\mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea1266c814d0405873e65fb3605f769cbc}{EVT\+\_\+\+TEMP\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea51d35645e3973fa7cf1fb5c7d23241ca}{EVT\+\_\+\+LOG\+\_\+\+DUMP}}
+, \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea1c221a0d7804a74cd5e79179591a7a73}{EVT\+\_\+\+LOG\+\_\+\+ERASE}}
+, \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea59c9be79d616f12d922cd1234c2e191b}{EVT\+\_\+\+FLASH\+\_\+\+STATUS}}
+, \newline
+\mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea61d4e6858e075fa2d8b92d61c9a0e3ef}{EVT\+\_\+\+FLASH\+\_\+\+ID}}
+, \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea01a06aeac1e065cc702f6aaff9844a85}{EVT\+\_\+\+FLASH\+\_\+\+TEST}}
+, \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea5038583f1a867e6911090e6c11a1dfdf}{EVT\+\_\+\+HELP}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates all event types processed by the USB logger task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__input__handling_ga894be054cbefd6f4fd84007f4835b7ba}{ms\+\_\+now}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current system uptime in milliseconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga805adbfc7497d40e012d66b373772958}{v\+Task\+Inputs}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS task that scans inputs and checks safety conditions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga392a7bd95b0d7cb59cd9d781b91b428f}{v\+Task\+Usb\+Logger}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS task that outputs event messages via USB. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga1c837cfffb15c501275d689b7fcd51bd}{Set\+Outputs\+To\+Known\+State}} (void)
+\begin{DoxyCompactList}\small\item\em Drive all latch output lines to known startup state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga44b27ab933e91b145cd452d1d5a1722d}{Set\+Latches\+To\+Fault\+State}} (void)
+\item 
+void \mbox{\hyperlink{group__input__handling_ga6f1c5d4fa2d3c8a1c6294d92ec9c52b1}{Pulse\+Output}} (\mbox{\hyperlink{struct_g_p_i_o___type_def}{GPIO\+\_\+\+Type\+Def}} \texorpdfstring{$\ast$}{*}port, uint16\+\_\+t pin, uint32\+\_\+t ms)
+\item 
+void \mbox{\hyperlink{group__input__handling_ga400940b334b781671f6daf5b5e3f5c98}{Print\+\_\+\+All\+Inputs}} (void)
+\begin{DoxyCompactList}\small\item\em Print a formatted list of all input states via USB. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga456e1383233490b69e46c8dc0e4e4193}{Print\+Tru\+Pulse\+Status}} (void)
+\begin{DoxyCompactList}\small\item\em Print detailed Tru\+Pulse subsystem status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga86941485553f3961314a69aa37ea8408}{reset\+\_\+latches}} (void)
+\begin{DoxyCompactList}\small\item\em Reset all safety latch circuits and re-\/enable laser output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_gaffe4cde7ad5ab8edbfe83781dbc7767b}{laser\+\_\+enable}} (void)
+\begin{DoxyCompactList}\small\item\em Enable laser output (active-\/low control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga6986056511b92d173350a0e3b7513c30}{laser\+\_\+disable}} (void)
+\begin{DoxyCompactList}\small\item\em Disable laser output (safety-\/off condition). \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__input__handling_ga8c71dcf026047812e5cdcc66fb60e15e}{App\+\_\+\+Build\+Debug\+Status\+Word}} (void)
+\begin{DoxyCompactList}\small\item\em Build primary 16-\/bit debug status word. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__input__handling_ga94d773ffaf8f23627d2520170ee6a8b7}{App\+\_\+\+Build\+Debug2\+Status\+Word}} (void)
+\begin{DoxyCompactList}\small\item\em Build secondary debug word for Tru\+Pulse inputs. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__input__handling_ga7515aa626fd5290af6b68fdbf765d661}{App\+\_\+\+Build\+Active\+Status\+Word}} (void)
+\begin{DoxyCompactList}\small\item\em Build composite active status word including current temperature. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__input__handling_ga754cd0dadfe415a6cfa635f1f2a3ce63}{Status\+\_\+\+Enable}} (uint8\+\_\+t enable)
+\item 
+void \mbox{\hyperlink{group__input__handling_ga9f1deadab2e99f006102e21940f831f0}{Status\+\_\+\+Set\+Interval}} (uint32\+\_\+t ms)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__input__handling_ga821c60e4615c59b5cb7d3eb7f040a6c6}{Input\+\_\+\+Get\+State}} (\mbox{\hyperlink{group__input__handling_ga17ed9738c4fcd08b8a24a1d405fac706}{Input\+Name}} input)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__input__handling_ga5317c72db950025ad0e43a0a90d8512d}{Cond\+\_\+\+Relay\+Contacts\+Match}} (void)
+\begin{DoxyCompactList}\small\item\em Verify relay contact feedback consistency. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__input__handling_ga826edb47818552911e13aee8a5b3ac26}{Cond\+\_\+\+Latch\+Error}} (void)
+\begin{DoxyCompactList}\small\item\em Evaluate latch fault inputs and software flags. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__input__handling_ga2eb52e5e7cb7d0503368203e55a47b8d}{Input\+State\+To\+String}} (\mbox{\hyperlink{group__input__handling_ga17ed9738c4fcd08b8a24a1d405fac706}{Input\+Name}} input, uint8\+\_\+t state)
+\begin{DoxyCompactList}\small\item\em Return human-\/readable string for a given input’s state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+os\+Message\+Queue\+Id\+\_\+t \mbox{\hyperlink{group__input__handling_ga18b12a1b645e0014948c0750c65b0578}{input\+Event\+Queue}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__input__handling_ga8ce1acccd5014e235b53bad8043d0796}{input\+Names}} \mbox{[}\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\+\_\+\+INPUTS}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__input__handling_ga3711f9988d0458491f58a119653255f7}{stable\+State}} \mbox{[}\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\+\_\+\+INPUTS}}\mbox{]}
+\item 
+\mbox{\hyperlink{struct_status_config__t}{Status\+Config\+\_\+t}} \mbox{\hyperlink{group__input__handling_ga0e6d8b7b2777513bf8597f9ebcb22990}{g\+Status\+Config}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Input handling, safety interlock logic, and laser control API. 
+
+Declares all data structures and public functions related to input scanning, fault evaluation, and output control. 

@@ -1,0 +1,288 @@
+\doxysection{IPOS\+\_\+\+M40\+\_\+\+V1\+\_\+00\+\_\+101125/\+Core/\+Src/main.c File Reference}
+\hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c}{}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c}\index{main.c@{main.c}}
+
+
+\+: Main program body  
+
+
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}bdma.\+h"{}}\newline
+{\ttfamily \#include "{}dma.\+h"{}}\newline
+{\ttfamily \#include "{}i2c.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+{\ttfamily \#include "{}spi.\+h"{}}\newline
+{\ttfamily \#include "{}usb\+\_\+otg.\+h"{}}\newline
+{\ttfamily \#include "{}gpio.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$ringbuffer.\+h$>$}\newline
+{\ttfamily \#include "{}command\+\_\+parser.\+h"{}}\newline
+{\ttfamily \#include "{}abcc.\+h"{}}\newline
+{\ttfamily \#include "{}abcc\+\_\+hardware\+\_\+abstraction\+\_\+aux.\+h"{}}\newline
+{\ttfamily \#include "{}abcc\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}slave\+\_\+link.\+h"{}}\newline
+{\ttfamily \#include "{}debug.\+h"{}}\newline
+{\ttfamily \#include "{}protocol.\+h"{}}\newline
+Include dependency graph for IPOS\+\_\+\+M40\+\_\+\+V1\+\_\+00\+\_\+101125/\+Core/\+Src/main.c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a71115d79568ca6bf736cfde16bf90e50}{to\+\_\+binary\+\_\+str\+\_\+grouped}} (uint16\+\_\+t value, int bits, char \texorpdfstring{$\ast$}{*}buf, size\+\_\+t buf\+\_\+size)
+\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a0d451c9635d738a4ea0745877c0580c8}{uart3\+\_\+debug}} (const char \texorpdfstring{$\ast$}{*}msg)
+\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a57a20e42f562544326ab746ea2c4e44b}{slave\+\_\+on\+\_\+write}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a1ef253795104f060c22e1433c137b379}{slave\+\_\+on\+\_\+read}} (uint8\+\_\+t var\+\_\+id)
+\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_af148e00f5d5937b22c9a16cbe82c0d3e}{ABCC\+\_\+\+API\+\_\+\+Cbf\+User\+Init}} (ABCC\+\_\+\+API\+\_\+\+Network\+Type i\+Network\+Type, ABCC\+\_\+\+API\+\_\+\+Fw\+Version\+Type i\+Firmware\+Version)
+\item 
+int \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_af2c4f03d53e997a54e1fd5e80daa55c4}{HAL\+\_\+\+Get\+Tick}} (void)
+\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ac4dcd8ce6bc7775cd1e8e380e044193c}{appl\+\_\+i\+PortA}}
+\begin{DoxyCompactList}\small\item\em Application variables visible on the Anybus network. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a91c7fbfdfa53b717491c1136a0826397}{appl\+\_\+i\+PortB}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a198510bead909eb05cb90eef960d433f}{appl\+\_\+i\+PortC}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a8f048df8801716ee7d55455e5e43f625}{appl\+\_\+i\+Status\+Debug}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a7ac4640ff340fb490ba79029ce9f88b4}{appl\+\_\+i\+Status\+PLC}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ae6c91dfc98877d0ef7eac0c1104b56ab}{appl\+\_\+i\+Status\+Active}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ac72a664dc1998c35d04d8815e5b38d1f}{appl\+\_\+i\+Status\+Debug\+Tru}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ae12bde2d42d3c538422750ddd61e925a}{Port\+A\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_aad6f6e948bb37d430c5d8c32fd26efe0}{Port\+B\+\_\+val}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a604457104f2e200ac939b40348412f0b}{Port\+C\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a661bd3a51f758a2c12f6c4c1fa4d9232}{Status\+PLC\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ad10f9af84e35553eeb832027c6f84daa}{Status\+Debug\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a7efd8189f7a3fa73faaa42229a0ae873}{Status\+Active\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a44b2f81c884ac2512c9729097d6013b2}{Status\+Debug\+Tru\+\_\+val}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a9d0b04d00c35d8e87cc04f0a3fc7de58}{tick}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Main program body 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2025 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_af148e00f5d5937b22c9a16cbe82c0d3e}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_af148e00f5d5937b22c9a16cbe82c0d3e} 
+\index{main.c@{main.c}!ABCC\_API\_CbfUserInit@{ABCC\_API\_CbfUserInit}}
+\index{ABCC\_API\_CbfUserInit@{ABCC\_API\_CbfUserInit}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_API\_CbfUserInit()}{ABCC\_API\_CbfUserInit()}}
+{\footnotesize\ttfamily void ABCC\+\_\+\+API\+\_\+\+Cbf\+User\+Init (\begin{DoxyParamCaption}\item[{ABCC\+\_\+\+API\+\_\+\+Network\+Type}]{i\+Network\+Type,  }\item[{ABCC\+\_\+\+API\+\_\+\+Fw\+Version\+Type}]{i\+Firmware\+Version }\end{DoxyParamCaption})}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a1730ffe1e560465665eb47d9264826f9}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a1730ffe1e560465665eb47d9264826f9} 
+\index{main.c@{main.c}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_af2c4f03d53e997a54e1fd5e80daa55c4}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_af2c4f03d53e997a54e1fd5e80daa55c4} 
+\index{main.c@{main.c}!HAL\_GetTick@{HAL\_GetTick}}
+\index{HAL\_GetTick@{HAL\_GetTick}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_GetTick()}{HAL\_GetTick()}}
+{\footnotesize\ttfamily uint32\+\_\+t HAL\+\_\+\+Get\+Tick (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyItemize}
+\item Forward HAL callbacks to ringbuffer \texorpdfstring{$\ast$}{*}/ 
+\end{DoxyItemize}\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a1ef253795104f060c22e1433c137b379}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a1ef253795104f060c22e1433c137b379} 
+\index{main.c@{main.c}!slave\_on\_read@{slave\_on\_read}}
+\index{slave\_on\_read@{slave\_on\_read}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{slave\_on\_read()}{slave\_on\_read()}}
+{\footnotesize\ttfamily void slave\+\_\+on\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id }\end{DoxyParamCaption})}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a57a20e42f562544326ab746ea2c4e44b}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a57a20e42f562544326ab746ea2c4e44b} 
+\index{main.c@{main.c}!slave\_on\_write@{slave\_on\_write}}
+\index{slave\_on\_write@{slave\_on\_write}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{slave\_on\_write()}{slave\_on\_write()}}
+{\footnotesize\ttfamily void slave\+\_\+on\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a70af21c671abfcc773614a9a4f63d920}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a70af21c671abfcc773614a9a4f63d920} 
+\index{main.c@{main.c}!SystemClock\_Config@{SystemClock\_Config}}
+\index{SystemClock\_Config@{SystemClock\_Config}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SystemClock\_Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Supply configuration update enable
+
+Configure the main internal regulator output voltage
+
+Initializes the RCC Oscillators according to the specified parameters in the \doxylink{struct_r_c_c___osc_init_type_def}{RCC\+\_\+\+Osc\+Init\+Type\+Def} structure.
+
+Initializes the CPU, AHB and APB buses clocks\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a71115d79568ca6bf736cfde16bf90e50}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a71115d79568ca6bf736cfde16bf90e50} 
+\index{main.c@{main.c}!to\_binary\_str\_grouped@{to\_binary\_str\_grouped}}
+\index{to\_binary\_str\_grouped@{to\_binary\_str\_grouped}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{to\_binary\_str\_grouped()}{to\_binary\_str\_grouped()}}
+{\footnotesize\ttfamily void to\+\_\+binary\+\_\+str\+\_\+grouped (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{value,  }\item[{int}]{bits,  }\item[{char \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{buf\+\_\+size }\end{DoxyParamCaption})}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a0d451c9635d738a4ea0745877c0580c8}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a0d451c9635d738a4ea0745877c0580c8} 
+\index{main.c@{main.c}!uart3\_debug@{uart3\_debug}}
+\index{uart3\_debug@{uart3\_debug}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{uart3\_debug()}{uart3\_debug()}}
+{\footnotesize\ttfamily void uart3\+\_\+debug (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{msg }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ac4dcd8ce6bc7775cd1e8e380e044193c}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ac4dcd8ce6bc7775cd1e8e380e044193c} 
+\index{main.c@{main.c}!appl\_iPortA@{appl\_iPortA}}
+\index{appl\_iPortA@{appl\_iPortA}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iPortA}{appl\_iPortA}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+PortA\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Application variables visible on the Anybus network. 
+
+These correspond to custom ADIs (Application Data Instances) that represent I/O and status data exchanged with the STM32 master. \Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a91c7fbfdfa53b717491c1136a0826397}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a91c7fbfdfa53b717491c1136a0826397} 
+\index{main.c@{main.c}!appl\_iPortB@{appl\_iPortB}}
+\index{appl\_iPortB@{appl\_iPortB}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iPortB}{appl\_iPortB}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+PortB\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a198510bead909eb05cb90eef960d433f}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a198510bead909eb05cb90eef960d433f} 
+\index{main.c@{main.c}!appl\_iPortC@{appl\_iPortC}}
+\index{appl\_iPortC@{appl\_iPortC}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iPortC}{appl\_iPortC}}
+{\footnotesize\ttfamily uint8\+\_\+t appl\+\_\+i\+PortC\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ae6c91dfc98877d0ef7eac0c1104b56ab}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ae6c91dfc98877d0ef7eac0c1104b56ab} 
+\index{main.c@{main.c}!appl\_iStatusActive@{appl\_iStatusActive}}
+\index{appl\_iStatusActive@{appl\_iStatusActive}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iStatusActive}{appl\_iStatusActive}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+Status\+Active\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a8f048df8801716ee7d55455e5e43f625}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a8f048df8801716ee7d55455e5e43f625} 
+\index{main.c@{main.c}!appl\_iStatusDebug@{appl\_iStatusDebug}}
+\index{appl\_iStatusDebug@{appl\_iStatusDebug}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iStatusDebug}{appl\_iStatusDebug}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+Status\+Debug\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ac72a664dc1998c35d04d8815e5b38d1f}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ac72a664dc1998c35d04d8815e5b38d1f} 
+\index{main.c@{main.c}!appl\_iStatusDebugTru@{appl\_iStatusDebugTru}}
+\index{appl\_iStatusDebugTru@{appl\_iStatusDebugTru}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iStatusDebugTru}{appl\_iStatusDebugTru}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+Status\+Debug\+Tru\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a7ac4640ff340fb490ba79029ce9f88b4}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a7ac4640ff340fb490ba79029ce9f88b4} 
+\index{main.c@{main.c}!appl\_iStatusPLC@{appl\_iStatusPLC}}
+\index{appl\_iStatusPLC@{appl\_iStatusPLC}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{appl\_iStatusPLC}{appl\_iStatusPLC}}
+{\footnotesize\ttfamily uint16\+\_\+t appl\+\_\+i\+Status\+PLC\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ae12bde2d42d3c538422750ddd61e925a}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ae12bde2d42d3c538422750ddd61e925a} 
+\index{main.c@{main.c}!PortA\_val@{PortA\_val}}
+\index{PortA\_val@{PortA\_val}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PortA\_val}{PortA\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Port\+A\+\_\+val\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_aad6f6e948bb37d430c5d8c32fd26efe0}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_aad6f6e948bb37d430c5d8c32fd26efe0} 
+\index{main.c@{main.c}!PortB\_val@{PortB\_val}}
+\index{PortB\_val@{PortB\_val}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PortB\_val}{PortB\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Port\+B\+\_\+val\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a604457104f2e200ac939b40348412f0b}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a604457104f2e200ac939b40348412f0b} 
+\index{main.c@{main.c}!PortC\_val@{PortC\_val}}
+\index{PortC\_val@{PortC\_val}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PortC\_val}{PortC\_val}}
+{\footnotesize\ttfamily uint8\+\_\+t Port\+C\+\_\+val\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a7efd8189f7a3fa73faaa42229a0ae873}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a7efd8189f7a3fa73faaa42229a0ae873} 
+\index{main.c@{main.c}!StatusActive\_val@{StatusActive\_val}}
+\index{StatusActive\_val@{StatusActive\_val}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{StatusActive\_val}{StatusActive\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Status\+Active\+\_\+val\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ad10f9af84e35553eeb832027c6f84daa}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_ad10f9af84e35553eeb832027c6f84daa} 
+\index{main.c@{main.c}!StatusDebug\_val@{StatusDebug\_val}}
+\index{StatusDebug\_val@{StatusDebug\_val}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{StatusDebug\_val}{StatusDebug\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Status\+Debug\+\_\+val\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a44b2f81c884ac2512c9729097d6013b2}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a44b2f81c884ac2512c9729097d6013b2} 
+\index{main.c@{main.c}!StatusDebugTru\_val@{StatusDebugTru\_val}}
+\index{StatusDebugTru\_val@{StatusDebugTru\_val}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{StatusDebugTru\_val}{StatusDebugTru\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Status\+Debug\+Tru\+\_\+val\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a661bd3a51f758a2c12f6c4c1fa4d9232}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a661bd3a51f758a2c12f6c4c1fa4d9232} 
+\index{main.c@{main.c}!StatusPLC\_val@{StatusPLC\_val}}
+\index{StatusPLC\_val@{StatusPLC\_val}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{StatusPLC\_val}{StatusPLC\_val}}
+{\footnotesize\ttfamily uint16\+\_\+t Status\+PLC\+\_\+val\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a9d0b04d00c35d8e87cc04f0a3fc7de58}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2main_8c_a9d0b04d00c35d8e87cc04f0a3fc7de58} 
+\index{main.c@{main.c}!tick@{tick}}
+\index{tick@{tick}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{tick}{tick}}
+{\footnotesize\ttfamily uint16\+\_\+t tick}
+

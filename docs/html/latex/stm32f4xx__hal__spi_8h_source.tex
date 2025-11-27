@@ -1,0 +1,313 @@
+\doxysection{stm32f4xx\+\_\+hal\+\_\+spi.\+h}
+\hypertarget{stm32f4xx__hal__spi_8h_source}{}\label{stm32f4xx__hal__spi_8h_source}\index{stm32f4xx\_hal\_spi.h@{stm32f4xx\_hal\_spi.h}}
+\mbox{\hyperlink{stm32f4xx__hal__spi_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ STM32F4xx\_HAL\_SPI\_H}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ STM32F4xx\_HAL\_SPI\_H}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{stm32f4xx__hal__def_8h}{stm32f4xx\_hal\_def.h}}"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{/*\ Exported\ types\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_a5247eb0463437c9980a9d4a5300b50a5}{Mode}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_ae5c132f597c806d7a1fe316023b36867}{Direction}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_a24b7835dd877e1c4e55236303fa3387f}{DataSize}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_a96922c7ff9e589ebd9611fc4ab730454}{CLKPolarity}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_ab21a458209f2588f49a2353c56f62625}{CLKPhase}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_aed541d17808213ac6f90ac7deb2bec5f}{NSS}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_a1d553f90738cb633a9298d2b4d306fde}{BaudRatePrescaler}};\ \ \ }
+\DoxyCodeLine{00073\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_a8c541d8863cb62a3212b9381b5cba447}{FirstBit}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_a60db7e87bb66775df6213e4006dfd876}{TIMode}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_a3472de9bd9247c1d97312aff7e58e385}{CRCCalculation}};\ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ uint32\_t\ \mbox{\hyperlink{struct_s_p_i___init_type_def_abdaf3ccbfa4ef68cc81fd32f29baa678}{CRCPolynomial}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \}\ \mbox{\hyperlink{struct_s_p_i___init_type_def}{SPI\_InitTypeDef}};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{group___s_p_i___exported___types_gga8891cb64e76198a860172d94c638c9b4adbc218df2c9841b561282b40b3ded69d}{HAL\_SPI\_STATE\_RESET}}\ \ \ \ \ \ =\ 0x00U,\ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \mbox{\hyperlink{group___s_p_i___exported___types_gga8891cb64e76198a860172d94c638c9b4abb3992c67a15c14bd1808ef6b63fa926}{HAL\_SPI\_STATE\_READY}}\ \ \ \ \ \ =\ 0x01U,\ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \mbox{\hyperlink{group___s_p_i___exported___types_gga8891cb64e76198a860172d94c638c9b4a0635e168bc0430253fe8e74cfe9768fd}{HAL\_SPI\_STATE\_BUSY}}\ \ \ \ \ \ \ =\ 0x02U,\ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \mbox{\hyperlink{group___s_p_i___exported___types_gga8891cb64e76198a860172d94c638c9b4a5d82b644c7ca656ab5fe8a8e3cbc29ab}{HAL\_SPI\_STATE\_BUSY\_TX}}\ \ \ \ =\ 0x03U,\ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{group___s_p_i___exported___types_gga8891cb64e76198a860172d94c638c9b4afd7e00128aca1feaa099c2595ffb9277}{HAL\_SPI\_STATE\_BUSY\_RX}}\ \ \ \ =\ 0x04U,\ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{group___s_p_i___exported___types_gga8891cb64e76198a860172d94c638c9b4a9dae2883ae3e43ca28afc9453a14c938}{HAL\_SPI\_STATE\_BUSY\_TX\_RX}}\ =\ 0x05U,\ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \mbox{\hyperlink{group___s_p_i___exported___types_gga8891cb64e76198a860172d94c638c9b4a3cba266d2346abe3b62fa0acccab4711}{HAL\_SPI\_STATE\_ERROR}}\ \ \ \ \ \ =\ 0x06U,\ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \mbox{\hyperlink{group___s_p_i___exported___types_gga8891cb64e76198a860172d94c638c9b4a34f9231d040d752a034db85e3eb7f782}{HAL\_SPI\_STATE\_ABORT}}\ \ \ \ \ \ =\ 0x07U\ \ \ \ \ }
+\DoxyCodeLine{00099\ \}\ \mbox{\hyperlink{group___s_p_i___exported___types_ga8891cb64e76198a860172d94c638c9b4}{HAL\_SPI\_StateTypeDef}};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \mbox{\hyperlink{struct_s_p_i___type_def}{SPI\_TypeDef}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{struct_____s_p_i___handle_type_def_a97e276bfd322a6028cbac7408cf8e610}{Instance}};\ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \mbox{\hyperlink{struct_s_p_i___init_type_def}{SPI\_InitTypeDef}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_____s_p_i___handle_type_def_a4b43d4d72f571b7d2162a2d171bb1312}{Init}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{const}\ uint8\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{struct_____s_p_i___handle_type_def_aacb6c3c55011b1b4d2a2ee1b4c012984}{pTxBuffPtr}};\ \ \ \ }
+\DoxyCodeLine{00112\ \ \ uint16\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_____s_p_i___handle_type_def_a5617a3a7983aedb0d214f318062ebc48}{TxXferSize}};\ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \mbox{\hyperlink{core__armv81mml_8h_aec43007d9998a0a0e01faede4133d6be}{\_\_IO}}\ uint16\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_____s_p_i___handle_type_def_a186b770dda2e53c4e9a204cd50e17e74}{TxXferCount}};\ \ \ \ }
+\DoxyCodeLine{00116\ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{struct_____s_p_i___handle_type_def_aa770b67ee3966c0aa7409f64b3b99bd8}{pRxBuffPtr}};\ \ \ \ }
+\DoxyCodeLine{00118\ \ \ uint16\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_____s_p_i___handle_type_def_ab274a4c2de5e95145d45fe80a289f535}{RxXferSize}};\ \ \ \ \ }
+\DoxyCodeLine{00120\ \ \ \mbox{\hyperlink{core__armv81mml_8h_aec43007d9998a0a0e01faede4133d6be}{\_\_IO}}\ uint16\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_____s_p_i___handle_type_def_a67e721440b3449d544a27cfd7726c920}{RxXferCount}};\ \ \ \ }
+\DoxyCodeLine{00122\ \ \ void\ (*\mbox{\hyperlink{struct_____s_p_i___handle_type_def_a599045b20d284f94e5a367a85cad9f39}{RxISR}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ }
+\DoxyCodeLine{00124\ \ \ void\ (*\mbox{\hyperlink{struct_____s_p_i___handle_type_def_a4446bdc11698f861edf37b72cf437aeb}{TxISR}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ }
+\DoxyCodeLine{00126\ \ \ \mbox{\hyperlink{struct_____d_m_a___handle_type_def}{DMA\_HandleTypeDef}}\ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{struct_____s_p_i___handle_type_def_aa311e9419f520aee2d2fa30668ce485c}{hdmatx}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \mbox{\hyperlink{struct_____d_m_a___handle_type_def}{DMA\_HandleTypeDef}}\ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{struct_____s_p_i___handle_type_def_a0876a1b344524bbdbd984be1c3b07a10}{hdmarx}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \mbox{\hyperlink{stm32f4xx__hal__def_8h_ab367482e943333a1299294eadaad284b}{HAL\_LockTypeDef}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_____s_p_i___handle_type_def_aa13d993a0b9b0ea6a07e5a77eeaf394e}{Lock}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \mbox{\hyperlink{core__armv81mml_8h_aec43007d9998a0a0e01faede4133d6be}{\_\_IO}}\ \mbox{\hyperlink{group___s_p_i___exported___types_ga8891cb64e76198a860172d94c638c9b4}{HAL\_SPI\_StateTypeDef}}\ \ \mbox{\hyperlink{struct_____s_p_i___handle_type_def_aa3e13040cc9ea19050d21818bccd49c9}{State}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \mbox{\hyperlink{core__armv81mml_8h_aec43007d9998a0a0e01faede4133d6be}{\_\_IO}}\ uint32\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_____s_p_i___handle_type_def_ab2497f2e3cfae59376db75da3bda7ffe}{ErrorCode}};\ \ \ \ \ \ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#if\ (USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ ==\ 1U)}}
+\DoxyCodeLine{00137\ \ \ void\ (*\ TxCpltCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ void\ (*\ RxCpltCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ void\ (*\ TxRxCpltCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ void\ (*\ TxHalfCpltCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ void\ (*\ RxHalfCpltCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ void\ (*\ TxRxHalfCpltCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ void\ (*\ ErrorCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ void\ (*\ AbortCpltCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00145\ \ \ void\ (*\ MspInitCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ void\ (*\ MspDeInitCallback)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{\_\_SPI\_HandleTypeDef}}\ *hspi);\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00149\ \}\ \mbox{\hyperlink{group___s_p_i___exported___types_gab633e49dd034de2f3a1fe79853d78d18}{SPI\_HandleTypeDef}};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#if\ (USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ ==\ 1U)}}
+\DoxyCodeLine{00155\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00156\ \{}
+\DoxyCodeLine{00157\ \ \ HAL\_SPI\_TX\_COMPLETE\_CB\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x00U,\ \ \ \ }
+\DoxyCodeLine{00158\ \ \ HAL\_SPI\_RX\_COMPLETE\_CB\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x01U,\ \ \ \ }
+\DoxyCodeLine{00159\ \ \ HAL\_SPI\_TX\_RX\_COMPLETE\_CB\_ID\ \ \ \ \ \ \ \ \ \ =\ 0x02U,\ \ \ \ }
+\DoxyCodeLine{00160\ \ \ HAL\_SPI\_TX\_HALF\_COMPLETE\_CB\_ID\ \ \ \ \ \ \ \ =\ 0x03U,\ \ \ \ }
+\DoxyCodeLine{00161\ \ \ HAL\_SPI\_RX\_HALF\_COMPLETE\_CB\_ID\ \ \ \ \ \ \ \ =\ 0x04U,\ \ \ \ }
+\DoxyCodeLine{00162\ \ \ HAL\_SPI\_TX\_RX\_HALF\_COMPLETE\_CB\_ID\ \ \ \ \ =\ 0x05U,\ \ \ \ }
+\DoxyCodeLine{00163\ \ \ HAL\_SPI\_ERROR\_CB\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x06U,\ \ \ \ }
+\DoxyCodeLine{00164\ \ \ HAL\_SPI\_ABORT\_CB\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x07U,\ \ \ \ }
+\DoxyCodeLine{00165\ \ \ HAL\_SPI\_MSPINIT\_CB\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x08U,\ \ \ \ }
+\DoxyCodeLine{00166\ \ \ HAL\_SPI\_MSPDEINIT\_CB\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x09U\ \ \ \ \ }
+\DoxyCodeLine{00168\ \}\ HAL\_SPI\_CallbackIDTypeDef;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00173\ \textcolor{keyword}{typedef}\ \ void\ (*pSPI\_CallbackTypeDef)(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);\ }
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00180\ \textcolor{comment}{/*\ Exported\ constants\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#define\ HAL\_SPI\_ERROR\_NONE\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000000U)\ \ \ }}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ HAL\_SPI\_ERROR\_MODF\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000001U)\ \ \ }}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ HAL\_SPI\_ERROR\_CRC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000002U)\ \ \ }}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#define\ HAL\_SPI\_ERROR\_OVR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000004U)\ \ \ }}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#define\ HAL\_SPI\_ERROR\_FRE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000008U)\ \ \ }}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#define\ HAL\_SPI\_ERROR\_DMA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000010U)\ \ \ }}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ HAL\_SPI\_ERROR\_FLAG\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000020U)\ \ \ }}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#define\ HAL\_SPI\_ERROR\_ABORT\ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000040U)\ \ \ }}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#if\ (USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ ==\ 1U)}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#define\ HAL\_SPI\_ERROR\_INVALID\_CALLBACK\ \ (0x00000080U)\ \ \ }}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#define\ SPI\_MODE\_SLAVE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#define\ SPI\_MODE\_MASTER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (SPI\_CR1\_MSTR\ |\ SPI\_CR1\_SSI)}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#define\ SPI\_DIRECTION\_2LINES\ \ \ \ \ \ \ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#define\ SPI\_DIRECTION\_2LINES\_RXONLY\ \ \ \ \ SPI\_CR1\_RXONLY}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#define\ SPI\_DIRECTION\_1LINE\ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR1\_BIDIMODE}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ SPI\_DATASIZE\_8BIT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#define\ SPI\_DATASIZE\_16BIT\ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR1\_DFF}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#define\ SPI\_POLARITY\_LOW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#define\ SPI\_POLARITY\_HIGH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR1\_CPOL}}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#define\ SPI\_PHASE\_1EDGE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#define\ SPI\_PHASE\_2EDGE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR1\_CPHA}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#define\ SPI\_NSS\_SOFT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR1\_SSM}}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#define\ SPI\_NSS\_HARD\_INPUT\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#define\ SPI\_NSS\_HARD\_OUTPUT\ \ \ \ \ \ \ \ \ \ \ \ \ (SPI\_CR2\_SSOE\ <<\ 16U)}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#define\ SPI\_BAUDRATEPRESCALER\_2\ \ \ \ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#define\ SPI\_BAUDRATEPRESCALER\_4\ \ \ \ \ \ \ \ \ (SPI\_CR1\_BR\_0)}}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#define\ SPI\_BAUDRATEPRESCALER\_8\ \ \ \ \ \ \ \ \ (SPI\_CR1\_BR\_1)}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#define\ SPI\_BAUDRATEPRESCALER\_16\ \ \ \ \ \ \ \ (SPI\_CR1\_BR\_1\ |\ SPI\_CR1\_BR\_0)}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#define\ SPI\_BAUDRATEPRESCALER\_32\ \ \ \ \ \ \ \ (SPI\_CR1\_BR\_2)}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#define\ SPI\_BAUDRATEPRESCALER\_64\ \ \ \ \ \ \ \ (SPI\_CR1\_BR\_2\ |\ SPI\_CR1\_BR\_0)}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#define\ SPI\_BAUDRATEPRESCALER\_128\ \ \ \ \ \ \ (SPI\_CR1\_BR\_2\ |\ SPI\_CR1\_BR\_1)}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#define\ SPI\_BAUDRATEPRESCALER\_256\ \ \ \ \ \ \ (SPI\_CR1\_BR\_2\ |\ SPI\_CR1\_BR\_1\ |\ SPI\_CR1\_BR\_0)}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#define\ SPI\_FIRSTBIT\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#define\ SPI\_FIRSTBIT\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR1\_LSBFIRST}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ SPI\_TIMODE\_DISABLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#define\ SPI\_TIMODE\_ENABLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR2\_FRF}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#define\ SPI\_CRCCALCULATION\_DISABLE\ \ \ \ \ \ (0x00000000U)}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#define\ SPI\_CRCCALCULATION\_ENABLE\ \ \ \ \ \ \ SPI\_CR1\_CRCEN}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#define\ SPI\_IT\_TXE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR2\_TXEIE}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#define\ SPI\_IT\_RXNE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR2\_RXNEIE}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#define\ SPI\_IT\_ERR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_CR2\_ERRIE}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#define\ SPI\_FLAG\_RXNE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_SR\_RXNE\ \ \ }\textcolor{comment}{/*\ SPI\ status\ flag:\ Rx\ buffer\ not\ empty\ flag\ \ \ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#define\ SPI\_FLAG\_TXE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_SR\_TXE\ \ \ \ }\textcolor{comment}{/*\ SPI\ status\ flag:\ Tx\ buffer\ empty\ flag\ \ \ \ \ \ \ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#define\ SPI\_FLAG\_BSY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_SR\_BSY\ \ \ \ }\textcolor{comment}{/*\ SPI\ status\ flag:\ Busy\ flag\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#define\ SPI\_FLAG\_CRCERR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_SR\_CRCERR\ }\textcolor{comment}{/*\ SPI\ Error\ flag:\ CRC\ error\ flag\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#define\ SPI\_FLAG\_MODF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_SR\_MODF\ \ \ }\textcolor{comment}{/*\ SPI\ Error\ flag:\ Mode\ fault\ flag\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#define\ SPI\_FLAG\_OVR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_SR\_OVR\ \ \ \ }\textcolor{comment}{/*\ SPI\ Error\ flag:\ Overrun\ flag\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#define\ SPI\_FLAG\_FRE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SPI\_SR\_FRE\ \ \ \ }\textcolor{comment}{/*\ SPI\ Error\ flag:\ TI\ mode\ frame\ format\ error\ flag\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#define\ SPI\_FLAG\_MASK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (SPI\_SR\_RXNE\ |\ SPI\_SR\_TXE\ |\ SPI\_SR\_BSY\ |\ SPI\_SR\_CRCERR\(\backslash\)}}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ SPI\_SR\_MODF\ |\ SPI\_SR\_OVR\ |\ SPI\_SR\_FRE)}}
+\DoxyCodeLine{00331\ \textcolor{comment}{/*\ Exported\ macros\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\#if\ (USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ ==\ 1U)}}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_RESET\_HANDLE\_STATE(\_\_HANDLE\_\_)\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\ \ do\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\ \ \ \ (\_\_HANDLE\_\_)-\/>State\ =\ HAL\_SPI\_STATE\_RESET;\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\ \ \ \ (\_\_HANDLE\_\_)-\/>MspInitCallback\ =\ NULL;\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\ \ \ \ (\_\_HANDLE\_\_)-\/>MspDeInitCallback\ =\ NULL;\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00347\ \textcolor{preprocessor}{\ \ \}\ while(0)}}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_RESET\_HANDLE\_STATE(\_\_HANDLE\_\_)\ ((\_\_HANDLE\_\_)-\/>State\ =\ HAL\_SPI\_STATE\_RESET)}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_ENABLE\_IT(\_\_HANDLE\_\_,\ \_\_INTERRUPT\_\_)\ \ \ SET\_BIT((\_\_HANDLE\_\_)-\/>Instance-\/>CR2,\ (\_\_INTERRUPT\_\_))}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_DISABLE\_IT(\_\_HANDLE\_\_,\ \_\_INTERRUPT\_\_)\ \ CLEAR\_BIT((\_\_HANDLE\_\_)-\/>Instance-\/>CR2,\ (\_\_INTERRUPT\_\_))}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00386\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_GET\_IT\_SOURCE(\_\_HANDLE\_\_,\ \_\_INTERRUPT\_\_)\ ((((\_\_HANDLE\_\_)-\/>Instance-\/>CR2\(\backslash\)}}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\ (\_\_INTERRUPT\_\_))\ ==\ (\_\_INTERRUPT\_\_))\ ?\ SET\ :\ RESET)}}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00403\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_GET\_FLAG(\_\_HANDLE\_\_,\ \_\_FLAG\_\_)\ ((((\_\_HANDLE\_\_)-\/>Instance-\/>SR)\ \&\ (\_\_FLAG\_\_))\ ==\ (\_\_FLAG\_\_))}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00410\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_CLEAR\_CRCERRFLAG(\_\_HANDLE\_\_)\ ((\_\_HANDLE\_\_)-\/>Instance-\/>SR\ =\ (uint16\_t)(\string~SPI\_FLAG\_CRCERR))}}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_CLEAR\_MODFFLAG(\_\_HANDLE\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00418\ \textcolor{preprocessor}{\ \ do\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\ \ \ \ \_\_IO\ uint32\_t\ tmpreg\_modf\ =\ 0x00U;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00420\ \textcolor{preprocessor}{\ \ \ \ tmpreg\_modf\ =\ (\_\_HANDLE\_\_)-\/>Instance-\/>SR;\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\ \ \ \ CLEAR\_BIT((\_\_HANDLE\_\_)-\/>Instance-\/>CR1,\ SPI\_CR1\_SPE);\ \(\backslash\)}}
+\DoxyCodeLine{00422\ \textcolor{preprocessor}{\ \ \ \ UNUSED(tmpreg\_modf);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\ \ \}\ while(0U)}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00430\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_CLEAR\_OVRFLAG(\_\_HANDLE\_\_)\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00431\ \textcolor{preprocessor}{\ \ do\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00432\ \textcolor{preprocessor}{\ \ \ \ \_\_IO\ uint32\_t\ tmpreg\_ovr\ =\ 0x00U;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00433\ \textcolor{preprocessor}{\ \ \ \ tmpreg\_ovr\ =\ (\_\_HANDLE\_\_)-\/>Instance-\/>DR;\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00434\ \textcolor{preprocessor}{\ \ \ \ tmpreg\_ovr\ =\ (\_\_HANDLE\_\_)-\/>Instance-\/>SR;\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00435\ \textcolor{preprocessor}{\ \ \ \ UNUSED(tmpreg\_ovr);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\ \ \}\ while(0U)}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_CLEAR\_FREFLAG(\_\_HANDLE\_\_)\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\ \ do\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00445\ \textcolor{preprocessor}{\ \ \ \ \_\_IO\ uint32\_t\ tmpreg\_fre\ =\ 0x00U;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\ \ \ \ tmpreg\_fre\ =\ (\_\_HANDLE\_\_)-\/>Instance-\/>SR;\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00447\ \textcolor{preprocessor}{\ \ \ \ UNUSED(tmpreg\_fre);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\ \ \}\ while(0U)}}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00455\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_ENABLE(\_\_HANDLE\_\_)\ \ SET\_BIT((\_\_HANDLE\_\_)-\/>Instance-\/>CR1,\ SPI\_CR1\_SPE)}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00462\ \textcolor{preprocessor}{\#define\ \_\_HAL\_SPI\_DISABLE(\_\_HANDLE\_\_)\ CLEAR\_BIT((\_\_HANDLE\_\_)-\/>Instance-\/>CR1,\ SPI\_CR1\_SPE)}}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00468\ \textcolor{comment}{/*\ Private\ macros\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\#define\ SPI\_1LINE\_TX(\_\_HANDLE\_\_)\ \ SET\_BIT((\_\_HANDLE\_\_)-\/>Instance-\/>CR1,\ SPI\_CR1\_BIDIOE)}}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\#define\ SPI\_1LINE\_RX(\_\_HANDLE\_\_)\ \ CLEAR\_BIT((\_\_HANDLE\_\_)-\/>Instance-\/>CR1,\ SPI\_CR1\_BIDIOE)}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#define\ SPI\_RESET\_CRC(\_\_HANDLE\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00493\ \textcolor{preprocessor}{\ \ do\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00494\ \textcolor{preprocessor}{\ \ \ \ CLEAR\_BIT((\_\_HANDLE\_\_)-\/>Instance-\/>CR1,\ SPI\_CR1\_CRCEN);\ \ \(\backslash\)}}
+\DoxyCodeLine{00495\ \textcolor{preprocessor}{\ \ \ \ SET\_BIT((\_\_HANDLE\_\_)-\/>Instance-\/>CR1,\ SPI\_CR1\_CRCEN);\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00496\ \textcolor{preprocessor}{\ \ \}\ while(0U)}}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\#define\ SPI\_CHECK\_FLAG(\_\_SR\_\_,\ \_\_FLAG\_\_)\ ((((\_\_SR\_\_)\ \&\ ((\_\_FLAG\_\_)\ \&\ SPI\_FLAG\_MASK))\ ==\ \(\backslash\)}}
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_FLAG\_\_)\ \&\ SPI\_FLAG\_MASK))\ ?\ SET\ :\ RESET)}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00523\ \textcolor{preprocessor}{\#define\ SPI\_CHECK\_IT\_SOURCE(\_\_CR2\_\_,\ \_\_INTERRUPT\_\_)\ ((((\_\_CR2\_\_)\ \&\ (\_\_INTERRUPT\_\_))\ ==\ \(\backslash\)}}
+\DoxyCodeLine{00524\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\_\_INTERRUPT\_\_))\ ?\ SET\ :\ RESET)}}
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00531\ \textcolor{preprocessor}{\#define\ IS\_SPI\_MODE(\_\_MODE\_\_)\ \ \ \ \ \ (((\_\_MODE\_\_)\ ==\ SPI\_MODE\_SLAVE)\ \ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00532\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_MODE\_\_)\ ==\ SPI\_MODE\_MASTER))}}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\#define\ IS\_SPI\_DIRECTION(\_\_MODE\_\_)\ (((\_\_MODE\_\_)\ ==\ SPI\_DIRECTION\_2LINES)\ \ \ \ \ \ \ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00540\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_MODE\_\_)\ ==\ SPI\_DIRECTION\_2LINES\_RXONLY)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_MODE\_\_)\ ==\ SPI\_DIRECTION\_1LINE))}}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00547\ \textcolor{preprocessor}{\#define\ IS\_SPI\_DIRECTION\_2LINES(\_\_MODE\_\_)\ ((\_\_MODE\_\_)\ ==\ SPI\_DIRECTION\_2LINES)}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00553\ \textcolor{preprocessor}{\#define\ IS\_SPI\_DIRECTION\_2LINES\_OR\_1LINE(\_\_MODE\_\_)\ (((\_\_MODE\_\_)\ ==\ SPI\_DIRECTION\_2LINES)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00554\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_MODE\_\_)\ ==\ SPI\_DIRECTION\_1LINE))}}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00561\ \textcolor{preprocessor}{\#define\ IS\_SPI\_DATASIZE(\_\_DATASIZE\_\_)\ (((\_\_DATASIZE\_\_)\ ==\ SPI\_DATASIZE\_16BIT)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_DATASIZE\_\_)\ ==\ SPI\_DATASIZE\_8BIT))}}
+\DoxyCodeLine{00563\ }
+\DoxyCodeLine{00569\ \textcolor{preprocessor}{\#define\ IS\_SPI\_CPOL(\_\_CPOL\_\_)\ \ \ \ \ \ (((\_\_CPOL\_\_)\ ==\ SPI\_POLARITY\_LOW)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00570\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_CPOL\_\_)\ ==\ SPI\_POLARITY\_HIGH))}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00577\ \textcolor{preprocessor}{\#define\ IS\_SPI\_CPHA(\_\_CPHA\_\_)\ \ \ \ \ \ (((\_\_CPHA\_\_)\ ==\ SPI\_PHASE\_1EDGE)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00578\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_CPHA\_\_)\ ==\ SPI\_PHASE\_2EDGE))}}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00585\ \textcolor{preprocessor}{\#define\ IS\_SPI\_NSS(\_\_NSS\_\_)\ \ \ \ \ \ \ \ (((\_\_NSS\_\_)\ ==\ SPI\_NSS\_SOFT)\ \ \ \ \ \ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00586\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_NSS\_\_)\ ==\ SPI\_NSS\_HARD\_INPUT)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00587\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_NSS\_\_)\ ==\ SPI\_NSS\_HARD\_OUTPUT))}}
+\DoxyCodeLine{00588\ }
+\DoxyCodeLine{00594\ \textcolor{preprocessor}{\#define\ IS\_SPI\_BAUDRATE\_PRESCALER(\_\_PRESCALER\_\_)\ (((\_\_PRESCALER\_\_)\ ==\ SPI\_BAUDRATEPRESCALER\_2)\ \ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00595\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_PRESCALER\_\_)\ ==\ SPI\_BAUDRATEPRESCALER\_4)\ \ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00596\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_PRESCALER\_\_)\ ==\ SPI\_BAUDRATEPRESCALER\_8)\ \ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00597\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_PRESCALER\_\_)\ ==\ SPI\_BAUDRATEPRESCALER\_16)\ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00598\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_PRESCALER\_\_)\ ==\ SPI\_BAUDRATEPRESCALER\_32)\ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00599\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_PRESCALER\_\_)\ ==\ SPI\_BAUDRATEPRESCALER\_64)\ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00600\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_PRESCALER\_\_)\ ==\ SPI\_BAUDRATEPRESCALER\_128)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00601\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_PRESCALER\_\_)\ ==\ SPI\_BAUDRATEPRESCALER\_256))}}
+\DoxyCodeLine{00602\ }
+\DoxyCodeLine{00608\ \textcolor{preprocessor}{\#define\ IS\_SPI\_FIRST\_BIT(\_\_BIT\_\_)\ \ (((\_\_BIT\_\_)\ ==\ SPI\_FIRSTBIT\_MSB)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00609\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_BIT\_\_)\ ==\ SPI\_FIRSTBIT\_LSB))}}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00616\ \textcolor{preprocessor}{\#define\ IS\_SPI\_TIMODE(\_\_MODE\_\_)\ \ \ \ (((\_\_MODE\_\_)\ ==\ SPI\_TIMODE\_DISABLE)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00617\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_MODE\_\_)\ ==\ SPI\_TIMODE\_ENABLE))}}
+\DoxyCodeLine{00618\ }
+\DoxyCodeLine{00624\ \textcolor{preprocessor}{\#define\ IS\_SPI\_CRC\_CALCULATION(\_\_CALCULATION\_\_)\ (((\_\_CALCULATION\_\_)\ ==\ SPI\_CRCCALCULATION\_DISABLE)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00625\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_CALCULATION\_\_)\ ==\ SPI\_CRCCALCULATION\_ENABLE))}}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00632\ \textcolor{preprocessor}{\#define\ IS\_SPI\_CRC\_POLYNOMIAL(\_\_POLYNOMIAL\_\_)\ (((\_\_POLYNOMIAL\_\_)\ >=\ 0x1U)\ \ \ \ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{00633\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\_\_POLYNOMIAL\_\_)\ <=\ 0xFFFFU)\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{00634\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((\_\_POLYNOMIAL\_\_)\&0x1U)\ !=\ 0U))}}
+\DoxyCodeLine{00635\ }
+\DoxyCodeLine{00640\ \textcolor{preprocessor}{\#define\ IS\_SPI\_DMA\_HANDLE(\_\_HANDLE\_\_)\ ((\_\_HANDLE\_\_)\ !=\ NULL)}}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00646\ \textcolor{comment}{/*\ Exported\ functions\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00654\ \textcolor{comment}{/*\ Initialization/de-\/initialization\ functions\ \ ********************************/}}
+\DoxyCodeLine{00655\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group1_gaadb9d40e710c714d96b2501996658c44}{HAL\_SPI\_Init}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00656\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group1_gaca2db2a7bbed96ac013c565080fb61f2}{HAL\_SPI\_DeInit}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00657\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group1_ga17f583be14b22caffa6c4e56dcd035ef}{HAL\_SPI\_MspInit}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00658\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group1_gabadc4d4974af1afd943e8d13589068e1}{HAL\_SPI\_MspDeInit}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \textcolor{comment}{/*\ Callbacks\ Register/UnRegister\ functions\ \ ***********************************/}}
+\DoxyCodeLine{00661\ \textcolor{preprocessor}{\#if\ (USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ ==\ 1U)}}
+\DoxyCodeLine{00662\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ HAL\_SPI\_RegisterCallback(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ HAL\_SPI\_CallbackIDTypeDef\ CallbackID,}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pSPI\_CallbackTypeDef\ pCallback);}
+\DoxyCodeLine{00664\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ HAL\_SPI\_UnRegisterCallback(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ HAL\_SPI\_CallbackIDTypeDef\ CallbackID);}
+\DoxyCodeLine{00665\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ USE\_HAL\_SPI\_REGISTER\_CALLBACKS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00673\ \textcolor{comment}{/*\ I/O\ operation\ functions\ \ ***************************************************/}}
+\DoxyCodeLine{00674\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_gaca4b7bb29640435fb30d7eb89ce0fd62}{HAL\_SPI\_Transmit}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ \textcolor{keyword}{const}\ uint8\_t\ *pData,\ uint16\_t\ Size,\ uint32\_t\ Timeout);}
+\DoxyCodeLine{00675\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_gafdf43dbe4e5ef225bed6650b6e8c6313}{HAL\_SPI\_Receive}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ uint8\_t\ *pData,\ uint16\_t\ Size,\ uint32\_t\ Timeout);}
+\DoxyCodeLine{00676\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga806db11431c61c963eb7ed8025e58f70}{HAL\_SPI\_TransmitReceive}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ \textcolor{keyword}{const}\ uint8\_t\ *pTxData,\ uint8\_t\ *pRxData,}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ Size,\ uint32\_t\ Timeout);}
+\DoxyCodeLine{00678\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga96859ed0a0b5571ecaa958780fb19700}{HAL\_SPI\_Transmit\_IT}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ \textcolor{keyword}{const}\ uint8\_t\ *pData,\ uint16\_t\ Size);}
+\DoxyCodeLine{00679\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_gaaae0af2e2db7e7549b52b020a18f6168}{HAL\_SPI\_Receive\_IT}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ uint8\_t\ *pData,\ uint16\_t\ Size);}
+\DoxyCodeLine{00680\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga3bde00f3764556ef6050bea913269946}{HAL\_SPI\_TransmitReceive\_IT}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ \textcolor{keyword}{const}\ uint8\_t\ *pTxData,\ uint8\_t\ *pRxData,}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ Size);}
+\DoxyCodeLine{00682\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_gac48467984880755e9632f914e8576007}{HAL\_SPI\_Transmit\_DMA}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ \textcolor{keyword}{const}\ uint8\_t\ *pData,\ uint16\_t\ Size);}
+\DoxyCodeLine{00683\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga626bb2ec54e7b6ff9bd5d807ae6e6e24}{HAL\_SPI\_Receive\_DMA}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ uint8\_t\ *pData,\ uint16\_t\ Size);}
+\DoxyCodeLine{00684\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_gaf94b75cd52be2dc144867bd4be5f4a90}{HAL\_SPI\_TransmitReceive\_DMA}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi,\ \textcolor{keyword}{const}\ uint8\_t\ *pTxData,\ uint8\_t\ *pRxData,}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ Size);}
+\DoxyCodeLine{00686\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga61e4a628d6918ec838736d65ae135031}{HAL\_SPI\_DMAPause}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00687\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga7fdd4b7aa5c6bd560a476c833f546d93}{HAL\_SPI\_DMAResume}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00688\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga7e01eb529af91fabc950180b927fa355}{HAL\_SPI\_DMAStop}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00689\ \textcolor{comment}{/*\ Transfer\ Abort\ functions\ */}}
+\DoxyCodeLine{00690\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga11c74b1d91d88ff336f674f6376cc904}{HAL\_SPI\_Abort}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00691\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga75d7782876ed13b9f8aebfa8dbba5a1c}{HAL\_SPI\_Abort\_IT}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00692\ }
+\DoxyCodeLine{00693\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_gaf3da6e0a87468bc039b578c21329df47}{HAL\_SPI\_IRQHandler}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00694\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga0a99ab4f6aa6ee7dc2abca5483910dde}{HAL\_SPI\_TxCpltCallback}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00695\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga3df7021fe24cf874f8b1eec5bd5f4cb3}{HAL\_SPI\_RxCpltCallback}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00696\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga04e63f382f172164c8e7cae4ff5d883c}{HAL\_SPI\_TxRxCpltCallback}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00697\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga931ef2f7fd94ffa16ec431972b1b237f}{HAL\_SPI\_TxHalfCpltCallback}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00698\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_gacf622756a3814edfacf449b5749b048a}{HAL\_SPI\_RxHalfCpltCallback}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00699\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_gab46e2325b0880d5b5a301792438b151b}{HAL\_SPI\_TxRxHalfCpltCallback}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00700\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga3db7835e7e7ac335887f62fedf156926}{HAL\_SPI\_ErrorCallback}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00701\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group2_ga4a2593ec36fa4def11929e65f631f3cf}{HAL\_SPI\_AbortCpltCallback}}(\mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00709\ \textcolor{comment}{/*\ Peripheral\ State\ and\ Error\ functions\ ***************************************/}}
+\DoxyCodeLine{00710\ \mbox{\hyperlink{group___s_p_i___exported___types_ga8891cb64e76198a860172d94c638c9b4}{HAL\_SPI\_StateTypeDef}}\ \mbox{\hyperlink{group___s_p_i___exported___functions___group3_ga3c57f63c08ced3c209dc61b8eea146ef}{HAL\_SPI\_GetState}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00711\ uint32\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___s_p_i___exported___functions___group3_ga73e9fe6661ce972720f0364166775d32}{HAL\_SPI\_GetError}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ *hspi);}
+\DoxyCodeLine{00728\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00729\ \}}
+\DoxyCodeLine{00730\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ STM32F4xx\_HAL\_SPI\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00733\ }
+
+\end{DoxyCode}

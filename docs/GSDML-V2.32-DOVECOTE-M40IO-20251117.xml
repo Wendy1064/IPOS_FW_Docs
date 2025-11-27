@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ISO15745Profile
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.profibus.com/GSDML/2003/11/DeviceProfile"
+    xsi:schemaLocation="http://www.profibus.com/GSDML/2003/11/DeviceProfile GSDML-DeviceProfile-V2.32.xsd">
+
+  <!-- ========================================================= -->
+  <!--  Profile header                                            -->
+  <!-- ========================================================= -->
+  <ProfileHeader>
+    <ProfileIdentification>PROFINET Device Profile</ProfileIdentification>
+    <ProfileRevision>1.00</ProfileRevision>
+    <ProfileName>Simple 2In/2Out IO-Device</ProfileName>
+    <ProfileSource>PROFINET</ProfileSource>
+    <ProfileClassID>Device</ProfileClassID>
+    <ISO15745Reference>
+      <ISO15745Part>4</ISO15745Part>
+      <ISO15745Edition>1</ISO15745Edition>
+      <ProfileTechnology>GSDML</ProfileTechnology>
+    </ISO15745Reference>
+  </ProfileHeader>
+
+  <!-- ========================================================= -->
+  <!--  Device description                                        -->
+  <!-- ========================================================= -->
+  <ProfileBody>
+    <!--  NOTE:
+          - VendorID MUST be your official PI VendorID in production
+          - DeviceID can be any value you define for this product
+    -->
+    <DeviceIdentity VendorID="0xFFFF" DeviceID="0x0001">
+      <InfoText TextId="Dev_Info" />
+      <VendorName Value="Dovecote Engineering" />
+      <OrderNumber Value="DOV-M40-IO" />
+      <HardwareRelease Value="V1.0" />
+      <SoftwareRelease Value="V1.0" />
+    </DeviceIdentity>
+
+    <DeviceFunction>
+      <Family MainFamily="I/O" ProductFamily="CompactCom M40 Based Device" />
+    </DeviceFunction>
+
+    <!-- ======================================================= -->
+    <!--  Application / Device Access Point                      -->
+    <!-- ======================================================= -->
+    <ApplicationProcess>
+      <DeviceAccessPointList>
+        <!-- Single DAP (device access point) -->
+        <DeviceAccessPointItem
+            ID="DAP1"
+            DNS_CompatibleName="DOV_M40_IO"
+            PhysicalSlots="1"
+            FixedInSlots="1"
+            DeviceAccessSupported="true"
+            ModuleIdentNumber="0x00000001"
+            PNIO_Version="V2.32"
+            MinDeviceInterval="32"
+            MaxSupportedRecordSize="1024"
+            AddressAssignment="DCP"
+            CheckDeviceID_Allowed="true"
+            DCP_BoundaryRemovalSupported="true">
+
+          <ModuleInfo>
+            <Name TextId="DAP_Name" />
+            <InfoText TextId="DAP_Desc" />
+          </ModuleInfo>
+
+          <!-- Basic performance classification; tweak later if needed -->
+          <CertificationInfo ConformanceClass="B" NetloadClass="I" />
+
+          <!-- Ethernet interface + port subslots (standard dummy) -->
+          <SubslotList>
+            <SubslotItem SubslotNumber="0x8000" TextId="If_Subslot" />
+            <SubslotItem SubslotNumber="0x8001" TextId="Port1_Subslot" />
+          </SubslotList>
+
+          <!-- Max IO sizes (2 bytes IN, 2 bytes OUT) -->
+          <IOConfigData
+              MaxInputLength="2"
+              MaxOutputLength="2"
+              MaxDataLength="4" />
+
+          <!-- =================================================== -->
+          <!--  Virtual submodule with 2 bytes IN, 2 bytes OUT     -->
+          <!-- =================================================== -->
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem
+                ID="VS_IO_2IN2OUT"
+                SubmoduleIdentNumber="0x00001001"
+                FixedInSubslots="1"
+                MayIssueProcessAlarm="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <!-- 2 bytes input to PLC (from STM32 / PORTA) -->
+                  <DataItem
+                      ByteOffset="0"
+                      BitOffset="0"
+                      Length="2"
+                      DataType="Unsigned8"
+                      UseAsBits="false"
+                      TextId="Mod_In_2B" />
+                </Input>
+                <Output>
+                  <!-- 2 bytes output from PLC (to STM32 / PORTB) -->
+                  <DataItem
+                      ByteOffset="0"
+                      BitOffset="0"
+                      Length="2"
+                      DataType="Unsigned8"
+                      UseAsBits="false"
+                      TextId="Mod_Out_2B" />
+                </Output>
+              </IOData>
+
+              <ModuleInfo>
+                <Name TextId="VS_IO_Name" />
+                <InfoText TextId="VS_IO_Desc" />
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+
+          <!-- =================================================== -->
+          <!--  System-defined interface and port submodules       -->
+          <!-- =================================================== -->
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem
+                ID="IFace"
+                SubslotNumber="0x8000"
+                SubmoduleIdentNumber="0xF000"
+                TextId="If_Subslot"
+                NetworkComponentDiagnosisSupported="true"
+                SupportedProtocols="SNMP;LLDP"
+                DCP_BoundarySupported="true">
+              <ApplicationRelations StartupMode="Advanced;Legacy" NumberOfAR="1">
+                <TimingProperties
+                    PreferredSendClock="32"
+                    SendClock="32"
+                    ReductionRatioNonPow2="1"
+                    ReductionRatioPow2="1 2 4 8 16 32 64 128" />
+              </ApplicationRelations>
+            </InterfaceSubmoduleItem>
+
+            <PortSubmoduleItem
+                ID="Port1"
+                TextId="Port1_Subslot"
+                SubslotNumber="0x8001"
+                SubmoduleIdentNumber="0xF001"
+                LinkStateDiagnosisCapability="Up+Down"
+                MAUTypes="16"
+                PortDeactivationSupported="false">
+              <MAUTypeList>
+                <MAUTypeItem Value="16" AdjustSupported="true" />
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+        </DeviceAccessPointItem>
+      </DeviceAccessPointList>
+
+      <!-- ======================================================= -->
+      <!--  Text strings (names shown inside TIA / engineering)    -->
+      <!-- ======================================================= -->
+      <ExternalTextList>
+        <PrimaryLanguage>
+          <Text TextId="Dev_Info"    Value="Dovecote M40-based 2In/2Out I/O device" />
+          <Text TextId="DAP_Name"   Value="M40 IO Device" />
+          <Text TextId="DAP_Desc"   Value="Anybus CompactCom M40 based PROFINET IO Device, 2 bytes IN, 2 bytes OUT" />
+
+          <Text TextId="If_Subslot"   Value="X1 Interface" />
+          <Text TextId="Port1_Subslot" Value="X1 Port 1" />
+
+          <Text TextId="VS_IO_Name" Value="2 bytes IN / 2 bytes OUT" />
+          <Text TextId="VS_IO_Desc" Value="2B IN (PORTA), 2B OUT (PORTB)" />
+
+          <Text TextId="Mod_In_2B"  Value="Input 2 Bytes (PORTA)" />
+          <Text TextId="Mod_Out_2B" Value="Output 2 Bytes (PORTB)" />
+        </PrimaryLanguage>
+      </ExternalTextList>
+    </ApplicationProcess>
+  </ProfileBody>
+</ISO15745Profile>

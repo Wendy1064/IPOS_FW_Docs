@@ -1,0 +1,117 @@
+\doxysection{freertos.\+c File Reference}
+\hypertarget{freertos_8c}{}\label{freertos_8c}\index{freertos.c@{freertos.c}}
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}task.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os.\+h"{}}\newline
+{\ttfamily \#include "{}uart\+\_\+master\+\_\+task.\+h"{}}\newline
+{\ttfamily \#include "{}master\+\_\+link.\+h"{}}\newline
+{\ttfamily \#include "{}stdio.\+h"{}}\newline
+{\ttfamily \#include "{}stdbool.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+{\ttfamily \#include "{}protocol.\+h"{}}\newline
+{\ttfamily \#include "{}inputs.\+h"{}}\newline
+Include dependency graph for freertos.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{freertos_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{freertos_8c_abc926e2069cbb4d65af97ba6aa87a0ac}{default\+\_\+app}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the default\+\_\+task thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8c_adab4f7fc1db4ce2be073d3913209d2af}{MX\+\_\+\+USB\+\_\+\+DEVICE\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{freertos_8c_abade755e13d07c10889ae83143656158}{MX\+\_\+\+FREERTOS\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS initialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+os\+Thread\+Id\+\_\+t \mbox{\hyperlink{freertos_8c_a5605469b6cc10e9afd5f8db7d32aab80}{default\+\_\+task\+Handle}}
+\item 
+const os\+Thread\+Attr\+\_\+t \mbox{\hyperlink{freertos_8c_aa2c738aa53a7ec31dca6b2bc42869497}{default\+\_\+task\+\_\+attributes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{freertos_8c_abc926e2069cbb4d65af97ba6aa87a0ac}\label{freertos_8c_abc926e2069cbb4d65af97ba6aa87a0ac} 
+\index{freertos.c@{freertos.c}!default\_app@{default\_app}}
+\index{default\_app@{default\_app}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{default\_app()}{default\_app()}}
+{\footnotesize\ttfamily void default\+\_\+app (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the default\+\_\+task thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{freertos_8c_abade755e13d07c10889ae83143656158}\label{freertos_8c_abade755e13d07c10889ae83143656158} 
+\index{freertos.c@{freertos.c}!MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}}
+\index{MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{MX\_FREERTOS\_Init()}{MX\_FREERTOS\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+FREERTOS\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{freertos_8c_adab4f7fc1db4ce2be073d3913209d2af}\label{freertos_8c_adab4f7fc1db4ce2be073d3913209d2af} 
+\index{freertos.c@{freertos.c}!MX\_USB\_DEVICE\_Init@{MX\_USB\_DEVICE\_Init}}
+\index{MX\_USB\_DEVICE\_Init@{MX\_USB\_DEVICE\_Init}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{MX\_USB\_DEVICE\_Init()}{MX\_USB\_DEVICE\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+USB\+\_\+\+DEVICE\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{freertos_8c_aa2c738aa53a7ec31dca6b2bc42869497}\label{freertos_8c_aa2c738aa53a7ec31dca6b2bc42869497} 
+\index{freertos.c@{freertos.c}!default\_task\_attributes@{default\_task\_attributes}}
+\index{default\_task\_attributes@{default\_task\_attributes}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{default\_task\_attributes}{default\_task\_attributes}}
+{\footnotesize\ttfamily const os\+Thread\+Attr\+\_\+t default\+\_\+task\+\_\+attributes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ .name\ =\ \textcolor{stringliteral}{"{}default\_task"{}},}
+\DoxyCodeLine{\ \ .stack\_size\ =\ 256\ *\ 4,}
+\DoxyCodeLine{\ \ .priority\ =\ (osPriority\_t)\ osPriorityNormal,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{freertos_8c_a5605469b6cc10e9afd5f8db7d32aab80}\label{freertos_8c_a5605469b6cc10e9afd5f8db7d32aab80} 
+\index{freertos.c@{freertos.c}!default\_taskHandle@{default\_taskHandle}}
+\index{default\_taskHandle@{default\_taskHandle}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{default\_taskHandle}{default\_taskHandle}}
+{\footnotesize\ttfamily os\+Thread\+Id\+\_\+t default\+\_\+task\+Handle}
+
+File Name \+: \doxylink{freertos_8c}{freertos.\+c} Description \+: Code for freertos applications
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2025 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 

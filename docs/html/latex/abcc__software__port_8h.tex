@@ -1,0 +1,59 @@
+\doxysection{abcc\+\_\+software\+\_\+port.\+h File Reference}
+\hypertarget{abcc__software__port_8h}{}\label{abcc__software__port_8h}\index{abcc\_software\_port.h@{abcc\_software\_port.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include "{}abcc\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}abcc\+\_\+config.\+h"{}}\newline
+Include dependency graph for abcc\+\_\+software\+\_\+port.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{abcc__software__port_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{abcc__software__port_8h_a5a0d8569f82722d610980de419dc7f6a}{ABCC\+\_\+\+PORT\+\_\+printf}}(...)~printf( \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+ )
+\item 
+\#define \mbox{\hyperlink{abcc__software__port_8h_a0f3e453f57e241d2e53bf81707ee0650}{ABCC\+\_\+\+PORT\+\_\+vprintf}}(...)~vprintf( \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+ )
+\item 
+\#define \mbox{\hyperlink{abcc__software__port_8h_a92c76a7f6ab4cbf3471074962396b75c}{ABCC\+\_\+\+PORT\+\_\+\+Use\+Critical}}()
+\item 
+\#define \mbox{\hyperlink{abcc__software__port_8h_a621dd2b8351935723879b1f55e7cad27}{ABCC\+\_\+\+PORT\+\_\+\+Enter\+Critical}}()
+\item 
+\#define \mbox{\hyperlink{abcc__software__port_8h_adc28ae8b4e66c719ad2f092dff9f6586}{ABCC\+\_\+\+PORT\+\_\+\+Exit\+Critical}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{abcc__software__port_8h_a621dd2b8351935723879b1f55e7cad27}\label{abcc__software__port_8h_a621dd2b8351935723879b1f55e7cad27} 
+\index{abcc\_software\_port.h@{abcc\_software\_port.h}!ABCC\_PORT\_EnterCritical@{ABCC\_PORT\_EnterCritical}}
+\index{ABCC\_PORT\_EnterCritical@{ABCC\_PORT\_EnterCritical}!abcc\_software\_port.h@{abcc\_software\_port.h}}
+\doxysubsubsection{\texorpdfstring{ABCC\_PORT\_EnterCritical}{ABCC\_PORT\_EnterCritical}}
+{\footnotesize\ttfamily \#define ABCC\+\_\+\+PORT\+\_\+\+Enter\+Critical(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__software__port_8h_adc28ae8b4e66c719ad2f092dff9f6586}\label{abcc__software__port_8h_adc28ae8b4e66c719ad2f092dff9f6586} 
+\index{abcc\_software\_port.h@{abcc\_software\_port.h}!ABCC\_PORT\_ExitCritical@{ABCC\_PORT\_ExitCritical}}
+\index{ABCC\_PORT\_ExitCritical@{ABCC\_PORT\_ExitCritical}!abcc\_software\_port.h@{abcc\_software\_port.h}}
+\doxysubsubsection{\texorpdfstring{ABCC\_PORT\_ExitCritical}{ABCC\_PORT\_ExitCritical}}
+{\footnotesize\ttfamily \#define ABCC\+\_\+\+PORT\+\_\+\+Exit\+Critical(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__software__port_8h_a5a0d8569f82722d610980de419dc7f6a}\label{abcc__software__port_8h_a5a0d8569f82722d610980de419dc7f6a} 
+\index{abcc\_software\_port.h@{abcc\_software\_port.h}!ABCC\_PORT\_printf@{ABCC\_PORT\_printf}}
+\index{ABCC\_PORT\_printf@{ABCC\_PORT\_printf}!abcc\_software\_port.h@{abcc\_software\_port.h}}
+\doxysubsubsection{\texorpdfstring{ABCC\_PORT\_printf}{ABCC\_PORT\_printf}}
+{\footnotesize\ttfamily \#define ABCC\+\_\+\+PORT\+\_\+printf(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~printf( \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+ )}
+
+\Hypertarget{abcc__software__port_8h_a92c76a7f6ab4cbf3471074962396b75c}\label{abcc__software__port_8h_a92c76a7f6ab4cbf3471074962396b75c} 
+\index{abcc\_software\_port.h@{abcc\_software\_port.h}!ABCC\_PORT\_UseCritical@{ABCC\_PORT\_UseCritical}}
+\index{ABCC\_PORT\_UseCritical@{ABCC\_PORT\_UseCritical}!abcc\_software\_port.h@{abcc\_software\_port.h}}
+\doxysubsubsection{\texorpdfstring{ABCC\_PORT\_UseCritical}{ABCC\_PORT\_UseCritical}}
+{\footnotesize\ttfamily \#define ABCC\+\_\+\+PORT\+\_\+\+Use\+Critical(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__software__port_8h_a0f3e453f57e241d2e53bf81707ee0650}\label{abcc__software__port_8h_a0f3e453f57e241d2e53bf81707ee0650} 
+\index{abcc\_software\_port.h@{abcc\_software\_port.h}!ABCC\_PORT\_vprintf@{ABCC\_PORT\_vprintf}}
+\index{ABCC\_PORT\_vprintf@{ABCC\_PORT\_vprintf}!abcc\_software\_port.h@{abcc\_software\_port.h}}
+\doxysubsubsection{\texorpdfstring{ABCC\_PORT\_vprintf}{ABCC\_PORT\_vprintf}}
+{\footnotesize\ttfamily \#define ABCC\+\_\+\+PORT\+\_\+vprintf(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~vprintf( \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+ )}
+

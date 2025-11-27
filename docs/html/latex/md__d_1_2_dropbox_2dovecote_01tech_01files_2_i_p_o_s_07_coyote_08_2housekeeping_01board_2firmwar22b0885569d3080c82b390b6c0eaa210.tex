@@ -1,0 +1,24 @@
+\chapter{ADI Reference}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar22b0885569d3080c82b390b6c0eaa210}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar22b0885569d3080c82b390b6c0eaa210}\index{ADI Reference@{ADI Reference}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar22b0885569d3080c82b390b6c0eaa210_autotoc_md190}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar22b0885569d3080c82b390b6c0eaa210_autotoc_md190}%
+ Each {\bfseries{Application Data Instance (ADI)}} defines one variable accessible over Profinet.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ ADI Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Instance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Direction   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ ADI Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Instance   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Direction   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-5}
+\endhead
+PORTA   &0x01   &UINT16   &STM32 → PLC   &Output signals to SP-\/\+ICE-\/3    \\\cline{1-5}
+PORTB   &0x02   &UINT16   &PLC → STM32   &Digital input states    \\\cline{1-5}
+PORTC   &0x03   &UINT8   &PLC → STM32   &Secondary inputs    \\\cline{1-5}
+STATUS\+\_\+\+DEBUG   &0x04   &UINT16   &STM32 → PLC   &Debug telemetry    \\\cline{1-5}
+STATUS\+\_\+\+PLC   &0x05   &UINT16   &PLC → STM32   &Control/status commands    \\\cline{1-5}
+STATUS\+\_\+\+ACTIVE   &0x06   &UINT16   &STM32 → PLC   &System activity flags    \\\cline{1-5}
+STATUS\+\_\+\+DEBUG\+\_\+\+TRU   &0x07   &UINT16   &STM32 → PLC   &Tru\+Pulse diagnostics   \\\cline{1-5}
+\end{longtabu}

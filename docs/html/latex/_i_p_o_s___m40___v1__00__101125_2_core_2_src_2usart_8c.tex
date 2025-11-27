@@ -1,0 +1,113 @@
+\doxysection{IPOS\+\_\+\+M40\+\_\+\+V1\+\_\+00\+\_\+101125/\+Core/\+Src/usart.c File Reference}
+\hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c}{}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c}\index{usart.c@{usart.c}}
+
+
+This file provides code for the configuration of the USART instances.  
+
+
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+Include dependency graph for IPOS\+\_\+\+M40\+\_\+\+V1\+\_\+00\+\_\+101125/\+Core/\+Src/usart.c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=126pt]{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a2d6e29406e35a65323b382515e095cd4}{MX\+\_\+\+LPUART1\+\_\+\+UART\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a052088fe5bb3f807a4b2502e664fd4fd}{MX\+\_\+\+USART2\+\_\+\+UART\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a3d04b903a77089f6ce08dd0bf1c81a81}{MX\+\_\+\+USART3\+\_\+\+UART\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{group___u_a_r_t___exported___functions___group1_ga0e553b32211877322f949b14801bbfa7}{HAL\+\_\+\+UART\+\_\+\+Msp\+Init}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}uart\+Handle)
+\item 
+void \mbox{\hyperlink{group___u_a_r_t___exported___functions___group1_ga718f39804e3b910d738a0e1e46151188}{HAL\+\_\+\+UART\+\_\+\+Msp\+De\+Init}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}uart\+Handle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a5c3f9dccaa7cebcc70e1657af9e5e5dc}{hlpuart1}}
+\item 
+\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_aa9479c261d65eecedd3d9582f7f0f89c}{huart2}}
+\item 
+\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_ab7c63c1b0f65db92b6a4ea19edf957e1}{huart3}}
+\item 
+\mbox{\hyperlink{group___d_m_a___exported___types_ga41b754a906b86bce54dc79938970138b}{DMA\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_aa9b86e4c707a7423dbe0c49ba8fa7e0a}{hdma\+\_\+lpuart1\+\_\+rx}}
+\item 
+\mbox{\hyperlink{group___d_m_a___exported___types_ga41b754a906b86bce54dc79938970138b}{DMA\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a833f20cff151535a9256b33f747ff866}{hdma\+\_\+lpuart1\+\_\+tx}}
+\item 
+\mbox{\hyperlink{group___d_m_a___exported___types_ga41b754a906b86bce54dc79938970138b}{DMA\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a784aa25dc7e4580cfbf80658340f482c}{hdma\+\_\+usart2\+\_\+rx}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of the USART instances. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2025 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a2d6e29406e35a65323b382515e095cd4}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a2d6e29406e35a65323b382515e095cd4} 
+\index{usart.c@{usart.c}!MX\_LPUART1\_UART\_Init@{MX\_LPUART1\_UART\_Init}}
+\index{MX\_LPUART1\_UART\_Init@{MX\_LPUART1\_UART\_Init}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{MX\_LPUART1\_UART\_Init()}{MX\_LPUART1\_UART\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+LPUART1\+\_\+\+UART\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a052088fe5bb3f807a4b2502e664fd4fd}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a052088fe5bb3f807a4b2502e664fd4fd} 
+\index{usart.c@{usart.c}!MX\_USART2\_UART\_Init@{MX\_USART2\_UART\_Init}}
+\index{MX\_USART2\_UART\_Init@{MX\_USART2\_UART\_Init}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{MX\_USART2\_UART\_Init()}{MX\_USART2\_UART\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+USART2\+\_\+\+UART\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a3d04b903a77089f6ce08dd0bf1c81a81}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a3d04b903a77089f6ce08dd0bf1c81a81} 
+\index{usart.c@{usart.c}!MX\_USART3\_UART\_Init@{MX\_USART3\_UART\_Init}}
+\index{MX\_USART3\_UART\_Init@{MX\_USART3\_UART\_Init}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{MX\_USART3\_UART\_Init()}{MX\_USART3\_UART\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+USART3\+\_\+\+UART\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_aa9b86e4c707a7423dbe0c49ba8fa7e0a}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_aa9b86e4c707a7423dbe0c49ba8fa7e0a} 
+\index{usart.c@{usart.c}!hdma\_lpuart1\_rx@{hdma\_lpuart1\_rx}}
+\index{hdma\_lpuart1\_rx@{hdma\_lpuart1\_rx}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_lpuart1\_rx}{hdma\_lpuart1\_rx}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group___d_m_a___exported___types_ga41b754a906b86bce54dc79938970138b}{DMA\+\_\+\+Handle\+Type\+Def}} hdma\+\_\+lpuart1\+\_\+rx}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a833f20cff151535a9256b33f747ff866}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a833f20cff151535a9256b33f747ff866} 
+\index{usart.c@{usart.c}!hdma\_lpuart1\_tx@{hdma\_lpuart1\_tx}}
+\index{hdma\_lpuart1\_tx@{hdma\_lpuart1\_tx}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_lpuart1\_tx}{hdma\_lpuart1\_tx}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group___d_m_a___exported___types_ga41b754a906b86bce54dc79938970138b}{DMA\+\_\+\+Handle\+Type\+Def}} hdma\+\_\+lpuart1\+\_\+tx}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a784aa25dc7e4580cfbf80658340f482c}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a784aa25dc7e4580cfbf80658340f482c} 
+\index{usart.c@{usart.c}!hdma\_usart2\_rx@{hdma\_usart2\_rx}}
+\index{hdma\_usart2\_rx@{hdma\_usart2\_rx}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{hdma\_usart2\_rx}{hdma\_usart2\_rx}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group___d_m_a___exported___types_ga41b754a906b86bce54dc79938970138b}{DMA\+\_\+\+Handle\+Type\+Def}} hdma\+\_\+usart2\+\_\+rx}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a5c3f9dccaa7cebcc70e1657af9e5e5dc}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_a5c3f9dccaa7cebcc70e1657af9e5e5dc} 
+\index{usart.c@{usart.c}!hlpuart1@{hlpuart1}}
+\index{hlpuart1@{hlpuart1}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{hlpuart1}{hlpuart1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} hlpuart1}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_aa9479c261d65eecedd3d9582f7f0f89c}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_aa9479c261d65eecedd3d9582f7f0f89c} 
+\index{usart.c@{usart.c}!huart2@{huart2}}
+\index{huart2@{huart2}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{huart2}{huart2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} huart2}
+
+\Hypertarget{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_ab7c63c1b0f65db92b6a4ea19edf957e1}\label{_i_p_o_s___m40___v1__00__101125_2_core_2_src_2usart_8c_ab7c63c1b0f65db92b6a4ea19edf957e1} 
+\index{usart.c@{usart.c}!huart3@{huart3}}
+\index{huart3@{huart3}!usart.c@{usart.c}}
+\doxysubsubsection{\texorpdfstring{huart3}{huart3}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} huart3}
+

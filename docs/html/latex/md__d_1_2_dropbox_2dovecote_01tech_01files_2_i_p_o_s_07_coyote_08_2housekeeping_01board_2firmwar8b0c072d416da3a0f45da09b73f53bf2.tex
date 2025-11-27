@@ -1,0 +1,162 @@
+\chapter{Input Handler — input.\+c}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2}\index{Input Handler — input.c@{Input Handler — input.c}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md93}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md93}%
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md94}{}\doxysection{\texorpdfstring{1. Overview}{1. Overview}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md94}
+The input task operates as a Free\+RTOS thread that\+:
+\begin{DoxyItemize}
+\item Periodically samples all GPIO input pins.
+\item Detects changes using debounce logic.
+\item Queues events to the {\ttfamily input\+Event\+Queue}.
+\item Evaluates all fault and interlock rules.
+\end{DoxyItemize}
+
+All events are printed to USB via the {\ttfamily \doxylink{group__input__handling_ga392a7bd95b0d7cb59cd9d781b91b428f}{v\+Task\+Usb\+Logger()}} task.
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md96}{}\doxysection{\texorpdfstring{2. Tasks}{2. Tasks}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md96}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\ttfamily \doxylink{group__input__handling_ga805adbfc7497d40e012d66b373772958}{v\+Task\+Inputs()}}   &Scans inputs and evaluates safety conditions.    \\\cline{1-2}
+{\ttfamily \doxylink{group__input__handling_ga392a7bd95b0d7cb59cd9d781b91b428f}{v\+Task\+Usb\+Logger()}}   &Handles USB debug and log output.   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md98}{}\doxysection{\texorpdfstring{3. Data Flow}{3. Data Flow}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md98}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[GPIO\ Inputs]\ →\ [vTaskInputs]\ →\ [Event\ Queue]\ →\ [vTaskUsbLogger]\ →\ [USB\ Output\ /\ Flash\ Log]}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md99}{}\doxysection{\texorpdfstring{4. Core Conditions Checked}{4. Core Conditions Checked}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md99}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Condition\ Function\ \ Description}
+\DoxyCodeLine{Cond\_DoorRequiresRelays()\ \ \ Ensures\ both\ relays\ are\ active\ when\ door\ interlock\ is\ open.}
+\DoxyCodeLine{Cond\_RelayContactsMatch()\ \ \ Verifies\ that\ relay\ NO/NC\ contacts\ match\ after\ coil\ energization.}
+\DoxyCodeLine{Cond\_LatchError()\ \ \ Monitors\ hardware\ latch\ error\ lines\ and\ software\ latch\ flags.}
+\DoxyCodeLine{Cond\_PowerGood()\ \ \ \ Confirms\ 12\ V,\ 24\ V,\ and\ fuse\ power\ rails\ are\ valid.}
+\DoxyCodeLine{Cond\_TemperatureSafe()\ \ Disables\ laser\ if\ thermocouple\ exceeds\ safe\ temperature.}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md100}{}\doxysection{\texorpdfstring{5. Example\+: Posting a Log Message}{5. Example\+: Posting a Log Message}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md100}
+Any task can queue a log message event to the flash logging system\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_log_msg__t}{LogMsg\_t}}\ m\ =\ \{}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{struct_log_msg__t_a4179f2d03ffd9ba1251cc59264445024}{code}}\ =\ 2001,}
+\DoxyCodeLine{\ \ \ \ .flags\ =\ 1,}
+\DoxyCodeLine{\ \ \ \ .msg\ =\ \textcolor{stringliteral}{"{}Overtemp:\ laser\ disabled"{}}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{osMessageQueuePut(\mbox{\hyperlink{group__log__flash_gaa42f4a4e54ef104c44df1ce00a619e7a}{logQueue}},\ \&m,\ 0,\ 0);}
+
+\end{DoxyCode}
+ The v\+Task\+Log\+Writer task asynchronously writes the message to flash using \doxylink{group__log__flash_gaf7be7be3d5aa3ad8ce8eb8f080d34baa}{Log\+\_\+\+Append()}.\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md101}{}\doxysection{\texorpdfstring{6. USB Commands}{6. USB Commands}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md101}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Command\ Description\ Example\ Output}
+\DoxyCodeLine{LOG\ DUMP\ \ \ \ Print\ the\ last\ 10\ records\ \ \ \#102\ t=123456\ code=2001\ msg=Overtemp}
+\DoxyCodeLine{LOG\ ERASE\ \ \ Erase\ all\ log\ sectors\ \ \ [LOG]\ Erase\ complete.}
+\DoxyCodeLine{FLASH\ ID\ \ \ \ Read\ and\ display\ JEDEC\ ID\ \ \ [FLASH]\ JEDEC\ ID\ =\ 0xEF4015}
+\DoxyCodeLine{FLASH\ STATUS\ \ \ \ Show\ flash\ info\ and\ usage\ \ \ See\ example\ below}
+\DoxyCodeLine{FLASH\ TEST\ \ Perform\ write/read/verify\ test\ \ [FLASH]\ Test\ OK}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md102}{}\doxysection{\texorpdfstring{7. Example Output}{7. Example Output}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md102}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{FLASH\ STATUS}
+\DoxyCodeLine{====\ FLASH\ STATUS\ ====}
+\DoxyCodeLine{JEDEC\ ID\ \ \ \ \ \ :\ 0xEF4015}
+\DoxyCodeLine{Device\ \ \ \ \ \ \ \ :\ W25Q16JV\ (2\ MBytes)}
+\DoxyCodeLine{Sectors\ used\ \ :\ 2}
+\DoxyCodeLine{Records/sector:\ 124}
+\DoxyCodeLine{Capacity\ \ \ \ \ \ :\ 248\ records}
+\DoxyCodeLine{Write\ index\ \ \ :\ 37}
+\DoxyCodeLine{Next\ sequence\ :\ 1042}
+\DoxyCodeLine{Records\ valid\ :\ 37}
+\DoxyCodeLine{Usage\ \ \ \ \ \ \ \ \ :\ 14.9\%}
+\DoxyCodeLine{======================}
+
+\end{DoxyCode}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md103}{}\doxysubsection{\texorpdfstring{LOG DUMP\+:}{LOG DUMP\+:}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md103}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/-\/-\/-\/\ LAST\ 10\ LOG\ ENTRIES\ -\/-\/-\/-\/}
+\DoxyCodeLine{\#103\ t=78512\ code=2001\ flags=0x01\ msg=Overtemp:\ laser\ disabled}
+\DoxyCodeLine{\#104\ t=90218\ code=2002\ flags=0x00\ msg=Overtemp\ cleared}
+\DoxyCodeLine{\#105\ t=124512\ code=3001\ flags=0x00\ msg=Door\ closed}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+
+\end{DoxyCode}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md104}{}\doxysection{\texorpdfstring{8. Laser and Latch Control}{8. Laser and Latch Control}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md104}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Function\ \ \ \ Description}
+\DoxyCodeLine{laser\_enable()\ \ Drives\ active-\/high\ disable\ pin\ HIGH\ to\ allow\ laser\ emission.}
+\DoxyCodeLine{laser\_disable()\ Drives\ disable\ pin\ LOW\ to\ ensure\ safety-\/off\ state.}
+\DoxyCodeLine{reset\_latches()\ Pulses\ latch\ clock\ lines\ to\ restore\ safe\ outputs.}
+\DoxyCodeLine{SetOutputsToKnownState()\ \ \ \ Initializes\ latch\ outputs\ on\ system\ boot.}
+\DoxyCodeLine{SetLatchesToFaultState()\ \ \ \ Forces\ all\ outputs\ into\ fault-\/safe\ state.}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md105}{}\doxysection{\texorpdfstring{9. Tru\+Pulse Status Printout}{9. Tru\+Pulse Status Printout}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md105}
+Triggered via a USB command or event, the Tru\+Pulse diagnostic output shows system input states and descriptions\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{================\ TruPulse\ STATUS\ WORD\ ================}
+\DoxyCodeLine{Value:\ 0x00AF}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{|\ Bit\ |\ Input\ Name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ State\ |\ Description\ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{|\ 0\ \ \ |\ INPUT\_TRU\_LAS\_DEACTIVATED\ \ |\ 0\ \ \ \ \ |\ Laser\ deactivated\ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ 1\ \ \ |\ INPUT\_TRU\_SYS\_FAULT\ \ \ \ \ \ \ \ |\ 1\ \ \ \ \ |\ System\ fault\ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ 2\ \ \ |\ INPUT\_TRU\_BEAM\_DELIVERY\ \ \ \ |\ 1\ \ \ \ \ |\ Beam\ delivery\ fault\ \ \ \ \ \ |}
+\DoxyCodeLine{|\ 3\ \ \ |\ INPUT\_TRU\_EMISS\_WARN\ \ \ \ \ \ \ |\ 0\ \ \ \ \ |\ Emission\ ON\ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{Binary:\ 10101111}
+\DoxyCodeLine{============================================================}
+\DoxyCodeLine{}
+\DoxyCodeLine{=================\ OUTPUT\ STATES\ =================}
+\DoxyCodeLine{|\ Signal\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ State\ |}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{|\ Laser\ Disable(active\ low)\ |\ 0\ |}
+\DoxyCodeLine{|\ Door\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ 1\ |}
+\DoxyCodeLine{|\ E-\/Stop\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ 0\ |}
+\DoxyCodeLine{|\ Key\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ 1\ |}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md106}{}\doxysection{\texorpdfstring{10. Safety Behavior Summary}{10. Safety Behavior Summary}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md106}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Fault\ Source\ \ \ \ Action\ Taken}
+\DoxyCodeLine{Door\ open\ without\ relay\ Laser\ disabled,\ latch\ forced\ error}
+\DoxyCodeLine{Power\ rail\ failure\ \ Laser\ disabled,\ logged\ LOGCODE\_POWER\_FAULT}
+\DoxyCodeLine{Overtemperature\ Laser\ disabled,\ fault\ logged}
+\DoxyCodeLine{Relay\ mismatch\ \ Relay\ fault\ logged\ and\ latch\ forced}
+\DoxyCodeLine{Latch\ line\ active\ \ \ Laser\ disabled\ until\ manual\ reset}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md107}{}\doxysection{\texorpdfstring{11. Dependencies}{11. Dependencies}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwar8b0c072d416da3a0f45da09b73f53bf2_autotoc_md107}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Dependency\ \ Purpose}
+\DoxyCodeLine{FreeRTOS\ \ \ \ Threading\ and\ event\ queues}
+\DoxyCodeLine{STM32\ HAL\ \ \ GPIO\ access\ and\ delays}
+\DoxyCodeLine{log\_flash.c\ Non-\/volatile\ fault\ logging}
+\DoxyCodeLine{max31855.c\ \ Temperature\ sensing}
+\DoxyCodeLine{protocol.c\ \ USB\ print\ functions}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+ 

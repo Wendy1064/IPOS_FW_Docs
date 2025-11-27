@@ -1,0 +1,146 @@
+\doxysection{inputs.\+h}
+\hypertarget{inputs_8h_source}{}\label{inputs_8h_source}\index{inputs.h@{inputs.h}}
+\mbox{\hyperlink{inputs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}cmsis\_os2.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2main_8h}{main.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{max31855_8h}{max31855.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ STATUS\_LASER\_DISABLE\ \ \ (1U\ <<\ 5)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Shared\ Resources}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ osMessageQueueId\_t\ \mbox{\hyperlink{group__input__handling_ga18b12a1b645e0014948c0750c65b0578}{inputEventQueue}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ uint32\_t\ \mbox{\hyperlink{group__input__handling_ga894be054cbefd6f4fd84007f4835b7ba}{ms\_now}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Input\ Enumeration}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a1acbf4e5db52a59efbc1ceebf81ae845}{INPUT\_DOOR}}\ =\ 0,}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706ae3beee2ee57b6fb642230810be9b31d9}{INPUT\_DOOR\_LATCH\_ERR}},}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706aefc536f6fdb403776f4596ce9e0cf5a3}{INPUT\_ESTOP}},}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a736d9bf9d0e87d18572b760c582b6809}{INPUT\_ESTOP\_LATCH\_ERR}},}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a35c4f94a041a261f915e41f9430ae7ed}{INPUT\_KEY}},}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a2eb54874ec1f6c0319761fd9f78df425}{INPUT\_KEY\_LATCH\_ERR}},}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706adce292dfde382c8d0d2fb3eba30b7646}{INPUT\_BDO}},}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a61759b24c5d9155104a2734ac50dad79}{INPUT\_BDO\_LATCH\_ERR}},}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a886ad4ef02a02e83041c6640a1a1defb}{INPUT\_RELAY1\_ON}},}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706ab951375e18e679ba051c28e636450bfa}{INPUT\_RELAY2\_ON}},}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5251dbf2236075778219eebda9940135}{INPUT\_RELAY\_LATCH\_ERR}},}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a90d033a0354140757b021b0ccbde514c}{INPUT\_NO1}},}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a2dea000d1fed82d18085db45e3acb890}{INPUT\_NC1}},}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706af8386cac33a629d10742f65694dacad1}{INPUT\_12V\_PWR\_GOOD}},}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a6eba496249bc41f0455231fd3bc4a5aa}{INPUT\_24V\_PWR\_GOOD}},}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a0fcd4808c397de62c17517e94704eca0}{INPUT\_12V\_FUSE\_GOOD}},}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706ad2cf4062e79383bf905265293ae887a9}{INPUT\_TRU\_LAS\_DEACTIVATED}},}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a4795ae052123ab6746c18c788c1d7895}{INPUT\_TRU\_SYS\_FAULT}},}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a79b29c0e7a4b1f6450d2a84bb97e7c2c}{INPUT\_TRU\_BEAM\_DELIVERY}},}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a8012b67026b55536b005089bf0157f23}{INPUT\_TRU\_EMISS\_WARN}},}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a1946ee83aeb0f1c03de170a4143af8ef}{INPUT\_TRU\_ALARM}},}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706ab5471b842423f91df6cf7e7f0bb1ce35}{INPUT\_TRU\_MONITOR}},}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a84cc7c8b4bdf4acb79cf877742ca5db2}{INPUT\_TRU\_TEMPERATURE}},}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\_INPUTS}}}
+\DoxyCodeLine{00069\ \}\ \mbox{\hyperlink{group__input__handling_ga17ed9738c4fcd08b8a24a1d405fac706}{InputName}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__input__handling_ga8ce1acccd5014e235b53bad8043d0796}{inputNames}}[\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\_INPUTS}}];}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{group__input__handling_ga3711f9988d0458491f58a119653255f7}{stableState}}[\mbox{\hyperlink{group__input__handling_gga17ed9738c4fcd08b8a24a1d405fac706a5db28925d975294439624dfc133c4e0f}{NUM\_INPUTS}}];}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ Event\ System}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea6723eace89eaee00791d9767fa066486}{EVT\_INPUT\_CHANGE}},}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4eadc5362c31c43fe328546b5a9ed3e93ae}{EVT\_ERROR}},}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea75fecab2eb4c29536a1c12e67e9b7649}{EVT\_STATUS}},}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea614192474c69a61a1ccbdd0019e02b18}{EVT\_TRUPULSE}},}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea1266c814d0405873e65fb3605f769cbc}{EVT\_TEMP\_STATUS}},}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea51d35645e3973fa7cf1fb5c7d23241ca}{EVT\_LOG\_DUMP}},}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea1c221a0d7804a74cd5e79179591a7a73}{EVT\_LOG\_ERASE}},}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea59c9be79d616f12d922cd1234c2e191b}{EVT\_FLASH\_STATUS}},}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea61d4e6858e075fa2d8b92d61c9a0e3ef}{EVT\_FLASH\_ID}},}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea01a06aeac1e065cc702f6aaff9844a85}{EVT\_FLASH\_TEST}},}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea5038583f1a867e6911090e6c11a1dfdf}{EVT\_HELP}}}
+\DoxyCodeLine{00098\ \}\ \mbox{\hyperlink{group__input__handling_ga29c32e7b69344b51f6e2f31ae178dd4e}{InputEventType\_t}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00106\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_status_config__t_a54b6e17c6f95d18d342f049edbc861a8}{intervalMs}};\ }
+\DoxyCodeLine{00107\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_status_config__t_a98ed2506ebb1973330c1c7cfff799de5}{enabled}};\ \ \ \ \ }
+\DoxyCodeLine{00108\ \}\ \mbox{\hyperlink{struct_status_config__t}{StatusConfig\_t}};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_status_config__t}{StatusConfig\_t}}\ \mbox{\hyperlink{group__input__handling_ga0e6d8b7b2777513bf8597f9ebcb22990}{gStatusConfig}};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{group__input__handling_ga29c32e7b69344b51f6e2f31ae178dd4e}{InputEventType\_t}}\ \mbox{\hyperlink{struct_input_event__t_a92a1a7c50a0b83c12871590d2998e10c}{type}};\ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct_input_event__t_aaa22176645d2bfa08030e5a62039d011}{msg}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_input_event__t_ae7ef175f83ec7db0d2059b4816010eea}{newState}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_input_event__t_a073926d55a3274440c4e923d02ff1885}{input}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00122\ \}\ \mbox{\hyperlink{struct_input_event__t}{InputEvent\_t}};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{typedef}\ uint8\_t\ (*\mbox{\hyperlink{struct_error_condition_fn}{ErrorConditionFn}})(void);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{struct_error_condition_fn}{ErrorConditionFn}}\ \mbox{\hyperlink{struct_error_rule__t_a515f4859b836a577b00f57e41031722e}{condition}};}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct_error_rule__t_a3c78ceddd33423e295a52862c71a0f99}{msgActive}};}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct_error_rule__t_aeaaac4fe64aa26ec2a281ef1f619219f}{msgCleared}};}
+\DoxyCodeLine{00140\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_error_rule__t_a44df3b91ab32ebdd1d05683fa21014f2}{active}};}
+\DoxyCodeLine{00141\ \}\ \mbox{\hyperlink{struct_error_rule__t}{ErrorRule\_t}};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ Task\ Prototypes}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00150\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga805adbfc7497d40e012d66b373772958}{vTaskInputs}}(\textcolor{keywordtype}{void}\ *argument);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00153\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga392a7bd95b0d7cb59cd9d781b91b428f}{vTaskUsbLogger}}(\textcolor{keywordtype}{void}\ *argument);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//\ Output\ and\ Control\ Functions}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga1c837cfffb15c501275d689b7fcd51bd}{SetOutputsToKnownState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00160\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga44b27ab933e91b145cd452d1d5a1722d}{SetLatchesToFaultState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00161\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga6f1c5d4fa2d3c8a1c6294d92ec9c52b1}{PulseOutput}}(\mbox{\hyperlink{struct_g_p_i_o___type_def}{GPIO\_TypeDef}}\ *port,\ uint16\_t\ pin,\ uint32\_t\ ms);}
+\DoxyCodeLine{00162\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga400940b334b781671f6daf5b5e3f5c98}{Print\_AllInputs}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00163\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga456e1383233490b69e46c8dc0e4e4193}{PrintTruPulseStatus}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00164\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga86941485553f3961314a69aa37ea8408}{reset\_latches}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00165\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_gaffe4cde7ad5ab8edbfe83781dbc7767b}{laser\_enable}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00166\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga6986056511b92d173350a0e3b7513c30}{laser\_disable}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ Status\ and\ Diagnostics}}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ uint16\_t\ \mbox{\hyperlink{group__input__handling_ga8c71dcf026047812e5cdcc66fb60e15e}{App\_BuildDebugStatusWord}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00173\ uint16\_t\ \mbox{\hyperlink{group__input__handling_ga94d773ffaf8f23627d2520170ee6a8b7}{App\_BuildDebug2StatusWord}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00174\ uint16\_t\ \mbox{\hyperlink{group__input__handling_ga7515aa626fd5290af6b68fdbf765d661}{App\_BuildActiveStatusWord}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00175\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga754cd0dadfe415a6cfa635f1f2a3ce63}{Status\_Enable}}(uint8\_t\ enable);}
+\DoxyCodeLine{00176\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__input__handling_ga9f1deadab2e99f006102e21940f831f0}{Status\_SetInterval}}(uint32\_t\ ms);}
+\DoxyCodeLine{00177\ uint8\_t\ \mbox{\hyperlink{group__input__handling_ga821c60e4615c59b5cb7d3eb7f040a6c6}{Input\_GetState}}(\mbox{\hyperlink{group__input__handling_ga17ed9738c4fcd08b8a24a1d405fac706}{InputName}}\ input);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00180\ \textcolor{comment}{//\ Condition\ Evaluation\ Functions}}
+\DoxyCodeLine{00181\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ uint8\_t\ \mbox{\hyperlink{group__input__handling_ga5317c72db950025ad0e43a0a90d8512d}{Cond\_RelayContactsMatch}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00184\ uint8\_t\ \mbox{\hyperlink{group__input__handling_ga826edb47818552911e13aee8a5b3ac26}{Cond\_LatchError}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00192\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__input__handling_ga2eb52e5e7cb7d0503368203e55a47b8d}{InputStateToString}}(\mbox{\hyperlink{group__input__handling_ga17ed9738c4fcd08b8a24a1d405fac706}{InputName}}\ input,\ uint8\_t\ state);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \textcolor{comment}{//\ end\ of\ input\_handling}}
+
+\end{DoxyCode}

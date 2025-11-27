@@ -1,0 +1,33 @@
+\doxysection{w25q.\+h}
+\hypertarget{w25q_8h_source}{}\label{w25q_8h_source}\index{w25q.h@{w25q.h}}
+\mbox{\hyperlink{w25q_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2main_8h}{main.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}cmsis\_os.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ SPI\ \&\ GPIO\ configuration\ (adjust\ to\ your\ board)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_____s_p_i___handle_type_def}{SPI\_HandleTypeDef}}\ \mbox{\hyperlink{w25q_8h_a9c6222bae4d0328dd843ae099623b40b}{hspi1}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ W25Q\_CS\_Port\ \ \ \ \ F1\_CS\_GPIO\_Port}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ W25Q\_CS\_Pin\ \ \ \ \ \ F1\_CS\_Pin}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Public\ API}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \ \ \ \ \mbox{\hyperlink{w25q_8h_a439c6b86a3726e49bb86ffe69c23deed}{W25Q\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00019\ uint32\_t\ \mbox{\hyperlink{w25q_8h_aaa1d0ea3b941a75d0d988feaca87b1e7}{W25Q\_ReadID}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{w25q_8h_ab9c3d50b11e8142ed89516a4ff5e67bb}{W25Q\_Read}}(uint32\_t\ addr,\ uint8\_t\ *buf,\ uint32\_t\ len);}
+\DoxyCodeLine{00022\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{w25q_8h_a302a3f3ca752d3d75943974f1a95df36}{W25Q\_PageProgram}}(uint32\_t\ addr,\ \textcolor{keyword}{const}\ uint8\_t\ *data,\ uint32\_t\ len);}
+\DoxyCodeLine{00023\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{w25q_8h_ae132501e366ebfaead22af8db87efd28}{W25Q\_SectorErase4K}}(uint32\_t\ addr);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{w25q_8h_a00a686d495b4c8b7280ceecaef291851}{W25Q\_ChipErase}}(\textcolor{keywordtype}{void});\ \ \ \textcolor{comment}{//\ optional\ (long)}}
+\DoxyCodeLine{00026\ \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\_StatusTypeDef}}\ \mbox{\hyperlink{w25q_8h_adad51cdfa8e7d1fc87467ff788a8f51f}{W25Q\_WaitBusy}}(uint32\_t\ tout\_ms);}
+\DoxyCodeLine{00027\ }
+
+\end{DoxyCode}

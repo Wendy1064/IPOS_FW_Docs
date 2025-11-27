@@ -1,0 +1,159 @@
+\doxysection{abcc\+\_\+hardware\+\_\+abstraction.\+c File Reference}
+\hypertarget{abcc__hardware__abstraction_8c}{}\label{abcc__hardware__abstraction_8c}\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+{\ttfamily \#include "{}abcc.\+h"{}}\newline
+{\ttfamily \#include "{}abcc\+\_\+hardware\+\_\+abstraction\+\_\+spi.\+h"{}}\newline
+{\ttfamily \#include "{}abcc\+\_\+hardware\+\_\+abstraction\+\_\+serial.\+h"{}}\newline
+{\ttfamily \#include $<$stm32h7xx\+\_\+hal.\+h$>$}\newline
+{\ttfamily \#include "{}abcc\+\_\+hardware\+\_\+abstraction\+\_\+aux.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}stdbool.\+h"{}}\newline
+Include dependency graph for abcc\+\_\+hardware\+\_\+abstraction.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{abcc__hardware__abstraction_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_i2_c___inputs_tag}{I2\+C\+\_\+\+Inputs\+Tag}}
+\item 
+struct \mbox{\hyperlink{struct_i2_c___outputs_tag}{I2\+C\+\_\+\+Outputs\+Tag}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{abcc__hardware__abstraction_8c_a519c1c926c2751ac02878043ef5c8996}{M00765\+\_\+\+U8\+\_\+\+I2\+C\+\_\+\+ADDRESS}}~( 0x4e )
+\item 
+\#define \mbox{\hyperlink{abcc__hardware__abstraction_8c_af330a62ba9c182e3267347b0960c18c7}{M00765\+\_\+\+U9\+\_\+\+I2\+C\+\_\+\+ADDRESS}}~( 0x4c )
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_i2_c___inputs_tag}{I2\+C\+\_\+\+Inputs\+Tag}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_a93684c45f1c2635d26584954e2472fad}{I2\+C\+\_\+\+Inputs\+Type}}
+\item 
+typedef struct \mbox{\hyperlink{struct_i2_c___outputs_tag}{I2\+C\+\_\+\+Outputs\+Tag}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_a6580c268240f24f9548a8e956c043fcb}{I2\+C\+\_\+\+Outputs\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_af5df0f25069627bb30c0e5396e3c3e6f}{ABCC\+\_\+\+HAL\+\_\+\+Set\+\_\+\+I2\+C\+\_\+\+Handle}} (I2\+C\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}px\+New\+Handle)
+\item 
+\mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_a9a411d8d1cac3488b8bfada0a34e1506}{ABCC\+\_\+\+HAL\+\_\+\+Refresh\+\_\+\+I2\+C\+\_\+\+In}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_aa7b0e33a0a1855cd0413414fcb0d9fe7}{ABCC\+\_\+\+HAL\+\_\+\+Refresh\+\_\+\+I2\+C\+\_\+\+Out}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_a5630cbd911b31d05caff06193c2f8a30}{ABCC\+\_\+\+HAL\+\_\+\+Get\+Restart\+Button}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_aafbf46fd502a6323cd54b499c154b3ab}{ABCC\+\_\+\+HAL\+\_\+\+Hw\+Init}} (void)
+\item 
+\mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_ab0158ecb660b0830b239b5558f3e0126}{ABCC\+\_\+\+HAL\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{abcc__hardware__abstraction_8c_a670615eddeca3181e538c5b23ea44408}{ABCC\+\_\+\+HAL\+\_\+\+Close}} (void)
+\item 
+void \mbox{\hyperlink{abcc__hardware__abstraction_8c_a81270d402ddfac7cfcc3298be00a5d05}{ABCC\+\_\+\+HAL\+\_\+\+HWReset}} (void)
+\item 
+void \mbox{\hyperlink{abcc__hardware__abstraction_8c_ad5946e6ccd2279f46036479b952cb5b6}{ABCC\+\_\+\+HAL\+\_\+\+HWRelease\+Reset}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{abcc__hardware__abstraction_8c_a935cf6a78beb7df83d477c66dae92e54}{new\+SPI2received}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{abcc__hardware__abstraction_8c_a519c1c926c2751ac02878043ef5c8996}\label{abcc__hardware__abstraction_8c_a519c1c926c2751ac02878043ef5c8996} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!M00765\_U8\_I2C\_ADDRESS@{M00765\_U8\_I2C\_ADDRESS}}
+\index{M00765\_U8\_I2C\_ADDRESS@{M00765\_U8\_I2C\_ADDRESS}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{M00765\_U8\_I2C\_ADDRESS}{M00765\_U8\_I2C\_ADDRESS}}
+{\footnotesize\ttfamily \#define M00765\+\_\+\+U8\+\_\+\+I2\+C\+\_\+\+ADDRESS~( 0x4e )}
+
+\Hypertarget{abcc__hardware__abstraction_8c_af330a62ba9c182e3267347b0960c18c7}\label{abcc__hardware__abstraction_8c_af330a62ba9c182e3267347b0960c18c7} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!M00765\_U9\_I2C\_ADDRESS@{M00765\_U9\_I2C\_ADDRESS}}
+\index{M00765\_U9\_I2C\_ADDRESS@{M00765\_U9\_I2C\_ADDRESS}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{M00765\_U9\_I2C\_ADDRESS}{M00765\_U9\_I2C\_ADDRESS}}
+{\footnotesize\ttfamily \#define M00765\+\_\+\+U9\+\_\+\+I2\+C\+\_\+\+ADDRESS~( 0x4c )}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{abcc__hardware__abstraction_8c_a93684c45f1c2635d26584954e2472fad}\label{abcc__hardware__abstraction_8c_a93684c45f1c2635d26584954e2472fad} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!I2C\_InputsType@{I2C\_InputsType}}
+\index{I2C\_InputsType@{I2C\_InputsType}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_InputsType}{I2C\_InputsType}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_i2_c___inputs_tag}{I2\+C\+\_\+\+Inputs\+Tag}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_a93684c45f1c2635d26584954e2472fad}{I2\+C\+\_\+\+Inputs\+Type}}}
+
+\Hypertarget{abcc__hardware__abstraction_8c_a6580c268240f24f9548a8e956c043fcb}\label{abcc__hardware__abstraction_8c_a6580c268240f24f9548a8e956c043fcb} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!I2C\_OutputsType@{I2C\_OutputsType}}
+\index{I2C\_OutputsType@{I2C\_OutputsType}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_OutputsType}{I2C\_OutputsType}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_i2_c___outputs_tag}{I2\+C\+\_\+\+Outputs\+Tag}} \mbox{\hyperlink{abcc__hardware__abstraction_8c_a6580c268240f24f9548a8e956c043fcb}{I2\+C\+\_\+\+Outputs\+Type}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{abcc__hardware__abstraction_8c_a670615eddeca3181e538c5b23ea44408}\label{abcc__hardware__abstraction_8c_a670615eddeca3181e538c5b23ea44408} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!ABCC\_HAL\_Close@{ABCC\_HAL\_Close}}
+\index{ABCC\_HAL\_Close@{ABCC\_HAL\_Close}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_HAL\_Close()}{ABCC\_HAL\_Close()}}
+{\footnotesize\ttfamily void ABCC\+\_\+\+HAL\+\_\+\+Close (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__hardware__abstraction_8c_a5630cbd911b31d05caff06193c2f8a30}\label{abcc__hardware__abstraction_8c_a5630cbd911b31d05caff06193c2f8a30} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!ABCC\_HAL\_GetRestartButton@{ABCC\_HAL\_GetRestartButton}}
+\index{ABCC\_HAL\_GetRestartButton@{ABCC\_HAL\_GetRestartButton}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_HAL\_GetRestartButton()}{ABCC\_HAL\_GetRestartButton()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} ABCC\+\_\+\+HAL\+\_\+\+Get\+Restart\+Button (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__hardware__abstraction_8c_aafbf46fd502a6323cd54b499c154b3ab}\label{abcc__hardware__abstraction_8c_aafbf46fd502a6323cd54b499c154b3ab} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!ABCC\_HAL\_HwInit@{ABCC\_HAL\_HwInit}}
+\index{ABCC\_HAL\_HwInit@{ABCC\_HAL\_HwInit}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_HAL\_HwInit()}{ABCC\_HAL\_HwInit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} ABCC\+\_\+\+HAL\+\_\+\+Hw\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__hardware__abstraction_8c_ad5946e6ccd2279f46036479b952cb5b6}\label{abcc__hardware__abstraction_8c_ad5946e6ccd2279f46036479b952cb5b6} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!ABCC\_HAL\_HWReleaseReset@{ABCC\_HAL\_HWReleaseReset}}
+\index{ABCC\_HAL\_HWReleaseReset@{ABCC\_HAL\_HWReleaseReset}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_HAL\_HWReleaseReset()}{ABCC\_HAL\_HWReleaseReset()}}
+{\footnotesize\ttfamily void ABCC\+\_\+\+HAL\+\_\+\+HWRelease\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__hardware__abstraction_8c_a81270d402ddfac7cfcc3298be00a5d05}\label{abcc__hardware__abstraction_8c_a81270d402ddfac7cfcc3298be00a5d05} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!ABCC\_HAL\_HWReset@{ABCC\_HAL\_HWReset}}
+\index{ABCC\_HAL\_HWReset@{ABCC\_HAL\_HWReset}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_HAL\_HWReset()}{ABCC\_HAL\_HWReset()}}
+{\footnotesize\ttfamily void ABCC\+\_\+\+HAL\+\_\+\+HWReset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__hardware__abstraction_8c_ab0158ecb660b0830b239b5558f3e0126}\label{abcc__hardware__abstraction_8c_ab0158ecb660b0830b239b5558f3e0126} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!ABCC\_HAL\_Init@{ABCC\_HAL\_Init}}
+\index{ABCC\_HAL\_Init@{ABCC\_HAL\_Init}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_HAL\_Init()}{ABCC\_HAL\_Init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} ABCC\+\_\+\+HAL\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__hardware__abstraction_8c_a9a411d8d1cac3488b8bfada0a34e1506}\label{abcc__hardware__abstraction_8c_a9a411d8d1cac3488b8bfada0a34e1506} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!ABCC\_HAL\_Refresh\_I2C\_In@{ABCC\_HAL\_Refresh\_I2C\_In}}
+\index{ABCC\_HAL\_Refresh\_I2C\_In@{ABCC\_HAL\_Refresh\_I2C\_In}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_HAL\_Refresh\_I2C\_In()}{ABCC\_HAL\_Refresh\_I2C\_In()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} ABCC\+\_\+\+HAL\+\_\+\+Refresh\+\_\+\+I2\+C\+\_\+\+In (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__hardware__abstraction_8c_aa7b0e33a0a1855cd0413414fcb0d9fe7}\label{abcc__hardware__abstraction_8c_aa7b0e33a0a1855cd0413414fcb0d9fe7} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!ABCC\_HAL\_Refresh\_I2C\_Out@{ABCC\_HAL\_Refresh\_I2C\_Out}}
+\index{ABCC\_HAL\_Refresh\_I2C\_Out@{ABCC\_HAL\_Refresh\_I2C\_Out}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_HAL\_Refresh\_I2C\_Out()}{ABCC\_HAL\_Refresh\_I2C\_Out()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} ABCC\+\_\+\+HAL\+\_\+\+Refresh\+\_\+\+I2\+C\+\_\+\+Out (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{abcc__hardware__abstraction_8c_af5df0f25069627bb30c0e5396e3c3e6f}\label{abcc__hardware__abstraction_8c_af5df0f25069627bb30c0e5396e3c3e6f} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!ABCC\_HAL\_Set\_I2C\_Handle@{ABCC\_HAL\_Set\_I2C\_Handle}}
+\index{ABCC\_HAL\_Set\_I2C\_Handle@{ABCC\_HAL\_Set\_I2C\_Handle}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{ABCC\_HAL\_Set\_I2C\_Handle()}{ABCC\_HAL\_Set\_I2C\_Handle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{abcc__types_8h_a050c65e107f0c828f856a231f4b4e788}{BOOL}} ABCC\+\_\+\+HAL\+\_\+\+Set\+\_\+\+I2\+C\+\_\+\+Handle (\begin{DoxyParamCaption}\item[{I2\+C\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{px\+New\+Handle }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{abcc__hardware__abstraction_8c_a935cf6a78beb7df83d477c66dae92e54}\label{abcc__hardware__abstraction_8c_a935cf6a78beb7df83d477c66dae92e54} 
+\index{abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}!newSPI2received@{newSPI2received}}
+\index{newSPI2received@{newSPI2received}!abcc\_hardware\_abstraction.c@{abcc\_hardware\_abstraction.c}}
+\doxysubsubsection{\texorpdfstring{newSPI2received}{newSPI2received}}
+{\footnotesize\ttfamily bool new\+SPI2received\hspace{0.3cm}{\ttfamily [extern]}}
+

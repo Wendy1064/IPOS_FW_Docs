@@ -1,0 +1,48 @@
+\doxysection{IPOS\+\_\+071125/\+Core/\+Src/protocol.c File Reference}
+\hypertarget{_i_p_o_s__071125_2_core_2_src_2protocol_8c}{}\label{_i_p_o_s__071125_2_core_2_src_2protocol_8c}\index{protocol.c@{protocol.c}}
+{\ttfamily \#include "{}protocol.\+h"{}}\newline
+{\ttfamily \#include "{}usbd\+\_\+cdc\+\_\+if.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os2.\+h"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for IPOS\+\_\+071125/\+Core/\+Src/protocol.c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_i_p_o_s__071125_2_core_2_src_2protocol_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__protocol_gacb2252c58bff24bc9fcd5848ac9b1d9d}{MAX\+\_\+\+USB\+\_\+\+BUFF}}~256
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__protocol_ga8970bcd0e0af17f42b3b3a6d83f3d195}{proto\+\_\+init}} (\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}p, \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}{Proto\+Role}} role)
+\begin{DoxyCompactList}\small\item\em Initialize a protocol parser instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__protocol_gacad3e241e27ce9c8dc1ca4535f41f9a5}{proto\+\_\+reset}} (\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}p)
+\begin{DoxyCompactList}\small\item\em Reset the parser state. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__protocol_gadbb6342eec2b0de6e1c7ab042f1448e1}{proto\+\_\+push}} (\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}p, uint8\+\_\+t b, \mbox{\hyperlink{struct_proto_frame}{Proto\+Frame}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Feed one byte into the protocol parser. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga95064f228b494d27449fa09019d639c8}{proto\+\_\+build\+\_\+write}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build a WRITE frame. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga4cc33e9868129062ecf64b316b43dcf6}{proto\+\_\+build\+\_\+read}} (uint8\+\_\+t var\+\_\+id, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build a READ request frame. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga05e2d2d6edbf121ecf479ddbaf47e03d}{proto\+\_\+build\+\_\+ack}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build an ACK frame. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga02c6e9492c7b3578ce7b3e9212cea6f7}{proto\+\_\+build\+\_\+readr}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build a READ-\/response frame with data value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{Usb\+Printf}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Thread-\/safe USB printf using CDC\+\_\+\+Transmit\+\_\+\+FS(). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__protocol_ga13513b52ba27e18fced406e65011d1b9}{verbose\+Logging}}
+\begin{DoxyCompactList}\small\item\em Verbose logging enable flag (set via USB command). \end{DoxyCompactList}\item 
+USBD\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{group__protocol_gafe8a2d9e10b33d5e7906f9f04f95358e}{h\+Usb\+Device\+FS}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{group__protocol_ga9ff0771c408ff05151526e5fc82eb860}{usb\+Ready\+Flag}}
+\end{DoxyCompactItemize}

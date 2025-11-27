@@ -1,0 +1,69 @@
+\doxysection{log\+\_\+flash.\+c File Reference}
+\hypertarget{log__flash_8c}{}\label{log__flash_8c}\index{log\_flash.c@{log\_flash.c}}
+
+
+Persistent flash-\/based event and error logging.  
+
+
+{\ttfamily \#include "{}log\+\_\+flash.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for log\+\_\+flash.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{log__flash_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__log__flash_ga5f3b99e0966ad05cc569bea9b503b148}{Log\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Message structure used for asynchronous logging via RTOS queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__log__flash_gaf7be7be3d5aa3ad8ce8eb8f080d34baa}{Log\+\_\+\+Append}} (uint16\+\_\+t code, uint16\+\_\+t flags, const char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Append a new record to the flash log. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__log__flash_ga661cd6aecf9a843941229e9789ef8d8f}{Log\+\_\+\+Read\+LastN}} (uint32\+\_\+t n, \mbox{\hyperlink{group__log__flash_gaa8e473f8371172fa02b2ecf3bf4b2010}{Log\+Rec}} \texorpdfstring{$\ast$}{*}out, uint32\+\_\+t max\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Read the last {\ttfamily n} records from flash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__log__flash_ga68cbde1bd242d16f0c97aa1a6a982674}{Log\+\_\+\+Count\+Valid}} (void)
+\begin{DoxyCompactList}\small\item\em Count the number of valid (committed) records currently stored. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__log__flash_gae4a37f521a0098079c9f62bb1014569f}{v\+Task\+Log\+Writer}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS task responsible for writing queued log messages to flash. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__log__flash_gab44417e89973f9f0c7b2d0aaa7ba25ac}{Log\+\_\+\+Get\+Write\+Index}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current write index within the circular buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__log__flash_ga2d734e69f4ea869029a8bb750d24540d}{Log\+\_\+\+Get\+Sequence\+Next}} (void)
+\begin{DoxyCompactList}\small\item\em Get the next sequential record number to be assigned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__log__flash_ga2e3467bd12b4bc5a03d2ef75df455976}{wr\+\_\+index}} = 0
+\begin{DoxyCompactList}\small\item\em Current write position in circular log (0..LOG\+\_\+\+CAPACITY-\/1). \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__log__flash_ga960039267784d0b901fd31737f74220d}{seq\+\_\+next}} = 1
+\begin{DoxyCompactList}\small\item\em Next sequential record number (increments on each append). \end{DoxyCompactList}\item 
+os\+Message\+Queue\+Id\+\_\+t \mbox{\hyperlink{group__log__flash_gaa42f4a4e54ef104c44df1ce00a619e7a}{log\+Queue}} = \mbox{\hyperlink{abcc__types_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}
+\begin{DoxyCompactList}\small\item\em Global handle for the log message queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Persistent flash-\/based event and error logging. 
+
+This module provides a lightweight logging system that stores events in SPI flash memory (W25\+Q-\/series). It is used to record safety faults, system warnings, and informational messages for later retrieval via USB commands.\hypertarget{log__flash_8c_autotoc_md48}{}\doxysubsubsubsection{\texorpdfstring{Features}{Features}}\label{log__flash_8c_autotoc_md48}
+
+\begin{DoxyItemize}
+\item Log storage in external SPI flash
+\item Read, erase, and self-\/test commands via USB
+\item Sequence and timestamp tracking for each record
+\item Integration with input and safety modules
+\end{DoxyItemize}\hypertarget{log__flash_8c_autotoc_md49}{}\doxysubsubsubsection{\texorpdfstring{Typical Usage}{Typical Usage}}\label{log__flash_8c_autotoc_md49}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_log_msg__t}{LogMsg\_t}}\ msg\ =\ \{}
+\DoxyCodeLine{\ \ \ \ .\mbox{\hyperlink{struct_log_msg__t_a4179f2d03ffd9ba1251cc59264445024}{code}}\ =\ 2001,}
+\DoxyCodeLine{\ \ \ \ .flags\ =\ 1,}
+\DoxyCodeLine{\ \ \ \ .msg\ =\ \textcolor{stringliteral}{"{}Overtemperature\ fault"{}}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{osMessageQueuePut(\mbox{\hyperlink{group__log__flash_gaa42f4a4e54ef104c44df1ce00a619e7a}{logQueue}},\ \&msg,\ 0,\ 0);}
+
+\end{DoxyCode}
+
+
+The queued message is written to flash asynchronously by {\ttfamily \doxylink{group__log__flash_gae4a37f521a0098079c9f62bb1014569f}{v\+Task\+Log\+Writer()}}. 

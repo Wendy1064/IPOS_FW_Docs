@@ -1,0 +1,273 @@
+\doxysection{Communication Protocol Layer}
+\hypertarget{group__protocol}{}\label{group__protocol}\index{Communication Protocol Layer@{Communication Protocol Layer}}
+
+
+Implements frame encoding/decoding for master–slave communication.  
+
+
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__protocol_gacb2252c58bff24bc9fcd5848ac9b1d9d}{MAX\+\_\+\+USB\+\_\+\+BUFF}}~256
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__protocol_ga8970bcd0e0af17f42b3b3a6d83f3d195}{proto\+\_\+init}} (\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}p, \mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}{Proto\+Role}} role)
+\begin{DoxyCompactList}\small\item\em Initialize a protocol parser instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__protocol_gacad3e241e27ce9c8dc1ca4535f41f9a5}{proto\+\_\+reset}} (\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}p)
+\begin{DoxyCompactList}\small\item\em Reset the parser state. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__protocol_gadbb6342eec2b0de6e1c7ab042f1448e1}{proto\+\_\+push}} (\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}p, uint8\+\_\+t b, \mbox{\hyperlink{struct_proto_frame}{Proto\+Frame}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Feed one byte into the protocol parser. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga95064f228b494d27449fa09019d639c8}{proto\+\_\+build\+\_\+write}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build a WRITE frame. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga4cc33e9868129062ecf64b316b43dcf6}{proto\+\_\+build\+\_\+read}} (uint8\+\_\+t var\+\_\+id, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build a READ request frame. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga05e2d2d6edbf121ecf479ddbaf47e03d}{proto\+\_\+build\+\_\+ack}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build an ACK frame. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__protocol_ga02c6e9492c7b3578ce7b3e9212cea6f7}{proto\+\_\+build\+\_\+readr}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value, uint8\+\_\+t out\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Build a READ-\/response frame with data value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{Usb\+Printf}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Thread-\/safe USB printf using CDC\+\_\+\+Transmit\+\_\+\+FS(). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__protocol_ga13513b52ba27e18fced406e65011d1b9}{verbose\+Logging}}
+\begin{DoxyCompactList}\small\item\em Verbose logging enable flag (set via USB command). \end{DoxyCompactList}\item 
+USBD\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{group__protocol_gafe8a2d9e10b33d5e7906f9f04f95358e}{h\+Usb\+Device\+FS}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{group__protocol_ga9ff0771c408ff05151526e5fc82eb860}{usb\+Ready\+Flag}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements frame encoding/decoding for master–slave communication. 
+
+This module defines the binary packet protocol used between the STM32 master and the slave controller. It handles\+:
+\begin{DoxyItemize}
+\item Frame parsing with start ({\ttfamily STX}) and end ({\ttfamily ETX}) markers
+\item Building and decoding of WRITE, READ, and ACK messages
+\item Role-\/dependent packet length handling (Master/\+Slave)
+\item Safe USB printf wrapper for debug output
+\end{DoxyItemize}
+
+The protocol operates on simple, fixed-\/length frames\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Byte   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Field   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Byte   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Field   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-3}
+\endhead
+0   &{\ttfamily STX}   &Start byte (0x\+AA)    \\\cline{1-3}
+1   &{\ttfamily CMD}   &Command code (WRITE / READ / ACK)    \\\cline{1-3}
+2   &{\ttfamily var\+\_\+id}   &Variable identifier    \\\cline{1-3}
+3–4   &{\ttfamily value}   &Optional 16-\/bit data value    \\\cline{1-3}
+N   &{\ttfamily ETX}   &End byte (0x55)   \\\cline{1-3}
+\end{longtabu}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{group__protocol_gacb2252c58bff24bc9fcd5848ac9b1d9d}\label{group__protocol_gacb2252c58bff24bc9fcd5848ac9b1d9d} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!MAX\_USB\_BUFF@{MAX\_USB\_BUFF}}
+\index{MAX\_USB\_BUFF@{MAX\_USB\_BUFF}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{MAX\_USB\_BUFF}{MAX\_USB\_BUFF}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+USB\+\_\+\+BUFF~256}
+
+Maximum buffer size for formatted USB prints 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__protocol_ga05e2d2d6edbf121ecf479ddbaf47e03d}\label{group__protocol_ga05e2d2d6edbf121ecf479ddbaf47e03d} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!proto\_build\_ack@{proto\_build\_ack}}
+\index{proto\_build\_ack@{proto\_build\_ack}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{proto\_build\_ack()}{proto\_build\_ack()}}
+{\footnotesize\ttfamily size\+\_\+t proto\+\_\+build\+\_\+ack (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value,  }\item[{uint8\+\_\+t}]{out\mbox{[}8\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Build an ACK frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+id} & Variable identifier \\
+\hline
+{\em value} & Acknowledged value \\
+\hline
+{\em out} & Output buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length of frame 
+\end{DoxyReturn}
+\Hypertarget{group__protocol_ga4cc33e9868129062ecf64b316b43dcf6}\label{group__protocol_ga4cc33e9868129062ecf64b316b43dcf6} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!proto\_build\_read@{proto\_build\_read}}
+\index{proto\_build\_read@{proto\_build\_read}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{proto\_build\_read()}{proto\_build\_read()}}
+{\footnotesize\ttfamily size\+\_\+t proto\+\_\+build\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint8\+\_\+t}]{out\mbox{[}8\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Build a READ request frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+id} & Variable identifier \\
+\hline
+{\em out} & Output buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length of frame 
+\end{DoxyReturn}
+\Hypertarget{group__protocol_ga02c6e9492c7b3578ce7b3e9212cea6f7}\label{group__protocol_ga02c6e9492c7b3578ce7b3e9212cea6f7} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!proto\_build\_readr@{proto\_build\_readr}}
+\index{proto\_build\_readr@{proto\_build\_readr}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{proto\_build\_readr()}{proto\_build\_readr()}}
+{\footnotesize\ttfamily size\+\_\+t proto\+\_\+build\+\_\+readr (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value,  }\item[{uint8\+\_\+t}]{out\mbox{[}8\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Build a READ-\/response frame with data value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+id} & Variable identifier \\
+\hline
+{\em value} & Data value to return \\
+\hline
+{\em out} & Output buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length of frame 
+\end{DoxyReturn}
+\Hypertarget{group__protocol_ga95064f228b494d27449fa09019d639c8}\label{group__protocol_ga95064f228b494d27449fa09019d639c8} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!proto\_build\_write@{proto\_build\_write}}
+\index{proto\_build\_write@{proto\_build\_write}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{proto\_build\_write()}{proto\_build\_write()}}
+{\footnotesize\ttfamily size\+\_\+t proto\+\_\+build\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value,  }\item[{uint8\+\_\+t}]{out\mbox{[}8\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Build a WRITE frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+id} & Variable identifier \\
+\hline
+{\em value} & 16-\/bit data value \\
+\hline
+{\em out} & Output byte buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length of frame in bytes 
+\end{DoxyReturn}
+\Hypertarget{group__protocol_ga8970bcd0e0af17f42b3b3a6d83f3d195}\label{group__protocol_ga8970bcd0e0af17f42b3b3a6d83f3d195} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!proto\_init@{proto\_init}}
+\index{proto\_init@{proto\_init}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{proto\_init()}{proto\_init()}}
+{\footnotesize\ttfamily void proto\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}}]{p,  }\item[{\mbox{\hyperlink{_i_p_o_s__071125_2_core_2_inc_2protocol_8h_abe23dea090170d3a1fc7c109f2c272b7}{Proto\+Role}}}]{role }\end{DoxyParamCaption})}
+
+
+
+Initialize a protocol parser instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to parser object \\
+\hline
+{\em role} & Protocol role (ROLE\+\_\+\+MASTER or ROLE\+\_\+\+SLAVE) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__protocol_gadbb6342eec2b0de6e1c7ab042f1448e1}\label{group__protocol_gadbb6342eec2b0de6e1c7ab042f1448e1} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!proto\_push@{proto\_push}}
+\index{proto\_push@{proto\_push}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{proto\_push()}{proto\_push()}}
+{\footnotesize\ttfamily bool proto\+\_\+push (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}}]{p,  }\item[{uint8\+\_\+t}]{b,  }\item[{\mbox{\hyperlink{struct_proto_frame}{Proto\+Frame}} \texorpdfstring{$\ast$}{*}}]{out }\end{DoxyParamCaption})}
+
+
+
+Feed one byte into the protocol parser. 
+
+This function accumulates bytes into the parser buffer until a complete valid frame is detected. When a frame is complete, it fills the {\ttfamily out} structure with decoded values and returns {\ttfamily true}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Parser context \\
+\hline
+{\em b} & Incoming byte \\
+\hline
+{\em out} & Output structure for parsed frame \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if a complete valid frame is parsed, otherwise {\ttfamily false} 
+\end{DoxyReturn}
+\Hypertarget{group__protocol_gacad3e241e27ce9c8dc1ca4535f41f9a5}\label{group__protocol_gacad3e241e27ce9c8dc1ca4535f41f9a5} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!proto\_reset@{proto\_reset}}
+\index{proto\_reset@{proto\_reset}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{proto\_reset()}{proto\_reset()}}
+{\footnotesize\ttfamily void proto\+\_\+reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_proto_parser}{Proto\+Parser}} \texorpdfstring{$\ast$}{*}}]{p }\end{DoxyParamCaption})}
+
+
+
+Reset the parser state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to parser object \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}\label{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!UsbPrintf@{UsbPrintf}}
+\index{UsbPrintf@{UsbPrintf}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{UsbPrintf()}{UsbPrintf()}}
+{\footnotesize\ttfamily void Usb\+Printf (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Thread-\/safe USB printf using CDC\+\_\+\+Transmit\+\_\+\+FS(). 
+
+Formats and transmits text over USB CDC in safe 64-\/byte chunks. It automatically waits for the USB interface to become ready and uses a mutex to prevent interleaved transmissions from multiple threads.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fmt} & printf-\/style format string \\
+\hline
+{\em ...} & Variable argument list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Non-\/blocking; uses short delays between packets to allow host ACK. 
+\end{DoxyNote}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{group__protocol_gafe8a2d9e10b33d5e7906f9f04f95358e}\label{group__protocol_gafe8a2d9e10b33d5e7906f9f04f95358e} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!hUsbDeviceFS@{hUsbDeviceFS}}
+\index{hUsbDeviceFS@{hUsbDeviceFS}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{hUsbDeviceFS}{hUsbDeviceFS}}
+{\footnotesize\ttfamily USBD\+\_\+\+Handle\+Type\+Def h\+Usb\+Device\+FS\hspace{0.3cm}{\ttfamily [extern]}}
+
+USB device handle (CDC interface) \Hypertarget{group__protocol_ga9ff0771c408ff05151526e5fc82eb860}\label{group__protocol_ga9ff0771c408ff05151526e5fc82eb860} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!usbReadyFlag@{usbReadyFlag}}
+\index{usbReadyFlag@{usbReadyFlag}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{usbReadyFlag}{usbReadyFlag}}
+{\footnotesize\ttfamily volatile uint8\+\_\+t usb\+Ready\+Flag\hspace{0.3cm}{\ttfamily [extern]}}
+
+Global flag indicating that USB CDC is ready \Hypertarget{group__protocol_ga13513b52ba27e18fced406e65011d1b9}\label{group__protocol_ga13513b52ba27e18fced406e65011d1b9} 
+\index{Communication Protocol Layer@{Communication Protocol Layer}!verboseLogging@{verboseLogging}}
+\index{verboseLogging@{verboseLogging}!Communication Protocol Layer@{Communication Protocol Layer}}
+\doxysubsubsection{\texorpdfstring{verboseLogging}{verboseLogging}}
+{\footnotesize\ttfamily uint8\+\_\+t verbose\+Logging\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Verbose logging enable flag (set via USB command). 
+
+Verbose logging flag controlled by USB commands 

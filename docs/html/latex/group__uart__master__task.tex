@@ -1,0 +1,136 @@
+\doxysection{UART Master Task}
+\hypertarget{group__uart__master__task}{}\label{group__uart__master__task}\index{UART Master Task@{UART Master Task}}
+
+
+Free\+RTOS task and queue layer for master–slave UART communication.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__uart__master__task_ga0236376a4609184fd28365f6e13bc82d}{master\+\_\+on\+\_\+ack}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{group__master__link}{Master Communication Link} when an ACK frame is received. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__uart__master__task_gaef56f01e664304dc94f34e8b06ce012a}{master\+\_\+on\+\_\+data}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{group__master__link}{Master Communication Link} when a READ response is received. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__uart__master__task_gae0c58a28693c31347c2942dc51f60aee}{Uart\+Master\+\_\+\+Start\+Tasks}} (void \texorpdfstring{$\ast$}{*}uart\+\_\+handle)
+\begin{DoxyCompactList}\small\item\em Creates message queues and starts the UART Master task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+os\+Message\+Queue\+Id\+\_\+t \mbox{\hyperlink{group__uart__master__task_gab434b0238221e0189e48d13665cfc621}{g\+Ack\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue for acknowledgment frames from slave (CMD\+\_\+\+ACK). \end{DoxyCompactList}\item 
+os\+Message\+Queue\+Id\+\_\+t \mbox{\hyperlink{group__uart__master__task_ga0bdb2bd938c5bcddab9b37256a1da565}{g\+Data\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue for incoming data frames (CMD\+\_\+\+READ). \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__uart__master__task_gabac60e518d31943e808211083e11f886}{usb\+Tx\+Buf}} \mbox{[}128\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Free\+RTOS task and queue layer for master–slave UART communication. 
+
+This module creates the {\bfseries{UART Master Task}}, which manages communication between the STM32 master and an external PLC/slave MCU. It acts as a middle layer between\+:
+\begin{DoxyItemize}
+\item The \doxylink{group__master__link}{Master Communication Link} low-\/level UART + DMA driver, and
+\item The \doxylink{group__app__main}{Application Startup and Task Manager} high-\/level task logic.
+\end{DoxyItemize}
+
+The UART Master Task initializes message queues for\+:
+\begin{DoxyItemize}
+\item Acknowledgment frames ({\ttfamily g\+Ack\+Queue})
+\item Data (read) frames ({\ttfamily g\+Data\+Queue})
+\end{DoxyItemize}
+
+It spawns a Free\+RTOS thread that continuously polls the \doxylink{group__master__link}{Master Communication Link} parser, processes incoming UART frames, and dispatches parsed messages to other tasks via message queues.
+
+{\bfseries{Responsibilities\+:}}
+\begin{DoxyItemize}
+\item Initialize UART communication
+\item Forward ACK and DATA frames from parser to queues
+\item Handle ISR notifications via thread flags
+\item Poll and drain protocol frames using \doxylink{group__master__link_gaa0c4ce7bf2ecce9ca76ebf74d34a9812}{master\+\_\+link\+\_\+poll} 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__uart__master__task_ga0236376a4609184fd28365f6e13bc82d}\label{group__uart__master__task_ga0236376a4609184fd28365f6e13bc82d} 
+\index{UART Master Task@{UART Master Task}!master\_on\_ack@{master\_on\_ack}}
+\index{master\_on\_ack@{master\_on\_ack}!UART Master Task@{UART Master Task}}
+\doxysubsubsection{\texorpdfstring{master\_on\_ack()}{master\_on\_ack()}}
+{\footnotesize\ttfamily void master\+\_\+on\+\_\+ack (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Called by \doxylink{group__master__link}{Master Communication Link} when an ACK frame is received. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+id} & Variable ID acknowledged \\
+\hline
+{\em value} & 16-\/bit value returned by slave\\
+\hline
+\end{DoxyParams}
+Pushes an acknowledgment frame into \doxylink{group__uart__master__task_gab434b0238221e0189e48d13665cfc621}{g\+Ack\+Queue}. \Hypertarget{group__uart__master__task_gaef56f01e664304dc94f34e8b06ce012a}\label{group__uart__master__task_gaef56f01e664304dc94f34e8b06ce012a} 
+\index{UART Master Task@{UART Master Task}!master\_on\_data@{master\_on\_data}}
+\index{master\_on\_data@{master\_on\_data}!UART Master Task@{UART Master Task}}
+\doxysubsubsection{\texorpdfstring{master\_on\_data()}{master\_on\_data()}}
+{\footnotesize\ttfamily void master\+\_\+on\+\_\+data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Called by \doxylink{group__master__link}{Master Communication Link} when a READ response is received. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+id} & Variable ID read \\
+\hline
+{\em value} & 16-\/bit value returned by slave\\
+\hline
+\end{DoxyParams}
+Pushes a data frame into \doxylink{group__uart__master__task_ga0bdb2bd938c5bcddab9b37256a1da565}{g\+Data\+Queue}. \Hypertarget{group__uart__master__task_gae0c58a28693c31347c2942dc51f60aee}\label{group__uart__master__task_gae0c58a28693c31347c2942dc51f60aee} 
+\index{UART Master Task@{UART Master Task}!UartMaster\_StartTasks@{UartMaster\_StartTasks}}
+\index{UartMaster\_StartTasks@{UartMaster\_StartTasks}!UART Master Task@{UART Master Task}}
+\doxysubsubsection{\texorpdfstring{UartMaster\_StartTasks()}{UartMaster\_StartTasks()}}
+{\footnotesize\ttfamily void Uart\+Master\+\_\+\+Start\+Tasks (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{uart\+\_\+handle }\end{DoxyParamCaption})}
+
+
+
+Creates message queues and starts the UART Master task. 
+
+This function is called from \doxylink{group__app__main}{Application Startup and Task Manager} during startup. It creates the Free\+RTOS message queues and starts the UART Master Task with high priority to maintain link timing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em uart\+\_\+handle} & Pointer to initialized UART handle (e.\+g. \&huart2)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The created task runs under the name \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}"{}uart\+\_\+master"{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} and priority {\ttfamily os\+Priority\+Above\+Normal}. 
+\end{DoxyNote}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{group__uart__master__task_gab434b0238221e0189e48d13665cfc621}\label{group__uart__master__task_gab434b0238221e0189e48d13665cfc621} 
+\index{UART Master Task@{UART Master Task}!gAckQueue@{gAckQueue}}
+\index{gAckQueue@{gAckQueue}!UART Master Task@{UART Master Task}}
+\doxysubsubsection{\texorpdfstring{gAckQueue}{gAckQueue}}
+{\footnotesize\ttfamily os\+Message\+Queue\+Id\+\_\+t g\+Ack\+Queue}
+
+
+
+Queue for acknowledgment frames from slave (CMD\+\_\+\+ACK). 
+
+Used by higher-\/level tasks (e.\+g., \doxylink{group__app__main}{Application Startup and Task Manager}) to verify write commands. \Hypertarget{group__uart__master__task_ga0bdb2bd938c5bcddab9b37256a1da565}\label{group__uart__master__task_ga0bdb2bd938c5bcddab9b37256a1da565} 
+\index{UART Master Task@{UART Master Task}!gDataQueue@{gDataQueue}}
+\index{gDataQueue@{gDataQueue}!UART Master Task@{UART Master Task}}
+\doxysubsubsection{\texorpdfstring{gDataQueue}{gDataQueue}}
+{\footnotesize\ttfamily os\+Message\+Queue\+Id\+\_\+t g\+Data\+Queue}
+
+
+
+Queue for incoming data frames (CMD\+\_\+\+READ). 
+
+Used to deliver variable data updates to the main control logic. \Hypertarget{group__uart__master__task_gabac60e518d31943e808211083e11f886}\label{group__uart__master__task_gabac60e518d31943e808211083e11f886} 
+\index{UART Master Task@{UART Master Task}!usbTxBuf@{usbTxBuf}}
+\index{usbTxBuf@{usbTxBuf}!UART Master Task@{UART Master Task}}
+\doxysubsubsection{\texorpdfstring{usbTxBuf}{usbTxBuf}}
+{\footnotesize\ttfamily uint8\+\_\+t usb\+Tx\+Buf\mbox{[}128\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+

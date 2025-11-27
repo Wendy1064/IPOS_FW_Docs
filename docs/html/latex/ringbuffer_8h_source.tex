@@ -1,0 +1,54 @@
+\doxysection{ringbuffer.\+h}
+\hypertarget{ringbuffer_8h_source}{}\label{ringbuffer_8h_source}\index{ringbuffer.h@{ringbuffer.h}}
+\mbox{\hyperlink{ringbuffer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{/*\ Simple\ lockless\ ring\ buffer\ —\ single\ producer\ (ISR),\ single\ consumer\ (main\ loop)\ */}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00008\ \ \ \ \ uint8\_t\ *buf;}
+\DoxyCodeLine{00009\ \ \ \ \ uint16\_t\ size;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ MUST\ be\ power\ of\ two,\ e.g.\ 256}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{volatile}\ uint16\_t\ head;\ \textcolor{comment}{//\ write\ index}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{volatile}\ uint16\_t\ tail;\ \textcolor{comment}{//\ read\ index}}
+\DoxyCodeLine{00012\ \}\ \mbox{\hyperlink{struct_ring_buffer}{RingBuffer}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{/*\ Initialize\ with\ a\ storage\ array\ and\ its\ size\ */}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ rb\_init(\mbox{\hyperlink{struct_ring_buffer}{RingBuffer}}\ *rb,\ uint8\_t\ *storage,\ uint16\_t\ size)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a82b8cf939e38c32e37fa8a54d4df33ac}{buf}}\ =\ storage;}
+\DoxyCodeLine{00017\ \ \ \ \ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a4d7b67ecc3d498a5093dea1562daa75c}{size}}\ =\ size;}
+\DoxyCodeLine{00018\ \ \ \ \ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a87817113715c194a3cfe19678fcfa0b4}{head}}\ =\ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a2e915532ebf337299d19621f0a90bc16}{tail}}\ =\ 0;}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*\ Number\ of\ bytes\ available\ to\ read\ */}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint16\_t\ rb\_count(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ring_buffer}{RingBuffer}}\ *rb)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ (uint16\_t)(rb-\/>\mbox{\hyperlink{struct_ring_buffer_a87817113715c194a3cfe19678fcfa0b4}{head}}\ -\/\ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a2e915532ebf337299d19621f0a90bc16}{tail}});}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/*\ Push\ one\ byte\ into\ the\ buffer;\ returns\ false\ if\ full\ */}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ rb\_put(\mbox{\hyperlink{struct_ring_buffer}{RingBuffer}}\ *rb,\ uint8\_t\ b)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ uint16\_t\ next\ =\ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a87817113715c194a3cfe19678fcfa0b4}{head}}\ +\ 1;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ ((uint16\_t)(next\ -\/\ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a2e915532ebf337299d19621f0a90bc16}{tail}})\ >\ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a4d7b67ecc3d498a5093dea1562daa75c}{size}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ full}}
+\DoxyCodeLine{00030\ \ \ \ \ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a82b8cf939e38c32e37fa8a54d4df33ac}{buf}}[rb-\/>\mbox{\hyperlink{struct_ring_buffer_a87817113715c194a3cfe19678fcfa0b4}{head}}\ \&\ (rb-\/>\mbox{\hyperlink{struct_ring_buffer_a4d7b67ecc3d498a5093dea1562daa75c}{size}}\ -\/\ 1)]\ =\ b;}
+\DoxyCodeLine{00031\ \ \ \ \ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a87817113715c194a3cfe19678fcfa0b4}{head}}\ =\ next;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{/*\ Push\ an\ array\ of\ bytes;\ returns\ how\ many\ were\ written\ */}}
+\DoxyCodeLine{00036\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint16\_t\ rb\_write(\mbox{\hyperlink{struct_ring_buffer}{RingBuffer}}\ *rb,\ \textcolor{keyword}{const}\ uint8\_t\ *src,\ uint16\_t\ len)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ uint16\_t\ w\ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{while}\ (w\ <\ len\ \&\&\ rb\_put(rb,\ src[w]))\ w++;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ w;}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{/*\ Pop\ one\ byte\ from\ the\ buffer;\ returns\ false\ if\ empty\ */}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ rb\_get(\mbox{\hyperlink{struct_ring_buffer}{RingBuffer}}\ *rb,\ uint8\_t\ *out)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (rb\_count(rb)\ ==\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ empty}}
+\DoxyCodeLine{00045\ \ \ \ \ *out\ =\ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a82b8cf939e38c32e37fa8a54d4df33ac}{buf}}[rb-\/>\mbox{\hyperlink{struct_ring_buffer_a2e915532ebf337299d19621f0a90bc16}{tail}}\ \&\ (rb-\/>\mbox{\hyperlink{struct_ring_buffer_a4d7b67ecc3d498a5093dea1562daa75c}{size}}\ -\/\ 1)];}
+\DoxyCodeLine{00046\ \ \ \ \ rb-\/>\mbox{\hyperlink{struct_ring_buffer_a2e915532ebf337299d19621f0a90bc16}{tail}}++;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00048\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,37 @@
+\doxysection{abcc\+\_\+software\+\_\+port.\+h}
+\hypertarget{abcc__software__port_8h_source}{}\label{abcc__software__port_8h_source}\index{abcc\_software\_port.h@{abcc\_software\_port.h}}
+\mbox{\hyperlink{abcc__software__port_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ Copyright\ 2025-\/present\ HMS\ Industrial\ Networks\ AB.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ Licensed\ under\ the\ MIT\ License.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{********************************************************************************}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ File\ Description:}}
+\DoxyCodeLine{00006\ \textcolor{comment}{**\ Platform\ dependent\ macros\ and\ functions\ required\ by\ the\ ABCC\ driver\ and}}
+\DoxyCodeLine{00007\ \textcolor{comment}{**\ Anybus\ objects\ implementation\ to\ be\ platform\ independent.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{**\ The\ description\ of\ the\ macros\ are\ found\ in\ abcc\_port.h.\ Abcc\_port.h\ is\ found}}
+\DoxyCodeLine{00009\ \textcolor{comment}{**\ in\ the\ public\ ABCC40\ driver\ interface.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{********************************************************************************}}
+\DoxyCodeLine{00011\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ ABCC\_SW\_PORT\_H\_}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ ABCC\_SW\_PORT\_H\_}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{abcc__types_8h}{abcc\_types.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}abcc\_config.h"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ ABCC\_PORT\_printf(\ ...\ )\ \ \ \ \ \ \ \ \ \ printf(\ \_\_VA\_ARGS\_\_\ )}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ ABCC\_PORT\_vprintf(\ ...\ )\ \ \ \ \ \ \ \ \ vprintf(\ \_\_VA\_ARGS\_\_\ )}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ ABCC\_PORT\_UseCritical()}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ ABCC\_PORT\_EnterCritical()}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ ABCC\_PORT\_ExitCritical()}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ inclusion\ lock\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

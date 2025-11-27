@@ -1,0 +1,137 @@
+\doxysection{abcc\+\_\+driver\+\_\+config.\+h}
+\hypertarget{abcc__driver__config_8h_source}{}\label{abcc__driver__config_8h_source}\index{abcc\_driver\_config.h@{abcc\_driver\_config.h}}
+\mbox{\hyperlink{abcc__driver__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ Copyright\ 2025-\/present\ HMS\ Industrial\ Networks\ AB.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ Licensed\ under\ the\ MIT\ License.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{********************************************************************************}}
+\DoxyCodeLine{00005\ \textcolor{comment}{**\ File\ Description:}}
+\DoxyCodeLine{00006\ \textcolor{comment}{**\ User\ configuration\ of\ the\ ABCC\ driver.\ The\ configuration\ parameters\ are}}
+\DoxyCodeLine{00007\ \textcolor{comment}{**\ documented\ in\ the\ driver's\ public\ interface\ abcc\_config.h.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{**}}
+\DoxyCodeLine{00009\ \textcolor{comment}{**\ Configuration\ options\ with\ default\ values\ defined\ in\ abcc\_config.h\ will\ be}}
+\DoxyCodeLine{00010\ \textcolor{comment}{**\ used\ unless\ overriden\ here.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{********************************************************************************}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ ABCC\_DRV\_CFG\_H\_}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ ABCC\_DRV\_CFG\_H\_}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{abcc__types_8h}{abcc\_types.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}abp.h"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00021\ \textcolor{comment}{**\ SPI\ and\ serial\ are\ supported}}
+\DoxyCodeLine{00022\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00023\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_DRV\_SPI\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_DRV\_SERIAL\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00028\ \textcolor{comment}{**\ The\ software\ can\ both\ get\ the\ operating\ mode\ from\ external\ resource\ and\ set}}
+\DoxyCodeLine{00029\ \textcolor{comment}{**\ the\ selected\ operating\ mode\ to\ the\ ABCC\ host\ connector.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00031\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_OP\_MODE\_GETTABLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_OP\_MODE\_SETTABLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00036\ \textcolor{comment}{**\ Module\ identification\ configuration}}
+\DoxyCodeLine{00037\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00038\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_MODULE\_ID\_PINS\_CONN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00042\ \textcolor{comment}{**\ Configuration\ of\ max\ process\ data\ size}}
+\DoxyCodeLine{00043\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00044\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_MAX\_PROCESS\_DATA\_SIZE\ \ \ \ \ \ \ \ \ \ \ \ \ (\ 1024\ )}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00048\ \textcolor{comment}{**\ Interrupt\ configuration\ excluding\ sync}}
+\DoxyCodeLine{00049\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00050\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_POLL\_ABCC\_IRQ\_PIN\_ENABLED\ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_INT\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#if(\ ABCC\_CFG\_INT\_ENABLED\ )}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \#define\ ABCC\_CFG\_INT\_ENABLE\_MASK\_PAR\ \ \ \ \ \ \ \ \ \ \ \ (\ ABP\_INTMASK\_RDPDIEN\ |\ ABP\_INTMASK\_STATUSIEN\ |\ ABP\_INTMASK\_RDMSGIEN\ |\ ABP\_INTMASK\_WRMSGIEN\ |\ ABP\_INTMASK\_ANBRIEN\ \ )}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \ \#define\ ABCC\_CFG\_INT\_ENABLE\_MASK\_SPI\ \ \ \ \ \ \ \ \ \ \ \ (\ 0\ )}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \#define\ ABCC\_CFG\_HANDLE\_INT\_IN\_ISR\_MASK\ \ \ \ \ \ \ \ \ (\ ABP\_INTMASK\_RDPDIEN\ )}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00060\ \textcolor{comment}{**\ Assume\ firmware\ update\ on\ initial\ communication\ timeout.}}
+\DoxyCodeLine{00061\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00062\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_DRV\_ASSUME\_FW\_UPDATE\_ENABLED\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00066\ \textcolor{comment}{**\ Remap\ support\ configuration}}
+\DoxyCodeLine{00067\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00068\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_REMAP\_SUPPORT\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00072\ \textcolor{comment}{**\ Host\ application\ objects\ to\ support.}}
+\DoxyCodeLine{00073\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00074\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ ANB\_FSI\_OBJ\_ENABLE\ 1}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ EIP\_OBJ\_ENABLE\ 1}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ PRT\_OBJ\_ENABLE\ 1}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ MOD\_OBJ\_ENABLE\ 1}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00081\ \textcolor{comment}{**\ Command\ response\ list}}
+\DoxyCodeLine{00082\ \textcolor{comment}{**}}
+\DoxyCodeLine{00083\ \textcolor{comment}{**\ Contains\ macros\ describing\ what\ command\ shall\ be\ responded\ to\ and\ how.}}
+\DoxyCodeLine{00084\ \textcolor{comment}{**\ See\ abcc\_api\_command\_handler\_lookup.h\ to\ find\ available\ command\ response}}
+\DoxyCodeLine{00085\ \textcolor{comment}{**\ macros\ and\ associated\ callback\ function\ definitions.}}
+\DoxyCodeLine{00086\ \textcolor{comment}{**}}
+\DoxyCodeLine{00087\ \textcolor{comment}{**\ Note:\ the\ associated\ object\ must\ be\ enabled\ via\ its\ \_OBJ\_ENABLE\ macro\ for\ a}}
+\DoxyCodeLine{00088\ \textcolor{comment}{**\ command\ response\ entry\ to\ take\ effect.}}
+\DoxyCodeLine{00089\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00090\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ ABCC\_API\_COMMAND\_RESPONSE\_LIST\ \(\backslash\)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ ABCC\_APPLICATION\_OBJ\_SERIAL\_NR\_GET\_CBFUNC,\ \(\backslash\)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ ABCC\_APPLICATION\_OBJ\_PRODUCT\_NAME\_GET\_CBFUNC,\ \(\backslash\)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ ABCC\_APPLICATION\_OBJ\_VENDOR\_NAME\_GET\_VALUE("{}DTL"{}),\ \(\backslash\)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \ ABCC\_ETHERNETIP\_OBJ\_VENDOR\_ID\_GET\_VALUE(0xDEAD),\ \(\backslash\)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ ABCC\_ETHERNETIP\_OBJ\_DEVICE\_TYPE\_GET\_CBFUNC,\ \(\backslash\)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ \ ABCC\_ETHERNETIP\_OBJ\_PRODUCT\_CODE\_GET\_CBFUNC,\ \(\backslash\)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\ \ \ ABCC\_ETHERNETIP\_OBJ\_REVISION\_GET\_VALUE(\ "{}\(\backslash\)x44\(\backslash\)x43"{}\ ),\ \(\backslash\)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\ \ \ ABCC\_PROFINET\_OBJ\_VENDOR\_ID\_GET\_VALUE(0xDEAD),\ \(\backslash\)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\ \ \ ABCC\_PROFINET\_OBJ\_DEVICE\_ID\_GET\_CBFUNC,\ \(\backslash\)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \ ABCC\_PROFINET\_OBJ\_ORDER\_ID\_GET\_CBFUNC,\ \(\backslash\)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \ ABCC\_APPLICATION\_OBJ\_FW\_AVAILABLE\_GET\_CBFUNC,\ \(\backslash\)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \ ABCC\_APPLICATION\_OBJ\_FW\_AVAILABLE\_SET\_CBFUNC,}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00106\ \textcolor{comment}{**\ Debug\ and\ error\ macro\ configuration}}
+\DoxyCodeLine{00107\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00108\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_MESSAGE\_SIZE\_CHECK\_ENABLED\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00112\ \textcolor{comment}{**\ Debug\ level\ configuration}}
+\DoxyCodeLine{00113\ \textcolor{comment}{**}}
+\DoxyCodeLine{00114\ \textcolor{comment}{**\ Configures\ the\ level\ of\ debug\ logging.}}
+\DoxyCodeLine{00115\ \textcolor{comment}{**}}
+\DoxyCodeLine{00116\ \textcolor{comment}{**\ One\ of:}}
+\DoxyCodeLine{00117\ \textcolor{comment}{**\ ABCC\_LOG\_SEVERITY\_DISABLED}}
+\DoxyCodeLine{00118\ \textcolor{comment}{**\ ABCC\_LOG\_SEVERITY\_FATAL\_ENABLED}}
+\DoxyCodeLine{00119\ \textcolor{comment}{**\ ABCC\_LOG\_SEVERITY\_ERROR\_ENABLED}}
+\DoxyCodeLine{00120\ \textcolor{comment}{**\ ABCC\_LOG\_SEVERITY\_WARNING\_ENABLED}}
+\DoxyCodeLine{00121\ \textcolor{comment}{**\ ABCC\_LOG\_SEVERITY\_INFO\_ENABLED}}
+\DoxyCodeLine{00122\ \textcolor{comment}{**\ ABCC\_LOG\_SEVERITY\_DEBUG\_ENABLED}}
+\DoxyCodeLine{00123\ \textcolor{comment}{**-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00124\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_LOG\_SEVERITY\ ABCC\_LOG\_SEVERITY\_INFO\_ENABLED}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_LOG\_FILE\_LINE\_ENABLED\ 1}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_LOG\_TIMESTAMPS\_ENABLED\ 1}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_LOG\_STRINGS\_ENABLED\ 1}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ ABCC\_CFG\_LOG\_COLORS\_ENABLED\ 0}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ inclusion\ lock\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

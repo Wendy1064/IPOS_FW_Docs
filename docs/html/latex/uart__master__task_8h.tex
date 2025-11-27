@@ -1,0 +1,35 @@
+\doxysection{uart\+\_\+master\+\_\+task.\+h File Reference}
+\hypertarget{uart__master__task_8h}{}\label{uart__master__task_8h}\index{uart\_master\_task.h@{uart\_master\_task.h}}
+{\ttfamily \#include "{}cmsis\+\_\+os2.\+h"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for uart\+\_\+master\+\_\+task.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{uart__master__task_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{uart__master__task_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_var_frame}{Var\+Frame}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__uart__master__task_gae0c58a28693c31347c2942dc51f60aee}{Uart\+Master\+\_\+\+Start\+Tasks}} (void \texorpdfstring{$\ast$}{*}uart\+\_\+handle)
+\begin{DoxyCompactList}\small\item\em Creates message queues and starts the UART Master task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+os\+Message\+Queue\+Id\+\_\+t \mbox{\hyperlink{group__uart__master__task_gab434b0238221e0189e48d13665cfc621}{g\+Ack\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue for acknowledgment frames from slave (CMD\+\_\+\+ACK). \end{DoxyCompactList}\item 
+os\+Message\+Queue\+Id\+\_\+t \mbox{\hyperlink{group__uart__master__task_ga0bdb2bd938c5bcddab9b37256a1da565}{g\+Data\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue for incoming data frames (CMD\+\_\+\+READ). \end{DoxyCompactList}\end{DoxyCompactItemize}

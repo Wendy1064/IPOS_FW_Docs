@@ -1,0 +1,24 @@
+\doxysection{slave\+\_\+link.\+h}
+\hypertarget{slave__link_8h_source}{}\label{slave__link_8h_source}\index{slave\_link.h@{slave\_link.h}}
+\mbox{\hyperlink{slave__link_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}stm32h7xx\_hal.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{slave__link_8h_adebdc3501c69902cbee16fc4424619b5}{slave\_link\_start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{slave__link_8h_a58ba81efee4570ef875945bb78f7391e}{slave\_link\_poll}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/*\ Hooks\ for\ application\ logic\ */}}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{slave__link_8h_a57a20e42f562544326ab746ea2c4e44b}{slave\_on\_write}}(uint8\_t\ var\_id,\ uint16\_t\ value);}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{slave__link_8h_a1ef253795104f060c22e1433c137b379}{slave\_on\_read}}(uint8\_t\ var\_id);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ uint16\_t\ \mbox{\hyperlink{slave__link_8h_a8bdf6f063c53b3e45d36a8cd9db43608}{slave\_get\_reg}}(uint8\_t\ var\_id);}
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{slave__link_8h_a8c8839cf5d8cb692c3b99b83af51556a}{slave\_set\_reg}}(uint8\_t\ var\_id,\ uint16\_t\ value);}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{slave__link_8h_afbc0eb853c0ef11b27f22a5f53c6c76c}{to\_binary\_str}}(uint16\_t\ value,\ \textcolor{keywordtype}{int}\ bits,\ \textcolor{keywordtype}{char}\ *buf,\ \textcolor{keywordtype}{size\_t}\ buf\_size);}
+\DoxyCodeLine{00017\ \textcolor{comment}{//static\ void\ send\_bytes(const\ uint8\_t\ *p,\ uint16\_t\ n);}}
+\DoxyCodeLine{00018\ }
+
+\end{DoxyCode}

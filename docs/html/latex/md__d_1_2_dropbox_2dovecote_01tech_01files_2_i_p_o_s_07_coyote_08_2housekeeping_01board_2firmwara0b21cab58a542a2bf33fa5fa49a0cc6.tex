@@ -1,0 +1,146 @@
+\chapter{USB Command Interface — usb\+\_\+commands.\+c}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6}{}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6}\index{USB Command Interface — usb\_commands.c@{USB Command Interface — usb\_commands.c}}
+\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md178}%
+\Hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md178}%
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md179}{}\doxysection{\texorpdfstring{1. Overview}{1. Overview}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md179}
+The {\bfseries{USB Command Interface}} provides a text-\/based console interface between the IPOS controller and a host PC or PLC over USB CDC. ~\newline
+ It interprets incoming ASCII commands and triggers internal actions or event messages handled by the RTOS tasks.
+
+Each recognized command may\+:
+\begin{DoxyItemize}
+\item Directly toggle or print system states, or
+\item Generate an event ({\ttfamily \doxylink{struct_input_event__t}{Input\+Event\+\_\+t}}) and post it to the input queue for processing by the input and flash subsystems.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md181}{}\doxysection{\texorpdfstring{2. Dependencies}{2. Dependencies}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md181}
+This module interacts closely with several subsystems\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dependency   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Dependency   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endhead
+{\ttfamily \doxylink{inputs_8c}{inputs.\+c}}   &Queues system and safety events via {\ttfamily input\+Event\+Queue}.    \\\cline{1-2}
+{\ttfamily \doxylink{log__flash_8c}{log\+\_\+flash.\+c}}   &Responds to log-\/related commands (dump, erase, test).    \\\cline{1-2}
+{\ttfamily \doxylink{max31855_8c}{max31855.\+c}}   &Provides temperature data for the “\+BDO TEMP” command.    \\\cline{1-2}
+{\ttfamily protocol.\+h}   &Provides {\ttfamily \doxylink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{Usb\+Printf()}} output function.    \\\cline{1-2}
+{\ttfamily Free\+RTOS} / {\ttfamily cmsis\+\_\+os2}   &Event flag and message queue services.   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md183}{}\doxysection{\texorpdfstring{3. Command Summary}{3. Command Summary}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md183}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Command   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Action    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Command   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Action    }\\\cline{1-2}
+\endhead
+{\ttfamily HELP}   &Displays available commands.    \\\cline{1-2}
+{\ttfamily VERBOSE ON / OFF}   &Enables or disables detailed event logging.    \\\cline{1-2}
+{\ttfamily STATUS DEBUG}   &Queues an input status report event.    \\\cline{1-2}
+{\ttfamily Tru\+Pulse}   &Queues an event to display Tru\+Pulse diagnostic pins.    \\\cline{1-2}
+{\ttfamily BDO TEMP}   &Queues an event to print current thermocouple temperature.    \\\cline{1-2}
+{\ttfamily LOG DUMP}   &Queues an event to dump flash log contents.    \\\cline{1-2}
+{\ttfamily LOG ERASE}   &Queues an event to erase all flash log sectors.    \\\cline{1-2}
+{\ttfamily FLASH STATUS}   &Queues an event to show flash usage and record info.    \\\cline{1-2}
+{\ttfamily FLASH TEST}   &Queues a read/write verification test on flash.    \\\cline{1-2}
+{\ttfamily FLASH ID}   &Requests the JEDEC ID of the flash device.    \\\cline{1-2}
+{\ttfamily RESET}   &Triggers latch reset by setting {\ttfamily Reset\+Latch\+Event}.   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md185}{}\doxysection{\texorpdfstring{4. Implementation Details}{4. Implementation Details}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md185}
+The main entry point is {\ttfamily \doxylink{group__usb__commands_ga132ae4cb7de0936784e2fb4ed9ea0f17}{Usb\+Command\+\_\+\+Process()}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__usb__commands_ga132ae4cb7de0936784e2fb4ed9ea0f17}{UsbCommand\_Process}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *cmd)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ trim\_cmd(cmd);\ \ \textcolor{comment}{//\ Clean\ leading/trailing\ spaces}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (strcasecmp(cmd,\ \textcolor{stringliteral}{"{}HELP"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{UsbPrintf}}(\textcolor{stringliteral}{"{}Available\ commands\ ..."{}});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcasecmp(cmd,\ \textcolor{stringliteral}{"{}VERBOSE\ ON"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{group__app__main_ga13513b52ba27e18fced406e65011d1b9}{verboseLogging}}\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{group__protocol_gaf2833787d9240d7acbb8e759d6cf775a}{UsbPrintf}}(\textcolor{stringliteral}{"{}Verbose\ logging\ ENABLED\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcasecmp(cmd,\ \textcolor{stringliteral}{"{}FLASH\ STATUS"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_input_event__t}{InputEvent\_t}}\ evt\ =\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{struct_input_event__t_a92a1a7c50a0b83c12871590d2998e10c}{type}}\ =\ \mbox{\hyperlink{group__input__handling_gga29c32e7b69344b51f6e2f31ae178dd4ea59c9be79d616f12d922cd1234c2e191b}{EVT\_FLASH\_STATUS}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ .msg\ =\ \textcolor{stringliteral}{"{}FLASH\ STATUS"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ osMessageQueuePut(\mbox{\hyperlink{group__input__handling_ga18b12a1b645e0014948c0750c65b0578}{inputEventQueue}},\ \&evt,\ 0,\ 0);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md186}{}\doxysection{\texorpdfstring{5. Helper Function}{5. Helper Function}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md186}
+static void trim\+\_\+cmd(char \texorpdfstring{$\ast$}{*}cmd)
+
+Removes leading/trailing whitespace, carriage returns, and newline characters before command parsing.
+
+Event Dispatching
+
+Each recognized command (other than “\+HELP” or “\+VERBOSE”) generates an \doxylink{struct_input_event__t}{Input\+Event\+\_\+t} and posts it to the RTOS queue\+:
+
+os\+Message\+Queue\+Put(input\+Event\+Queue, \&evt, 0, 0);
+
+The event is later processed by\+:
+
+\doxylink{group__input__handling_ga805adbfc7497d40e012d66b373772958}{v\+Task\+Inputs()} (for state logic)
+
+\doxylink{group__input__handling_ga392a7bd95b0d7cb59cd9d781b91b428f}{v\+Task\+Usb\+Logger()} (for formatted output)
+
+\doxylink{group__log__flash_gae4a37f521a0098079c9f62bb1014569f}{v\+Task\+Log\+Writer()} (for persistent logging)\hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md187}{}\doxysection{\texorpdfstring{6. Example Session}{6. Example Session}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md187}
+Host → Controller 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{>\ HELP}
+\DoxyCodeLine{Available\ commands:}
+\DoxyCodeLine{\ \ HELP}
+\DoxyCodeLine{\ \ VERBOSE\ ON/OFF}
+\DoxyCodeLine{\ \ STATUS\ DEBUG}
+\DoxyCodeLine{\ \ TruPulse}
+\DoxyCodeLine{\ \ BDO\ TEMP}
+\DoxyCodeLine{\ \ LOG\ DUMP}
+\DoxyCodeLine{\ \ FLASH\ STATUS}
+\DoxyCodeLine{\ \ FLASH\ ID}
+\DoxyCodeLine{\ \ LOG\ ERASE}
+\DoxyCodeLine{\ \ RESET}
+
+\end{DoxyCode}
+ Controller → Host 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\#\ VERBOSE\ ON}
+\DoxyCodeLine{Verbose\ logging\ ENABLED}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md188}{}\doxysubsection{\texorpdfstring{FLASH STATUS}{FLASH STATUS}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md188}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{====\ FLASH\ STATUS\ ====}
+\DoxyCodeLine{JEDEC\ ID\ \ \ \ \ \ :\ 0xEF4015}
+\DoxyCodeLine{Device\ \ \ \ \ \ \ \ :\ W25Q16JV\ (2\ MBytes)}
+\DoxyCodeLine{Usage\ \ \ \ \ \ \ \ \ :\ 14.9\%}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md189}{}\doxysection{\texorpdfstring{7. Future Extensions}{7. Future Extensions}}\label{md__d_1_2_dropbox_2dovecote_01tech_01files_2_i_p_o_s_07_coyote_08_2housekeeping_01board_2firmwara0b21cab58a542a2bf33fa5fa49a0cc6_autotoc_md189}
+Add SAVE CONFIG and LOAD CONFIG commands.
+
+Add optional CRC checks for host-\/to-\/controller messages.
+
+Provide error codes for invalid or incomplete commands. 

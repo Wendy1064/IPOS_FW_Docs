@@ -1,0 +1,121 @@
+\doxysection{stm32f4xx\+\_\+hal\+\_\+timebase\+\_\+tim.\+c File Reference}
+\hypertarget{stm32f4xx__hal__timebase__tim_8c}{}\label{stm32f4xx__hal__timebase__tim_8c}\index{stm32f4xx\_hal\_timebase\_tim.c@{stm32f4xx\_hal\_timebase\_tim.c}}
+
+
+HAL time base based on the hardware TIM.  
+
+
+{\ttfamily \#include "{}stm32f4xx\+\_\+hal.\+h"{}}\newline
+{\ttfamily \#include "{}stm32f4xx\+\_\+hal\+\_\+tim.\+h"{}}\newline
+Include dependency graph for stm32f4xx\+\_\+hal\+\_\+timebase\+\_\+tim.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stm32f4xx__hal__timebase__tim_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{stm32f4xx__hal__timebase__tim_8c_a879cdb21ef051eb81ec51c18147397d5}{HAL\+\_\+\+Init\+Tick}} (uint32\+\_\+t Tick\+Priority)
+\begin{DoxyCompactList}\small\item\em This function configures the TIM6 as a time base source. The time source is configured to have 1ms time base with a dedicated Tick interrupt priority. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f4xx__hal__timebase__tim_8c_aaf651af2afe688a991c657f64f8fa5f9}{HAL\+\_\+\+Suspend\+Tick}} (void)
+\begin{DoxyCompactList}\small\item\em Suspend Tick increment. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stm32f4xx__hal__timebase__tim_8c_a24e0ee9dae1ec0f9d19200f5575ff790}{HAL\+\_\+\+Resume\+Tick}} (void)
+\begin{DoxyCompactList}\small\item\em Resume Tick increment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_t_i_m___handle_type_def}{TIM\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{stm32f4xx__hal__timebase__tim_8c_a1564492831a79fa18466467c3420c3c3}{htim6}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+HAL time base based on the hardware TIM. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2025 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{stm32f4xx__hal__timebase__tim_8c_a879cdb21ef051eb81ec51c18147397d5}\label{stm32f4xx__hal__timebase__tim_8c_a879cdb21ef051eb81ec51c18147397d5} 
+\index{stm32f4xx\_hal\_timebase\_tim.c@{stm32f4xx\_hal\_timebase\_tim.c}!HAL\_InitTick@{HAL\_InitTick}}
+\index{HAL\_InitTick@{HAL\_InitTick}!stm32f4xx\_hal\_timebase\_tim.c@{stm32f4xx\_hal\_timebase\_tim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_InitTick()}{HAL\_InitTick()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} HAL\+\_\+\+Init\+Tick (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Tick\+Priority }\end{DoxyParamCaption})}
+
+
+
+This function configures the TIM6 as a time base source. The time source is configured to have 1ms time base with a dedicated Tick interrupt priority. 
+
+\begin{DoxyNote}{Note}
+This function is called automatically at the beginning of program after reset by \doxylink{group___h_a_l___exported___functions___group1_gaecac54d350c3730e6831eb404e557dc4}{HAL\+\_\+\+Init()} or at any time when clock is configured, by \doxylink{group___r_c_c___exported___functions___group1_gadb770505476995fc13c2ca7290d9c484}{HAL\+\_\+\+RCC\+\_\+\+Clock\+Config()}. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em Tick\+Priority} & Tick interrupt priority. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em HAL} & status \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{stm32f4xx__hal__timebase__tim_8c_a24e0ee9dae1ec0f9d19200f5575ff790}\label{stm32f4xx__hal__timebase__tim_8c_a24e0ee9dae1ec0f9d19200f5575ff790} 
+\index{stm32f4xx\_hal\_timebase\_tim.c@{stm32f4xx\_hal\_timebase\_tim.c}!HAL\_ResumeTick@{HAL\_ResumeTick}}
+\index{HAL\_ResumeTick@{HAL\_ResumeTick}!stm32f4xx\_hal\_timebase\_tim.c@{stm32f4xx\_hal\_timebase\_tim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_ResumeTick()}{HAL\_ResumeTick()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+Resume\+Tick (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Resume Tick increment. 
+
+\begin{DoxyNote}{Note}
+Enable the tick increment by Enabling TIM6 update interrupt. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{stm32f4xx__hal__timebase__tim_8c_aaf651af2afe688a991c657f64f8fa5f9}\label{stm32f4xx__hal__timebase__tim_8c_aaf651af2afe688a991c657f64f8fa5f9} 
+\index{stm32f4xx\_hal\_timebase\_tim.c@{stm32f4xx\_hal\_timebase\_tim.c}!HAL\_SuspendTick@{HAL\_SuspendTick}}
+\index{HAL\_SuspendTick@{HAL\_SuspendTick}!stm32f4xx\_hal\_timebase\_tim.c@{stm32f4xx\_hal\_timebase\_tim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_SuspendTick()}{HAL\_SuspendTick()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+Suspend\+Tick (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Suspend Tick increment. 
+
+\begin{DoxyNote}{Note}
+Disable the tick increment by disabling TIM6 update interrupt. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{stm32f4xx__hal__timebase__tim_8c_a1564492831a79fa18466467c3420c3c3}\label{stm32f4xx__hal__timebase__tim_8c_a1564492831a79fa18466467c3420c3c3} 
+\index{stm32f4xx\_hal\_timebase\_tim.c@{stm32f4xx\_hal\_timebase\_tim.c}!htim6@{htim6}}
+\index{htim6@{htim6}!stm32f4xx\_hal\_timebase\_tim.c@{stm32f4xx\_hal\_timebase\_tim.c}}
+\doxysubsubsection{\texorpdfstring{htim6}{htim6}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_t_i_m___handle_type_def}{TIM\+\_\+\+Handle\+Type\+Def}} htim6}
+

@@ -1,0 +1,41 @@
+PROJECT_NAME           = "IPOS Combined Firmware Documentation"
+PROJECT_BRIEF          = "Unified documentation for STM32 Housekeeping and Anybus M40 Profinet firmware"
+
+OUTPUT_DIRECTORY       = ./html
+HTML_OUTPUT            = .
+GENERATE_HTML          = YES
+GENERATE_TREEVIEW      = YES
+
+FULL_PATH_NAMES        = NO
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+
+# Enable markdown parsing
+MARKDOWN_SUPPORT       = YES
+EXTENSION_MAPPING      = md=markdown
+ENABLE_PREPROCESSING   = YES
+
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = png
+CLASS_DIAGRAMS         = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+DOT_GRAPH_MAX_NODES    = 50
+DOT_TRANSPARENT        = YES
+DOT_MULTI_TARGETS      = YES
+
+
+# ----------------------------
+# Input paths (Combined first!)
+# ----------------------------
+INPUT = \
+  . \
+  ../IPOS_071125/Core \
+  ../IPOS_071125/Drivers \
+  ../IPOS_071125/Docs \
+  ../IPOS_M40_V1_00_101125/Core \
+  ../IPOS_M40_V1_00_101125/src \
+  ../IPOS_M40_V1_00_101125/Docs
+
+FILE_PATTERNS = *.c *.h *.md
+USE_MDFILE_AS_MAINPAGE = mainpage.md

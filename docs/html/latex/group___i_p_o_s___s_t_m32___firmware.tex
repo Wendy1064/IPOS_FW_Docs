@@ -1,0 +1,78 @@
+\doxysection{IPOS STM32 Housekeeping Firmware}
+\hypertarget{group___i_p_o_s___s_t_m32___firmware}{}\label{group___i_p_o_s___s_t_m32___firmware}\index{IPOS STM32 Housekeeping Firmware@{IPOS STM32 Housekeeping Firmware}}
+
+
+Free\+RTOS-\/based STM32\+F4 control firmware for safety, logic, and relay management.  
+
+
+Free\+RTOS-\/based STM32\+F4 control firmware for safety, logic, and relay management. 
+
+\hypertarget{group___i_p_o_s___s_t_m32___firmware_autotoc_md24}{}\doxysubsection{\texorpdfstring{IPOS STM32 Housekeeping Firmware}{IPOS STM32 Housekeeping Firmware}}\label{group___i_p_o_s___s_t_m32___firmware_autotoc_md24}
+The {\bfseries{STM32\+F4 Housekeeping Firmware}} manages local interlocks, thermocouple monitoring, relay safety logic, and communication with the Anybus M40 module.
+
+\DoxyHorRuler{0}
+\hypertarget{group___i_p_o_s___s_t_m32___firmware_autotoc_md26}{}\doxysubsubsection{\texorpdfstring{Responsibilities}{Responsibilities}}\label{group___i_p_o_s___s_t_m32___firmware_autotoc_md26}
+
+\begin{DoxyItemize}
+\item Supervise safety and I/O conditions in real time ~\newline
+
+\item Communicate with Anybus M40 over {\bfseries{UART3}} ~\newline
+
+\item Provide diagnostic and runtime status via USB ~\newline
+
+\item Control the {\bfseries{SP-\/\+ICE-\/3}} laser interface through parallel ports ~\newline
+
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{group___i_p_o_s___s_t_m32___firmware_autotoc_md28}{}\doxysubsubsection{\texorpdfstring{Communication Overview}{Communication Overview}}\label{group___i_p_o_s___s_t_m32___firmware_autotoc_md28}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_8}}
+\end{DoxyImageNoCaption}
+
+
+\DoxyHorRuler{0}
+\hypertarget{group___i_p_o_s___s_t_m32___firmware_autotoc_md30}{}\doxysubsubsection{\texorpdfstring{Source Modules}{Source Modules}}\label{group___i_p_o_s___s_t_m32___firmware_autotoc_md30}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\ttfamily \doxylink{app__main_8c}{app\+\_\+main.\+c}}   &System startup, RTOS initialization    \\\cline{1-2}
+{\ttfamily input.\+c}   &Input debouncing and state tracking    \\\cline{1-2}
+{\ttfamily usart\+\_\+master\+\_\+task.\+c}   &UART link task (M40 communication)    \\\cline{1-2}
+{\ttfamily protocol.\+c}   &Message framing and command parsing    \\\cline{1-2}
+{\ttfamily flash\+\_\+log.\+c}   &Flash logging and persistent storage   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{group___i_p_o_s___s_t_m32___firmware_autotoc_md32}{}\doxysubsubsection{\texorpdfstring{Timing}{Timing}}\label{group___i_p_o_s___s_t_m32___firmware_autotoc_md32}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Period   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Task   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Period   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-3}
+\endhead
+Input Scan   &5 ms   &Debounce and event detect    \\\cline{1-3}
+Relay Monitor   &20 ms   &Safety logic updates    \\\cline{1-3}
+UART Master   &50 ms   &Communication with M40    \\\cline{1-3}
+USB Console   &100 ms   &Debug logging   \\\cline{1-3}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+
+
+\texorpdfstring{$\ast$}{*}\+Part of IPOS\+\_\+\+Combined\+\_\+\+Firmware — STM32 Section\texorpdfstring{$\ast$}{*} ~\newline
+ 

@@ -1,0 +1,223 @@
+\doxysection{Master Communication Link}
+\hypertarget{group__master__link}{}\label{group__master__link}\index{Master Communication Link@{Master Communication Link}}
+
+
+UART-\/based master communication interface for PLC or slave device.  
+
+
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__master__link_gac7b5ea119b0669eaed97efae6ebd4c2f}{UART\+\_\+\+RX\+\_\+\+DMA\+\_\+\+CHUNK}}~128
+\item 
+\#define \mbox{\hyperlink{group__master__link_ga4ab5f7800f96dec4076a4a0c8aa634b7}{RB\+\_\+\+SIZE}}~256
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__master__link_gaf9aace1b44b73111e15aa39f06f43456}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((weak))
+\begin{DoxyCompactList}\small\item\em Weak callback when an ACK frame is received. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__master__link_ga67e95828277c0771ad0a573322a5191d}{master\+\_\+link\+\_\+init}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}huart)
+\begin{DoxyCompactList}\small\item\em Initializes the master UART link. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__master__link_ga136d58a2733b7acdf639c5bf42685536}{master\+\_\+link\+\_\+start}} (void)
+\begin{DoxyCompactList}\small\item\em Starts DMA-\/based UART reception with idle-\/line detection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__master__link_gaa0c4ce7bf2ecce9ca76ebf74d34a9812}{master\+\_\+link\+\_\+poll}} (void)
+\begin{DoxyCompactList}\small\item\em Polls and processes received bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__master__link_gaf426d71cc3d545680207a5c14fc915e0}{master\+\_\+link\+\_\+attach\+\_\+task\+\_\+handle}} (void \texorpdfstring{$\ast$}{*}task\+\_\+handle)
+\begin{DoxyCompactList}\small\item\em Registers a Free\+RTOS task to be notified on data reception. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{group__master__link_gaac6847f1075654acb90ca1225ef9d132}{master\+\_\+write\+\_\+u16}} (uint8\+\_\+t var\+\_\+id, uint16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Sends a 16-\/bit WRITE command to the slave. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{group__master__link_gab4078648ce04415c64875e869c39d12c}{master\+\_\+read\+\_\+u16}} (uint8\+\_\+t var\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Sends a READ request for a 16-\/bit variable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__master__link_ga925534fb8bf7ca464fd05c982fe4bfa0}{HAL\+\_\+\+UARTEx\+\_\+\+Rx\+Event\+Callback}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}huart, uint16\+\_\+t Size)
+\begin{DoxyCompactList}\small\item\em HAL callback on UART RX idle event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__master__link_ga0e0456ea96d55db31de947fb3e954f18}{HAL\+\_\+\+UART\+\_\+\+Error\+Callback}} (\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}huart)
+\begin{DoxyCompactList}\small\item\em HAL callback for UART error recovery. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+UART-\/based master communication interface for PLC or slave device. 
+
+This module provides the low-\/level UART link layer between the STM32 master controller and the external PLC or slave node. It uses DMA-\/based reception, a circular ring buffer, and a protocol parser to decode incoming frames.
+
+The {\bfseries{Master Link}} module handles the byte stream from the UART peripheral, maintains a receive ring buffer, and parses data using the \doxylink{group__protocol}{Communication Protocol Layer} module. It operates in conjunction with\+:
+\begin{DoxyItemize}
+\item \doxylink{group__uart__master__task}{UART Master Task} — the Free\+RTOS task that drives UART TX/\+RX
+\item \doxylink{group__protocol}{Communication Protocol Layer} — frame encoding and decoding
+\item \doxylink{group__app__main}{Application Startup and Task Manager} — which manages task scheduling and data flow
+\end{DoxyItemize}\hypertarget{group__master__link_autotoc_md50}{}\doxysubsubsubsection{\texorpdfstring{Responsibilities}{Responsibilities}}\label{group__master__link_autotoc_md50}
+
+\begin{DoxyItemize}
+\item Initialize UART DMA reception and parser state
+\item Handle DMA-\/to-\/ring-\/buffer data transfer
+\item Decode incoming protocol frames (ACK/\+DATA)
+\item Provide {\ttfamily \doxylink{group__master__link_gaac6847f1075654acb90ca1225ef9d132}{master\+\_\+write\+\_\+u16()}} and {\ttfamily \doxylink{group__master__link_gab4078648ce04415c64875e869c39d12c}{master\+\_\+read\+\_\+u16()}} APIs
+\item Notify upper-\/layer task via {\ttfamily os\+Thread\+Flags\+Set()} when data arrives
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Uses HAL UARTEx APIs with DMA idle-\/line detection. 
+\end{DoxyNote}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{group__master__link_ga4ab5f7800f96dec4076a4a0c8aa634b7}\label{group__master__link_ga4ab5f7800f96dec4076a4a0c8aa634b7} 
+\index{Master Communication Link@{Master Communication Link}!RB\_SIZE@{RB\_SIZE}}
+\index{RB\_SIZE@{RB\_SIZE}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{RB\_SIZE}{RB\_SIZE}}
+{\footnotesize\ttfamily \#define RB\+\_\+\+SIZE~256}
+
+\Hypertarget{group__master__link_gac7b5ea119b0669eaed97efae6ebd4c2f}\label{group__master__link_gac7b5ea119b0669eaed97efae6ebd4c2f} 
+\index{Master Communication Link@{Master Communication Link}!UART\_RX\_DMA\_CHUNK@{UART\_RX\_DMA\_CHUNK}}
+\index{UART\_RX\_DMA\_CHUNK@{UART\_RX\_DMA\_CHUNK}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{UART\_RX\_DMA\_CHUNK}{UART\_RX\_DMA\_CHUNK}}
+{\footnotesize\ttfamily \#define UART\+\_\+\+RX\+\_\+\+DMA\+\_\+\+CHUNK~128}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__master__link_gaf9aace1b44b73111e15aa39f06f43456}\label{group__master__link_gaf9aace1b44b73111e15aa39f06f43456} 
+\index{Master Communication Link@{Master Communication Link}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(weak)}]{ }\end{DoxyParamCaption})}
+
+
+
+Weak callback when an ACK frame is received. 
+
+Weak callback when a READ response frame is received.
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+id} & Variable identifier \\
+\hline
+{\em value} & Acknowledged value\\
+\hline
+{\em var\+\_\+id} & Variable identifier \\
+\hline
+{\em value} & Received data value \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__master__link_ga0e0456ea96d55db31de947fb3e954f18}\label{group__master__link_ga0e0456ea96d55db31de947fb3e954f18} 
+\index{Master Communication Link@{Master Communication Link}!HAL\_UART\_ErrorCallback@{HAL\_UART\_ErrorCallback}}
+\index{HAL\_UART\_ErrorCallback@{HAL\_UART\_ErrorCallback}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{HAL\_UART\_ErrorCallback()}{HAL\_UART\_ErrorCallback()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+UART\+\_\+\+Error\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}}]{huart }\end{DoxyParamCaption})}
+
+
+
+HAL callback for UART error recovery. 
+
+Clears overflow errors and restarts DMA reception. 
+\begin{DoxyParams}{Parameters}
+{\em huart} & UART handle \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__master__link_ga925534fb8bf7ca464fd05c982fe4bfa0}\label{group__master__link_ga925534fb8bf7ca464fd05c982fe4bfa0} 
+\index{Master Communication Link@{Master Communication Link}!HAL\_UARTEx\_RxEventCallback@{HAL\_UARTEx\_RxEventCallback}}
+\index{HAL\_UARTEx\_RxEventCallback@{HAL\_UARTEx\_RxEventCallback}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{HAL\_UARTEx\_RxEventCallback()}{HAL\_UARTEx\_RxEventCallback()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+UARTEx\+\_\+\+Rx\+Event\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}}]{huart,  }\item[{uint16\+\_\+t}]{Size }\end{DoxyParamCaption})}
+
+
+
+HAL callback on UART RX idle event. 
+
+Transfers received DMA data into the ring buffer and restarts reception. Optionally signals a Free\+RTOS task via {\ttfamily os\+Thread\+Flags\+Set()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em huart} & UART handle \\
+\hline
+{\em Size} & Number of bytes received \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__master__link_gaf426d71cc3d545680207a5c14fc915e0}\label{group__master__link_gaf426d71cc3d545680207a5c14fc915e0} 
+\index{Master Communication Link@{Master Communication Link}!master\_link\_attach\_task\_handle@{master\_link\_attach\_task\_handle}}
+\index{master\_link\_attach\_task\_handle@{master\_link\_attach\_task\_handle}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{master\_link\_attach\_task\_handle()}{master\_link\_attach\_task\_handle()}}
+{\footnotesize\ttfamily void master\+\_\+link\+\_\+attach\+\_\+task\+\_\+handle (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{task\+\_\+handle }\end{DoxyParamCaption})}
+
+
+
+Registers a Free\+RTOS task to be notified on data reception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+\_\+handle} & Pointer to the task handle to signal. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__master__link_ga67e95828277c0771ad0a573322a5191d}\label{group__master__link_ga67e95828277c0771ad0a573322a5191d} 
+\index{Master Communication Link@{Master Communication Link}!master\_link\_init@{master\_link\_init}}
+\index{master\_link\_init@{master\_link\_init}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{master\_link\_init()}{master\_link\_init()}}
+{\footnotesize\ttfamily void master\+\_\+link\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group___u_a_r_t___exported___types_ga5de4a49eb132735325e706f406c69d6e}{UART\+\_\+\+Handle\+Type\+Def}} \texorpdfstring{$\ast$}{*}}]{huart }\end{DoxyParamCaption})}
+
+
+
+Initializes the master UART link. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em huart} & Pointer to UART handle used for master communication. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__master__link_gaa0c4ce7bf2ecce9ca76ebf74d34a9812}\label{group__master__link_gaa0c4ce7bf2ecce9ca76ebf74d34a9812} 
+\index{Master Communication Link@{Master Communication Link}!master\_link\_poll@{master\_link\_poll}}
+\index{master\_link\_poll@{master\_link\_poll}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{master\_link\_poll()}{master\_link\_poll()}}
+{\footnotesize\ttfamily void master\+\_\+link\+\_\+poll (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Polls and processes received bytes. 
+
+Should be called periodically (or from a dedicated task) to parse received frames and invoke callbacks. \Hypertarget{group__master__link_ga136d58a2733b7acdf639c5bf42685536}\label{group__master__link_ga136d58a2733b7acdf639c5bf42685536} 
+\index{Master Communication Link@{Master Communication Link}!master\_link\_start@{master\_link\_start}}
+\index{master\_link\_start@{master\_link\_start}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{master\_link\_start()}{master\_link\_start()}}
+{\footnotesize\ttfamily void master\+\_\+link\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Starts DMA-\/based UART reception with idle-\/line detection. 
+
+\Hypertarget{group__master__link_gab4078648ce04415c64875e869c39d12c}\label{group__master__link_gab4078648ce04415c64875e869c39d12c} 
+\index{Master Communication Link@{Master Communication Link}!master\_read\_u16@{master\_read\_u16}}
+\index{master\_read\_u16@{master\_read\_u16}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{master\_read\_u16()}{master\_read\_u16()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} master\+\_\+read\+\_\+u16 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Sends a READ request for a 16-\/bit variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+id} & Variable identifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL status. 
+\end{DoxyReturn}
+\Hypertarget{group__master__link_gaac6847f1075654acb90ca1225ef9d132}\label{group__master__link_gaac6847f1075654acb90ca1225ef9d132} 
+\index{Master Communication Link@{Master Communication Link}!master\_write\_u16@{master\_write\_u16}}
+\index{master\_write\_u16@{master\_write\_u16}!Master Communication Link@{Master Communication Link}}
+\doxysubsubsection{\texorpdfstring{master\_write\_u16()}{master\_write\_u16()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} master\+\_\+write\+\_\+u16 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var\+\_\+id,  }\item[{uint16\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Sends a 16-\/bit WRITE command to the slave. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+id} & Variable identifier. \\
+\hline
+{\em value} & 16-\/bit value to write. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL status. 
+\end{DoxyReturn}

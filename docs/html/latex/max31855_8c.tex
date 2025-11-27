@@ -1,0 +1,68 @@
+\doxysection{max31855.\+c File Reference}
+\hypertarget{max31855_8c}{}\label{max31855_8c}\index{max31855.c@{max31855.c}}
+{\ttfamily \#include "{}max31855.\+h"{}}\newline
+{\ttfamily \#include "{}usbd\+\_\+cdc\+\_\+if.\+h"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}inputs.\+h"{}}\newline
+Include dependency graph for max31855.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{max31855_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{max31855_8c_a871b334e75921c050bad079ba2589f39}{MAX31855\+\_\+\+Init}} (void)
+\item 
+\mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\+\_\+\+Data}} \mbox{\hyperlink{max31855_8c_a30479412736dfb509d5dce8dff1aa3fa}{MAX31855\+\_\+\+Read}} (void)
+\item 
+void \mbox{\hyperlink{max31855_8c_a54987d83e00a39041fb32fa1d2aad560}{MAX31855\+\_\+\+Update\+Task}} (void \texorpdfstring{$\ast$}{*}argument)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\+\_\+\+Data}} \mbox{\hyperlink{max31855_8c_a336ed8079cec975211d2ca7b0b892297}{g\+\_\+\+Thermo\+Data}} = \{0\}
+\item 
+os\+Mutex\+Id\+\_\+t \mbox{\hyperlink{max31855_8c_a31af3eca36f369fb3233495998793e75}{g\+\_\+\+Thermo\+Mutex}} = \mbox{\hyperlink{abcc__types_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__app__main_ga13513b52ba27e18fced406e65011d1b9}{verbose\+Logging}}
+\begin{DoxyCompactList}\small\item\em Verbose logging enable flag (set via USB command). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{max31855_8c_a871b334e75921c050bad079ba2589f39}\label{max31855_8c_a871b334e75921c050bad079ba2589f39} 
+\index{max31855.c@{max31855.c}!MAX31855\_Init@{MAX31855\_Init}}
+\index{MAX31855\_Init@{MAX31855\_Init}!max31855.c@{max31855.c}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_Init()}{MAX31855\_Init()}}
+{\footnotesize\ttfamily void MAX31855\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{max31855_8c_a30479412736dfb509d5dce8dff1aa3fa}\label{max31855_8c_a30479412736dfb509d5dce8dff1aa3fa} 
+\index{max31855.c@{max31855.c}!MAX31855\_Read@{MAX31855\_Read}}
+\index{MAX31855\_Read@{MAX31855\_Read}!max31855.c@{max31855.c}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_Read()}{MAX31855\_Read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\+\_\+\+Data}} MAX31855\+\_\+\+Read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{max31855_8c_a54987d83e00a39041fb32fa1d2aad560}\label{max31855_8c_a54987d83e00a39041fb32fa1d2aad560} 
+\index{max31855.c@{max31855.c}!MAX31855\_UpdateTask@{MAX31855\_UpdateTask}}
+\index{MAX31855\_UpdateTask@{MAX31855\_UpdateTask}!max31855.c@{max31855.c}}
+\doxysubsubsection{\texorpdfstring{MAX31855\_UpdateTask()}{MAX31855\_UpdateTask()}}
+{\footnotesize\ttfamily void MAX31855\+\_\+\+Update\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{argument }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{max31855_8c_a336ed8079cec975211d2ca7b0b892297}\label{max31855_8c_a336ed8079cec975211d2ca7b0b892297} 
+\index{max31855.c@{max31855.c}!g\_ThermoData@{g\_ThermoData}}
+\index{g\_ThermoData@{g\_ThermoData}!max31855.c@{max31855.c}}
+\doxysubsubsection{\texorpdfstring{g\_ThermoData}{g\_ThermoData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_m_a_x31855___data}{MAX31855\+\_\+\+Data}} g\+\_\+\+Thermo\+Data = \{0\}}
+
+\Hypertarget{max31855_8c_a31af3eca36f369fb3233495998793e75}\label{max31855_8c_a31af3eca36f369fb3233495998793e75} 
+\index{max31855.c@{max31855.c}!g\_ThermoMutex@{g\_ThermoMutex}}
+\index{g\_ThermoMutex@{g\_ThermoMutex}!max31855.c@{max31855.c}}
+\doxysubsubsection{\texorpdfstring{g\_ThermoMutex}{g\_ThermoMutex}}
+{\footnotesize\ttfamily os\+Mutex\+Id\+\_\+t g\+\_\+\+Thermo\+Mutex = \mbox{\hyperlink{abcc__types_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}}
+

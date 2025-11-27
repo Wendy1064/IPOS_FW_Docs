@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['safety_20behavior_20summary_0',['10. Safety Behavior Summary',['../stm32_input_handler.html#autotoc_md114',1,'']]],
+  ['safety_20handling_1',['9. Error and Safety Handling',['../stm32_flash_log.html#autotoc_md97',1,'']]],
+  ['scheduling_20summary_2',['10. Task Scheduling Summary',['../stm32_app_main.html#autotoc_md79',1,'']]],
+  ['self_20test_3',['8. Flash Self-Test',['../stm32_app_main.html#autotoc_md77',1,'']]],
+  ['sequence_4',['Sequence',['../stm32_app_main.html#autotoc_md70',1,'5. Initialization Sequence'],['../communication_overview.html#autotoc_md15',1,'Figure 2 — PD-Write / UART / PD-Read Timing Sequence']]],
+  ['session_5',['6. Example Session',['../stm32_usb_commands.html#autotoc_md174',1,'']]],
+  ['slave_6',['On Slave',['../stm32_protocol.html#autotoc_md140',1,'']]],
+  ['source_20files_7',['Key Source Files',['../m40_overview.html#autotoc_md43',1,'']]],
+  ['status_8',['FLASH STATUS',['../stm32_usb_commands.html#autotoc_md175',1,'']]],
+  ['status_20printout_9',['9. TruPulse Status Printout',['../stm32_input_handler.html#autotoc_md113',1,'']]],
+  ['status_5factive_200x6_10',['STATUS_ACTIVE (0x6)',['../m40_iomap.html#autotoc_md193',1,'']]],
+  ['status_5fdebug_200x4_11',['STATUS_DEBUG (0x4)',['../m40_iomap.html#autotoc_md190',1,'']]],
+  ['status_5fdebug_5ftru_200x7_12',['STATUS_DEBUG_TRU (0x7)',['../m40_iomap.html#autotoc_md194',1,'']]],
+  ['status_5fplc_200x5_13',['STATUS_PLC (0x5)',['../m40_iomap.html#autotoc_md191',1,'']]],
+  ['stm32_20documentation_14',['- &lt;a class=&quot;el&quot; href=&quot;stm32_overview.html&quot;&gt;Open STM32 Documentation&lt;/a&gt;',['../m40_related.html#autotoc_md201',1,'']]],
+  ['stm32_20firmware_15',['1. IPOS STM32 Firmware',['../m40_related.html#autotoc_md200',1,'']]],
+  ['stm32_20firmware_20modules_16',['Related STM32 Firmware Modules',['../stm32_overview.html#autotoc_md28',1,'']]],
+  ['stm32_20housekeeping_20overview_17',['STM32 Housekeeping Overview',['../stm32_overview.html',1,'IPOS STM32 Housekeeping Overview'],['../stm32_overview.html#autotoc_md24',1,'IPOS STM32 Housekeeping Overview']]],
+  ['stm32_5foverview_20open_20stm32_20documentation_18',['- &lt;a class=&quot;el&quot; href=&quot;stm32_overview.html&quot;&gt;Open STM32 Documentation&lt;/a&gt;',['../m40_related.html#autotoc_md201',1,'']]],
+  ['structure_19',['Structure',['../stm32_protocol.html#autotoc_md130',1,'2. Frame Structure'],['../m40_overview.html#autotoc_md41',1,'Firmware Structure']]],
+  ['summary_20',['Summary',['../stm32_input_handler.html#autotoc_md114',1,'10. Safety Behavior Summary'],['../stm32_app_main.html#autotoc_md79',1,'10. Task Scheduling Summary'],['../stm32_usb_commands.html#autotoc_md170',1,'3. Command Summary'],['../stm32_app_main.html#autotoc_md66',1,'3. Task Creation Summary'],['../communication_overview.html#autotoc_md21',1,'3.4 Timing Summary'],['../m40_iomap.html#autotoc_md182',1,'ADI Table Summary'],['../stm32_protocol.html#autotoc_md131',1,'Command Summary'],['../m40_overview.html#autotoc_md47',1,'Communication Flow Summary'],['../m40_related.html#autotoc_md204',1,'Data Timing Summary'],['../index.html#autotoc_md3',1,'Navigation Summary']]],
+  ['synchronization_21',['Synchronization',['../communication_overview.html#autotoc_md17',1,'3.3 PD Cycle Synchronization'],['../m40_iomap.html#autotoc_md195',1,'6. Timing and Synchronization'],['../stm32_usart_master_task.html#autotoc_md160',1,'8. Timing and Synchronization'],['../communication_overview.html#autotoc_md19',1,'Figure 3 — PD Cycle Clock and Synchronization'],['../m40_timing.html#autotoc_md217',1,'Profinet Data Cycle and Synchronization'],['../m40_overview.html#autotoc_md36',1,'Profinet PD Cycle and Synchronization']]],
+  ['system_20communication_20architecture_22',['System Communication Architecture',['../index.html#autotoc_md4',1,'']]],
+  ['system_20communication_20overview_23',['System Communication Overview',['../m40_system_comm.html',1,'System Communication Overview'],['../m40_system_comm.html#autotoc_md214',1,'System Communication Overview']]]
+];

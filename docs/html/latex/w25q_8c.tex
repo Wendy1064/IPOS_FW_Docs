@@ -1,0 +1,135 @@
+\doxysection{w25q.\+c File Reference}
+\hypertarget{w25q_8c}{}\label{w25q_8c}\index{w25q.c@{w25q.c}}
+{\ttfamily \#include "{}w25q.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os.\+h"{}}\newline
+Include dependency graph for w25q.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{w25q_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{w25q_8c_a7dcce537746ff1c0c717f6ac1f4af57b}{CMD\+\_\+\+RDID}}~0x9F
+\item 
+\#define \mbox{\hyperlink{w25q_8c_aa0d84257d12c7e842175d0f53c3cff45}{CMD\+\_\+\+RDSR1}}~0x05
+\item 
+\#define \mbox{\hyperlink{w25q_8c_a233ab2b77759d1d35814743f08c96347}{CMD\+\_\+\+WREN}}~0x06
+\item 
+\#define \mbox{\hyperlink{w25q_8c_a9c953a6c538020e644127ee080608021}{CMD\+\_\+\+READ}}~0x03
+\item 
+\#define \mbox{\hyperlink{w25q_8c_a2543fca56aeb170a41cc9f4d9b24c4cf}{CMD\+\_\+\+PP}}~0x02
+\item 
+\#define \mbox{\hyperlink{w25q_8c_ae8a34ce192630c1455e9e0b5e01df068}{CMD\+\_\+\+SE4K}}~0x20
+\item 
+\#define \mbox{\hyperlink{w25q_8c_a90f680398020583fafb3d1a9c03a2aeb}{CMD\+\_\+\+CE}}~0x\+C7
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{w25q_8c_adad51cdfa8e7d1fc87467ff788a8f51f}{W25\+Q\+\_\+\+Wait\+Busy}} (uint32\+\_\+t tout\+\_\+ms)
+\item 
+void \mbox{\hyperlink{w25q_8c_a439c6b86a3726e49bb86ffe69c23deed}{W25\+Q\+\_\+\+Init}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{w25q_8c_aaa1d0ea3b941a75d0d988feaca87b1e7}{W25\+Q\+\_\+\+Read\+ID}} (void)
+\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{w25q_8c_ab9c3d50b11e8142ed89516a4ff5e67bb}{W25\+Q\+\_\+\+Read}} (uint32\+\_\+t addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint32\+\_\+t len)
+\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{w25q_8c_a302a3f3ca752d3d75943974f1a95df36}{W25\+Q\+\_\+\+Page\+Program}} (uint32\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)
+\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{w25q_8c_ae132501e366ebfaead22af8db87efd28}{W25\+Q\+\_\+\+Sector\+Erase4K}} (uint32\+\_\+t addr)
+\item 
+\mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} \mbox{\hyperlink{w25q_8c_a00a686d495b4c8b7280ceecaef291851}{W25\+Q\+\_\+\+Chip\+Erase}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{w25q_8c_a90f680398020583fafb3d1a9c03a2aeb}\label{w25q_8c_a90f680398020583fafb3d1a9c03a2aeb} 
+\index{w25q.c@{w25q.c}!CMD\_CE@{CMD\_CE}}
+\index{CMD\_CE@{CMD\_CE}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{CMD\_CE}{CMD\_CE}}
+{\footnotesize\ttfamily \#define CMD\+\_\+\+CE~0x\+C7}
+
+\Hypertarget{w25q_8c_a2543fca56aeb170a41cc9f4d9b24c4cf}\label{w25q_8c_a2543fca56aeb170a41cc9f4d9b24c4cf} 
+\index{w25q.c@{w25q.c}!CMD\_PP@{CMD\_PP}}
+\index{CMD\_PP@{CMD\_PP}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{CMD\_PP}{CMD\_PP}}
+{\footnotesize\ttfamily \#define CMD\+\_\+\+PP~0x02}
+
+\Hypertarget{w25q_8c_a7dcce537746ff1c0c717f6ac1f4af57b}\label{w25q_8c_a7dcce537746ff1c0c717f6ac1f4af57b} 
+\index{w25q.c@{w25q.c}!CMD\_RDID@{CMD\_RDID}}
+\index{CMD\_RDID@{CMD\_RDID}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{CMD\_RDID}{CMD\_RDID}}
+{\footnotesize\ttfamily \#define CMD\+\_\+\+RDID~0x9F}
+
+\Hypertarget{w25q_8c_aa0d84257d12c7e842175d0f53c3cff45}\label{w25q_8c_aa0d84257d12c7e842175d0f53c3cff45} 
+\index{w25q.c@{w25q.c}!CMD\_RDSR1@{CMD\_RDSR1}}
+\index{CMD\_RDSR1@{CMD\_RDSR1}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{CMD\_RDSR1}{CMD\_RDSR1}}
+{\footnotesize\ttfamily \#define CMD\+\_\+\+RDSR1~0x05}
+
+\Hypertarget{w25q_8c_a9c953a6c538020e644127ee080608021}\label{w25q_8c_a9c953a6c538020e644127ee080608021} 
+\index{w25q.c@{w25q.c}!CMD\_READ@{CMD\_READ}}
+\index{CMD\_READ@{CMD\_READ}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{CMD\_READ}{CMD\_READ}}
+{\footnotesize\ttfamily \#define CMD\+\_\+\+READ~0x03}
+
+\Hypertarget{w25q_8c_ae8a34ce192630c1455e9e0b5e01df068}\label{w25q_8c_ae8a34ce192630c1455e9e0b5e01df068} 
+\index{w25q.c@{w25q.c}!CMD\_SE4K@{CMD\_SE4K}}
+\index{CMD\_SE4K@{CMD\_SE4K}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{CMD\_SE4K}{CMD\_SE4K}}
+{\footnotesize\ttfamily \#define CMD\+\_\+\+SE4K~0x20}
+
+\Hypertarget{w25q_8c_a233ab2b77759d1d35814743f08c96347}\label{w25q_8c_a233ab2b77759d1d35814743f08c96347} 
+\index{w25q.c@{w25q.c}!CMD\_WREN@{CMD\_WREN}}
+\index{CMD\_WREN@{CMD\_WREN}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{CMD\_WREN}{CMD\_WREN}}
+{\footnotesize\ttfamily \#define CMD\+\_\+\+WREN~0x06}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{w25q_8c_a00a686d495b4c8b7280ceecaef291851}\label{w25q_8c_a00a686d495b4c8b7280ceecaef291851} 
+\index{w25q.c@{w25q.c}!W25Q\_ChipErase@{W25Q\_ChipErase}}
+\index{W25Q\_ChipErase@{W25Q\_ChipErase}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{W25Q\_ChipErase()}{W25Q\_ChipErase()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} W25\+Q\+\_\+\+Chip\+Erase (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{w25q_8c_a439c6b86a3726e49bb86ffe69c23deed}\label{w25q_8c_a439c6b86a3726e49bb86ffe69c23deed} 
+\index{w25q.c@{w25q.c}!W25Q\_Init@{W25Q\_Init}}
+\index{W25Q\_Init@{W25Q\_Init}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{W25Q\_Init()}{W25Q\_Init()}}
+{\footnotesize\ttfamily void W25\+Q\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{w25q_8c_a302a3f3ca752d3d75943974f1a95df36}\label{w25q_8c_a302a3f3ca752d3d75943974f1a95df36} 
+\index{w25q.c@{w25q.c}!W25Q\_PageProgram@{W25Q\_PageProgram}}
+\index{W25Q\_PageProgram@{W25Q\_PageProgram}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{W25Q\_PageProgram()}{W25Q\_PageProgram()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} W25\+Q\+\_\+\+Page\+Program (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr,  }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\Hypertarget{w25q_8c_ab9c3d50b11e8142ed89516a4ff5e67bb}\label{w25q_8c_ab9c3d50b11e8142ed89516a4ff5e67bb} 
+\index{w25q.c@{w25q.c}!W25Q\_Read@{W25Q\_Read}}
+\index{W25Q\_Read@{W25Q\_Read}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{W25Q\_Read()}{W25Q\_Read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} W25\+Q\+\_\+\+Read (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+\Hypertarget{w25q_8c_aaa1d0ea3b941a75d0d988feaca87b1e7}\label{w25q_8c_aaa1d0ea3b941a75d0d988feaca87b1e7} 
+\index{w25q.c@{w25q.c}!W25Q\_ReadID@{W25Q\_ReadID}}
+\index{W25Q\_ReadID@{W25Q\_ReadID}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{W25Q\_ReadID()}{W25Q\_ReadID()}}
+{\footnotesize\ttfamily uint32\+\_\+t W25\+Q\+\_\+\+Read\+ID (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{w25q_8c_ae132501e366ebfaead22af8db87efd28}\label{w25q_8c_ae132501e366ebfaead22af8db87efd28} 
+\index{w25q.c@{w25q.c}!W25Q\_SectorErase4K@{W25Q\_SectorErase4K}}
+\index{W25Q\_SectorErase4K@{W25Q\_SectorErase4K}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{W25Q\_SectorErase4K()}{W25Q\_SectorErase4K()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} W25\+Q\+\_\+\+Sector\+Erase4K (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr }\end{DoxyParamCaption})}
+
+\Hypertarget{w25q_8c_adad51cdfa8e7d1fc87467ff788a8f51f}\label{w25q_8c_adad51cdfa8e7d1fc87467ff788a8f51f} 
+\index{w25q.c@{w25q.c}!W25Q\_WaitBusy@{W25Q\_WaitBusy}}
+\index{W25Q\_WaitBusy@{W25Q\_WaitBusy}!w25q.c@{w25q.c}}
+\doxysubsubsection{\texorpdfstring{W25Q\_WaitBusy()}{W25Q\_WaitBusy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stm32f4xx__hal__def_8h_a63c0679d1cb8b8c684fbb0632743478f}{HAL\+\_\+\+Status\+Type\+Def}} W25\+Q\+\_\+\+Wait\+Busy (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tout\+\_\+ms }\end{DoxyParamCaption})}
+
