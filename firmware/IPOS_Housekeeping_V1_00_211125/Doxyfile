@@ -1,0 +1,147 @@
+# ---------------------------------------------------------------------------
+# Project Information
+# ---------------------------------------------------------------------------
+PROJECT_NAME           = "IPOS Firmware"
+PROJECT_BRIEF          = "STM32F4 FreeRTOS-based Housekeeping Board Firmware"
+OUTPUT_DIRECTORY       = Docs
+OUTPUT_LANGUAGE        = English
+OPTIMIZE_OUTPUT_FOR_C  = YES
+MARKDOWN_SUPPORT       = YES
+USE_MDFILE_AS_MAINPAGE = Docs/mainpage.md
+EXTENSION_MAPPING      = md=markdown
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+EXTRACT_PRIVATE        = NO
+SORT_MEMBER_DOCS       = YES
+INLINE_SOURCES         = YES
+
+# ---------------------------------------------------------------------------
+# Input / Output control
+# ---------------------------------------------------------------------------
+INPUT 				   = Core/Inc Core/Src Docs
+EXCLUDE_PATTERNS       = */CMSIS/* */Drivers/* */Middlewares/* */Core/Src/system_*
+FILE_PATTERNS          = *.c *.h *.md
+RECURSIVE              = YES
+FULL_PATH_NAMES        = NO
+STRIP_FROM_PATH        = Core/Src ../Core/Inc
+SHOW_USED_FILES        = YES
+GENERATE_TREEVIEW      = YES
+TREEVIEW_WIDTH         = 260
+GENERATE_LATEX         = NO
+GENERATE_MAN           = NO
+GENERATE_RTF           = NO
+GENERATE_XML           = NO
+GENERATE_PERLMOD       = NO
+GENERATE_DOCSET        = NO
+
+WARN_IF_UNDOCUMENTED = NO
+WARN_IF_DOC_ERROR = YES
+WARN_LOGFILE = DoxygenWarnings.log
+# ---------------------------------------------------------------------------
+# Source browsing and linking
+# ---------------------------------------------------------------------------
+SOURCE_BROWSER          = YES
+REFERENCED_BY_RELATION  = YES
+REFERENCES_RELATION     = YES
+VERBATIM_HEADERS        = YES
+ALPHABETICAL_INDEX      = YES
+SHOW_FILES              = YES
+SHOW_NAMESPACES         = NO
+SHOW_INCLUDE_FILES      = YES
+SEARCHENGINE            = YES
+GENERATE_TAGFILE        = Docs/html/ipos.tag
+
+# ---------------------------------------------------------------------------
+# Grouping & modules
+# ---------------------------------------------------------------------------
+ENABLE_PREPROCESSING    = YES
+MACRO_EXPANSION         = YES
+EXPAND_ONLY_PREDEF      = NO
+PREDEFINED              = __weak="" __packed=""
+JAVADOC_AUTOBRIEF       = YES
+MULTILINE_CPP_IS_BRIEF  = YES
+AUTOLINK_SUPPORT        = YES
+INLINE_INHERITED_MEMB   = YES
+
+# ---------------------------------------------------------------------------
+# Graphviz / Diagrams
+# ---------------------------------------------------------------------------
+HAVE_DOT                = YES
+DOT_PATH                = "C:/Program Files/Graphviz/bin"
+DOT_NUM_THREADS         = 4
+DOT_MULTI_TARGETS       = YES
+DOT_IMAGE_FORMAT        = svg
+DOT_GRAPH_MAX_NODES     = 75
+MAX_DOT_GRAPH_DEPTH     = 2
+INTERACTIVE_SVG         = YES
+
+# Enable key diagrams
+CALL_GRAPH              = YES
+CALLER_GRAPH            = YES
+INCLUDE_GRAPH           = YES
+INCLUDED_BY_GRAPH       = YES
+CLASS_GRAPH             = YES
+DIRECTORY_GRAPH         = YES
+COLLABORATION_GRAPH     = YES
+
+# ---------------------------------------------------------------------------
+# Output format and styling
+# ---------------------------------------------------------------------------
+HTML_OUTPUT             = html
+GENERATE_HTML           = YES
+HTML_COLORSTYLE_HUE     = 220
+HTML_COLORSTYLE_SAT     = 100
+HTML_COLORSTYLE_GAMMA   = 90
+HTML_DYNAMIC_SECTIONS   = YES
+DISABLE_INDEX           = NO
+GENERATE_BUGLIST        = NO
+GENERATE_DEPRECATEDLIST = NO
+
+# ---------------------------------------------------------------------------
+# Graphviz fine-tuning / styling
+# ---------------------------------------------------------------------------
+
+# Make graphs compact and readable
+DOT_TRANSPARENT        = YES
+DOT_CLEANUP            = YES
+DOT_MULTI_TARGETS      = YES
+DOT_GRAPH_MAX_NODES    = 75
+MAX_DOT_GRAPH_DEPTH    = 2
+
+# Layout tweaks for better clarity
+DOT_TRANSPARENT        = YES
+DOT_CLEANUP            = YES
+DOT_NODE_SEP           = 0.3
+DOT_RANK_SEP           = 0.3
+DOT_FONTSIZE           = 10
+DOT_EDGE_LENGTH        = 1.5
+DOT_FONTNAME           = Helvetica
+DOT_FONTPATH           = "C:/Windows/Fonts"
+
+# Color and shape improvements
+DOT_DEFAULT_FONTNAME   = Helvetica
+DOT_DEFAULT_FONTSIZE   = 10
+DOT_DEFAULT_COLOR      = "#004c99"       # Blue text
+DOT_DEFAULT_STROKE     = "#004c99"
+DOT_DEFAULT_FILL       = "#e6f0ff"       # Pale blue boxes
+
+# Use modern, hierarchical layout
+DOT_GRAPH_STYLE        = "rankdir=LR; splines=true; overlap=false;"
+DOT_NODE_STYLE         = "shape=box; style=filled,rounded; color=\"#004c99\"; fillcolor=\"#e6f0ff\";"
+DOT_EDGE_STYLE         = "color=\"#003366\"; penwidth=1.2;"
+
+# Make class and collaboration diagrams simpler
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+HIDE_UNDOC_RELATIONS   = YES
+
+DOT_GROUP_COLORS       = YES
+DOT_COLOR_SCHEME       = pastel28
+
+INTERACTIVE_SVG = YES
+
+
+

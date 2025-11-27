@@ -1,0 +1,95 @@
+# ============================================================================
+#       STM32CubeIDE / STM32 / Embedded C  –  Optimized .gitignore
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# 1. IDE WORKSPACE / PROJECT METADATA
+# ----------------------------------------------------------------------------
+.settings/
+.cproject
+.project
+.loadpath
+.mxproject
+.iproj
+.sproject
+stm32cubeide.project.prefs
+
+# STM32CubeMX backups
+*.launch
+
+# ----------------------------------------------------------------------------
+# 2. BUILD OUTPUT / BINARY FILES
+# ----------------------------------------------------------------------------
+Debug/
+Release/
+build/
+out/
+*.o
+*.d
+*.elf
+*.hex
+*.bin
+*.map
+*.lst
+*.log
+
+# ----------------------------------------------------------------------------
+# 3. GENERATED CODE (CubeMX auto-generated)
+# ----------------------------------------------------------------------------
+Core/Inc/stm32*
+Core/Src/stm32*
+Drivers/CMSIS/Device/*
+Drivers/STM32*/**/*_hal_*
+Drivers/STM32*/**/*_ll_*
+
+# ----------------------------------------------------------------------------
+# 4. Middlewares & Packs
+# ----------------------------------------------------------------------------
+Middlewares/Third_Party/FreeRTOS/Source/include/
+Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/
+Middlewares/Third_Party/FreeRTOS/Source/portable/
+
+# (Optional – if CubeMX regenerates these)
+USB_DEVICE/App/*
+USB_DEVICE/Target/*
+
+# ----------------------------------------------------------------------------
+# 5. Auto-generated documentation / temp files
+# ----------------------------------------------------------------------------
+DoxygenWarnings.log
+*.dox
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# ----------------------------------------------------------------------------
+# 6. OS / Editor garbage
+# ----------------------------------------------------------------------------
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+*.kate-swp
+
+# VSCode
+.vscode/
+
+# ----------------------------------------------------------------------------
+# 7. Git clean markers
+# ----------------------------------------------------------------------------
+*.orig
+
+# ----------------------------------------------------------------------------
+# 8. OPTIONAL – IF CUBEMX GENERATES DEVICE FILES EACH TIME
+# ----------------------------------------------------------------------------
+# Uncomment these ONLY if CubeMX is regenerating the CMSIS HAL in your project
+# Drivers/
+# Middlewares/
