@@ -1,0 +1,40 @@
+PROJECT_NAME           = "IPOS Anybus M40 Firmware"
+PROJECT_BRIEF          = "Custom interface layer for Profinet communication"
+OUTPUT_DIRECTORY       = Docs
+OPTIMIZE_OUTPUT_FOR_C  = YES
+INPUT 				   = Docs abcc_app_ipos.c Core/Inc Core/Src Docs
+FILE_PATTERNS          = *.c *.h *.md
+EXTRACT_ALL            = YES
+RECURSIVE              = YES
+MARKDOWN_SUPPORT       = YES
+USE_MDFILE_AS_MAINPAGE = Docs/mainpage.md
+HAVE_DOT               = YES
+DOT_PATH 			   = C:/Progra~1/Graphviz/bin
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+INCLUDE_GRAPH          = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+# Make diagrams wider and more readable
+DOT_GRAPH_MAX_NODES     = 150
+MAX_DOT_GRAPH_DEPTH     = 3
+DOT_FONTNAME            = Helvetica
+DOT_FONTSIZE            = 11
+DOT_TRANSPARENT         = YES
+DOT_EDGE_LENGTH         = 2.5
+DOT_GRAPH_STYLE         = "rankdir=LR; splines=true; overlap=false; ratio=fill; size=\"12,4!\";"
+
+INTERACTIVE_SVG = YES
+DOT_IMAGE_FORMAT = svg
+DOT_TRANSPARENT = YES
+
+# ---- Output & navigation ----
+GENERATE_TREEVIEW      = YES
+TREEVIEW_WIDTH         = 260
+FULL_PATH_NAMES        = NO
+SHOW_USED_FILES        = YES
+DISABLE_INDEX          = NO
+SEARCHENGINE           = YES
+HTML_DYNAMIC_SECTIONS  = YES
+HTML_OUTPUT            = html
